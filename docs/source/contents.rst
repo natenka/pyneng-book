@@ -1,4 +1,4 @@
-Python для сетевых инженеров
+Python for network engineers
 ============================
 
 .. toctree::
