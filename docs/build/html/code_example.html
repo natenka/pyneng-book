@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Работа со словарями &#8212; документация Python для сетевых инженеров 2.5.1</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>Работа со словарями<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<p>При обработке вывода команд или конфигурации часто надо будет записать
+итоговые данные в словарь.</p>
+<p>Не всегда очевидно как обрабатывать вывод команд и каким образом в целом
+подходить к разбору вывода на части. В этом подразделе рассматриваются
+несколько примеров, с возрастающим уровнем сложности.</p>
+<div class="section" id="id2">
+<h2>Разбор вывода столбцами<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В этом примере будет разбираться вывод команды sh ip int br. Из вывода
+команды нам надо получить соответствия имя интерфейса - IP-адрес. То
+есть имя интерфейса - это ключ словаря, а IP-адрес - значение. При этом,
+соответствие надо делать только для тех интерфейсов, у которых назначен
+IP-адрес.</p>
+<p>Пример вывода команды sh ip int br (файл sh_ip_int_br.txt):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>R1#show ip interface brief
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            15.0.15.1       YES manual up                    up
+FastEthernet0/1            10.0.12.1       YES manual up                    up
+FastEthernet0/2            10.0.13.1       YES manual up                    up
+FastEthernet0/3            unassigned      YES unset  up                    down
+Loopback0                  10.1.1.1        YES manual up                    up
+Loopback100                100.0.0.1       YES manual up                    up
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Python для сетевых инженеров</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Natasha Samoylenko.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/code_example.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
