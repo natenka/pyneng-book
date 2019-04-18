@@ -5,7 +5,6 @@ Python for network engineers
    :maxdepth: 2
    :caption: Contents:
 
-   code_example
 
 
 
