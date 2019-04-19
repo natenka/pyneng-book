@@ -57,12 +57,10 @@ exclude_patterns = []
 html_theme = 'alabaster'
 html_sidebars = {
     '**': [
-        'about.html',
-        'navigation.html',
-        'relations.html',
         'searchbox.html',
         'localtoc.html',
-        'globaltoc.html',
+        'relations.html',
+        'navigation.html',
     ]
 }
 
