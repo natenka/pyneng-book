@@ -13,7 +13,7 @@ Python for network engineers
    book/Part_V
    book/Part_VI
    book/Part_VII
-   book/additional_info/index
+   book/Part_VIII
    resources/README
    testimonials
 

@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 1
 
+   install
    README
    inventory
    ad-hoc
