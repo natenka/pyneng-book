@@ -2,7 +2,7 @@ Python for network engineers
 ============================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: Содержание:
 
    README
@@ -14,12 +14,12 @@ Python for network engineers
    faq
    acknowledgments
 
-   book/Part_I
+   -  book/Part_I
    book/01_intro/README
    exercises/01_exercises
-   book/02_git_github/README
-   book/02_git_github/git_basics
-   book/02_git_github/git_basics_bash_status
+      -  book/02_git_github/README
+         -  book/02_git_github/git_basics
+         -  book/02_git_github/git_basics_bash_status
    book/02_git_github/git_basics_commands
    book/02_git_github/git_basics_additional
    book/02_git_github/git_github_auth
