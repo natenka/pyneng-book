@@ -56,12 +56,12 @@ exclude_patterns = []
 #
 html_theme = 'alabaster'
 html_theme_options = {
-    "description": "Python для сетевых инженеров",
+    "fixed_sidebar": True,
     "github_user": "natenka",
     "github_repo": "pyneng-book",
 }
 html_sidebars = {
-    "**": ["about.html", "navigation.html", "searchbox.html", "donate.html"]
+    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
