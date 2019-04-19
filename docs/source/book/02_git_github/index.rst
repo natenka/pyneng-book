@@ -13,3 +13,4 @@
    git_github_changes
    pyneng_github
    further_reading
+   ../../exercises/02_exercises.rst

@@ -5,18 +5,8 @@ Python for network engineers
    :maxdepth: 2
    :caption: Содержание:
 
-   README
-   about
-   CHANGELOG
-   course_links
-   howto
-   schedule
-   faq
-   acknowledgments
-
+   intro_index
    book/Part_I
-   exercises/01_exercises
-   exercises/02_exercises
    book/03_start/README
    book/03_start/0_syntax
    book/03_start/1_ipython

@@ -10,3 +10,4 @@
    virtualenv
    check_python
    further_reading
+   ../../exercises/01_exercises.rst
