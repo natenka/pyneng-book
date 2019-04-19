@@ -4,7 +4,6 @@ Python for network engineers
 .. toctree::
    :maxdepth: 2
    :caption: Содержание:
-   :titlesonly:
 
    README
    about
@@ -16,13 +15,13 @@ Python for network engineers
    acknowledgments
 
    book/Part_I
-     book/01_intro/README
-     book/01_intro/os_and_editor
-     book/01_intro/pip
-     book/01_intro/virtualenv
-     book/01_intro/check_python
-     book/01_intro/further_reading
-     exercises/01_exercises
+   book/01_intro/README
+   book/01_intro/os_and_editor
+   book/01_intro/pip
+   book/01_intro/virtualenv
+   book/01_intro/check_python
+   book/01_intro/further_reading
+   exercises/01_exercises
    book/02_git_github/README
    book/02_git_github/git_basics
    book/02_git_github/git_basics_bash_status
