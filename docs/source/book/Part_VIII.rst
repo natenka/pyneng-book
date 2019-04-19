@@ -4,12 +4,12 @@ VIII. Дополнительная информация
 .. toctree::
    :maxdepth: 1
 
-   README
-   naming_conventions/README
-   naming_conventions/underscore_names
-   useful_functions/README
-   useful_functions/lambda
-   useful_functions/map
-   useful_functions/filter
-   threading_multiprocessing
-   py2_vs_py3
+   additional_info/README
+   additional_info/naming_conventions/README
+   additional_info/naming_conventions/underscore_names
+   additional_info/useful_functions/README
+   additional_info/useful_functions/lambda
+   additional_info/useful_functions/map
+   additional_info/useful_functions/filter
+   additional_info/threading_multiprocessing
+   additional_info/py2_vs_py3
