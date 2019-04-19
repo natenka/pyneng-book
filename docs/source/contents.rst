@@ -1,4 +1,4 @@
-Python for network engineers
+Python для сетевых инженеров
 ============================
 
 .. toctree::
@@ -17,12 +17,3 @@ Python for network engineers
    resources/README
    testimonials
 
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
