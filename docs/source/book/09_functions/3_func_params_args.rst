@@ -89,3 +89,7 @@ in\_cfg и out\_cfg.
 Аналогично, возникнет ошибка, если передать три и больше аргументов.
 
 .. include:: 3a_func_params_types.rst
+.. include:: 3a_func_params_types.rst
+.. include:: 3b_func_args_var.rst      
+.. include:: 3b_func_unpacking_args.rst
+
