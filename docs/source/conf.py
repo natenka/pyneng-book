@@ -61,7 +61,7 @@ html_theme_options = {
     "github_repo": "pyneng-book",
 }
 html_sidebars = {
-    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
+    "**": ["about.html", "searchbox.html", "localtoc.html", "relations.html"]
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
