@@ -1,4 +1,4 @@
-.. raw:: pdf
+.. raw:: latex
 
    \newpage
 
