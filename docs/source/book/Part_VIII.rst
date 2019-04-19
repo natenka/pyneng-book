@@ -11,8 +11,5 @@ VIII. Дополнительная информация
    useful_functions/lambda
    useful_functions/map
    useful_functions/filter
-   threading_multiprocessing/README
-   threading_multiprocessing/threading
-   threading_multiprocessing/multiprocessing
-   threading_multiprocessing/further_reading
+   threading_multiprocessing
    py2_vs_py3
