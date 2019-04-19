@@ -55,13 +55,13 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'classic'
-html_theme_options = {
-    "github_user": "natenka",
-    "github_repo": "pyneng-book",
-}
-html_sidebars = {
-    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
-}
+#html_theme_options = {
+#    "github_user": "natenka",
+#    "github_repo": "pyneng-book",
+#}
+#html_sidebars = {
+#    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
+#}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
