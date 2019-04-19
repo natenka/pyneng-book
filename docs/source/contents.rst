@@ -3,7 +3,9 @@ Python for network engineers
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Содержание:
+   :numbered:
+   :titlesonly:
 
    README
    about
