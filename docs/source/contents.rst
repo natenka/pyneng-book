@@ -15,17 +15,7 @@ Python for network engineers
    acknowledgments
 
    book/Part_I
-   book/01_intro/index
    exercises/01_exercises
-   book/02_git_github/README
-   book/02_git_github/git_basics
-   book/02_git_github/git_basics_bash_status
-   book/02_git_github/git_basics_commands
-   book/02_git_github/git_basics_additional
-   book/02_git_github/git_github_auth
-   book/02_git_github/git_github_changes
-   book/02_git_github/pyneng_github
-   book/02_git_github/further_reading
    exercises/02_exercises
    book/03_start/README
    book/03_start/0_syntax

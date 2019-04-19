@@ -10,3 +10,9 @@ I. Основы Python
 
 Кроме того, в `главе 8 <08_python_basic_examples/README.md>`__ показаны
 примеры использования пройденных тем для решения задач.
+
+.. toctree::
+   :maxdepth: 1
+
+   01_intro/index.rst
+   02_git_github/index.rst
