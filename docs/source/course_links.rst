@@ -4,12 +4,11 @@
 Здесь собраны ссылки на все ресурсы, которые пригодятся в процессе
 обучения:
 
--  `примерный план обучения <schedule.md>`__;
 -  `варианты виртуальной машины для курса <book/01_intro/README.md>`__;
 -  `репозиторий <https://github.com/natenka/pyneng-examples-exercises/>`__
    с примерами и заданиями;
--  `тесты <https://github.com/natenka/pyneng-examples-exercises/blob/master/tests.md>`__;
--  `команда PyNEng <https://pyneng-slack.herokuapp.com/>`__ в Slack;
+-  `вопросы <https://github.com/natenka/pyneng-examples-exercises/blob/master/tests.md>`__;
+-  `чат PyNEng <https://pyneng-slack.herokuapp.com/>`__ в Slack;
 -  `презентации <https://github.com/natenka/pyneng-slides/>`__
    пригодятся для повторения материала.
 
