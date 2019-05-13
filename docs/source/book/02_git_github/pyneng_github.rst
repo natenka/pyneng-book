@@ -12,7 +12,7 @@
 
 Для копирования репозитория с GitHub выполните команду git clone:
 
-.. code:: shellsession
+::
 
     $ git clone https://github.com/natenka/pyneng-examples-exercises
     Cloning into 'pyneng-examples-exercises'...
@@ -32,14 +32,14 @@
 
 Если обновлений не было, вывод будет таким:
 
-.. code:: shellsession
+::
 
     $ git pull
     Already up-to-date.
 
 Если обновления были, вывод будет примерно таким:
 
-.. code:: shellsession
+::
 
     $ git pull
     remote: Counting objects: 3, done.
@@ -62,7 +62,7 @@ README.md.
 Если Вы хотите посмотреть, какие именно изменения были внесены, можно
 воспользоваться командой git log:
 
-.. code:: shellsession
+::
 
     $ git log -p -1
     commit 98e393c27e7aae4b41878d9d979c7587bfeb24b4
@@ -103,7 +103,7 @@ Linux diff для внесённых изменений, а не только с
 
 Для этого используется следующая команда:
 
-.. code:: shellsession
+::
 
     $ git log -p ..origin/master
     commit 4c1821030d20b3682b67caf362fd777d098d9126

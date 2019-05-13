@@ -29,7 +29,7 @@
 
 Для этого используется команда git clone:
 
-.. code:: shellsession
+::
 
     $ git clone ssh://git@github.com/pyneng/online-2-natasha-samoylenko.git
     Cloning into 'online-2-natasha-samoylenko'...
@@ -88,14 +88,14 @@ online-2-natasha-samoylenko).
 Если содержимое локального репозитория одинаково с удалённым, вывод
 будет таким:
 
-.. code:: shellsession
+::
 
     $ git pull
     Already up-to-date.
 
 Если были изменения, вывод будет примерно таким:
 
-.. code:: shellsession
+::
 
     $ git pull
     remote: Counting objects: 5, done.
@@ -129,7 +129,7 @@ Push на GitHub
 Для загрузки всех локальных изменений на GitHub используется команда git
 push:
 
-.. code:: shellsession
+::
 
     $ git push origin master
     Counting objects: 5, done.

@@ -15,7 +15,7 @@ Git хранит изменения как снимок (snapshot) всего р
 
 Установка Git:
 
-.. code:: shellsession
+::
 
     $ sudo apt-get install git
 
@@ -26,14 +26,14 @@ Git хранит изменения как снимок (snapshot) всего р
 которые будут использоваться для синхронизации локального репозитория с
 репозиторием на GitHub:
 
-.. code:: shellsession
+::
 
     $ git config --global user.name "username"
     $ git config --global user.email "username.user@example.com"
 
 Посмотреть настройки Git можно таким образом:
 
-.. code:: shellsession
+::
 
     $ git config --list
 
@@ -42,7 +42,7 @@ Git хранит изменения как снимок (snapshot) всего р
 
 Инициализация репозитория выполняется с помощью команды git init:
 
-.. code:: shellsession
+::
 
     [~/tools/first_repo]
     $ git init

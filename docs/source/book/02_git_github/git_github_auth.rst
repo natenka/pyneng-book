@@ -12,7 +12,7 @@
 Генерация нового SSH-ключа (используйте e-mail, который привязан к
 GitHub):
 
-.. code:: shellsession
+::
 
     $ ssh-keygen -t rsa -b 4096 -C "github_email@gmail.com"
 
@@ -23,13 +23,13 @@ passphrase не будет запрашиваться у Вас постоянн
 
 Запуск SSH-агента:
 
-.. code:: shellsession
+::
 
     $ eval "$(ssh-agent -s)"
 
 Добавить ключ в SSH-агент:
 
-.. code:: shellsession
+::
 
     $ ssh-add ~/.ssh/id_rsa
 
@@ -40,7 +40,7 @@ passphrase не будет запрашиваться у Вас постоянн
 
 Например, таким образом можно отобразить ключ для копирования:
 
-.. code:: shellsession
+::
 
     $ cat ~/.ssh/id_rsa.pub
 
@@ -59,7 +59,7 @@ GitHub, в правом верхнем углу нажмите на картин
 
 Вывод должен быть таким:
 
-.. code:: shellsession
+::
 
     $ ssh -T git@github.com
     Hi username! You've successfully authenticated, but GitHub does not provide shell access.
