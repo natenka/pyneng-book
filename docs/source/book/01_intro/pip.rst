@@ -9,6 +9,7 @@ Python, то установлен и pip.
 Проверка версии pip:
 
 ::
+
     $ pip --version
     pip 19.1.1 from /home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/pip (python 3.7)
 
@@ -22,16 +23,19 @@ Python, то установлен и pip.
 Для установки модулей используется команда pip install:
 
 ::
+
     $ pip install tabulate
 
 Удаление пакета выполняется таким образом:
 
 ::
+
     $ pip uninstall tabulate
 
 Кроме того, иногда необходимо обновить пакет:
 
 ::
+
     $ pip install --upgrade tabulate
 
 pip или pip3
@@ -44,12 +48,14 @@ pip или pip3
 Вариант, когда pip соответствует Python 2.7:
 
 ::
+
     $ pip --version
     pip 9.0.1 from /usr/local/lib/python2.7/dist-packages (python 2.7)
 
 Вариант, когда pip3 соответствует Python 3.4:
 
 ::
+
     $ pip3 --version
     pip 1.5.6 from /usr/lib/python3/dist-packages (python 3.4)
 
@@ -59,6 +65,7 @@ pip или pip3
 Также можно использовать альтернативный вариант вызова pip:
 
 ::
+
     $ python3.6 -m pip install tabulate
 
 Таким образом, всегда понятно для какой именно версии Python
