@@ -8,7 +8,7 @@ Python, то установлен и pip.
 
 Проверка версии pip:
 
-.. code:: console
+.. code-block:: console
     $ pip --version
     pip 19.1.1 from /home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/pip (python 3.7)
 
