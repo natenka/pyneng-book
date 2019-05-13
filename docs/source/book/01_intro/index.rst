@@ -120,7 +120,6 @@ Python можно можно посмотреть
 .. toctree::
    :maxdepth: 1
 
-   README
    os_and_editor
    pip
    virtualenv
