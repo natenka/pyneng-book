@@ -52,12 +52,13 @@ pip или pip3
     $ pip --version
     pip 9.0.1 from /usr/local/lib/python2.7/dist-packages (python 2.7)
 
-Вариант, когда pip3 соответствует Python 3.4:
+Вариант, когда pip3 соответствует Python 3.7:
 
 ::
 
     $ pip3 --version
-    pip 1.5.6 from /usr/lib/python3/dist-packages (python 3.4)
+    pip 19.1.1 from /home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/pip (python 3.7)
+
 
 Если в системе используется pip3, то каждый раз, когда в книге
 устанавливается модуль Python, нужно будет заменить pip на pip3.
@@ -66,7 +67,7 @@ pip или pip3
 
 ::
 
-    $ python3.6 -m pip install tabulate
+    $ python3.7 -m pip install tabulate
 
 Таким образом, всегда понятно для какой именно версии Python
 устанавливается пакет.
