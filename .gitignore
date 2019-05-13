@@ -8,7 +8,6 @@
 node_modules
 
 # Book build output
-_book
 docs/build/
 
 # eBook build output
