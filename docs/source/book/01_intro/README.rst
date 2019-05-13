@@ -1,6 +1,3 @@
-Подготовка к работе
-*******************
-
 Для того, чтобы начать работать с Python, надо определиться с
 несколькими вещами:
 
@@ -9,7 +6,7 @@
 -  какая версия Python будет использоваться.
 
 В книге используется Debian Linux (в других ОС вывод может незначительно
-отличаться) и Python 3.6.
+отличаться) и Python 3.7.
 
 Виртуальная машина
 ~~~~~~~~~~~~~~~~~~
@@ -26,76 +23,63 @@
 
 Для книги подготовлены виртуальные машины, в которых установлены:
 
--  Python 3.6 в виртуальном окружении;
+-  Python 3.7 в виртуальном окружении;
 -  IPython;
 -  почти все модули, которые потребуются для выполнения заданий.
 
 Есть два варианта подготовленных виртуальных машин (по ссылкам находятся
 инструкции для каждого варианта):
 
--  `Vagrant <https://github.com/natenka/pyneng-examples-exercises/blob/master/exercises/vm/vagrant.md>`__
+-  `Vagrant <https://docs.google.com/document/d/1tIb8prINPM7uhyFxIhSSIF1-jckN_OWkKaO8zHQus9g/edit?usp=sharing>`__
    – логин и пароль vagrant/vagrant;
--  `VMware <https://github.com/natenka/pyneng-examples-exercises/blob/master/exercises/vm/vmware.md>`__
+-  `VMware <https://drive.google.com/open?id=1r7Si9xTphdWp79sKxDhVk2zjWGggfy5Z6h8cKCLP5Cs>`__
    – логин и пароль python/python.
 
-Вы можете выбрать одну из них или установить все самостоятельно, но
-будет лучше, если Вы выделите отдельную виртуальную машину.
 
 Облачный сервис
 ~~~~~~~~~~~~~~~
 
 Ещё один вариант – использовать один из следующих сервисов:
 
--  `Cloud9 <https://c9.io/>`__ – выделяет виртуалку (контейнер), в
-   котором можно полноценно работать, ставить пакеты и так далее. Кроме
-   того, в этом контейнере есть графический редактор, в котором можно
-   делать задания. Базовая виртуалка бесплатна, но для регистрации
-   понадобится ввести номер карточки;
+-  `repl.it <https://repl.it/>`__ – этот сервис предоставляет
+   онлайн-интерпретатор Python, а также графический редактор. `Пример
+   использования <https://repl.it/KSIp/3/>`__.
 -  `PythonAnywhere <https://www.pythonanywhere.com/>`__ - выделяет
    отдельную виртуалку, но в бесплатном варианте Вы можете работать
    только из командной строки, то есть, нет графического текстового
    редактора;
--  `repl.it <https://repl.it/>`__ – этот сервис предоставляет
-   онлайн-интерпретатор Python, а также графический редактор. `Пример
-   использования <https://repl.it/KSIp/3/>`__.
 
 Самостоятельная подготовка виртуальной машины
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Если Вы используете Linux, Unix или Mac OS, то, скорее всего, Python уже
-установлен. Нужно только проверить, что установлена версия 3.6 (которая
-используется в книге), и если версия другая, надо установить Python 3.6.
-Подойдут и версии Python 3.4-3.5, но лучше использовать 3.6. Установка
-Python 3.6, если его нет в ОС, выполняется самостоятельно.
+установлен. Нужно только проверить, что установлена версия 3.7 (которая
+используется в книге), и если версия другая, надо установить Python 3.7.
+Подойдут и версии Python 3.4-3.6, но лучше использовать 3.7. Установка
+Python 3.7, если его нет в ОС, выполняется самостоятельно.
 
-Процедура установки Python 3.6 на Debian:
+Пример процедуры установки Python 3.7 на Debian 9 (для других версий ОС и других ОС лучше загуглить процедуру установки):
 
-.. code:: shellsession
+::
 
-    $ sudo apt-get install build-essential ca-certificates curl gcc libbz2-dev libffi-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libsqlite3-dev llvm make python3-dev tk-dev wget xz-utils zlib1g-dev
-    $ wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
-    $ tar xvf Python-3.6.3.tgz
-    $ cd Python-3.6.3
+    $ sudo apt-get install build-essential checkinstall python3-dev python3-setuptools
+    $ sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev
+    $ sudo apt-get install libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev
+
+    $ wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz
+    $ tar xvf Python-3.7.3.tgz
+    $ cd Python-3.7.3
     $ ./configure --enable-optimizations --enable-loadable-sqlite-extensions
-    $ make -j8
     $ sudo make altinstall
 
-Чтобы в виртуальном окружении по умолчанию использовался Python 3.6,
+Чтобы в виртуальном окружении по умолчанию использовался Python 3.7,
 создайте это окружение следующим образом (подробнее в разделе по
 виртуальным окружениям):
 
-.. code:: shellsession
+::
 
-    $ mkvirtualenv --python=/usr/local/bin/python3.6 pyneng-py3
+    $ mkvirtualenv --python=/usr/local/bin/python3.7 pyneng-py3-7
 
-Если Вы используете Windows, то, скорее всего, Python нужно будет
-установить. Один из самых простых вариантов для Windows – установить
-окружение `Anaconda <https://www.continuum.io/downloads/>`__. В
-окружении есть IDE Spyder (`Integrated development
-environment <https://en.wikipedia.org/wiki/Integrated_development_environment>`__),
-который можно использовать вместо редактора. Windows не рекомендована в
-качестве ОС для обучения, например потому, что на ней нельзя установить
-Ansible.
 
 Выбор редактора
 ~~~~~~~~~~~~~~~

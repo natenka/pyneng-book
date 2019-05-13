@@ -1,6 +1,3 @@
-Введение
-========
-
 Обсуждение
 ----------
 
@@ -53,10 +50,12 @@ Cisco, но, конечно же, они применимы и для любог
 программированием, но не знали, с какой стороны подойти.
 
 Ещё не решили, нужно ли читать книгу? Почитайте
-`отзывы <testimonials.md>`__. Скажите "Спасибо!" на
-`saythanks.io <https://saythanks.io/to/natenka>`__.
+`отзывы <testimonials.md>`__.
+
+
+Скажите "Спасибо!" на `saythanks.io <https://saythanks.io/to/natenka>`__.
 
 --------------
 
- This work is licensed under a Creative Commons Attribution-ShareAlike
+This work is licensed under a Creative Commons Attribution-ShareAlike
 4.0 International License.
