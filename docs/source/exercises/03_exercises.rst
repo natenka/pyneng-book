@@ -1,7 +1,7 @@
 Задания
 ~~~~~~~
 
-{% include "../exercises\_intro.md" %}
+.. include:: ./exercises_intro.rst
 
 Задание 3.1
 ^^^^^^^^^^^
@@ -14,9 +14,9 @@
 .. code:: shellsession
 
     $ ipython
-    Python 3.6.3 (default, Oct  9 2017, 11:46:27)
+    Python 3.7.3 (default, May 13 2019, 15:44:23)
     Type 'copyright', 'credits' or 'license' for more information
-    IPython 6.2.1 -- An enhanced Interactive Python. Type '?' for help.
+    IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.
 
     In [1]:
 
