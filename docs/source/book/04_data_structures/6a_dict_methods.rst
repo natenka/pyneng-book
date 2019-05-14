@@ -238,7 +238,7 @@ copy():
     In [39]: r1.update({'vendor': 'Cisco', 'ios':'15.2'})
 
     In [40]: r1
-    Out[40]: {'ios': '15.2', 'location': 'London Str', 'name': 'London1', 'vendor': 'Cisco'}
+    Out[40]: {'name': 'London1', 'location': 'London Str', 'vendor': 'Cisco', 'ios': '15.2'}
 
 Аналогичным образом можно обновить значения:
 
@@ -248,8 +248,8 @@ copy():
 
     In [42]: r1
     Out[42]:
-    {'ios': '15.4',
+    {'name': 'london-r1',
      'location': 'London Str',
-     'name': 'london-r1',
-     'vendor': 'Cisco'}
+     'vendor': 'Cisco',
+     'ios': '15.4'}
 

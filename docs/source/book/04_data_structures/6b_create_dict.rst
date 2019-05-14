@@ -23,7 +23,7 @@ dict
     In [2]: r1 = dict(model='4451', ios='15.4')
 
     In [3]: r1
-    Out[3]: {'ios': '15.4', 'model': '4451'}
+    Out[3]: {'model': '4451', 'ios': '15.4'}
 
 Второй вариант создания словаря с помощью dict:
 
@@ -32,7 +32,7 @@ dict
     In [4]: r1 = dict([('model','4451'), ('ios','15.4')])
 
     In [5]: r1
-    Out[5]: {'ios': '15.4', 'model': '4451'}
+    Out[5]: {'model': '4451', 'ios': '15.4'}
 
 dict.fromkeys
 ~~~~~~~~~~~~~
@@ -48,13 +48,14 @@ dict.fromkeys
     In [6]: r1 = dict.fromkeys(d_keys)
 
     In [7]: r1
-    Out[7]: 
-    {'ios': None,
-     'ip': None,
-     'hostname': None,
+    Out[7]:
+    {'hostname': None,
      'location': None,
+     'vendor': None,
      'model': None,
-     'vendor': None}
+     'ios': None,
+     'ip': None}
+
 
 По умолчанию, метод fromkeys подставляет значение None. Но можно
 указывать и свой вариант значения:
@@ -66,7 +67,8 @@ dict.fromkeys
     In [9]: models_count = dict.fromkeys(router_models, 0)
 
     In [10]: models_count
-    Out[10]: {'ASR9002': 0, 'ISR2811': 0, 'ISR2911': 0, 'ISR2921': 0}
+    Out[10]: {'ISR2811': 0, 'ISR2911': 0, 'ISR2921': 0, 'ASR9002': 0}
+
 
 Этот вариант создания словаря подходит не для всех случаев. Например,
 при использовании изменяемого типа данных в значении, будет создана
@@ -74,43 +76,25 @@ dict.fromkeys
 
 .. code:: python
 
-    In [11]: router_models = ['ISR2811', 'ISR2911', 'ISR2921', 'ASR9002']
+    In [10]: router_models = ['ISR2811', 'ISR2911', 'ISR2921', 'ASR9002']
 
-    In [12]: routers = dict.fromkeys(router_models, [])
+    In [11]: routers = dict.fromkeys(router_models, [])
+        ...:
 
-    In [13]: routers
-    Out[13]: {'ASR9002': [], 'ISR2811': [], 'ISR2911': [], 'ISR2921': []}
+    In [12]: routers
+    Out[12]: {'ISR2811': [], 'ISR2911': [], 'ISR2921': [], 'ASR9002': []}
 
-    In [14]: routers['ASR9002'].append('london_r1')
+    In [13]: routers['ASR9002'].append('london_r1')
 
-    In [15]: routers
-    Out[15]:
-    {'ASR9002': ['london_r1'],
-     'ISR2811': ['london_r1'],
+    In [14]: routers
+    Out[14]:
+    {'ISR2811': ['london_r1'],
      'ISR2911': ['london_r1'],
-     'ISR2921': ['london_r1']}
+     'ISR2921': ['london_r1'],
+     'ASR9002': ['london_r1']}
 
 В данном случае каждый ключ ссылается на один и тот же список. Поэтому,
 при добавлении значения в один из списков обновляются и остальные.
 
-Генератор словаря (dict comprehensions)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-И последний метод создания словаря - **генераторы словарей**.
-
-Сгенерируем словарь со списками в значении, как в предыдущем примере:
-
-.. code:: python
-
-    In [16]: router_models = ['ISR2811', 'ISR2911', 'ISR2921', 'ASR9002']
-
-    In [17]: routers = {key: [] for key in router_models}
-
-    In [18]: routers
-    Out[18]: {'ASR9002': [], 'ISR2811': [], 'ISR2911': [], 'ISR2921': []}
-
-    In [19]: routers['ASR9002'].append('london_r1')
-
-    In [20]: routers
-    Out[20]: {'ASR9002': ['london_r1'], 'ISR2811': [], 'ISR2911': [], 'ISR2921': []}
-
+.. note::
+    Для такой задачи лучше подходит `генератор словаря <https://pyneng.readthedocs.io/ru/latest/book/08_python_basic_examples/x_comprehensions.html#dict-comprehensions>`__
