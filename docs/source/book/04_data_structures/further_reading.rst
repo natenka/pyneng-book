@@ -30,4 +30,8 @@
    строк <https://pyformat.info/>`__
 -  `Документация по форматированию
    строк <https://docs.python.org/3/library/string.html#format-string-syntax>`__
+-  `Python 3's f-Strings: An Improved String Formatting Syntax
+   (Guide) <https://realpython.com/python-f-strings/>`__
+-  `Python String Formatting Best
+   Practices <https://realpython.com/python-string-formatting/>`__
 

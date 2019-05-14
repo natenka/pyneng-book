@@ -30,6 +30,7 @@
    6_dicts
    7_tuple
    8_set
+   9_boolean
    9_convert_type
    9a_check_type
    further_reading

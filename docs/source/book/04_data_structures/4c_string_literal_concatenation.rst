@@ -41,10 +41,10 @@
 
 .. code:: python
 
-    regex = ('(\S+) +(\S+) +' #interface and IP
+    regex = ('(\S+) +(\S+) +' # interface and IP
              '\w+ +\w+ +'
-             '(up|down|administratively down) +' #Status
-             '(\w+)') #Protocol
+             '(up|down|administratively down) +' # Status
+             '(\w+)') # Protocol
 
 Также этим приемом удобно пользоваться, когда надо написать длинное
 сообщение:

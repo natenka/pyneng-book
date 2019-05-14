@@ -10,7 +10,7 @@
 Строки неизменяемый тип данных, поэтому все методы, которые преобразуют
 строку возвращают новую строку, а исходная строка остается неизменной.
 
-upper(), lower(), swapcase(), capitalize()
+Методы upper, lower, swapcase, capitalize
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Методы ``upper()``, ``lower()``, ``swapcase()``,
@@ -45,7 +45,7 @@ upper(), lower(), swapcase(), capitalize()
     In [32]: print(string1)
     FASTETHERNET
 
-``count()``
+Метод count
 ^^^^^^^^^^^
 
 Метод ``count()`` используется для подсчета того, сколько раз символ
@@ -64,7 +64,7 @@ upper(), lower(), swapcase(), capitalize()
     In [36]: string1.count('l')
     Out[36]: 8
 
-``find()``
+Метод find
 ^^^^^^^^^^
 
 Методу ``find()`` можно передать подстроку или символ, и он покажет,
@@ -83,8 +83,8 @@ upper(), lower(), swapcase(), capitalize()
 
 Если совпадение не найдено, метод find возвращает ``-1``.
 
-``startswith(), endswith()``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Методы startswith, endswith
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Проверка на то, начинается или заканчивается ли строка на определенные
 символы (методы ``startswith()``, ``endswith()``):
@@ -105,7 +105,7 @@ upper(), lower(), swapcase(), capitalize()
     In [44]: string1.endswith('0/2')
     Out[44]: False
 
-``replace()``
+Метод replace
 ^^^^^^^^^^^^^
 
 Замена последовательности символов в строке на другую последовательность
@@ -118,7 +118,7 @@ upper(), lower(), swapcase(), capitalize()
     In [46]: string1.replace('Fast', 'Gigabit')
     Out[46]: 'GigabitEthernet0/1'
 
-``strip()``
+Метод strip
 ^^^^^^^^^^^
 
 Часто при обработке файла файл открывается построчно. Но в конце каждой
@@ -161,7 +161,7 @@ upper(), lower(), swapcase(), capitalize()
 использовать, соответственно, методы ``lstrip()`` и
 ``rstrip()``.
 
-``split()``
+Метод split
 ^^^^^^^^^^^
 
 Метод ``split()`` разбивает строку на части, используя как
