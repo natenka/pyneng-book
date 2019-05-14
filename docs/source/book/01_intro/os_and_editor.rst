@@ -20,8 +20,8 @@ Python версии 3.7, так как в книге используется и
 
 .. note::
     Записи лекций по редактору Mu:
-    * `Основы работы с Mu <https://youtu.be/9qH92jz0p58>`__
-    * `Использование debugger в  Mu <https://youtu.be/s9Lskg37xss>`__
+    `Основы работы с Mu <https://youtu.be/9qH92jz0p58>`__,
+    `Использование debugger в  Mu <https://youtu.be/s9Lskg37xss>`__
 
 
 IDE PyCharm 

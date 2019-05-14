@@ -11,6 +11,12 @@
 -  пакеты, которые установлены в виртуальных окружениях, не перебивают
    глобальные пакеты.
 
+.. note::
+    В Python есть несколько вариантов для создания виртуальных окружений.
+    Использовать можно любой из них. Для начала можно использовать virtualenvwrapper,
+    а затем со временем уже разбираться с тем какие еще есть варианты.
+
+
 virtualenvwrapper
 ^^^^^^^^^^^^^^^^^
 
@@ -20,14 +26,14 @@ virtualenvwrapper
 
 ::
 
-    $ sudo pip3.6 install virtualenvwrapper
+    $ sudo pip3.7 install virtualenvwrapper
 
 После установки, в файле .bashrc, находящимся в домашней папке текущего
 пользователя, нужно добавить несколько строк:
 
 ::
 
-    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.6
+    export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3.7
     export WORKON_HOME=~/venv
     . /usr/local/bin/virtualenvwrapper.sh
 
@@ -53,12 +59,12 @@ Overflow <http://stackoverflow.com/questions/2518127/how-do-i-reload-bashrc-with
 Работа с виртуальными окружениями
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Создание нового виртуального окружения, в котором Python 3.6
+Создание нового виртуального окружения, в котором Python 3.7
 используется по умолчанию:
 
 ::
 
-    $ mkvirtualenv --python=/usr/local/bin/python3.6 pyneng
+    $ mkvirtualenv --python=/usr/local/bin/python3.7 pyneng
     New python executable in PyNEng/bin/python
     Installing distribute........................done.
     Installing pip...............done.
@@ -68,7 +74,7 @@ Overflow <http://stackoverflow.com/questions/2518127/how-do-i-reload-bashrc-with
 окружения. Это означает, что Вы находитесь в нём. В virtualenvwrapper по
 Tab работает автодополнение имени виртуального окружения. Это особенно
 удобно в тех случаях, когда виртуальных окружений много. Теперь в том
-каталоге, который был указан в переменной окружения WORKON\_HOME, создан
+каталоге, который был указан в переменной окружения WORKON_HOME, создан
 каталог pyneng:
 
 ::
@@ -150,7 +156,7 @@ rmvirtualenv:
 
 ::
 
-    $ python3.6 -m venv new/pyneng
+    $ python3.7 -m venv new/pyneng
 
 Вместо python3.6 может использоваться python или python3, в зависимости
 от того, как установлен Python 3.6. Эта команда создаёт указанный
@@ -195,28 +201,16 @@ rmvirtualenv:
     Successfully installed simplejson
     Cleaning up...
 
-Если перейти в IPython (рассматривается в `главе
-3 <../03_start/README.md>`__) и импортировать simplejson, то он доступен
+Если перейти в интерпретатор Python и импортировать simplejson, то он доступен
 и никаких ошибок нет:
 
 ::
 
-    (pyneng)$ ipython
-
-    In [1]: import simplejson
-
-    In [2]: simplejson
-    simplejson
-
-    In [2]: simplejson.
-    simplejson.Decimal             simplejson.decoder
-    simplejson.JSONDecodeError     simplejson.dump
-    simplejson.JSONDecoder         simplejson.dumps
-    simplejson.JSONEncoder         simplejson.encoder
-    simplejson.JSONEncoderForHTML  simplejson.load
-    simplejson.OrderedDict         simplejson.loads
-    simplejson.absolute_import     simplejson.scanner
-    simplejson.compat              simplejson.simple_first
+    (pyneng)$ python
+    >>> import simplejson
+    >>> simplejson
+    <module 'simplejson' from '/home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/simplejson/__init__.py'>
+    >>>
 
 Но если выйти из виртуального окружения и попытаться сделать то же
 самое, то такого модуля нет:
@@ -225,13 +219,10 @@ rmvirtualenv:
 
     (pyneng)$ deactivate 
 
-    $ ipython
-
-    In [1]: import simplejson
-    ------------------------------------------------------------------
-    ImportError                               Traceback (most recent call last)
-    <ipython-input-1-ac998a77e3e2> in <module>()
-    ----> 1 import simplejson
-
-    ImportError: No module named simplejson
+    $ python
+    >>> import simplejson
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ModuleNotFoundError: No module named 'simplejson'
+    >>> 
 
