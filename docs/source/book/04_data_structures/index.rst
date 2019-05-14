@@ -27,16 +27,9 @@
    3_numbers
    4_strings
    5_lists
-   5a_list_methods
-   5b_create_list
    6_dicts
-   6a_dict_methods
-   6b_create_dict
    7_tuple
    8_set
-   8a_set_methods
-   8b_set_operations
-   8c_create_set
    9_convert_type
    9a_check_type
    further_reading
