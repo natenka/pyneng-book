@@ -32,9 +32,7 @@ Git сообщает, что мы находимся в ветке master (эт�
 следит:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_1.png
-   :alt: alt
 
-   alt
 Два файла получилось из-за того, что у меня настроены undo-файлы для
 Vim. Это специальные файлы, благодаря которым можно отменять изменения
 не только в текущей сессии файла, но и прошлые. Обратите внимание, что
@@ -62,9 +60,7 @@ Undo-файл .README.un~ – служебный файл, который не �
 После этого, git status показывает:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_2.png
-   :alt: alt
 
-   alt
 Обратите внимание, что теперь в выводе нет файла .README.un~. Как только
 в репозиторий был добавлен файл .gitignore, файлы, которые указаны в
 нём, стали игнорироваться.
@@ -78,21 +74,15 @@ add.
 Можно указать что надо следить за конкретным файлом:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_add_readme.png
-   :alt: alt
 
-   alt
 Или за всеми файлами:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_add_all.png
-   :alt: alt
 
-   alt
 Вывод git status:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_3.png
-   :alt: alt
 
-   alt
 Теперь файлы находятся в секции под названием "Changes to be committed".
 
 git commit
@@ -105,14 +95,10 @@ git commit
 этого коммита.
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_commit_1.png
-   :alt: alt
 
-   alt
 После этого git status отображает:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_4.png
-   :alt: alt
 
-   alt
 Фраза "nothing to commit, working directory clean" обозначает, что нет
 изменений, которые нужно добавить в Git или закоммитить.

@@ -44,7 +44,5 @@
 Если же перейти в репозиторий Git:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/setup_prompt.png
-   :alt: setup
 
-   setup
 
