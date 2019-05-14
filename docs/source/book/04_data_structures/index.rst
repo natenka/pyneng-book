@@ -26,9 +26,6 @@
    README
    3_numbers
    4_strings
-   4a_string_methods
-   4b_string_format
-   4c_string_literal_concatenation
    5_lists
    5a_list_methods
    5b_create_list
