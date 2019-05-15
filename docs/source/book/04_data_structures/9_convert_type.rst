@@ -114,28 +114,3 @@
     In [16]: str(10)
     Out[16]: '10'
 
-Например, она пригодится в ситуации, когда есть список VLANов, который
-надо преобразовать в одну строку, где номера перечислены через запятую.
-
-Если сделать ``join`` для списка чисел, возникнет ошибка:
-
-.. code:: python
-
-    In [17]: vlans = [10, 20, 30, 40]
-
-    In [18]: ','.join(vlans)
-    ------------------------------------------------------
-    TypeError           Traceback (most recent call last)
-    <ipython-input-39-d705aed3f1b3> in <module>()
-    ----> 1 ','.join(vlans)
-
-    TypeError: sequence item 0: expected string, int found
-
-Чтобы исправить это, нужно преобразовать числа в строки. Это удобно
-делать с помощью list comprehensions:
-
-.. code:: python
-
-    In [19]: ','.join([ str(vlan) for vlan in vlans ])
-    Out[19]: '10,20,30,40'
-

@@ -40,14 +40,6 @@
     In [4]: "10".isdigit()
     Out[4]: True
 
-Пример использования метода:
-
-.. code:: python
-
-    In [5]: vlans = ['10', '20', '30', '40', '100-200']
-
-    In [6]: [ int(vlan) for vlan in vlans if vlan.isdigit() ]
-    Out[6]: [10, 20, 30, 40]
 
 ``isalpha()``
 ^^^^^^^^^^^^^
