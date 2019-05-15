@@ -101,6 +101,17 @@
     In [9]: london_co['sw1']['ip']
     Out[9]: '10.255.0.101'
 
+Функция sorted сортирует ключи словаря по возрастанию и возвращает
+новый список с отсортированными ключами:
+
+.. code:: python
+
+    In [1]: london = {'name': 'London1', 'location': 'London Str', 'vendor': 'Cisco'}
+
+    In [2]: sorted(london)
+    Out[2]: ['location', 'name', 'vendor']
+
+
 .. toctree::
    :maxdepth: 1
 

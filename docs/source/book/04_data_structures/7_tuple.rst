@@ -30,12 +30,12 @@
 
 .. code:: python
 
-    In [4]: list_keys = ['hostname', 'location', 'vendor', 'model', 'IOS', 'IP']
+    In [4]: list_keys = ['hostname', 'location', 'vendor', 'model', 'ios', 'ip']
 
     In [5]: tuple_keys = tuple(list_keys)
 
     In [6]: tuple_keys
-    Out[6]: ('hostname', 'location', 'vendor', 'model', 'IOS', 'IP')
+    Out[6]: ('hostname', 'location', 'vendor', 'model', 'ios', 'ip')
 
 К объектам в кортеже можно обращаться, как и к объектам списка, по
 порядковому номеру:
@@ -56,4 +56,15 @@
     ----> 1 tuple_keys[1] = 'test'
 
     TypeError: 'tuple' object does not support item assignment
+
+Функция sorted сортирует элементы кортежа по возрастанию и возвращает
+новый список с отсортированными элементами:
+
+.. code:: python
+
+
+    In [2]: tuple_keys = ('hostname', 'location', 'vendor', 'model', 'ios', 'ip')
+
+    In [3]: sorted(tuple_keys)
+    Out[3]: ['hostname', 'ios', 'ip', 'location', 'model', 'vendor']
 

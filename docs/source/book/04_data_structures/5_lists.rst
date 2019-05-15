@@ -92,6 +92,26 @@
     In [19]: interfaces[2][1]
     Out[19]: '10.0.2.1'
 
+Функция len возвращает количество элементов в списке:
+
+.. code:: python
+
+    In [1]: items = [1, 2, 3]
+
+    In [2]: len(items)
+    Out[2]: 3
+
+А функция sorted сортирует элементы списка по возрастанию и возвращает новый список с отсортированными элементами:
+
+.. code:: python
+
+    In [1]: names = ['John', 'Michael', 'Antony']
+
+    In [2]: sorted(names)
+    Out[2]: ['Antony', 'John', 'Michael']
+
+
+
 .. toctree::
    :maxdepth: 1
 
