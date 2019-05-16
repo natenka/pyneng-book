@@ -19,9 +19,52 @@ for:
 
 Пример преобразования строк в списке в верхний регистр без цикла for:
 
+.. code:: python
+
+    In [1]: words = ['list', 'dict', 'tuple']
+
+    In [2]: upper_words = []
+
+    In [3]: words[0]
+    Out[3]: 'list'
+
+    In [4]: words[0].upper() # преобразование слова в верхний регистр
+    Out[4]: 'LIST'
+
+    In [5]: upper_words.append(words[0].upper()) # преобразование и добавление в новый список
+
+    In [6]: upper_words
+    Out[6]: ['LIST']
+
+    In [7]: upper_words.append(words[1].upper())
+
+    In [8]: upper_words.append(words[2].upper())
+
+    In [9]: upper_words
+    Out[9]: ['LIST', 'DICT', 'TUPLE']
+
+
+У данного решения есть несколько нюансов:
+
+* одно и то же действие надо повторять несколько раз
+* код привязан к определенному количеству элементов в списке words
+
+Те же действия с циклом for:
 
 .. code:: python
 
+    In [10]: words = ['list', 'dict', 'tuple']
+
+    In [11]: upper_words = []
+
+    In [12]: for word in words:
+        ...:     upper_words.append(word.upper())
+        ...:
+
+    In [13]: upper_words
+    Out[13]: ['LIST', 'DICT', 'TUPLE']
+
+<iframe width="800" height="500" frameborder="0" src="http://pythontutor.com/iframe-embed.html#code=words%20%3D%20%5B'list',%20'dict',%20'tuple'%5D%0Aupper_words%20%3D%20%5B%5D%0A%0Afor%20word%20in%20words%3A%0A%20%20%20%20upper_words.append%28word.upper%28%29%29%0A&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=9&heapPrimitives=nevernest&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false"> </iframe>
 
 
 Цикл for проходится по строке:
