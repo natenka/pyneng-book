@@ -1,5 +1,3 @@
-.. _function_range-label:
-
 Функция range
 -------------
 

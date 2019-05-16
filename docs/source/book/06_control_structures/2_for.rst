@@ -14,8 +14,8 @@ for:
 -  строка
 -  список
 -  словарь
--  функция :ref:`function_range-label`
--  любой :ref:`iterable-label`
+-  функция `range <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/range.html>`__
+-  любой `итерируемый объект <https://pyneng.readthedocs.io/ru/latest/book/13_iterator_generator/iterable.html>`__
 
 Пример преобразования строк в списке в верхний регистр без цикла for:
 
