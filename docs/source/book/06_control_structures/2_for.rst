@@ -64,8 +64,12 @@ for:
     In [13]: upper_words
     Out[13]: ['LIST', 'DICT', 'TUPLE']
 
+Выражение ``for word in words:`` означает "для каждого слова в списке words",
+при этом word это имя переменной, которое каждую итерацию цикла ссылается на разные значения.
+
+
 .. raw:: html
-   :file: filename.html
+   :file: for_pythontutor_example.html
 
 Цикл for проходится по строке:
 
