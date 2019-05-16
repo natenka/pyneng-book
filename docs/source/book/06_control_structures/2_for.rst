@@ -67,11 +67,12 @@ for:
 Выражение ``for word in words:`` означает "для каждого слова в списке words",
 при этом word это имя переменной, которое каждую итерацию цикла ссылается на разные значения.
 
-Проект pythontutor может очень помочь в понимании циклов.
-Там есть специальная визуализация кода, которая позволяет увидеть, что происходит
-на каждом этапе выполнения кода, что особенно полезно на первых порах с циклами.
-На `сайте pythontutor <http://www.pythontutor.com/visualize.html#mode=edit>`__ можно загружать свой код, но для примера, по этой ссылке можно посмотреть
-`пример выше <http://www.pythontutor.com/visualize.html#code=words%20%3D%20%5B'list',%20'dict',%20'tuple'%5D%0Aupper_words%20%3D%20%5B%5D%0A%0Afor%20word%20in%20words%3A%0A%20%20%20%20upper_words.append%28word.upper%28%29%29%0A&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false>`__.
+.. note::
+    Проект pythontutor может очень помочь в понимании циклов.
+    Там есть специальная визуализация кода, которая позволяет увидеть, что происходит
+    на каждом этапе выполнения кода, что особенно полезно на первых порах с циклами.
+    На `сайте pythontutor <http://www.pythontutor.com/visualize.html#mode=edit>`__ можно загружать свой код, но для примера, по этой ссылке можно посмотреть
+    `пример выше <http://www.pythontutor.com/visualize.html#code=words%20%3D%20%5B'list',%20'dict',%20'tuple'%5D%0Aupper_words%20%3D%20%5B%5D%0A%0Afor%20word%20in%20words%3A%0A%20%20%20%20upper_words.append%28word.upper%28%29%29%0A&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false>`__.
 
 Цикл for проходится по строке:
 
