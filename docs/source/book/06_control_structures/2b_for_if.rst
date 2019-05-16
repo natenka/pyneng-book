@@ -5,8 +5,8 @@
 
 Файл generate_access_port_config.py:
 
-.. code:: python
-  :linenos:
+.. code-block:: python
+   :linenos:
 
     access_template = ['switchport mode access',
                        'switchport access vlan',
