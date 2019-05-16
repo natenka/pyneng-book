@@ -14,8 +14,8 @@ for:
 -  строка
 -  список
 -  словарь
--  функция :doc:`../10_useful_functions/range.rst`
--  любой :doc:`итерируемый объект ../13_iterator_generator/iterable.rst`
+-  функция :ref:`function_range-label`
+-  любой :ref:`iterable-label`
 
 Пример преобразования строк в списке в верхний регистр без цикла for:
 
