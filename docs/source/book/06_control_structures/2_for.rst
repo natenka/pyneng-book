@@ -14,8 +14,15 @@ for:
 -  строка
 -  список
 -  словарь
--  функция :doc: `../10_useful_functions/range.rst`
--  любой `итерируемый объект ../13_iterator_generator/iterable.rst`
+-  функция :doc:`../10_useful_functions/range.rst`
+-  любой :doc:`итерируемый объект ../13_iterator_generator/iterable.rst`
+
+Пример преобразования строк в списке в верхний регистр без цикла for:
+
+
+.. code:: python
+
+
 
 Цикл for проходится по строке:
 
