@@ -3,9 +3,10 @@
 
 Рассмотрим пример совмещения for и if.
 
-Файл generate\_access\_port\_config.py:
+Файл generate_access_port_config.py:
 
 .. code:: python
+  :linenos:
 
     access_template = ['switchport mode access',
                        'switchport access vlan',
@@ -25,7 +26,7 @@
             else:
                 print(' {}'.format(command))
 
-Комментарии к коду: \* В первом цикле for перебираются ключи и значения
+Комментарии к коду:* В первом цикле for перебираются ключи и значения
 во вложенном словаре fast\_int['access'] \* Текущий ключ, на данный
 момент цикла, хранится в переменной intf \* Текущее значение, на данный
 момент цикла, хранится в переменной vlan \* Выводится строка interface

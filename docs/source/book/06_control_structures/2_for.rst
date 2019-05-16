@@ -49,6 +49,7 @@ for:
 * одно и то же действие надо повторять несколько раз
 * код привязан к определенному количеству элементов в списке words
 
+
 Те же действия с циклом for:
 
 .. code:: python
@@ -64,23 +65,29 @@ for:
     In [13]: upper_words
     Out[13]: ['LIST', 'DICT', 'TUPLE']
 
-Выражение ``for word in words:`` означает "для каждого слова в списке words",
-при этом word это имя переменной, которое каждую итерацию цикла ссылается на разные значения.
+Выражение ``for word in words: upper_words.append(word.upper())``
+означает "для каждого слова в списке words выполнить действия в блоке for".
+При этом word это имя переменной, которое каждую итерацию цикла ссылается на разные значения.
 
 .. note::
-    Проект pythontutor может очень помочь в понимании циклов.
+    `Проект pythontutor <http://www.pythontutor.com/>`__ может очень помочь в понимании циклов.
     Там есть специальная визуализация кода, которая позволяет увидеть, что происходит
     на каждом этапе выполнения кода, что особенно полезно на первых порах с циклами.
     На `сайте pythontutor <http://www.pythontutor.com/visualize.html#mode=edit>`__ можно загружать свой код, но для примера, по этой ссылке можно посмотреть
     `пример выше <http://www.pythontutor.com/visualize.html#code=words%20%3D%20%5B'list',%20'dict',%20'tuple'%5D%0Aupper_words%20%3D%20%5B%5D%0A%0Afor%20word%20in%20words%3A%0A%20%20%20%20upper_words.append%28word.upper%28%29%29%0A&cumulative=false&curInstr=0&heapPrimitives=nevernest&mode=display&origin=opt-frontend.js&py=3&rawInputLstJSON=%5B%5D&textReferences=false>`__.
 
-Цикл for проходится по строке:
+
+Цикл for может работать с любой последовательностью элементов.
+Например, выше использовался список и цикл перебирал элементы списка.
+Аналогичным образом for работает с кортежами.
+
+При работе со строками, цикл for перебирает символы строки, например:
 
 .. code:: python
 
     In [1]: for letter in 'Test string':
        ...:     print(letter)
-       ...:     
+       ...:
     T
     e
     s
@@ -93,9 +100,14 @@ for:
     n
     g
 
-В цикле используется переменная с именем **letter**. Хотя имя может быть
-любое, удобно, когда имя подсказывает, через какие объекты проходит
-цикл.
+.. note::
+    В цикле используется переменная с именем **letter**. Хотя имя может быть
+    любое, удобно, когда имя подсказывает, через какие объекты проходит
+    цикл.
+
+
+Иногда в цикле необходимо использовать последовательность чисел. В этом случае, лучше всего использовать функцию
+`range <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/range.html>`__.
 
 Пример цикла for с функцией range():
 
@@ -103,7 +115,7 @@ for:
 
     In [2]: for i in range(10):
        ...:     print('interface FastEthernet0/{}'.format(i))
-       ...:     
+       ...:
     interface FastEthernet0/0
     interface FastEthernet0/1
     interface FastEthernet0/2
@@ -115,7 +127,7 @@ for:
     interface FastEthernet0/8
     interface FastEthernet0/9
 
-В этом цикле используется range(10). Range генерирует числа в диапазоне
+В этом цикле используется ``range(10)``. Функция range генерирует числа в диапазоне
 от нуля до указанного числа (в данном примере - до 10), не включая его.
 
 В этом примере цикл проходит по списку VLANов, поэтому переменную можно
@@ -139,64 +151,68 @@ for:
     vlan 100
      name VLAN_100
 
+
 Когда цикл идет по словарю, то фактически он проходится по ключам:
 
 .. code:: python
 
-    In [5]: r1 = {
-     'IOS': '15.4',
-     'IP': '10.255.0.1',
-     'hostname': 'london_r1',
-     'location': '21 New Globe Walk',
-     'model': '4451',
-     'vendor': 'Cisco'}
+    In [34]: r1 = {
+        ...:      'ios': '15.4',
+        ...:      'ip': '10.255.0.1',
+        ...:      'hostname': 'london_r1',
+        ...:      'location': '21 New Globe Walk',
+        ...:      'model': '4451',
+        ...:      'vendor': 'Cisco'}
+        ...:
 
-    In [6]: for k in r1:
-       ....:     print(k)
-       ....:     
-    vendor
-    IP
+    In [35]: for k in r1:
+        ...:     print(k)
+        ...:
+    ios
+    ip
     hostname
-    IOS
     location
     model
+    vendor
 
-Если необходимо выводить пары ключ-значение в цикле:
+
+Если необходимо выводить пары ключ-значение в цикле, можно делать так:
 
 .. code:: python
 
-    In [7]: for key in r1:
-       ....:     print(key + ' => ' + r1[key])
-       ....:     
-    vendor => Cisco
-    IP => 10.255.0.1
+    In [36]: for key in r1:
+        ...:     print(key + ' => ' + r1[key])
+        ...:
+    ios => 15.4
+    ip => 10.255.0.1
     hostname => london_r1
-    IOS => 15.4
     location => 21 New Globe Walk
     model => 4451
+    vendor => Cisco
 
-В словаре есть специальный метод items, который позволяет проходится в
+Или воспользоваться методом items, который позволяет проходится в
 цикле сразу по паре ключ:значение:
 
 .. code:: python
 
-    In [8]: for key, value in r1.items():
-       ....:     print(key + ' => ' + value)
-       ....:     
-    vendor => Cisco
-    IP => 10.255.0.1
+    In [37]: for key, value in r1.items():
+        ...:     print(key + ' => ' + value)
+        ...:
+    ios => 15.4
+    ip => 10.255.0.1
     hostname => london_r1
-    IOS => 15.4
     location => 21 New Globe Walk
     model => 4451
+    vendor => Cisco
+
 
 Метод items возвращает специальный объект view, который отображает пары
 ключ-значение:
 
 .. code:: python
 
-    In [9]: r1.items()
-    Out[9]: dict_items([('IOS', '15.4'), ('IP', '10.255.0.1'), ('hostname', 'london_r1'), ('location', '21 New Globe Walk'), ('model', '4451'), ('vendor', 'Cisco')])
+    In [38]: r1.items()
+    Out[38]: dict_items([('ios', '15.4'), ('ip', '10.255.0.1'), ('hostname', 'london_r1'), ('location', '21 New Globe Walk'), ('model', '4451'), ('vendor', 'Cisco')])
 
 
 .. toctree::
