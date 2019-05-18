@@ -17,9 +17,9 @@ II. Повторное использование кода
 параметров.
 
 Созданию функций посвящён `девятый
-раздел <https://natenka.gitbooks.io/pyneng/content/book/09_functions/>`__.
+раздел <https://pyneng.readthedocs.io/ru/latest/book/09_functions/index.html>`__.
 Кроме того, в `десятом
-разделе <https://natenka.gitbooks.io/pyneng/content/book/10_useful_functions/>`__
+разделе <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/index.html>`__
 рассматриваются полезные встроенные функции.
 
 После разделения кода на функции, достаточно быстро наступает момент,
@@ -29,13 +29,13 @@ II. Повторное использование кода
 модули.
 
 `Одиннадцатый
-раздел <https://natenka.gitbooks.io/pyneng/content/book/11_modules/>`__
+раздел <https://pyneng.readthedocs.io/ru/latest/book/11_modules/index.html>`__
 посвящён созданию собственных модулей, а в `двенадцатом
-разделе <https://natenka.gitbooks.io/pyneng/content/book/12_useful_modules/>`__
+разделе <https://pyneng.readthedocs.io/ru/latest/book/12_useful_modules/index.html>`__
 рассматриваются полезные модули из стандартной библиотеки Python.
 
 `Последний
-раздел <https://natenka.gitbooks.io/pyneng/content/book/13_iterator_generator/>`__
+раздел <https://pyneng.readthedocs.io/ru/latest/book/13_iterator_generator/index.html>`__
 этой части посвящён итерируемым объектам, итераторам и генераторам.
 
 
