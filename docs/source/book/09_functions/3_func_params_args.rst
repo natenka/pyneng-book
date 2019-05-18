@@ -17,79 +17,60 @@
    функции при вызове.
 
 Для того, чтобы функция могла принимать входящие значения, ее нужно
-создать с параметрами (файл func\_params\_args.py):
+создать с параметрами (файл func_check_passwd.py):
 
 .. code:: python
 
-    In [1]: def delete_exclamation_from_cfg(in_cfg, out_cfg):
-       ...:     with open(in_cfg) as in_file:
-       ...:         result = in_file.readlines()
-       ...:     with open(out_cfg, 'w') as out_file:
-       ...:         for line in result:
-       ...:             if not line.startswith('!'):
-       ...:                 out_file.write(line)
+    In [1]: def check_passwd(username, password):
+       ...:     if len(password) < 8:
+       ...:         print('Пароль слишком короткий')
+       ...:         return False
+       ...:     elif username in password:
+       ...:         print('Пароль содержит имя пользователя')
+       ...:         return False
+       ...:     else:
+       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
+       ...:         return True
        ...:
 
-В данном случае, у функции delete\_exclamation\_from\_cfg два параметра:
-in\_cfg и out\_cfg.
+В данном случае, у функции два параметра: username и password.
 
-Функция открывает файл in\_cfg, читает содержимое в список; затем
-открывает файл out\_cfg и записывает в него только те строки, которые не
-начинаются на знак восклицания.
-
-В данном случае функция ничего не возвращает.
-
-Файл r1.txt будет использоваться как первый аргумент (in\_cfg):
+Функция проверяет пароль и возвращает False, если проверки не прошли и
+True если пароль прошел проверки:
 
 .. code:: python
 
-    In [2]: cat r1.txt
-    !
-    service timestamps debug datetime msec localtime show-timezone year
-    service timestamps log datetime msec localtime show-timezone year
-    service password-encryption
-    service sequence-numbers
-    !
-    no ip domain lookup
-    !
-    ip ssh version 2
-    !
+    In [2]: check_passwd('nata', '12345')
+    Пароль слишком короткий
+    Out[2]: False
 
-Пример использования функции delete\_exclamation\_from\_cfg:
+    In [3]: check_passwd('nata', '12345lsdkjflskfdjsnata')
+    Пароль содержит имя пользователя
+    Out[3]: False
 
-.. code:: python
+    In [4]: check_passwd('nata', '12345lsdkjflskfdjs')
+    Пароль для пользователя nata прошел все проверки
+    Out[4]: True
 
-    In [3]: delete_exclamation_from_cfg('r1.txt', 'result.txt')
-
-Файл result.txt выглядит так:
-
-.. code:: python
-
-    In [4]: cat result.txt
-    service timestamps debug datetime msec localtime show-timezone year
-    service timestamps log datetime msec localtime show-timezone year
-    service password-encryption
-    service sequence-numbers
-    no ip domain lookup
-    ip ssh version 2
 
 При таком определении функции надо обязательно передать оба аргумента.
 Если передать только один аргумент, возникнет ошибка:
 
 .. code:: python
 
-    In [5]: delete_exclamation_from_cfg('r1.txt')
+    In [5]: check_passwd('nata')
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
-    <ipython-input-12-66ae381f1c4f> in <module>()
-    ----> 1 delete_exclamation_from_cfg('r1.txt')
+    <ipython-input-5-e07773bb4cc8> in <module>
+    ----> 1 check_passwd('nata')
 
-    TypeError: delete_exclamation_from_cfg() missing 1 required positional argument: 'out_cfg'
+    TypeError: check_passwd() missing 1 required positional argument: 'password'
+
 
 Аналогично, возникнет ошибка, если передать три и больше аргументов.
 
 .. include:: 3a_func_params_types.rst
-.. include:: 3a_func_params_types.rst
+.. include:: 3a_func_args_types.rst
 .. include:: 3b_func_args_var.rst      
 .. include:: 3b_func_unpacking_args.rst
 

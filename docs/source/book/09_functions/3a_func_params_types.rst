@@ -2,12 +2,10 @@
 -----------------------
 
 При создании функции можно указать, какие аргументы нужно передавать
-обязательно, а какие нет.
+обязательно, а какие нет. Соответственно, функция может быть создана с:
 
-Соответственно, функция может быть создана с параметрами:
-
-* **обязательными**
-* **необязательными** (опциональными, параметрами со значением по умолчанию)
+* **обязательными параметрами**
+* **необязательными параметрами** (опциональными, параметрами со значением по умолчанию)
 
 Обязательные параметры
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -15,114 +13,84 @@
 **Обязательные параметры** - определяют, какие аргументы нужно передать
 функции обязательно. При этом, их нужно передать ровно столько, сколько
 указано параметров функции (нельзя указать большее или меньшее
-количество аргументов)
+количество)
 
 Функция с обязательными параметрами (файл func\_params\_types.py):
 
 .. code:: python
 
-    In [1]: def cfg_to_list(cfg_file, delete_exclamation):
-      ....:     result = []
-      ....:     with open( cfg_file ) as f:
-      ....:         for line in f:
-      ....:             if delete_exclamation and line.startswith('!'):
-      ....:                 pass
-      ....:             else:
-      ....:                 result.append(line.rstrip())
-      ....:     return result
+    In [1]: def check_passwd(username, password):
+       ...:     if len(password) < 8:
+       ...:         print('Пароль слишком короткий')
+       ...:         return False
+       ...:     elif username in password:
+       ...:         print('Пароль содержит имя пользователя')
+       ...:         return False
+       ...:     else:
+       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
+       ...:         return True
+       ...:
 
-Функция cfg\_to\_list ожидает два аргумента: cfg\_file и
-delete\_exclamation.
 
-Внутри она открывает файл cfg\_file для чтения, проходится по всем
-строкам и, если аргумент delete\_exclamation истина и строка начинается
-с восклицательного знака, строка пропускается. Оператор ``pass``
-означает, что ничего не выполняется.
+Функция check_passwd ожидает два аргумента: username и password.
 
-Во всех остальных случаях в строке справа удаляются символы перевода
-строки, и строка добавляется в список result.
-
-Пример вызова функции:
+Функция проверяет пароль и возвращает False, если проверки не прошли и
+True если пароль прошел проверки:
 
 .. code:: python
 
-    In [2]: cfg_to_list('r1.txt', True)
-    Out[2]:
-    ['service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     'no ip domain lookup',
-     'ip ssh version 2']
+    In [2]: check_passwd('nata', '12345')
+    Пароль слишком короткий
+    Out[2]: False
 
-Так как аргументу delete\_exclamation передано значение True, в итоговом
-списке нет строк с восклицательными знаками.
+    In [3]: check_passwd('nata', '12345lsdkjflskfdjsnata')
+    Пароль содержит имя пользователя
+    Out[3]: False
 
-Вызов функции со значением False для аргумента delete\_exclamation:
+    In [4]: check_passwd('nata', '12345lsdkjflskfdjs')
+    Пароль для пользователя nata прошел все проверки
+    Out[4]: True
 
-.. code:: python
-
-    In [3]: cfg_to_list('r1.txt', False)
-    Out[3]:
-    ['!',
-     'service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     '!',
-     'no ip domain lookup',
-     '!',
-     'ip ssh version 2',
-     '!']
 
 Необязательные параметры (параметры со значением по умолчанию)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-При создании функции можно указывать значение по умолчанию для параметра
-(файл func\_params\_types.py):
+При создании функции можно указывать значение по умолчанию для параметра таким образом:
+``def check_passwd(username, password, min_length=8)``. В этом случае, параметр min_length
+указан со значением по умолчанию и может не передаваться при вызове функции.
+
+
+Пример функции check_passwd с параметром со значением по умолчанию (файл func_check_passwd_optional_param.py):
 
 .. code:: python
 
-    In [4]: def cfg_to_list(cfg_file, delete_exclamation=True):
-      ....:     result = []
-      ....:     with open( cfg_file ) as f:
-      ....:         for line in f:
-      ....:             if delete_exclamation and line.startswith('!'):
-      ....:                 pass
-      ....:             else:
-      ....:                 result.append(line.rstrip())
-      ....:     return result
-      ....:
+    In [6]: def check_passwd(username, password, min_length=8):
+       ...:     if len(password) < min_length:
+       ...:         print('Пароль слишком короткий')
+       ...:         return False
+       ...:     elif username in password:
+       ...:         print('Пароль содержит имя пользователя')
+       ...:         return False
+       ...:     else:
+       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
+       ...:         return True
+       ...:
 
-Так как теперь у параметра delete\_exclamation значение по умолчанию
-равно True, соответствующий аргумент можно не указывать при вызове
-функции, если значение по умолчанию подходит:
-
-.. code:: python
-
-    In [5]: cfg_to_list('r1.txt')
-    Out[5]:
-    ['service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     'no ip domain lookup',
-     'ip ssh version 2']
-
-Но можно и указать, если нужно поменять значение по умолчанию:
+Так как у параметра min_length есть значение по умолчанию, соответствующий аргумент
+можно не указывать при вызове функции, если значение по умолчанию подходит:
 
 .. code:: python
 
-    In [6]: cfg_to_list('r1.txt', False)
-    Out[6]:
-    ['!',
-     'service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     '!',
-     'no ip domain lookup',
-     '!',
-     'ip ssh version 2',
-     '!']
+    In [7]: check_passwd('nata', '12345')
+    Пароль слишком короткий
+    Out[7]: False
+
+
+Если нужно поменять значение по умолчанию:
+
+.. code:: python
+
+    In [8]: check_passwd('nata', '12345', 3)
+    Пароль для пользователя nata прошел все проверки
+    Out[8]: True
 

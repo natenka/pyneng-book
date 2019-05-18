@@ -15,20 +15,21 @@
 только потом - ключевые.
 
 Посмотрим на разные способы передачи аргументов на примере функции
-cfg\_to\_list (файл func\_args\_types.py):
+check_passwd (файл func_check_passwd_optional_param.py):
 
 .. code:: python
 
-    In [1]: def cfg_to_list(cfg_file, delete_exclamation):
-      ....:     result = []
-      ....:     with open( cfg_file ) as f:
-      ....:         for line in f:
-      ....:             if delete_exclamation and line.startswith('!'):
-      ....:                 pass
-      ....:             else:
-      ....:                 result.append(line.rstrip())
-      ....:     return result
-      ....:
+    In [1]: def check_passwd(username, password):
+       ...:     if len(password) < 8:
+       ...:         print('Пароль слишком короткий')
+       ...:         return False
+       ...:     elif username in password:
+       ...:         print('Пароль содержит имя пользователя')
+       ...:         return False
+       ...:     else:
+       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
+       ...:         return True
+       ...:
 
 Позиционные аргументы
 ~~~~~~~~~~~~~~~~~~~~~
@@ -38,20 +39,17 @@ cfg\_to\_list (файл func\_args\_types.py):
 
 .. code:: python
 
-    In [2]: cfg_to_list('r1.txt', False)
-    Out[2]:
-    ['!',
-     'service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     '!',
-     'no ip domain lookup',
-     '!',
-     '',
-     '',
-     'ip ssh version 2',
-     '!']
+    In [2]: check_passwd('nata', '12345')
+    Пароль слишком короткий
+    Out[2]: False
+
+    In [3]: check_passwd('nata', '12345lsdkjflskfdjsnata')
+    Пароль содержит имя пользователя
+    Out[3]: False
+
+    In [4]: check_passwd('nata', '12345lsdkjflskfdjs')
+    Пароль для пользователя nata прошел все проверки
+    Out[4]: True
 
 Если при вызове функции поменять аргументы местами, скорее всего,
 возникнет ошибка, в зависимости от конкретной функции.
@@ -69,49 +67,72 @@ cfg\_to\_list (файл func\_args\_types.py):
 
 .. code:: python
 
-    In [4]: cfg_to_list(delete_exclamation=False, cfg_file='r1.txt')
-    Out[4]:
-    ['!',
-     'service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     '!',
-     'no ip domain lookup',
-     '!',
-     'ip ssh version 2',
-     '!']
+    In [9]: check_passwd(password='12345', username='nata', min_length=4)
+    Пароль для пользователя nata прошел все проверки
+    Out[9]: True
 
-**Обратите внимание, что всегда сначала должны идти позиционные
-аргументы, а затем ключевые.**
+
+.. warning::
+    Обратите внимание, что всегда сначала должны идти позиционные
+    аргументы, а затем ключевые.
 
 Если сделать наоборот, возникнет ошибка:
 
 .. code:: python
 
-    In [5]: cfg_to_list(delete_exclamation=False, 'r1.txt')
-      File "<ipython-input-3-8f3a3aa16a22>", line 1
-        cfg_to_list(delete_exclamation=False, 'r1.txt')
-                                             ^
+    In [10]: check_passwd(password='12345', username='nata', 4)
+      File "<ipython-input-10-7e8246b6b402>", line 1
+        check_passwd(password='12345', username='nata', 4)
+                                                       ^
     SyntaxError: positional argument follows keyword argument
+
 
 Но в такой комбинации можно:
 
 .. code:: python
 
-    In [6]: cfg_to_list('r1.txt', delete_exclamation=True)
-    Out[6]:
-    ['service timestamps debug datetime msec localtime show-timezone year',
-     'service timestamps log datetime msec localtime show-timezone year',
-     'service password-encryption',
-     'service sequence-numbers',
-     'no ip domain lookup',
-     'ip ssh version 2']
+    In [11]: check_passwd('nata', '12345', min_length=3)
+    Пароль для пользователя nata прошел все проверки
+    Out[11]: True
 
 В реальной жизни зачастую намного понятней и удобней указывать
-флаги, такие как delete\_exclamation, как ключевой аргумент. Если
+флаги (параметры со значениями True/False) или числовые значения, как ключевой аргумент. Если
 задать хорошее название параметра за счет указания его имени, сразу
 будет понятно, что именно делает этот аргумент.
 
-Например, в функции cfg\_to\_list понятно, что аргумент
-delete\_exclamation приводит к удалению восклицательных знаков.
+Например, можно добавить флаг, который будет контролировать выполнять проверку наличия имени пользователя в пароле или нет:
+
+.. code:: python
+
+    In [12]: def check_passwd(username, password, min_length=8, check_username=True):
+        ...:     if len(password) < min_length:
+        ...:         print('Пароль слишком короткий')
+        ...:         return False
+        ...:     elif check_username and username in password:
+        ...:         print('Пароль содержит имя пользователя')
+        ...:         return False
+        ...:     else:
+        ...:         print(f'Пароль для пользователя {username} прошел все проверки')
+        ...:         return True
+        ...:
+
+По умолчанию флаг равен True, а значит проверку выполнять надо:
+
+.. code:: python
+
+    In [14]: check_passwd('nata', '12345nata', min_length=3)
+    Пароль содержит имя пользователя
+    Out[14]: False
+
+    In [15]: check_passwd('nata', '12345nata', min_length=3, check_username=True)
+    Пароль содержит имя пользователя
+    Out[15]: False
+
+Если указать значение равным False, проверка не будет выполняться:
+
+.. code:: python
+
+    In [16]: check_passwd('nata', '12345nata', min_length=3, check_username=False)
+    Пароль для пользователя nata прошел все проверки
+    Out[16]: True
+

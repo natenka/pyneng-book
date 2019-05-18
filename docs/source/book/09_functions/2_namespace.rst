@@ -35,24 +35,32 @@ Python ищет переменную в таком порядке по обла�
   * эти переменные 'глобальны' только в пределах модуля
   * например, чтобы они были доступны в другом модуле, их надо импортировать
 
-Пример локальной и глобальной переменной result:
+Пример локальной intf_config:
 
 .. code:: python
 
-    In [1]: result = 'test string'
-
-    In [2]: def open_file( filename ):
-       ...:     with open(filename) as f:
-       ...:         result = f.read()
-       ...:         return result
+    In [1]: def configure_intf(intf_name, ip, mask):
+       ...:     intf_config = f'interface {intf_name}\nip address {ip} {mask}'
+       ...:     return intf_config
        ...:
 
-    In [3]: open_file('r1.txt')
-    Out[3]: '!\nservice timestamps debug datetime msec localtime show-timezone year\nservice timestamps log datetime msec localtime show-timezone year\nservice password-encryption\nservice sequence-numbers\n!\nno ip domain lookup\n!\nip ssh version 2\n!\n'
+    In [2]: intf_config
+    ---------------------------------------------------------------------------
+    NameError                                 Traceback (most recent call last)
+    <ipython-input-2-5983e972fb1c> in <module>
+    ----> 1 intf_config
+
+    NameError: name 'intf_config' is not defined
+
+
+Обратите внимание, что переменная intf_config недоступна за пределами функции.
+Для того чтобы получить результат функции, надо вызвать функцию и присвоить результат в переменную:
+
+.. code:: python
+
+    In [3]: result = configure_intf('F0/0', '10.1.1.1', '255.255.255.0')
 
     In [4]: result
-    Out[4]: 'test string'
+    Out[4]: 'interface F0/0\nip address 10.1.1.1 255.255.255.0'
 
-Обратите внимание, что переменная result по-прежнему осталась равной
-'test string', несмотря на то, что внутри функции ей присвоено
-содержимое файла.
+

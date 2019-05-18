@@ -114,18 +114,3 @@
     10 {'c': 20, 'b': 10, 'd': 30}
     Out[10]: 70
 
-Обратите внимание, что, хотя ``a`` можно указывать как позиционный
-аргумент, нельзя указывать позиционный аргумент после ключевого:
-
-.. code:: python
-
-    In [11]: sum_arg(10,b=10,c=20,d=30)
-    10 {'c': 20, 'b': 10, 'd': 30}
-    Out[11]: 70
-
-    In [12]: sum_arg(b=10,c=20,d=30,10)
-      File "<ipython-input-14-71c121dc2cf7>", line 1
-        sum_arg(b=10,c=20,d=30,10)
-                              ^
-    SyntaxError: positional argument follows keyword argument
-
