@@ -69,8 +69,11 @@ True если пароль прошел проверки:
 
 Аналогично, возникнет ошибка, если передать три и больше аргументов.
 
-.. include:: 3a_func_params_types.rst
-.. include:: 3a_func_args_types.rst
-.. include:: 3b_func_args_var.rst      
-.. include:: 3b_func_unpacking_args.rst
+.. toctree::
+   :maxdepth: 1
+
+   3a_func_params_types.rst
+   3a_func_args_types.rst
+   3b_func_args_var.rst      
+   3b_func_unpacking_args.rst
 
