@@ -16,6 +16,7 @@
 Например, если как аргумент был передан такой вывод:
 
 ::
+
     R4>show cdp neighbors
 
     Device ID    Local Intrfce   Holdtme     Capability       Platform    Port ID
