@@ -3,144 +3,104 @@
 
 Достаточно часто скрипт может выполняться и самостоятельно, и может быть
 импортирован как модуль другим скриптом.
+Так как импорт скрипта запускает этот скрипт, часто надо указать,
+что какие-то строки не должны выполняться при импорте.
 
-Например, скрипт filter\_functions.py содержит такой код:
+В предыдущем примере было два скрипта: check_ip_function.py и get_correct_ip.py.
+И при запуске get_correct_ip.py, отображались print из check_ip_function.py.
+
+
+В Python есть специальный прием, который позволяет указать, что какой-то
+код не должен выполняться при импорте: все строки, которые находятся
+в блоке ``if __name__ == '__main__'`` не выполняются при импорте.
+
+Переменная ``__name__`` - это специальная переменная, которая будет
+равна ``"__main__"`` только если файл запускается как основная программа, и
+выставляется равной имени модуля, если модуль импортируется.
+То есть, условие ``if __name__ == '__main__'`` проверяет, был ли
+файл запущен напрямую.
+
+
+Как правило, в блок ``if __name__ == '__main__'`` заносят все вызовы функций
+и вывод информации на стандартный поток вывода.
+То есть, в скрипте check_ip_function.py в этом блоке будет все, кроме импорта
+и функции return_correct_ip:
 
 .. code:: python
 
-    from pprint import pprint
+    import ipaddress
 
 
-    def filter_file_lines(filename, substring):
-        result = []
-        with open(filename) as f:
-            for line in f:
-                if substring in line:
-                    result.append(line)
-        return result
+    def check_ip(ip):
+        try:
+            ipaddress.ip_address(ip)
+            return True
+        except ValueError as err:
+            return False
 
 
-    pprint(filter_file_lines('config_r1.txt', 'ip address'))
+    if __name__ == '__main__':
+        ip1 = '10.1.1.1'
+        ip2 = '10.1.1'
 
-В скрипте содержится одна функция, которая отбирает из файла только те
-строки, в которых содержится указанная подстрока.
+        print('Проверка IP...')
+        print(ip1, check_ip(ip1))
+        print(ip2, check_ip(ip2))
+
 
 Результат выполнения скрипта:
 
 ::
 
-    $ python filter_functions.py
-    [' ip address 10.1.1.1 255.255.255.255\n',
-     ' ip address 10.0.13.1 255.255.255.0\n',
-     ' no ip address\n',
-     ' ip address 10.0.19.1 255.255.255.0\n',
-     ' no ip address\n',
-     ' no ip address\n']
+    $ python check_ip_function.py
+    Проверка IP...
+    10.1.1.1 True
+    10.1.1 False
 
-Скрипт get\_data.py импортирует функцию filter\_file\_lines из скрипта
-filter\_functions.py и использует её для получения строк в которых
-содержится слово interface:
+При запуске скрипта check_ip_function.py напрямую, выполняются все строки,
+так как переменная ``__name__`` в этом случае равна ``'__main__'``.
+
+Скрипт get_correct_ip.py остается без изменений
 
 .. code:: python
 
-    from filter_functions import filter_file_lines
-    from pprint import pprint
+    from check_ip_function import check_ip
 
-    pprint(filter_file_lines('config_r1.txt', 'interface'))
 
-Выполнение скрипта get\_data.py выглядит таким образом:
+    def return_correct_ip(ip_addresses):
+        correct = []
+        for ip in ip_addresses:
+            if check_ip(ip):
+                correct.append(ip)
+        return correct
+
+
+    print('Проверка списка IP-адресов')
+    ip_list = ['10.1.1.1', '8.8.8.8', '2.2.2']
+    correct = return_correct_ip(ip_list)
+    print(correct)
+
+
+Выполнение скрипта get_correct_ip.py выглядит таким образом:
 
 ::
 
-    $ python get_data.py
-    [' ip address 10.1.1.1 255.255.255.255\n',
-     ' ip address 10.0.13.1 255.255.255.0\n',
-     ' no ip address\n',
-     ' ip address 10.0.19.1 255.255.255.0\n',
-     ' no ip address\n',
-     ' no ip address\n']
-    ['interface Loopback0\n',
-     'interface Tunnel0\n',
-     'interface Ethernet0/0\n',
-     'interface Ethernet0/1\n',
-     'interface Ethernet0/2\n',
-     'interface Ethernet0/3\n',
-     'interface Ethernet0/3.100\n',
-     'interface Ethernet1/0\n',
-     ' event neighbor-discovery interface regexp .*Ethernet.* cdp add\n',
-     ' action 3.0 cli command "interface $_nd_local_intf_name"\n']
+    $ python get_correct_ip.py
+    Проверка списка IP-адресов
+    ['10.1.1.1', '8.8.8.8']
 
-Полученный вывод содержит не только список со строками, в которых
-содержится слово interface, но и вывод из скрипта filter\_functions.py.
-
-Так происходит из-за того, что при импорте модуля, Python выполняет его.
-
-    Python выполняет весь модуль, независимо от того как именно
-    импортируется модуль: ``import module``,
-    ``from module import function`` или ``from module import *``.
-
-В Python есть специальный прием, который позволяет указать, что какой-то
-код должен выполняться, только когда файл запускается напрямую.
-
-Файл filter\_functions.py:
-
-.. code:: python
-
-    from pprint import pprint
+Теперь вывод содержит только информацию из скрипта get_correct_ip.py.
 
 
-    def filter_file_lines(filename, substring):
-        result = []
-        with open(filename) as f:
-            for line in f:
-                if substring in line:
-                    result.append(line)
-        return result
+В целом, лучше привыкнуть писать весь код, который вызывает функции и
+выводит что-то на стандартный поток вывода, внутри блока
+``if __name__ == '__main__'``.
 
+.. warning::
+    Начиная с 9 раздела, для заданий есть программные тесты,
+    с помощью которых можно проверить правильность выполнения заданий.
+    Для корректной работы с тестами, надо всегда писать вызов функции
+    в файле задания внутри блока ``if __name__ == '__main__'``.
+    Отсутствие этого блока будет вызывать ошибки, не во всех заданиях,
+    однако это все равно позволит избежать проблем.
 
-    if __name__ == "__main__":
-        pprint(filter_file_lines('config_r1.txt', 'ip address'))
-
-Обратите внимание на запись:
-
-.. code:: python
-
-    if __name__ == '__main__':
-        pprint(filter_file_lines('config_r1.txt', 'ip address'))
-
-Переменная ``__name__`` - это специальная переменная, которая будет
-равна ``"__main__"``, если файл запускается как основная программа, и
-выставляется равной имени модуля, если модуль импортируется.
-
-Таким образом, условие ``if __name__ == '__main__'`` проверяет, был ли
-файл запущен напрямую.
-
-Теперь, при выполнении скрипта get\_data.py, вывод такой:
-
-::
-
-    $ python get_data.py
-    ['interface Loopback0\n',
-     'interface Tunnel0\n',
-     'interface Ethernet0/0\n',
-     'interface Ethernet0/1\n',
-     'interface Ethernet0/2\n',
-     'interface Ethernet0/3\n',
-     'interface Ethernet0/3.100\n',
-     'interface Ethernet1/0\n',
-     ' event neighbor-discovery interface regexp .*Ethernet.* cdp add\n',
-     ' action 3.0 cli command "interface $_nd_local_intf_name"\n']
-
-Строки, которые находятся в блоке ``if __name__ == '__main__'`` не
-выполняются при импорте.
-
-При выводе информации на стандартный поток вывода, проще всего заметить
-тот факт, что модуль выполняется при импорте, но гораздо больше проблем
-возникает когда, например, надо импортировать функцию из скрипта,
-который выполняет подклюнение к сотням устройств. В таком случае, во
-время импорта будет выполняться подключение, а только затем сможет
-выполниться скрипт, который импортировал другой модуль.
-
-    При создании функции, она не выполняется, поэтому в блок
-    ``if __name__ == '__main__'`` выносится код, который вызывает
-    функции.

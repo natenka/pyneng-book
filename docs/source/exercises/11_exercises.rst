@@ -1,7 +1,7 @@
 Задания
 =======
 
-{% include "../exercises\_intro.md" %}
+.. include:: ./exercises_intro.rst
 
 Задание 11.1
 ~~~~~~~~~~~~
