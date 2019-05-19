@@ -1,10 +1,18 @@
 10. Полезные функции
 ============================
 
+В этом разделе рассматриваются такие функции:
+
+-  print
+-  range
+-  sorted
+-  enumerate
+-  zip
+-  all, any
+
 .. toctree::
    :maxdepth: 1
 
-   README
    print
    range
    sorted
