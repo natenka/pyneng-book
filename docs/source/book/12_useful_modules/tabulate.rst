@@ -1,21 +1,19 @@
 Модуль tabulate
 ---------------
 
-tabulate - это библиотека, которая позволяет красиво отображать
-табличные данные.
-
-tabulate не входит в стандартную библиотеку Python, поэтому его нужно
-установить:
+tabulate - это модуль, который позволяет красиво отображать
+табличные данные. Он не входит в стандартную библиотеку Python,
+поэтому tabulate нужно установить:
 
 ::
 
     pip install tabulate
 
-Модуль поддерживает такие типы табличных данных: \* список списков (в
-общем случае iterable of iterables) \* список словарей (или любой другой
-итерируемый объект со словарями). Ключи используются как имена столбцов
-\* словарь с итерируемыми объектами. Ключи используются как имена
-столбцов
+Модуль поддерживает такие типы табличных данных:
+
+* список списков (в общем случае iterable of iterables)
+* список словарей (или любой другой итерируемый объект со словарями). Ключи используются как имена столбцов
+* словарь с итерируемыми объектами. Ключи используются как имена столбцов
 
 Для генерации таблицы используется функция tabulate:
 
@@ -193,17 +191,17 @@ tabulate поддерживает разные стили отображения
 Markdown.
 
 Дополнительные материалы
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  `Документация
    tabulate <https://bitbucket.org/astanin/python-tabulate>`__
 
-Статьи от автора tabulate: \* `Pretty printing tables in
-Python <https://txt.arboreus.com/2013/03/13/pretty-print-tables-in-python.html>`__
-\* `Tabulate 0.7.1 with LaTeX & MediaWiki
-tables <https://txt.arboreus.com/2013/12/12/tabulate-0-7-1-with-latex-tables-named-tuples-etc.html>`__
+Статьи от автора tabulate:
 
-Stackoverflow: \* `Printing Lists as Tabular
-Data <https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data>`__.
-Обратите внимание на `ответ <https://stackoverflow.com/a/26937531>`__ -
-в нём указаны другие аналоги tabulate.
+* `Pretty printing tables in Python <https://txt.arboreus.com/2013/03/13/pretty-print-tables-in-python.html>`__
+* `Tabulate 0.7.1 with LaTeX & MediaWiki tables <https://txt.arboreus.com/2013/12/12/tabulate-0-7-1-with-latex-tables-named-tuples-etc.html>`__
+
+Stackoverflow:
+
+* `Printing Lists as Tabular Data <https://stackoverflow.com/questions/9535954/printing-lists-as-tabular-data>`__.
+  Обратите внимание на `ответ <https://stackoverflow.com/a/26937531>`__ - в нём указаны другие аналоги tabulate.
