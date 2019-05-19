@@ -8,22 +8,26 @@
 
 Создать функцию, которая генерирует конфигурацию для access-портов.
 
-Функция ожидает, как аргумент, словарь access-портов, вида:
+Функция ожидает такие аргументы:
 
-.. code:: python
+* словарь с соответствием интерфейс-VLAN такого вида:
+
+::
 
     {'FastEthernet0/12':10,
      'FastEthernet0/14':11,
-     'FastEthernet0/16':17,
-     'FastEthernet0/17':150}
+     'FastEthernet0/16':17}
 
-Функция должна возвращать список всех портов в режиме access с
-конфигурацией на основе шаблона access\_template.
+* шаблон конфигурации access-портов в виде списка команд (список access_mode_template)
 
+Функция должна возвращать список всех портов в режиме access
+с конфигурацией на основе шаблона access_mode_template.
 В конце строк в списке не должно быть символа перевода строки.
 
-Пример итогового списка (перевод строки после каждого элемента сделан
-для удобства чтения):
+В этом задании заготовка для функции уже сделана и надо только продолжить писать само тело функции.
+
+
+Пример итогового списка (перевод строки после каждого элемента сделан для удобства чтения):
 
 .. code:: python
 
@@ -42,299 +46,241 @@
     'spanning-tree bpduguard enable',
     ...]
 
-Проверить работу функции на примере словаря access\_dict.
+Проверить работу функции на примере словаря access_config.
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    def generate_access_config(access):
-        '''
-        access - словарь access-портов,
-        для которых необходимо сгенерировать конфигурацию, вида:
-            { 'FastEthernet0/12':10,
-              'FastEthernet0/14':11,
-              'FastEthernet0/16':17}
-        
-        Возвращает список всех портов в режиме access
-        с конфигурацией на основе шаблона
-        '''
-        access_template = ['switchport mode access',
-                           'switchport access vlan',
-                           'switchport nonegotiate',
-                           'spanning-tree portfast',
-                           'spanning-tree bpduguard enable']
+    access_mode_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
+
+    access_config = {
+        'FastEthernet0/12': 10,
+        'FastEthernet0/14': 11,
+        'FastEthernet0/16': 17
+    }
 
 
-    access_dict = { 'FastEthernet0/12':10,
-                    'FastEthernet0/14':11,
-                    'FastEthernet0/16':17,
-                    'FastEthernet0/17':150 }
+    def generate_access_config(intf_vlan_mapping, access_template):
+        '''
+        intf_vlan_mapping - словарь с соответствием интерфейс-VLAN такого вида:
+            {'FastEthernet0/12':10,
+             'FastEthernet0/14':11,
+             'FastEthernet0/16':17}
+        access_template - список команд для порта в режиме access
+
+        Возвращает список всех портов в режиме access с конфигурацией на основе шаблона
+        '''
+
 
 Задание 9.1a
 ~~~~~~~~~~~~
 
-Сделать копию скрипта задания 9.1.
+Сделать копию функции из задания 9.1.
 
-Дополнить скрипт: \* ввести дополнительный параметр, который
-контролирует будет ли настроен port-security \* имя параметра
-'psecurity' \* по умолчанию значение False
+Дополнить скрипт: ввести дополнительный параметр, который контролирует будет ли настроен port-security:
 
-Проверить работу функции на примере словаря access\_dict, с генерацией
-конфигурации port-security и без.
+* имя параметра 'psecurity'
+* по умолчанию значение None
+* для настройки port-security, как значение надо передать список команд port-security (находятся в списке port_security_template)
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Функция должна возвращать список всех портов в режиме access
+с конфигурацией на основе шаблона access_mode_template и шаблона port_security_template, если он был передан.
+В конце строк в списке не должно быть символа перевода строки.
 
-.. code:: python
 
-    def generate_access_config(access):
-        '''
-        access - словарь access-портов,
-        для которых необходимо сгенерировать конфигурацию, вида:
-            { 'FastEthernet0/12':10,
-              'FastEthernet0/14':11,
-              'FastEthernet0/16':17 }
-        
-        psecurity - контролирует нужна ли настройка Port Security. По умолчанию значение False
-            - если значение True, то настройка выполняется с добавлением шаблона port_security
-            - если значение False, то настройка не выполняется
-        
-        Возвращает список всех команд, которые были сгенерированы на основе шаблона
-        '''
+Проверить работу функции на примере словаря access_config,
+с генерацией конфигурации port-security и без.
 
-        access_template = ['switchport mode access',
-                           'switchport access vlan',
-                           'switchport nonegotiate',
-                           'spanning-tree portfast',
-                           'spanning-tree bpduguard enable']
-
-        port_security = ['switchport port-security maximum 2',
-                         'switchport port-security violation restrict',
-                         'switchport port-security']
-
-    access_dict = { 'FastEthernet0/12':10,
-                    'FastEthernet0/14':11,
-                    'FastEthernet0/16':17,
-                    'FastEthernet0/17':150 }
-
-Задание 9.1b
-~~~~~~~~~~~~
-
-Сделать копию скрипта задания 9.1a.
-
-Изменить скрипт таким образом, чтобы функция возвращала не список
-команд, а словарь: \* ключи: имена интерфейсов, вида 'FastEthernet0/12'
-\* значения: список команд, который надо выполнить на этом интерфейсе:
-``python       ['switchport mode access',        'switchport access vlan 10',        'switchport nonegotiate',        'spanning-tree portfast',        'spanning-tree bpduguard enable']``
-
-Проверить работу функции на примере словаря access\_dict, с генерацией
-конфигурации port-security и без.
-
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    def generate_access_config(access):
-        '''
-        access - словарь access-портов,
-        для которых необходимо сгенерировать конфигурацию, вида:
-            { 'FastEthernet0/12':10,
-              'FastEthernet0/14':11,
-              'FastEthernet0/16':17 }
-        
-        psecurity - контролирует нужна ли настройка Port Security. По умолчанию значение False
-            - если значение True, то настройка выполняется с добавлением шаблона port_security
-            - если значение False, то настройка не выполняется
-        
-        Функция возвращает словарь:
-        - ключи: имена интерфейсов, вида 'FastEthernet0/1'
-        - значения: список команд, который надо выполнить на этом интерфейсе
-        '''
+    access_mode_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
 
-        access_template = ['switchport mode access',
-                           'switchport access vlan',
-                           'switchport nonegotiate',
-                           'spanning-tree portfast',
-                           'spanning-tree bpduguard enable']
+    port_security_template = [
+        'switchport port-security maximum 2',
+        'switchport port-security violation restrict',
+        'switchport port-security'
+    ]
 
-        port_security = ['switchport port-security maximum 2',
-                         'switchport port-security violation restrict',
-                         'switchport port-security']
+    access_config = {
+        'FastEthernet0/12': 10,
+        'FastEthernet0/14': 11,
+        'FastEthernet0/16': 17
+    }
 
-    access_dict = { 'FastEthernet0/12':10,
-                    'FastEthernet0/14':11,
-                    'FastEthernet0/16':17,
-                    'FastEthernet0/17':150 }
 
 Задание 9.2
 ~~~~~~~~~~~
 
-Создать функцию, которая генерирует конфигурацию для trunk-портов.
+Создать функцию generate_trunk_config, которая генерирует конфигурацию для trunk-портов.
 
-Параметр trunk - это словарь trunk-портов.
+У функции должны быть такие параметры:
 
-Словарь trunk имеет такой формат (тестовый словарь trunk\_dict уже
-создан):
+* intf_vlan_mapping: ожидает как аргумент словарь с соответствием интерфейс-VLANы такого вида:
 
 .. code:: python
 
-    { 'FastEthernet0/1':[10,20],
-      'FastEthernet0/2':[11,30],
-      'FastEthernet0/4':[17] }
+    {'FastEthernet0/1': [10, 20],
+     'FastEthernet0/2': [11, 30],
+     'FastEthernet0/4': [17]}
 
-Функция должна возвращать список команд с конфигурацией на основе
-указанных портов и шаблона trunk\_template.
+* trunk_template: ожидает как аргумент шаблон конфигурации trunk-портов в виде списка команд (список trunk_mode_template)
 
+Функция должна возвращать список команд с конфигурацией
+на основе указанных портов и шаблона trunk_mode_template.
 В конце строк в списке не должно быть символа перевода строки.
 
-Проверить работу функции на примере словаря trunk\_dict.
+Проверить работу функции на примере словаря trunk_config.
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Пример итогового списка (перевод строки после каждого элемента сделан для удобства чтения):
+
+.. code:: python
+    [
+    'interface FastEthernet0/1',
+    'switchport mode trunk',
+    'switchport trunk native vlan 999',
+    'switchport trunk allowed vlan 10,20,30',
+    'interface FastEthernet0/2',
+    'switchport mode trunk',
+    'switchport trunk native vlan 999',
+    'switchport trunk allowed vlan 11,30',
+    ...]
+
+
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    def generate_trunk_config(trunk):
-        '''
-        trunk - словарь trunk-портов для которых необходимо сгенерировать конфигурацию.
-        
-        Возвращает список всех команд, которые были сгенерированы на основе шаблона
-        '''
-        trunk_template = ['switchport trunk encapsulation dot1q',
-                          'switchport mode trunk',
-                          'switchport trunk native vlan 999',
-                          'switchport trunk allowed vlan']
+    trunk_mode_template = [
+        'switchport mode trunk', 'switchport trunk native vlan 999',
+        'switchport trunk allowed vlan'
+    ]
 
-    trunk_dict = { 'FastEthernet0/1':[10,20,30],
-                   'FastEthernet0/2':[11,30],
-                   'FastEthernet0/4':[17] }
+    trunk_config = {
+        'FastEthernet0/1': [10, 20, 30],
+        'FastEthernet0/2': [11, 30],
+        'FastEthernet0/4': [17]
+    }
+
 
 Задание 9.2a
 ~~~~~~~~~~~~
 
-Сделать копию скрипта задания 9.2
+Сделать копию функции generate_trunk_config из задания 9.2
 
-Изменить скрипт таким образом, чтобы функция возвращала не список
-команд, а словарь: \* ключи: имена интерфейсов, вида 'FastEthernet0/1'
-\* значения: список команд, который надо выполнить на этом интерфейсе
+Изменить функцию таким образом, чтобы она возвращала не список команд, а словарь:
 
-Проверить работу функции на примере словаря trunk\_dict.
+* ключи: имена интерфейсов, вида 'FastEthernet0/1'
+* значения: список команд, который надо выполнить на этом интерфейсе
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Проверить работу функции на примере словаря trunk_config и шаблона trunk_mode_template.
+
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    def generate_trunk_config(trunk):
-        '''
-        trunk - словарь trunk-портов,
-        для которых необходимо сгенерировать конфигурацию, вида:
-            { 'FastEthernet0/1':[10,20],
-              'FastEthernet0/2':[11,30],
-              'FastEthernet0/4':[17] }
-        
-        Возвращает словарь:
-        - ключи: имена интерфейсов, вида 'FastEthernet0/1'
-        - значения: список команд, который надо выполнить на этом интерфейсе
-        '''
-        trunk_template = ['switchport trunk encapsulation dot1q',
-                          'switchport mode trunk',
-                          'switchport trunk native vlan 999',
-                          'switchport trunk allowed vlan']
+    trunk_mode_template = [
+        'switchport mode trunk', 'switchport trunk native vlan 999',
+        'switchport trunk allowed vlan'
+    ]
 
-    trunk_dict = { 'FastEthernet0/1':[10,20,30],
-                   'FastEthernet0/2':[11,30],
-                   'FastEthernet0/4':[17] }
+    trunk_config = {
+        'FastEthernet0/1': [10, 20, 30],
+        'FastEthernet0/2': [11, 30],
+        'FastEthernet0/4': [17]
+    }
+
 
 Задание 9.3
 ~~~~~~~~~~~
 
-Создать функцию get\_int\_vlan\_map, которая обрабатывает
-конфигурационный файл коммутатора и возвращает два объекта: \* словарь
-портов в режиме access, где ключи номера портов, а значения access VLAN:
+Создать функцию get_int_vlan_map, которая обрабатывает конфигурационный файл коммутатора
+и возвращает кортеж из двух словарей:
 
-``python {'FastEthernet0/12':10,  'FastEthernet0/14':11,  'FastEthernet0/16':17}``
-
--  словарь портов в режиме trunk, где ключи номера портов, а значения
-   список разрешенных VLAN:
+* словарь портов в режиме access, где ключи номера портов, а значения access VLAN:
 
 .. code:: python
 
-     {'FastEthernet0/1':[10,20],
-      'FastEthernet0/2':[11,30],
-      'FastEthernet0/4':[17]}
+    {'FastEthernet0/12': 10,
+     'FastEthernet0/14': 11,
+     'FastEthernet0/16': 17}
 
-Функция ожидает в качестве аргумента имя конфигурационного файла.
+* словарь портов в режиме trunk, где ключи номера портов, а значения список разрешенных VLAN:
 
-Проверить работу функции на примере файла config\_sw1.txt
+.. code:: python
+    {'FastEthernet0/1': [10, 20],
+     'FastEthernet0/2': [11, 30],
+     'FastEthernet0/4': [17]}
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+У функции должен быть один параметр config_filename, который ожидает как аргумент имя конфигурационного файла.
+
+Проверить работу функции на примере файла config_sw1.txt
+
+Ограничение: Все задания надо выполнять используя только пройденные темы.
+
 
 Задание 9.3a
 ~~~~~~~~~~~~
 
-Сделать копию скрипта задания 9.3.
+Сделать копию функции get_int_vlan_map из задания 9.3.
 
-Дополнить скрипт: \* добавить поддержку конфигурации, когда настройка
-access-порта выглядит так:
+Дополнить функцию: добавить поддержку конфигурации, когда настройка access-порта выглядит так:
 
 ::
 
     interface FastEthernet0/20
-      switchport mode access
-      duplex auto
+        switchport mode access
+        duplex auto
 
 То есть, порт находится в VLAN 1
 
-В таком случае, в словарь портов должна добавляться информация, что порт
-в VLAN 1
-
-Пример словаря:
+В таком случае, в словарь портов должна добавляться информация, что порт в VLAN 1
 
 .. code:: python
+      {'FastEthernet0/12': 10,
+       'FastEthernet0/14': 11,
+       'FastEthernet0/20': 1}
 
-    {'FastEthernet0/12':10,
-     'FastEthernet0/14':11,
-     'FastEthernet0/20':1 }
+У функции должен быть один параметр config_filename, который ожидает как аргумент имя конфигурационного файла.
 
-Функция ожидает в качестве аргумента имя конфигурационного файла.
+Проверить работу функции на примере файла config_sw2.txt
 
-Проверить работу функции на примере файла config\_sw2.txt
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
 
 Задание 9.4
 ~~~~~~~~~~~
 
-Создать функцию, которая обрабатывает конфигурационный файл коммутатора
-и возвращает словарь: \* Все команды верхнего уровня (глобального режима
-конфигурации), будут ключами. \* Если у команды верхнего уровня есть
-подкоманды, они должны быть в значении у соответствующего ключа, в виде
-списка (пробелы вначале можно оставлять). \* Если у команды верхнего
-уровня нет подкоманд, то значение будет пустым списком
+Создать функцию convert_config_to_dict, которая обрабатывает конфигурационный файл коммутатора и возвращает словарь:
 
-Функция ожидает в качестве аргумента имя конфигурационного файла.
+* Все команды верхнего уровня (глобального режима конфигурации), будут ключами.
+* Если у команды верхнего уровня есть подкоманды, они должны быть в значении у соответствующего ключа, в виде списка (пробелы в начале строки надо удалить).
+* Если у команды верхнего уровня нет подкоманд, то значение будет пустым списком
 
-Проверить работу функции на примере файла config\_sw1.txt
+У функции должен быть один параметр config_filename, который ожидает как аргумент имя конфигурационного файла.
 
-При обработке конфигурационного файла, надо игнорировать строки, которые
-начинаются с '!', а также строки в которых содержатся слова из списка
-ignore.
+При обработке конфигурационного файла, надо игнорировать строки, которые начинаются с '!',
+а также строки в которых содержатся слова из списка ignore.
+Для проверки надо ли игнорировать строку, использовать функцию ignore_command.
 
-Для проверки надо ли игнорировать строку, использовать функцию
-ignore\_command.
+Проверить работу функции на примере файла config_sw1.txt
 
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
+Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
     ignore = ['duplex', 'alias', 'Current configuration']
+
 
     def ignore_command(command, ignore):
         '''
@@ -343,56 +289,9 @@ ignore\_command.
         command - строка. Команда, которую надо проверить
         ignore - список. Список слов
 
-        Возвращает True, если в команде содержится слово из списка ignore, False - если нет
-        '''
-        return any(word in command for word in ignore)
-
-Задание 9.4a
-~~~~~~~~~~~~
-
-Задача такая же, как и задании 9.4. Проверить работу функции надо на
-примере файла config\_r1.txt
-
-Обратите внимание на конфигурационный файл. В нём есть разделы с большей
-вложенностью, например, разделы: \* interface Ethernet0/3.100 \* router
-bgp 100
-
-Надо чтобы функция config\_to\_dict обрабатывала следующий уровень
-вложенности. При этом, не привязываясь к конкретным разделам. Она должна
-быть универсальной, и сработать, если это будут другие разделы.
-
-Если уровня вложенности два: \* то команды верхнего уровня будут ключами
-словаря, \* а команды подуровней - списками
-
-Если уровня вложенности три: \* самый вложенный уровень должен быть
-списком, \* а остальные - словарями.
-
-На примере interface Ethernet0/3.100
-
-.. code:: python
-
-    {'interface Ethernet0/3.100':{
-                        'encapsulation dot1Q 100':[],
-                        'xconnect 10.2.2.2 12100 encapsulation mpls':
-                            ['backup peer 10.4.4.4 14100',
-                             'backup delay 1 1']}}
-
-Ограничение: Все задания надо выполнять используя только пройденные
-темы.
-
-.. code:: python
-
-    ignore = ['duplex', 'alias', 'Current configuration']
-
-    def check_ignore(command, ignore):
-        '''
-        Функция проверяет содержится ли в команде слово из списка ignore.
-
-        command - строка. Команда, которую надо проверить
-        ignore - список. Список слов
-
-        Возвращает True, если в команде содержится слово из списка ignore, False - если нет
-        
+        Возвращает
+        * True, если в команде содержится слово из списка ignore
+        * False - если нет
         '''
         return any(word in command for word in ignore)
 

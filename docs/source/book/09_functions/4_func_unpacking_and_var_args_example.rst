@@ -55,7 +55,7 @@
        ...:         if check_passwd(user, passwd):
        ...:             break
        ...:     with open(users_filename, 'a') as f:
-       ...:         f.write(f'{user},{passwd}')
+       ...:         f.write(f'{user},{passwd}\n')
        ...:
 
     In [8]: add_user_to_users_file('nata')
@@ -81,7 +81,7 @@
        ...:         if check_passwd(user, passwd, min_length, check_username):
        ...:             break
        ...:     with open(users_filename, 'a') as f:
-       ...:         f.write(f'{user},{passwd}')
+       ...:         f.write(f'{user},{passwd}\n')
        ...:
 
     In [6]: add_user_to_users_file('nata', min_length=5)
@@ -108,7 +108,7 @@
        ...:         if check_passwd(user, passwd, **kwargs):
        ...:             break
        ...:     with open(users_filename, 'a') as f:
-       ...:         f.write(f'{user},{passwd}')
+       ...:         f.write(f'{user},{passwd}\n')
        ...:
 
     In [8]: add_user_to_users_file('nata', min_length=5)
