@@ -30,77 +30,45 @@
 
 С помощью %history можно скопировать нужный блок кода.
 
-%cpaste
-'''''''
 
-Ещё одна очень полезная "волшебная" команда это %cpaste.
+%time
+'''''
 
-При вставке кода с отступами в IPython, из-за автоматических отступов
-самого IPython, код начинает дополнительно сдвигаться:
+Команда ``%time`` показывает сколько секунд выполнялось выражение:
 
 .. code:: python
 
-    In [1]: a = 10
+    In [5]: import subprocess
 
-    In [2]: b = 5
+    In [6]: def ping_ip(ip_address):
+        ..:     reply = subprocess.run(['ping', '-c', '3', '-n', ip_address],
+        ..:                            stdout=subprocess.PIPE,
+        ..:                            stderr=subprocess.PIPE,
+        ..:                            encoding='utf-8')
+        ..:     if reply.returncode == 0:
+        ..:         return True
+        ..:     else:
+        ..:         return False
+        ..:
 
-    In [3]: if a > b:
-       ...:     print("A is bigger")
-       ...: else:
-       ...:     print("A is less or equal")
-       ...:
-    A is bigger
+    In [7]: %time ping_ip('8.8.8.8')
+    CPU times: user 0 ns, sys: 4 ms, total: 4 ms
+    Wall time: 2.03 s
+    Out[7]: True
 
-    In [4]: %hist
-    a = 10
-    b = 5
-    if a > b:
-        print("A is bigger")
-    else:
-        print("A is less or equal")
-    %hist
+    In [8]: %time ping_ip('8.8.8')
+    CPU times: user 0 ns, sys: 8 ms, total: 8 ms
+    Wall time: 12 s
+    Out[8]: False
 
-    In [5]: if a > b:
-       ...:         print("A is bigger")
-       ...:     else:
-       ...:             print("A is less or equal")
-       ...:
-      File "<ipython-input-8-4d18ff094f5c>", line 3
-        else:
-             ^
-    IndentationError: unindent does not match any outer indentation level
-    If you want to paste code into IPython, try the %paste and %cpaste magic functions.
+    In [9]: items = [1, 3, 5, 7, 9, 1, 2, 3, 55, 77, 33]
 
-Обратите внимание на последнюю строку – IPython подсказывает, какой
-командой воспользоваться, чтобы корректно вставить такой код. Команды
-%paste и %cpaste работают немного по-разному.
+    In [10]: %time sorted(items)
+    CPU times: user 0 ns, sys: 0 ns, total: 0 ns
+    Wall time: 8.11 µs
+    Out[10]: [1, 1, 2, 3, 3, 5, 7, 9, 33, 55, 77]
 
-При использовании %cpaste, после того, как все строки скопированы, надо
-завершить работу команды, набрав "--":
 
-.. code:: python
-
-    In [9]: %cpaste
-    Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
-    :if a > b:
-    :    print("A is bigger")
-    :else:
-    :    print("A is less or equal")
-    :--
-    A is bigger
-
-%paste (требует установленного Tkinter):
-
-.. code:: python
-
-    In [10]: %paste
-    if a > b:
-        print("A is bigger")
-    else:
-        print("A is less or equal")
-
-    ## -- End pasted text --
-    A is bigger
 
 Подробнее об IPython можно почитать в
 `документации <http://ipython.readthedocs.io/en/stable/index.html>`__
