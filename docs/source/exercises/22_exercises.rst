@@ -3,9 +3,6 @@
 
 .. include:: ./exercises_intro.rst
 
-.. code:: python
-
-
 Задание 22.1
 ~~~~~~~~~~~~
 
