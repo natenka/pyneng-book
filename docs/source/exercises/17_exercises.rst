@@ -164,5 +164,5 @@
     pip install graphviz
 
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/exercises/17_serialization/task_17_2b_topology.svg
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/exercises/17_serialization/task_17_2b_topology.png
 

@@ -65,7 +65,7 @@ Cгенерировать топологию, которая соответст�
 С помощью функции draw_topology из файла draw_network_graph.py нарисовать схему на основании топологии, полученной с помощью функции create_network_map.
 Результат должен выглядеть так же, как схема в файле task_11_2_topology.svg
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/exercises/11_modules/task_11_2_topology.svg
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/exercises/11_modules/task_11_2_topology.png
 
 При этом:
 
