@@ -1,9 +1,11 @@
 ``re.match()``
 ~~~~~~~~~~~~~~
 
-Функция ``match()``: \* используется для поиска в начале строки
-подстроки, которая соответствует шаблону \* возвращает объект Match,
-если подстрока найдена \* возвращает ``None``, если подстрока не найдена
+Функция ``match()``: 
+
+* используется для поиска в начале строки подстроки, которая соответствует шаблону 
+* возвращает объект Match, если подстрока найдена 
+* возвращает ``None``, если подстрока не найдена
 
 Функция match отличается от search тем, что match всегда ищет совпадение
 в начале строки. Например, если повторить пример, который использовался
@@ -15,10 +17,10 @@
 
     In [3]: log = '%SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in vlan 10 is flapping between port Gi0/16 and port Gi0/24'
 
-    In [4]: match = re.match('Host \S+ '
-       ...:                  'in vlan (\d+) '
-       ...:                  'is flapping between port '
-       ...:                  '(\S+) and port (\S+)', log)
+    In [4]: match = re.match(r'Host \S+ '
+       ...:                  r'in vlan (\d+) '
+       ...:                  r'is flapping between port '
+       ...:                  r'(\S+) and port (\S+)', log)
        ...:
 
 Результатом будет None:
@@ -36,10 +38,10 @@
 
 .. code:: python
 
-    In [4]: match = re.match('\S+: Host \S+ '
-       ...:                  'in vlan (\d+) '
-       ...:                  'is flapping between port '
-       ...:                  '(\S+) and port (\S+)', log)
+    In [4]: match = re.match(r'\S+: Host \S+ '
+       ...:                  r'in vlan (\d+) '
+       ...:                  r'is flapping between port '
+       ...:                  r'(\S+) and port (\S+)', log)
        ...:
 
 Перед словом Host добавлено выражение ``\S+:``. Теперь совпадение будет
@@ -54,16 +56,16 @@
     Out[12]: ('10', 'Gi0/16', 'Gi0/24')
 
 Пример аналогичен тому, который использовался в функции search, с
-небольшими изменениями (файл parse\_log\_match.py):
+небольшими изменениями (файл parse_log_match.py):
 
 .. code:: python
 
     import re
 
-    regex = ('\S+: Host \S+ '
-             'in vlan (\d+) '
-             'is flapping between port '
-             '(\S+) and port (\S+)')
+    regex = (r'\S+: Host \S+ '
+             r'in vlan (\d+) '
+             r'is flapping between port '
+             r'(\S+) and port (\S+)')
 
     ports = set()
 

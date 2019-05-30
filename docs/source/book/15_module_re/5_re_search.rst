@@ -1,9 +1,11 @@
 ``re.search()``
 ~~~~~~~~~~~~~~~
 
-Функция ``search()``: \* используется для поиска подстроки, которая
-соответствует шаблону \* возвращает объект Match, если подстрока найдена
-\* возвращает ``None``, если подстрока не найдена
+Функция ``search()``: 
+
+* используется для поиска подстроки, которая соответствует шаблону 
+* возвращает объект Match, если подстрока найдена
+* возвращает ``None``, если подстрока не найдена
 
 Функция search подходит в том случае, когда надо найти только одно
 совпадение в строке, например, когда регулярное выражение описывает всю
@@ -25,12 +27,10 @@
     %SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in vlan 10 is flapping between port Gi0/24 and port Gi0/16
 
 При этом, MAC-адрес может прыгать между несколькими портами. В таком
-случае очень важно знать, с каких портов прилетает MAC. И, если это
-вызвано петлей, выключить все порты, кроме одного.
+случае очень важно знать, с каких портов прилетает MAC.
 
 Попробуем вычислить, между какими портами и в каком VLAN образовалась
 проблема.
-
 Проверка регулярного выражения с одной строкой из log-файла:
 
 .. code:: python
@@ -39,15 +39,16 @@
 
     In [2]: log = '%SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in vlan 10 is flapping between port Gi0/16 and port Gi0/24'
 
-    In [3]: match = re.search('Host \S+ '
-       ...:                   'in vlan (\d+) '
-       ...:                   'is flapping between port '
-       ...:                   '(\S+) and port (\S+)', log)
+    In [3]: match = re.search(r'Host \S+ '
+       ...:                   r'in vlan (\d+) '
+       ...:                   r'is flapping between port '
+       ...:                   r'(\S+) and port (\S+)', log)
        ...:
 
-Регулярное выражение для удобства чтения разбито на части. В нём есть
-три группы: \* ``(\d+)`` - описывает номер VLAN \*
-``(\S+) and port (\S+)`` - в это выражение попадают номера портов
+Регулярное выражение для удобства чтения разбито на части. В нём есть три группы: 
+
+* ``(\d+)`` - описывает номер VLAN 
+* ``(\S+) and port (\S+)`` - в это выражение попадают номера портов
 
 В итоге, в группы попали такие части строки:
 
@@ -59,16 +60,16 @@
 В итоговом скрипте файл log.txt обрабатывается построчно, и из каждой
 строки собирается информация о портах. Так как порты могут
 дублироваться, сразу добавляем их в множество, чтобы получить подборку
-уникальных интерфейсов (файл parse\_log\_search.py):
+уникальных интерфейсов (файл parse_log_search.py):
 
 .. code:: python
 
     import re
 
-    regex = ('Host \S+ '
-             'in vlan (\d+) '
-             'is flapping between port '
-             '(\S+) and port (\S+)')
+    regex = (r'Host \S+ '
+             r'in vlan (\d+) '
+             r'is flapping between port '
+             r'(\S+) and port (\S+)')
 
     ports = set()
 
@@ -121,10 +122,12 @@ detail.
     Management address(es):
       IP address: 10.1.1.2
 
-Задача получить такие поля: \* имя соседа (Device ID: SW2) \* IP-адрес
-соседа (IP address: 10.1.1.2) \* платформу соседа (Platform: cisco
-WS-C2960-8TC-L) \* версию IOS (Cisco IOS Software, C2960 Software
-(C2960-LANBASEK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1))
+Задача получить такие поля: 
+
+* имя соседа (Device ID: SW2) 
+* IP-адрес соседа (IP address: 10.1.1.2) 
+* платформу соседа (Platform: cisco WS-C2960-8TC-L) 
+* версию IOS (Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1))
 
 И, для удобства, надо получить данные в виде словаря. Пример итогового
 словаря для коммутатора SW2:
@@ -135,10 +138,9 @@ WS-C2960-8TC-L) \* версию IOS (Cisco IOS Software, C2960 Software
              'platform': 'cisco WS-C2960-8TC-L',
              'ios': 'C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9'}}
 
-Пример проверяется на файле sh\_cdp\_neighbors\_sw1.txt.
+Пример проверяется на файле sh_cdp_neighbors_sw1.txt.
 
-Первый вариант решения (файл
-parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
+Первый вариант решения (файл parse_sh_cdp_neighbors_detail_ver1.py):
 
 .. code:: python
 
@@ -152,16 +154,16 @@ parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
         with open(filename) as f:
             for line in f:
                 if line.startswith('Device ID'):
-                    neighbor = re.search('Device ID: (\S+)', line).group(1)
+                    neighbor = re.search(r'Device ID: (\S+)', line).group(1)
                     result[neighbor] = {}
                 elif line.startswith('  IP address'):
-                    ip = re.search('IP address: (\S+)', line).group(1)
+                    ip = re.search(r'IP address: (\S+)', line).group(1)
                     result[neighbor]['ip'] = ip
                 elif line.startswith('Platform'):
-                    platform = re.search('Platform: (\S+ \S+),', line).group(1)
+                    platform = re.search(r'Platform: (\S+ \S+),', line).group(1)
                     result[neighbor]['platform'] = platform
                 elif line.startswith('Cisco IOS Software'):
-                    ios = re.search('Cisco IOS Software, (.+), RELEASE', line).group(1)
+                    ios = re.search(r'Cisco IOS Software, (.+), RELEASE', line).group(1)
                     result[neighbor]['ios'] = ios
 
         return result
@@ -171,7 +173,6 @@ parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
 Тут нужные строки отбираются с помощью метода строк startswith. И в
 строке с помощью регулярного выражения получается требуемая часть
 строки.
-
 В итоге все собирается в словарь.
 
 Результат выглядит так:
@@ -189,10 +190,9 @@ parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
              'ip': '10.1.1.2',
              'platform': 'cisco WS-C2960-8TC-L'}}
 
-Все получилось как нужно. Но, с помощью регулярных выражений эту задачу
-можно решить более компактно.
+Все получилось как нужно, но эту задачу можно решить более компактно.
 
-Вторая версия решения (файл parse\_sh\_cdp\_neighbors\_detail\_ver2.py):
+Вторая версия решения (файл parse_sh_cdp_neighbors_detail_ver2.py):
 
 .. code:: python
 
@@ -201,10 +201,10 @@ parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
 
 
     def parse_cdp(filename):
-        regex = ('Device ID: (?P<device>\S+)'
-                 '|IP address: (?P<ip>\S+)'
-                 '|Platform: (?P<platform>\S+ \S+),'
-                 '|Cisco IOS Software, (?P<ios>.+), RELEASE')
+        regex = (r'Device ID: (?P<device>\S+)'
+                 r'|IP address: (?P<ip>\S+)'
+                 r'|Platform: (?P<platform>\S+ \S+),'
+                 r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
 
         result = {}
 
@@ -222,18 +222,20 @@ parse\_sh\_cdp\_neighbors\_detail\_ver1.py):
 
     pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
 
-Пояснения ко второму варианту: \* в регулярном выражении описаны все
-варианты строк через знак или ``|`` \* без проверки строки ищется
-совпадение \* если совпадение найдено, проверяется метод lastgroup \*
-метод lastgroup возвращает имя последней именованной группы в регулярном
-выражении, для которой было найдено совпадение \* если было найдено
-совпадение для группы device, в переменную device записывается значение,
-которое попало в эту группу \* иначе в словарь записывается соответствие
-'имя группы': соответствующее значение
+Пояснения ко второму варианту: 
 
-    У этого решения ограничение в том, что подразумевается, что в каждой
-    строке может быть только одно совпадение. И в регулярных выражениях,
-    которые записаны через знак ``|``, может быть только одна группа.
+* в регулярном выражении описаны все варианты строк через знак или ``|`` 
+* без проверки строки ищется совпадение 
+* если совпадение найдено, проверяется метод lastgroup 
+* метод lastgroup возвращает имя последней именованной группы в регулярном 
+  выражении, для которой было найдено совпадение 
+* если было найдено совпадение для группы device, в переменную device записывается значение,
+  которое попало в эту группу 
+* иначе в словарь записывается соответствие 'имя группы': соответствующее значение
+
+У этого решения ограничение в том, что подразумевается, что в каждой
+строке может быть только одно совпадение. И в регулярных выражениях,
+которые записаны через знак ``|``, может быть только одна группа.
 
 Результат будет таким же:
 

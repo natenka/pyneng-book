@@ -9,16 +9,17 @@
    HOWTO <https://docs.python.org/3.6/howto/regex.html>`__
 -  `Python 3 Module of the Week. Модуль re <https://pymotw.com/3/re/>`__
 
-Сайты для проверки регулярных выражений: \* `для
-Python <http://www.pyregex.com/>`__ - тут можно указывать и методы
-search, match, findall, и флаги. `Пример регулярного
-выражения <http://www.pyregex.com/?id=eyJyZWdleCI6IihcXGQrKSArKFthLWYsMC05LFxcLl0rKSArXFx3KyArKD9QPGludGY%2BXFxTKykuKiIsImZsYWdzIjowLCJtYXRjaF90eXBlIjoic2VhcmNoIiwidGVzdF9zdHJpbmciOiIxMDAgICAgYWFiYi5jYzEwLjcwMDAgICAgRFlOQU1JQyAgICAgR2kwLzFcbiAgMjAwICAgIGFhYmIuY2MyMC43MDAwICAgIERZTkFNSUMgICAgIEdpMC8yIn0%3D>`__.
-К сожалению, иногда не все выражения воспринимает. \* `Еще один сайт для
-Python <http://pythex.org/>`__ - не поддерживает методы, но хорошо
-работает и отработал те выражения, на которые ругнулся предыдущий сайт.
-Подходит для однострочного текста отлично. С многострочным надо
-учитывать, что в питоне будет другая ситуация. Пример регулярного
-выражения \* `regex101 <https://regex101.com/>`__
+Сайты для проверки регулярных выражений: 
+
+* `regex101 <https://regex101.com/>`__
+* `для Python <http://www.pyregex.com/>`__ - тут можно указывать и методы 
+  search, match, findall, и флаги.
+  `Пример регулярного выражения <http://www.pyregex.com/?id=eyJyZWdleCI6IihcXGQrKSArKFthLWYsMC05LFxcLl0rKSArXFx3KyArKD9QPGludGY%2BXFxTKykuKiIsImZsYWdzIjowLCJtYXRjaF90eXBlIjoic2VhcmNoIiwidGVzdF9zdHJpbmciOiIxMDAgICAgYWFiYi5jYzEwLjcwMDAgICAgRFlOQU1JQyAgICAgR2kwLzFcbiAgMjAwICAgIGFhYmIuY2MyMC43MDAwICAgIERZTkFNSUMgICAgIEdpMC8yIn0%3D>`__.
+  К сожалению, иногда не все выражения воспринимает. 
+* `Еще один сайт для Python <http://pythex.org/>`__ - не поддерживает методы, но хорошо
+  работает и отработал те выражения, на которые ругнулся предыдущий сайт.
+  Подходит для однострочного текста отлично. С многострочным надо
+  учитывать, что в питоне будет другая ситуация. Пример регулярного выражения 
 
 Общие руководства по использованию регулярных выражений:
 

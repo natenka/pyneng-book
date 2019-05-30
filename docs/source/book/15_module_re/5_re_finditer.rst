@@ -1,8 +1,10 @@
 ``re.finditer()``
 ~~~~~~~~~~~~~~~~~
 
-Функция ``finditer()``: \* используется для поиска всех непересекающихся
-совпадений в шаблоне \* возвращает итератор с объектами Match
+Функция ``finditer()``: 
+
+* используется для поиска всех непересекающихся совпадений в шаблоне 
+* возвращает итератор с объектами Match
 
 Функция finditer отлично подходит для обработки тех команд, вывод
 которых отображается столбцами. Например, sh ip int br, sh mac
@@ -28,11 +30,11 @@ address-table и др. В этом случае его можно применя
 
 .. code:: python
 
-    In [9]: result = re.finditer('(\S+) +'
-       ...:                      '([\d.]+) +'
-       ...:                      '\w+ +\w+ +'
-       ...:                      '(up|down|administratively down) +'
-       ...:                      '(up|down)',
+    In [9]: result = re.finditer(r'(\S+) +'
+       ...:                      r'([\d.]+) +'
+       ...:                      r'\w+ +\w+ +'
+       ...:                      r'(up|down|administratively down) +'
+       ...:                      r'(up|down)',
        ...:                      sh_ip_int_br)
        ...:
 
@@ -57,7 +59,7 @@ address-table и др. В этом случае его можно применя
     <_sre.SRE_Match object; span=(172, 240), match='FastEthernet0/1       10.0.12.1       YES manual >
     <_sre.SRE_Match object; span=(241, 309), match='FastEthernet0/2       10.0.13.1       YES manual >
     <_sre.SRE_Match object; span=(379, 447), match='Loopback0             10.1.1.1        YES manual >
-    <_sre.SRE_Match object; span=(448, 516), match='Loopback100           100.0.0.1       YES manual >
+    <_sre.SRE_Match object; span=(448, 516), match='Loopback100           100.0.0.1       YES manual >'
 
 Теперь в списке groups находятся кортежи со строками, которые попали в
 группы:
@@ -76,7 +78,7 @@ address-table и др. В этом случае его можно применя
 
 .. code:: python
 
-    In [20]: regex = '(\S+) +([\d.]+) +\w+ +\w+ +(up|down|administratively down) +(up|down)'
+    In [20]: regex = r'(\S+) +([\d.]+) +\w+ +\w+ +(up|down|administratively down) +(up|down)'
 
     In [21]: result = [match.groups() for match in re.finditer(regex, sh_ip_int_br)]
 
@@ -92,16 +94,16 @@ address-table и др. В этом случае его можно применя
 search и match.
 
 В этом случае вывод можно не перебирать построчно, а передать все
-содержимое файла (файл parse\_log\_finditer.py):
+содержимое файла (файл parse_log_finditer.py):
 
 .. code:: python
 
     import re
 
-    regex = ('Host \S+ '
-             'in vlan (\d+) '
-             'is flapping between port '
-             '(\S+) and port (\S+)')
+    regex = (r'Host \S+ '
+             r'in vlan (\d+) '
+             r'is flapping between port '
+             r'(\S+) and port (\S+)')
 
     ports = set()
 
@@ -112,6 +114,8 @@ search и match.
             ports.add(m.group(3))
 
     print('Петля между портами {} в VLAN {}'.format(', '.join(ports), vlan))
+
+.. warning::
 
     В реальной жизни log-файл может быть очень большим. В таком случае,
     его лучше обрабатывать построчно.
@@ -130,7 +134,7 @@ search и match.
 же, как и в подразделе re.search.
 
 Скрипт почти полностью аналогичен варианту с re.search (файл
-parse\_sh\_cdp\_neighbors\_detail\_finditer.py):
+parse_sh_cdp_neighbors_detail_finditer.py):
 
 .. code:: python
 
@@ -139,10 +143,10 @@ parse\_sh\_cdp\_neighbors\_detail\_finditer.py):
 
 
     def parse_cdp(filename):
-        regex = ('Device ID: (?P<device>\S+)'
-                 '|IP address: (?P<ip>\S+)'
-                 '|Platform: (?P<platform>\S+ \S+),'
-                 '|Cisco IOS Software, (?P<ios>.+), RELEASE')
+        regex = (r'Device ID: (?P<device>\S+)'
+                 r'|IP address: (?P<ip>\S+)'
+                 r'|Platform: (?P<platform>\S+ \S+),'
+                 r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
 
         result = {}
 
@@ -216,8 +220,8 @@ parse\_sh\_cdp\_neighbors\_detail\_finditer.py):
 
 .. code:: python
 
-    regex = ('Device ID: (?P<device>\S+)'
-             '|Entry address.*\n +IP address: (?P<ip>\S+)'
-             '|Platform: (?P<platform>\S+ \S+),'
-             '|Cisco IOS Software, (?P<ios>.+), RELEASE')
+    regex = (r'Device ID: (?P<device>\S+)'
+             r'|Entry address.*\n +IP address: (?P<ip>\S+)'
+             r'|Platform: (?P<platform>\S+ \S+),'
+             r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
 

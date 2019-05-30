@@ -2,8 +2,11 @@
 ~~~~~~~~~~~~
 
 В модуле re несколько функций возвращают объект Match, если было найдено
-совпадение: \* search \* match \* finditer возвращает итератор с
-объектами Match
+совпадение: 
+
+* search 
+* match 
+* finditer возвращает итератор с объектами Match
 
 В этом подразделе рассматриваются методы объекта Match.
 
@@ -13,10 +16,10 @@
 
     In [1]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [2]: match = re.search('Host (\S+) in vlan (\d+) .* port (\S+) and port (\S+)', log)
+    In [2]: match = re.search(r'Host (\S+) in vlan (\d+) .* port (\S+) and port (\S+)', log)
 
     In [3]: match
-    Out[3]: <_sre.SRE_Match object; span=(47, 124), match='Host f03a.b216.7ad7 in vlan 10 is flapping betwee>
+    Out[3]: <_sre.SRE_Match object; span=(47, 124), match='Host f03a.b216.7ad7 in vlan 10 is flapping betwee>'
 
 Вывод в 3 строке просто отображает информацию об объекте. Поэтому не
 стоит полагаться на то, что отображается в части match, так как
@@ -35,35 +38,35 @@ group()
     In [4]: match.group()
     Out[4]: 'Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-На самом деле в этом случае метод group вызывается с группой 0:
+Аналогичный вывод возвращает группа 0:
 
 .. code:: python
 
-    In [13]: match.group(0)
-    Out[13]: 'Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [5]: match.group(0)
+    Out[5]: 'Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
 Другие номера отображают только содержимое соответствующей группы:
 
 .. code:: python
 
-    In [14]: match.group(1)
-    Out[14]: 'f03a.b216.7ad7'
+    In [6]: match.group(1)
+    Out[6]: 'f03a.b216.7ad7'
 
-    In [15]: match.group(2)
-    Out[15]: '10'
+    In [7]: match.group(2)
+    Out[7]: '10'
 
-    In [16]: match.group(3)
-    Out[16]: 'Gi0/5'
+    In [8]: match.group(3)
+    Out[8]: 'Gi0/5'
 
-    In [17]: match.group(4)
-    Out[17]: 'Gi0/15'
+    In [9]: match.group(4)
+    Out[9]: 'Gi0/15'
 
 Если вызвать метод group с номером группы, который больше, чем
 количество существующих групп, возникнет ошибка:
 
 .. code:: python
 
-    In [18]: match.group(5)
+    In [10]: match.group(5)
     -----------------------------------------------------------------
     IndexError                      Traceback (most recent call last)
     <ipython-input-18-9df93fa7b44b> in <module>()
@@ -76,32 +79,32 @@ group()
 
 .. code:: python
 
-    In [19]: match.group(1, 2, 3)
-    Out[19]: ('f03a.b216.7ad7', '10', 'Gi0/5')
+    In [11]: match.group(1, 2, 3)
+    Out[11]: ('f03a.b216.7ad7', '10', 'Gi0/5')
 
 В группу может ничего не попасть, тогда ей будет соответствовать пустая
 строка:
 
 .. code:: python
 
-    In [1]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [12]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [34]: match = re.search('Host (\S+) in vlan (\D*)', log)
+    In [13]: match = re.search(r'Host (\S+) in vlan (\D*)', log)
 
-    In [36]: match.group(2)
-    Out[36]: ''
+    In [14]: match.group(2)
+    Out[14]: ''
 
 Если группа описывает часть шаблона и совпадений было несколько, метод
 отобразит последнее совпадение:
 
 .. code:: python
 
-    In [1]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [15]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [44]: match = re.search('Host (\w{4}\.)+', log)
+    In [16]: match = re.search(r'Host (\w{4}\.)+', log)
 
-    In [45]: match.group(1)
-    Out[46]: 'b216.'
+    In [17]: match.group(1)
+    Out[17]: 'b216.'
 
 Такой вывод получился из-за того, что выражение в скобках описывает 4
 буквы или цифры, и после этого стоит плюс. Соответственно, сначала с
@@ -113,30 +116,30 @@ group()
 
 .. code:: python
 
-    In [1]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [18]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [55]: match = re.search('Host (?P<mac>\S+) '
-        ...:                   'in vlan (?P<vlan>\d+) .* '
-        ...:                   'port (?P<int1>\S+) '
-        ...:                   'and port (?P<int2>\S+)',
+    In [19]: match = re.search(r'Host (?P<mac>\S+) '
+        ...:                   r'in vlan (?P<vlan>\d+) .* '
+        ...:                   r'port (?P<int1>\S+) '
+        ...:                   r'and port (?P<int2>\S+)',
         ...:                   log)
         ...:
 
-    In [53]: match.group('mac')
-    Out[53]: 'f03a.b216.7ad7'
+    In [20]: match.group('mac')
+    Out[20]: 'f03a.b216.7ad7'
 
-    In [54]: match.group('int2')
-    Out[54]: 'Gi0/15'
+    In [21]: match.group('int2')
+    Out[21]: 'Gi0/15'
 
-Но эти же группы доступны и по номеру:
+При этом группы доступны и по номеру:
 
 .. code:: python
 
-    In [58]: match.group(3)
-    Out[58]: 'Gi0/5'
+    In [22]: match.group(3)
+    Out[22]: 'Gi0/5'
 
-    In [59]: match.group(4)
-    Out[59]: 'Gi0/15'
+    In [23]: match.group(4)
+    Out[23]: 'Gi0/15'
 
 groups()
 ^^^^^^^^
@@ -146,17 +149,17 @@ groups()
 
 .. code:: python
 
-    In [63]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [24]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [64]: match = re.search('Host (\S+) '
-        ...:                   'in vlan (\d+) .* '
-        ...:                   'port (\S+) '
-        ...:                   'and port (\S+)',
+    In [25]: match = re.search(r'Host (\S+) '
+        ...:                   r'in vlan (\d+) .* '
+        ...:                   r'port (\S+) '
+        ...:                   r'and port (\S+)',
         ...:                   log)
         ...:
 
-    In [65]: match.groups()
-    Out[65]: ('f03a.b216.7ad7', '10', 'Gi0/5', 'Gi0/15')
+    In [26]: match.groups()
+    Out[26]: ('f03a.b216.7ad7', '10', 'Gi0/5', 'Gi0/15')
 
 У метода groups есть опциональный параметр - default. Он срабатывает в
 ситуации, когда все, что попадает в группу, опционально.
@@ -166,12 +169,12 @@ groups()
 
 .. code:: python
 
-    In [76]: line = '100     aab1.a1a1.a5d3    FastEthernet0/1'
+    In [26]: line = '100     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [77]: match = re.search('(\d+) +(\w+)?', line)
+    In [27]: match = re.search(r'(\d+) +(\w+)?', line)
 
-    In [78]: match.groups()
-    Out[78]: ('100', 'aab1')
+    In [28]: match.groups()
+    Out[28]: ('100', 'aab1')
 
 Если же в строке нет ничего после пробела, в группу ничего не попадет.
 Но совпадение будет, так как в регулярном выражении описано, что группа
@@ -179,29 +182,28 @@ groups()
 
 .. code:: python
 
-    In [80]: line = '100     '
+    In [30]: line = '100     '
 
-    In [81]: match = re.search('(\d+) +(\w+)?', line)
+    In [31]: match = re.search(r'(\d+) +(\w+)?', line)
 
-    In [82]: match.groups()
-    Out[82]: ('100', None)
+    In [32]: match.groups()
+    Out[32]: ('100', None)
 
 Соответственно, для второй группы значением будет None.
 
-Но если передать методу groups аргумент, он будет возвращаться вместо
-None:
+Если передать методу groups значение default, оно будет возвращаться вместо None:
 
 .. code:: python
 
-    In [83]: line = '100     '
+    In [33]: line = '100     '
 
-    In [84]: match = re.search('(\d+) +(\w+)?', line)
+    In [34]: match = re.search(r'(\d+) +(\w+)?', line)
 
-    In [85]: match.groups(0)
-    Out[85]: ('100', 0)
+    In [35]: match.groups(default=0)
+    Out[35]: ('100', 0)
 
-    In [86]: match.groups('No match')
-    Out[86]: ('100', 'No match')
+    In [36]: match.groups(default='No match')
+    Out[36]: ('100', 'No match')
 
 groupdict()
 ^^^^^^^^^^^
@@ -211,17 +213,17 @@ groupdict()
 
 .. code:: python
 
-    In [63]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [37]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [88]: match = re.search('Host (?P<mac>\S+) '
-        ...:                   'in vlan (?P<vlan>\d+) .* '
-        ...:                   'port (?P<int1>\S+) '
-        ...:                   'and port (?P<int2>\S+)',
+    In [38]: match = re.search(r'Host (?P<mac>\S+) '
+        ...:                   r'in vlan (?P<vlan>\d+) .* '
+        ...:                   r'port (?P<int1>\S+) '
+        ...:                   r'and port (?P<int2>\S+)',
         ...:                   log)
         ...:
 
-    In [89]: match.groupdict()
-    Out[89]: {'int1': 'Gi0/5', 'int2': 'Gi0/15', 'mac': 'f03a.b216.7ad7', 'vlan': '10'}
+    In [39]: match.groupdict()
+    Out[39]: {'int1': 'Gi0/5', 'int2': 'Gi0/15', 'mac': 'f03a.b216.7ad7', 'vlan': '10'}
 
 start(), end()
 ~~~~~~~~~~~~~~
@@ -234,51 +236,51 @@ start(), end()
 
 .. code:: python
 
-    In [101]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
+    In [40]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
 
-    In [102]: match = re.search('(\d+) +([0-9a-f.]+) +(\S+)', line)
+    In [41]: match = re.search(r'(\d+) +([0-9a-f.]+) +(\S+)', line)
 
-    In [103]: match.start()
-    Out[103]: 2
+    In [42]: match.start()
+    Out[42]: 2
 
-    In [104]: match.end()
-    Out[104]: 42
+    In [43]: match.end()
+    Out[43]: 42
 
-    In [105]: line[match.start():match.end()]
-    Out[105]: '10     aab1.a1a1.a5d3    FastEthernet0/1'
+    In [45]: line[match.start():match.end()]
+    Out[45]: '10     aab1.a1a1.a5d3    FastEthernet0/1'
 
 Методам можно передавать номер или имя группы. Тогда они возвращают
 индексы для этой группы:
 
 .. code:: python
 
-    In [108]: match.start(2)
-    Out[108]: 9
+    In [46]: match.start(2)
+    Out[46]: 9
 
-    In [109]: match.end(2)
-    Out[109]: 23
+    In [47]: match.end(2)
+    Out[47]: 23
 
-    In [110]: line[match.start(2):match.end(2)]
-    Out[110]: 'aab1.a1a1.a5d3'
+    In [48]: line[match.start(2):match.end(2)]
+    Out[48]: 'aab1.a1a1.a5d3'
 
 Аналогично для именованных групп:
 
 .. code:: python
 
-    In [63]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [49]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [88]: match = re.search('Host (?P<mac>\S+) '
-        ...:                   'in vlan (?P<vlan>\d+) .* '
-        ...:                   'port (?P<int1>\S+) '
-        ...:                   'and port (?P<int2>\S+)',
+    In [50]: match = re.search(r'Host (?P<mac>\S+) '
+        ...:                   r'in vlan (?P<vlan>\d+) .* '
+        ...:                   r'port (?P<int1>\S+) '
+        ...:                   r'and port (?P<int2>\S+)',
         ...:                   log)
         ...:
 
-    In [9]: match.start('mac')
-    Out[9]: 52
+    In [51]: match.start('mac')
+    Out[51]: 52
 
-    In [10]: match.end('mac')
-    Out[10]: 66
+    In [52]: match.end('mac')
+    Out[52]: 66
 
 span()
 ~~~~~~
@@ -290,40 +292,40 @@ span()
 
 .. code:: python
 
-    In [112]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
+    In [53]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
 
-    In [113]: match = re.search('(\d+) +([0-9a-f.]+) +(\S+)', line)
+    In [54]: match = re.search(r'(\d+) +([0-9a-f.]+) +(\S+)', line)
 
-    In [114]: match.span()
-    Out[114]: (2, 42)
+    In [55]: match.span()
+    Out[55]: (2, 42)
 
 Но ему также можно передать номер группы:
 
 .. code:: python
 
-    In [115]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
+    In [56]: line = '  10     aab1.a1a1.a5d3    FastEthernet0/1  '
 
-    In [116]: match = re.search('(\d+) +([0-9a-f.]+) +(\S+)', line)
+    In [57]: match = re.search(r'(\d+) +([0-9a-f.]+) +(\S+)', line)
 
-    In [117]: match.span(2)
-    Out[117]: (9, 23)
+    In [58]: match.span(2)
+    Out[58]: (9, 23)
 
 Аналогично для именованных групп:
 
 .. code:: python
 
-    In [63]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
+    In [59]: log = 'Jun  3 14:39:05.941: %SW_MATM-4-MACFLAP_NOTIF: Host f03a.b216.7ad7 in vlan 10 is flapping between port Gi0/5 and port Gi0/15'
 
-    In [88]: match = re.search('Host (?P<mac>\S+) '
-        ...:                   'in vlan (?P<vlan>\d+) .* '
-        ...:                   'port (?P<int1>\S+) '
-        ...:                   'and port (?P<int2>\S+)',
+    In [60]: match = re.search(r'Host (?P<mac>\S+) '
+        ...:                   r'in vlan (?P<vlan>\d+) .* '
+        ...:                   r'port (?P<int1>\S+) '
+        ...:                   r'and port (?P<int2>\S+)',
         ...:                   log)
         ...:
 
-    In [14]: match.span('mac')
-    Out[14]: (52, 66)
+    In [64]: match.span('mac')
+    Out[64]: (52, 66)
 
-    In [15]: match.span('vlan')
-    Out[15]: (75, 77)
+    In [65]: match.span('vlan')
+    Out[65]: (75, 77)
 
