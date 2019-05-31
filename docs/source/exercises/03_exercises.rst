@@ -11,7 +11,7 @@
 команде ipython должен открываться интерпретатор IPython (вывод может
 незначительно отличаться):
 
-.. code:: shellsession
+.. code:: python
 
     $ ipython
     Python 3.7.3 (default, May 13 2019, 15:44:23)
