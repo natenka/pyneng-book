@@ -154,7 +154,7 @@ YAML более приятен для восприятия человеком, �
       to_id: 2
       to_name: Manchester
 
-Чтение из YAML (файл yaml\_read.py):
+Чтение из YAML (файл yaml_read.py):
 
 .. code:: python
 
@@ -162,7 +162,7 @@ YAML более приятен для восприятия человеком, �
     from pprint import pprint
 
     with open('info.yaml') as f:
-        templates = yaml.load(f)
+        templates = yaml.safe_load(f)
 
     pprint(templates)
 
@@ -196,7 +196,7 @@ YAML более приятен для восприятия человеком, �
 Запись в YAML
 ^^^^^^^^^^^^^
 
-Запись объектов Python в YAML (файл yaml\_write.py):
+Запись объектов Python в YAML (файл yaml_write.py):
 
 .. code:: python
 
@@ -221,46 +221,7 @@ YAML более приятен для восприятия человеком, �
     with open('sw_templates.yaml') as f:
         print(f.read())
 
-Файл sw\_templates.yaml выглядит таким образом:
-
-.. code:: yaml
-
-    access: [switchport mode access, switchport access vlan, switchport nonegotiate, spanning-tree
-        portfast, spanning-tree bpduguard enable]
-    trunk: [switchport trunk encapsulation dot1q, switchport mode trunk, switchport trunk
-        native vlan 999, switchport trunk allowed vlan]
-
-По умолчанию список записался в одну строку. Это можно изменить.
-
-Для того, чтобы изменить формат записи, надо добавить параметр
-``default_flow_style=False`` (файл
-yaml\_write\_default\_flow\_style.py):
-
-.. code:: python
-
-    import yaml
-
-    trunk_template = ['switchport trunk encapsulation dot1q',
-                      'switchport mode trunk',
-                      'switchport trunk native vlan 999',
-                      'switchport trunk allowed vlan']
-
-
-    access_template = ['switchport mode access',
-                       'switchport access vlan',
-                       'switchport nonegotiate',
-                       'spanning-tree portfast',
-                       'spanning-tree bpduguard enable']
-
-    to_yaml = {'trunk':trunk_template, 'access':access_template}
-
-    with open('sw_templates.yaml', 'w') as f:
-        yaml.dump(to_yaml, f, default_flow_style=False)
-
-    with open('sw_templates.yaml') as f:
-        print(f.read())
-
-Теперь содержимое файла sw\_templates.yaml выглядит таким образом:
+Файл sw_templates.yaml выглядит таким образом:
 
 .. code:: yaml
 

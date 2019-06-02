@@ -13,7 +13,7 @@
 Чтение
 ~~~~~~
 
-Файл sw\_templates.json:
+Файл sw_templates.json:
 
 .. code:: json
 
@@ -33,15 +33,15 @@
       ]
     }
 
-Для чтения в модуле json есть два метода: \* json.load() - метод
-считывает файл в формате JSON и возвращает объекты Python \*
-json.loads() - метод считывает строку в формате JSON и возвращает
-объекты Python
+Для чтения в модуле json есть два метода: 
+
+* json.load() - метод считывает файл в формате JSON и возвращает объекты Python 
+* json.loads() - метод считывает строку в формате JSON и возвращает объекты Python
 
 json.load()
 ^^^^^^^^^^^
 
-Чтение файла в формате JSON в объект Python (файл json\_read\_load.py):
+Чтение файла в формате JSON в объект Python (файл json_read_load.py):
 
 .. code:: python
 
@@ -76,7 +76,7 @@ json.loads()
 ^^^^^^^^^^^^
 
 Считывание строки в формате JSON в объект Python (файл
-json\_read\_loads.py):
+json_read_loads.py):
 
 .. code:: python
 
@@ -99,14 +99,15 @@ json\_read\_loads.py):
 
 Запись файла в формате JSON также осуществляется достаточно легко.
 
-Для записи информации в формате JSON в модуле json также два метода: \*
-json.dump() - метод записывает объект Python в файл в формате JSON \*
-json.dumps() - метод возвращает строку в формате JSON
+Для записи информации в формате JSON в модуле json также два метода: 
+
+* json.dump() - метод записывает объект Python в файл в формате JSON 
+* json.dumps() - метод возвращает строку в формате JSON
 
 json.dumps()
 ^^^^^^^^^^^^
 
-Преобразование объекта в строку в формате JSON (json\_write\_dumps.py):
+Преобразование объекта в строку в формате JSON (json_write_dumps.py):
 
 .. code:: python
 
@@ -138,7 +139,7 @@ json.dumps()
 json.dump()
 ^^^^^^^^^^^
 
-Запись объекта Python в файл в формате JSON (файл json\_write\_dump.py):
+Запись объекта Python в файл в формате JSON (файл json_write_dump.py):
 
 .. code:: python
 
@@ -182,7 +183,7 @@ json.dump()
 К счастью, модуль json позволяет управлять подобными вещами.
 
 Передав дополнительные параметры методу dump (или методу dumps), можно
-получить более удобный для чтения вывод (файл json\_write\_indent.py):
+получить более удобный для чтения вывод (файл json_write_indent.py):
 
 .. code:: python
 
@@ -208,7 +209,7 @@ json.dump()
     with open('sw_templates.json') as f:
         print(f.read())
 
-Теперь содержимое файла sw\_templates.json выглядит так:
+Теперь содержимое файла sw_templates.json выглядит так:
 
 ::
 
@@ -327,7 +328,7 @@ json.dump()
     ...
     TypeError: key ('trunk', 'cisco') is not a string
 
-Но с помощью дополнительного параметра можно игнорировать подобные
+С помощью дополнительного параметра можно игнорировать подобные
 ключи:
 
 .. code:: python
