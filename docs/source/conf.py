@@ -73,11 +73,10 @@ latex_elements = {
 # The font size ('10pt', '11pt' or '12pt').
     'pointsize': '12pt',
 
-# Additional stuff for the LaTeX preamble.
-    'preamble': r'''
-        \usepackage{charter}
-        \usepackage[defaultsans]{lato}
-        \usepackage{consolas}
-    ''',
+    'fontpkg': r'''
+\setmainfont{Lato}
+\setsansfont{Lato}
+\setmonofont{Consolas}
+''',
 }
 
