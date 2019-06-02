@@ -70,8 +70,15 @@ html_static_path = ['_static']
 latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
-\setmainfont{Lato}
-\setsansfont{Lato}
-\setmonofont{Consolas}
+\documentclass[a4paper]{article}
+\usepackage[14pt]{extsizes}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
 ''',
 }
