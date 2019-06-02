@@ -73,6 +73,7 @@ latex_elements = {
 \documentclass[a4paper]{article}
 \usepackage[12pt]{extsizes}
 \usepackage{polyglossia}
+\setcounter{secnumdepth}{0}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
 \usepackage{fontspec}
