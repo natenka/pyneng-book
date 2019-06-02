@@ -33,9 +33,9 @@ Cursor
 .. toctree::
    :maxdepth: 1
 
-   4a_sqlite3_execute
-   4b_sqlite3_fetch
-   4c_sqlite3_cursor_as_iterator
-   4d_sqlite3_connection_without_cursor
-   4e_sqlit3_exception
-   4f_sqlit3_context_manager
+   sqlite3_execute
+   sqlite3_fetch
+   sqlite3_cursor_as_iterator
+   sqlite3_connection_without_cursor
+   sqlit3_exception
+   sqlit3_context_manager

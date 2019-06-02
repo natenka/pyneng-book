@@ -22,10 +22,10 @@
 .. toctree::
    :maxdepth: 1
 
-   1_sql
-   2_sqlite
-   3_sql_basics
-   4_sqlite3
-   5_example_sqlite
+   sql
+   sqlite
+   sql_basics
+   sqlite3
+   example_sqlite
    further_reading
    ../../exercises/18_exercises
