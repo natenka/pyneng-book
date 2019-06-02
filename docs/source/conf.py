@@ -77,8 +77,8 @@ latex_elements = {
 \setotherlanguage{english}
 \usepackage{fontspec}
 \defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont{DejaVu Serif}
-\setsansfont{DejaVu Sans}
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Serif}
 \setmonofont{DejaVu Sans Mono}
 ''',
 }
