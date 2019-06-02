@@ -7,5 +7,10 @@ DROP
 
 .. code:: sql
 
-    sqlite> DROP table switch;
+    new_db.db> DROP table switch;
+    You're about to run a destructive command.
+    Do you want to proceed? (y/n): y
+    Your call!
+    Query OK, 0 rows affected
+    Time: 0.009s
 
