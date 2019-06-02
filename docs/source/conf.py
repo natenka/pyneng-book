@@ -70,8 +70,8 @@ html_static_path = ['_static']
 latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
-\setmainfont{DejaVu Serif}
-\setsansfont{DejaVu Sans}
-\setmonofont{DejaVu Sans Mono}
+\setmainfont{Lato}
+\setsansfont{Lato}
+\setmonofont{Consolas}
 ''',
 }
