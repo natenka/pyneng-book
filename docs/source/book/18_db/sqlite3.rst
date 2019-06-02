@@ -3,9 +3,6 @@
 
 Для работы с SQLite в Python используется модуль sqlite3.
 
-Connection
-~~~~~~~~~~
-
 Объект **Connection** - это подключение к конкретной БД. Можно сказать,
 что этот объект представляет БД.
 
@@ -16,9 +13,6 @@ Connection
     import sqlite3
 
     connection = sqlite3.connect('dhcp_snooping.db')
-
-Cursor
-~~~~~~
 
 После создания соединения надо создать объект Cursor - это основной
 способ работы с БД.
@@ -37,5 +31,5 @@ Cursor
    sqlite3_fetch
    sqlite3_cursor_as_iterator
    sqlite3_connection_without_cursor
-   sqlit3_exception
-   sqlit3_context_manager
+   sqlite3_exception
+   sqlite3_context_manager
