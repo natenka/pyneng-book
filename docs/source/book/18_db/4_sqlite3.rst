@@ -30,3 +30,12 @@ Cursor
     connection = sqlite3.connect('dhcp_snooping.db')
     cursor = connection.cursor()
 
+.. toctree::
+   :maxdepth: 1
+
+   4a_sqlite3_execute
+   4b_sqlite3_fetch
+   4c_sqlite3_cursor_as_iterator
+   4d_sqlite3_connection_without_cursor
+   4e_sqlit3_exception
+   4f_sqlit3_context_manager
