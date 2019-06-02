@@ -77,7 +77,7 @@ latex_elements = {
     'preamble': r'''
         \usepackage{charter}
         \usepackage[defaultsans]{lato}
-        \usepackage{inconsolata}
+        \usepackage{monaco}
     ''',
 }
 
