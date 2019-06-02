@@ -71,7 +71,7 @@ latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
 \documentclass[a4paper]{article}
-\usepackage[14pt]{extsizes}
+\usepackage[12pt]{extsizes}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
