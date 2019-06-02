@@ -33,3 +33,4 @@
    sqlite3_connection_without_cursor
    sqlite3_exception
    sqlite3_context_manager
+   example_sqlite

@@ -26,6 +26,5 @@
    sqlite
    sql_basics
    sqlite3
-   example_sqlite
    further_reading
    ../../exercises/18_exercises

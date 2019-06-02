@@ -55,7 +55,7 @@
 
 Теперь можно передать данные таким образом:
 
-::
+.. code:: python
 
     In [7]: for row in data:
        ...:     cursor.execute(query, row)
@@ -68,7 +68,7 @@
 Чтобы изменения были применены, нужно выполнить commit (обратите
 внимание, что метод commit вызывается у соединения):
 
-::
+.. code:: python
 
     In [8]: connection.commit()
 
@@ -77,15 +77,23 @@
 
 ::
 
-    $ sqlite3 sw_inventory.db
+    $ litecli sw_inventory.db
+    Version: 1.0.0
+    Mail: https://groups.google.com/forum/#!forum/litecli-users
+    Github: https://github.com/dbcli/litecli
+    sw_inventory.db> SELECT * from switch;
+    +----------------+----------+------------+-------------------+
+    | mac            | hostname | model      | location          |
+    +----------------+----------+------------+-------------------+
+    | 0000.AAAA.CCCC | sw1      | Cisco 3750 | London, Green Str |
+    | 0000.BBBB.CCCC | sw2      | Cisco 3780 | London, Green Str |
+    | 0000.AAAA.DDDD | sw3      | Cisco 2960 | London, Green Str |
+    | 0011.AAAA.CCCC | sw4      | Cisco 3750 | London, Green Str |
+    +----------------+----------+------------+-------------------+
+    4 rows in set
+    Time: 0.039s
+    sw_inventory.db>
 
-    sqlite> select * from switch;
-    mac             hostname    model       location
-    --------------  ----------  ----------  -----------------
-    0000.AAAA.CCCC  sw1         Cisco 3750  London, Green Str
-    0000.BBBB.CCCC  sw2         Cisco 3780  London, Green Str
-    0000.AAAA.DDDD  sw3         Cisco 2960  London, Green Str
-    0011.AAAA.CCCC  sw4         Cisco 3750  London, Green Str
 
 Метод executemany
 ^^^^^^^^^^^^^^^^^
@@ -125,17 +133,25 @@
 
 ::
 
-    sqlite> select * from switch;
-    mac             hostname    model       location
-    --------------  ----------  ----------  -----------------
-    0000.AAAA.CCCC  sw1         Cisco 3750  London, Green Str
-    0000.BBBB.CCCC  sw2         Cisco 3780  London, Green Str
-    0000.AAAA.DDDD  sw3         Cisco 2960  London, Green Str
-    0011.AAAA.CCCC  sw4         Cisco 3750  London, Green Str
-    0000.1111.0001  sw5         Cisco 3750  London, Green Str
-    0000.1111.0002  sw6         Cisco 3750  London, Green Str
-    0000.1111.0003  sw7         Cisco 3750  London, Green Str
-    0000.1111.0004  sw8         Cisco 3750  London, Green Str
+    $ litecli sw_inventory.db
+    Version: 1.0.0
+    Mail: https://groups.google.com/forum/#!forum/litecli-users
+    Github: https://github.com/dbcli/litecli
+    sw_inventory.db> SELECT * from switch;
+    +----------------+----------+------------+-------------------+
+    | mac            | hostname | model      | location          |
+    +----------------+----------+------------+-------------------+
+    | 0000.AAAA.CCCC | sw1      | Cisco 3750 | London, Green Str |
+    | 0000.BBBB.CCCC | sw2      | Cisco 3780 | London, Green Str |
+    | 0000.AAAA.DDDD | sw3      | Cisco 2960 | London, Green Str |
+    | 0011.AAAA.CCCC | sw4      | Cisco 3750 | London, Green Str |
+    | 0000.1111.0001 | sw5      | Cisco 3750 | London, Green Str |
+    | 0000.1111.0002 | sw6      | Cisco 3750 | London, Green Str |
+    | 0000.1111.0003 | sw7      | Cisco 3750 | London, Green Str |
+    | 0000.1111.0004 | sw8      | Cisco 3750 | London, Green Str |
+    +----------------+----------+------------+-------------------+
+    8 rows in set
+    Time: 0.034s
 
 Метод executemany подставил соответствующие кортежи в команду SQL, и все
 данные добавились в таблицу.
