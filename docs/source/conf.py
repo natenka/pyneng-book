@@ -72,6 +72,7 @@ latex_elements = {
     'fontpkg': r'''
 \documentclass[a4paper]{article}
 \usepackage[12pt]{extsizes}
+\usepackage[margin=0.5in]{geometry}
 \usepackage{polyglossia}
 \setcounter{secnumdepth}{0}
 \setdefaultlanguage{russian}
