@@ -7,7 +7,7 @@
 тест 1
 
 
-.. literalinclude:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/examples/19_ssh_telnet/1_pexpect.py
+.. literalinclude:: ../../examples/19_ssh_telnet/1_pexpect.py
   :language: python
   :linenos:
 
@@ -15,6 +15,7 @@
 
 .. literalinclude:: 1_pexpect.py
   :language: python
+  :linenos:
 
 
 исходный код
