@@ -10,14 +10,8 @@ git status
 При работе с Git, важно понимать текущий статус репозитория. Для этого в
 Git есть команда git status
 
-.. only:: not latex
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_0.png
-
-.. only:: latex
-
-.. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_0.png
-    :scale: 30
 
 Git сообщает, что мы находимся в ветке master (эта ветка создаётся сама
 и используется по умолчанию), и что ему нечего добавлять в коммит. Кроме

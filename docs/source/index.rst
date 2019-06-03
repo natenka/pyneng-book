@@ -2,7 +2,7 @@ Python для сетевых инженеров
 ============================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Содержание:
 
    intro_index
