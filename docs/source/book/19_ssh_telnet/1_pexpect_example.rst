@@ -6,11 +6,16 @@
 
 тест 1
 
-.. include:: https://github.com/natenka/pyneng-examples-exercises/blob/master/examples/19_ssh_telnet/1_pexpect.py
+
+.. literalinclude:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/examples/19_ssh_telnet/1_pexpect.py
+  :language: python
+  :linenos:
 
 тест 2
 
-.. include:: https://raw.githubusercontent.com/natenka/pyneng-examples-exercises/master/examples/19_ssh_telnet/1_pexpect.py
+.. literalinclude:: 1_pexpect.py
+  :language: python
+
 
 исходный код
 
