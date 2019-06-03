@@ -75,7 +75,6 @@ latex_elements = {
 \usepackage[margin=1.0in]{geometry}
 \usepackage{polyglossia}
 \setcounter{secnumdepth}{0}
-\renewcommand{\@seccntformat}[1]{}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
 \usepackage{fontspec}
