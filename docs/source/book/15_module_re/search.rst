@@ -62,26 +62,9 @@
 дублироваться, сразу добавляем их в множество, чтобы получить подборку
 уникальных интерфейсов (файл parse_log_search.py):
 
-.. code:: python
-
-    import re
-
-    regex = (r'Host \S+ '
-             r'in vlan (\d+) '
-             r'is flapping between port '
-             r'(\S+) and port (\S+)')
-
-    ports = set()
-
-    with open('log.txt') as f:
-        for line in f:
-            match = re.search(regex, line)
-            if match:
-                vlan = match.group(1)
-                ports.add(match.group(2))
-                ports.add(match.group(3))
-
-    print('Петля между портами {} в VLAN {}'.format(', '.join(ports), vlan))
+.. literalinclude:: /pyneng-examples-exercises/examples/15_module_re/parse_log_search.py
+  :language: python
+  :linenos:
 
 Результат выполнения скрипта такой:
 
@@ -142,33 +125,9 @@ detail.
 
 Первый вариант решения (файл parse_sh_cdp_neighbors_detail_ver1.py):
 
-.. code:: python
-
-    import re
-    from pprint import pprint
-
-
-    def parse_cdp(filename):
-        result = {}
-
-        with open(filename) as f:
-            for line in f:
-                if line.startswith('Device ID'):
-                    neighbor = re.search(r'Device ID: (\S+)', line).group(1)
-                    result[neighbor] = {}
-                elif line.startswith('  IP address'):
-                    ip = re.search(r'IP address: (\S+)', line).group(1)
-                    result[neighbor]['ip'] = ip
-                elif line.startswith('Platform'):
-                    platform = re.search(r'Platform: (\S+ \S+),', line).group(1)
-                    result[neighbor]['platform'] = platform
-                elif line.startswith('Cisco IOS Software'):
-                    ios = re.search(r'Cisco IOS Software, (.+), RELEASE', line).group(1)
-                    result[neighbor]['ios'] = ios
-
-        return result
-
-    pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
+.. literalinclude:: /pyneng-examples-exercises/examples/15_module_re/parse_sh_cdp_neighbors_detail_ver1.py
+  :language: python
+  :linenos:
 
 Тут нужные строки отбираются с помощью метода строк startswith. И в
 строке с помощью регулярного выражения получается требуемая часть
@@ -194,33 +153,9 @@ detail.
 
 Вторая версия решения (файл parse_sh_cdp_neighbors_detail_ver2.py):
 
-.. code:: python
-
-    import re
-    from pprint import pprint
-
-
-    def parse_cdp(filename):
-        regex = (r'Device ID: (?P<device>\S+)'
-                 r'|IP address: (?P<ip>\S+)'
-                 r'|Platform: (?P<platform>\S+ \S+),'
-                 r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
-
-        result = {}
-
-        with open('sh_cdp_neighbors_sw1.txt') as f:
-            for line in f:
-                match = re.search(regex, line)
-                if match:
-                    if match.lastgroup == 'device':
-                        device = match.group(match.lastgroup)
-                        result[device] = {}
-                    elif device:
-                        result[device][match.lastgroup] = match.group(match.lastgroup)
-
-        return result
-
-    pprint(parse_cdp('sh_cdp_neighbors_sw1.txt'))
+.. literalinclude:: /pyneng-examples-exercises/examples/15_module_re/parse_sh_cdp_neighbors_detail_ver2.py
+  :language: python
+  :linenos:
 
 Пояснения ко второму варианту: 
 

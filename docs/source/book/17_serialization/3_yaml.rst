@@ -133,42 +133,20 @@ YAML более приятен для восприятия человеком, �
 
 Файл info.yaml:
 
-.. code:: yaml
+.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/yaml/info.yaml
+  :language: yaml
+  :linenos:
 
-    - BS: 1550
-      IT: 791
-      id: 11
-      name: Liverpool
-      to_id: 1
-      to_name: LONDON
-    - BS: 1510
-      IT: 793
-      id: 12
-      name: Bristol
-      to_id: 1
-      to_name: LONDON
-    - BS: 1650
-      IT: 892
-      id: 14
-      name: Coventry
-      to_id: 2
-      to_name: Manchester
 
 Чтение из YAML (файл yaml_read.py):
 
-.. code:: python
-
-    import yaml
-    from pprint import pprint
-
-    with open('info.yaml') as f:
-        templates = yaml.safe_load(f)
-
-    pprint(templates)
+.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/yaml/yaml_read.py
+  :language: python
+  :linenos:
 
 Результат:
 
-.. code:: python
+::
 
     $ python yaml_read.py
     [{'BS': 1550,
@@ -198,28 +176,9 @@ YAML более приятен для восприятия человеком, �
 
 Запись объектов Python в YAML (файл yaml_write.py):
 
-.. code:: python
-
-    import yaml
-
-    trunk_template = ['switchport trunk encapsulation dot1q',
-                      'switchport mode trunk',
-                      'switchport trunk native vlan 999',
-                      'switchport trunk allowed vlan']
-
-    access_template = ['switchport mode access',
-                       'switchport access vlan',
-                       'switchport nonegotiate',
-                       'spanning-tree portfast',
-                       'spanning-tree bpduguard enable']
-
-    to_yaml = {'trunk':trunk_template, 'access':access_template}
-
-    with open('sw_templates.yaml', 'w') as f:
-        yaml.dump(to_yaml, f)
-
-    with open('sw_templates.yaml') as f:
-        print(f.read())
+.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/yaml/yaml_write.py
+  :language: python
+  :linenos:
 
 Файл sw_templates.yaml выглядит таким образом:
 
