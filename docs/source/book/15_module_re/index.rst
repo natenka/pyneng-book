@@ -27,14 +27,14 @@
 .. toctree::
    :maxdepth: 1
 
-   re_match_object
-   re_search
-   re_match
-   re_finditer
-   re_findall
-   re_compile
-   re_flags
-   re_split
-   re_sub
+   match_object
+   search
+   match
+   finditer
+   findall
+   compile
+   flags
+   split
+   sub
    further_reading
    ../../exercises/15_exercises
