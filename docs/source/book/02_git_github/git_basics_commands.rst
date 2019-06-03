@@ -8,7 +8,7 @@ git status
 ''''''''''
 
 При работе с Git, важно понимать текущий статус репозитория. Для этого в
-Git есть команда git status:
+Git есть команда git status
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_0.png
 
@@ -17,19 +17,19 @@ Git сообщает, что мы находимся в ветке master (эт�
 этого, Git предлагает создать или скопировать файлы и после этого
 воспользоваться командой git add, чтобы Git начал за ними следить.
 
-Создание файла README и добавление в него строки "test":
+Создание файла README и добавление в него строки "test"
 
 ::
 
     $ vi README
     $ echo "test" >> README
 
-После этого, приглашение выглядит таким образом:
+После этого, приглашение выглядит таким образом
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/bash_prompt.png
 
 В приглашении показано, что есть два файла, за которыми Git ещё не
-следит:
+следит
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_1.png
 
@@ -48,16 +48,16 @@ Undo-файл .README.un~ – служебный файл, который не �
 файле .gitignore в каталоге репозитория.
 
 Для того, чтобы Git игнорировал undo-файлы Vim, можно добавить,
-например, такую строку в файл .gitignore:
+например, такую строку в файл .gitignore
 
-.. code:: shell
+::
 
     *.un~
 
 Это значит, что Git должен игнорировать все файлы, которые заканчиваются
 на ".un~".
 
-После этого, git status показывает:
+После этого, git status показывает
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_2.png
 
@@ -71,15 +71,15 @@ git add
 Для того, чтобы Git начал следить за файлами, используется команда git
 add.
 
-Можно указать что надо следить за конкретным файлом:
+Можно указать что надо следить за конкретным файлом
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_add_readme.png
 
-Или за всеми файлами:
+Или за всеми файлами
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_add_all.png
 
-Вывод git status:
+Вывод git status
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_3.png
 
@@ -96,7 +96,7 @@ git commit
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_commit_1.png
 
-После этого git status отображает:
+После этого git status отображает
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_4.png
 
