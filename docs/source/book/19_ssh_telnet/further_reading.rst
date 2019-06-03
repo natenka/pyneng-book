@@ -16,9 +16,8 @@
 -  `datetime <https://docs.python.org/3/library/datetime.html>`__
 -  `getpass <https://docs.python.org/3/library/getpass.html>`__
 
-Статьи: \* `Netmiko
-Library <https://pynet.twb-tech.com/blog/automation/netmiko.html>`__ \*
-`Automate SSH connections with
-netmiko <https://codingnetworker.com/2016/03/automate-ssh-connections-with-netmiko/>`__
-\* `Network Automation Using Python: BGP
-Configuration <http://www.networkcomputing.com/networking/network-automation-using-python-bgp-configuration/1423704194>`__
+Статьи: 
+
+* `Netmiko Library <https://pynet.twb-tech.com/blog/automation/netmiko.html>`__ 
+* `Automate SSH connections with netmiko <https://codingnetworker.com/2016/03/automate-ssh-connections-with-netmiko/>`__
+* `Network Automation Using Python: BGP Configuration <http://www.networkcomputing.com/networking/network-automation-using-python-bgp-configuration/1423704194>`__

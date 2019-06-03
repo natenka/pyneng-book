@@ -4,52 +4,27 @@
 Принцип работы telnetlib напоминает pexpect, поэтому пример ниже должен
 быть понятен.
 
-Файл 2\_telnetlib.py:
+Файл 2_telnetlib.py:
 
-.. code:: python
+.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/2_telnetlib.py
+  :language: python
+  :linenos:
 
-    import telnetlib
-    import time
-    import getpass
-    import sys
+telnetlib очень похож на pexpect: 
+* ``with telnetlib.Telnet(ip) as t`` - класс Telnet представляет соединение к серверу. 
 
-    COMMAND = sys.argv[1].encode('utf-8')
-    USER = input('Username: ').encode('utf-8')
-    PASSWORD = getpass.getpass().encode('utf-8')
-    ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ').encode('utf-8')
+  * в данном случае ему передается только IP-адрес, но можно передать и порт, 
+    к которому нужно подключаться 
 
-    DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
+* ``read_until`` - похож на метод ``expect`` в модуле pexpect. 
+  Указывает, до какой строки следует считывать вывод 
+* ``write`` - передать строку 
+* ``read_very_eager`` - считать всё, что получается
 
-    for IP in DEVICES_IP:
-        print('Connection to device {}'.format(IP))
-        with telnetlib.Telnet(IP) as t:
-
-            t.read_until(b'Username:')
-            t.write(USER + b'\n')
-
-            t.read_until(b'Password:')
-            t.write(PASSWORD + b'\n')
-            t.write(b'enable\n')
-
-            t.read_until(b'Password:')
-            t.write(ENABLE_PASS + b'\n')
-            t.write(b'terminal length 0\n')
-            t.write(COMMAND + b'\n')
-
-            time.sleep(5)
-
-            output = t.read_very_eager().decode('utf-8')
-            print(output)
+.. note::
 
     Использование объекта Telnet как менеджера контекса добавлено в
     версии 3.6
-
-telnetlib очень похож на pexpect: \* ``with telnetlib.Telnet(ip) as t``
-- класс Telnet представляет соединение к серверу. \* в данном случае ему
-передается только IP-адрес, но можно передать и порт, к которому нужно
-подключаться \* ``read_until`` - похож на метод ``expect`` в модуле
-pexpect. Указывает, до какой строки следует считывать вывод \* ``write``
-- передать строку \* ``read_very_eager`` - считать всё, что получается
 
 Выполнение скрипта:
 

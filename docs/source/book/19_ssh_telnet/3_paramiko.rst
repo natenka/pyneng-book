@@ -12,73 +12,50 @@ Paramiko - это реализация протокола SSHv2 на Python. Par
 
     pip install paramiko
 
-Пример использования Paramiko (файл 3\_paramiko.py):
+Пример использования Paramiko (файл 3_paramiko.py):
 
-.. code:: python
+.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/3_paramiko.py
+  :language: python
+  :linenos:
 
-    import paramiko
-    import getpass
-    import sys
-    import time
 
-    COMMAND = sys.argv[1]
-    USER = input('Username: ')
-    PASSWORD = getpass.getpass()
-    ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
+Комментарии к скрипту: 
 
-    DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
+* ``client = paramiko.SSHClient()`` - этот класс представляет соединение к SSH-серверу. Он выполняет аутентификацию клиента. 
+* ``client.set_missing_host_key_policy(paramiko.AutoAddPolicy())`` 
 
-    for IP in DEVICES_IP:
-        print('Connection to device {}'.format( IP ))
-        client = paramiko.SSHClient()
-        client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+  * ``set_missing_host_key_policy`` - устанавливает, какую политику использовать, 
+    когда выполнятся подключение к серверу, ключ которого неизвестен. 
+  * ``paramiko.AutoAddPolicy()`` - политика, которая 
+    автоматически добавляет новое имя хоста и ключ в локальный объект HostKeys. 
 
-        client.connect(hostname=IP, username=USER, password=PASSWORD,
-                       look_for_keys=False, allow_agent=False)
+* ``client.connect(IP, username=USER, password=PASSWORD, look_for_keys=False, allow_agent=False)``
 
-        with client.invoke_shell() as ssh:
-            ssh.send('enable\n')
-            ssh.send(ENABLE_PASS + '\n')
-            time.sleep(1)
+  * ``client.connect`` - метод, который выполняет подключение к SSH-серверу 
+    и аутентифицирует подключение 
 
-            ssh.send('terminal length 0\n')
-            time.sleep(1)
-            ssh.recv(1000).decode('utf-8')
+    * ``hostname`` - имя хоста или IP-адрес 
+    * ``username`` - имя пользователя 
+    * ``password`` - пароль
+    * ``look_for_keys`` - по умолчанию paramiko выполняет аутентификацию по
+      ключам. Чтобы отключить это, надо поставить флаг в False 
+    * ``allow_agent`` - paramiko может подключаться к локальному SSH агенту 
+      ОС. Это нужно при работе с ключами, а так как в данном случае 
+      аутентификация выполняется по логину/паролю, это нужно отключить. 
 
-            ssh.send(COMMAND + '\n')
-            time.sleep(2)
-            result = ssh.recv(5000).decode('utf-8')
-            print(result)
+  * ``with client.invoke_shell() as ssh`` - после выполнения предыдущей
+    команды уже есть подключение к серверу. Метод ``invoke_shell`` позволяет
+    установить интерактивную сессию SSH с сервером. 
+  * Внутри установленной сессии выполняются команды и получаются данные: 
 
-Комментарии к скрипту: \* ``client = paramiko.SSHClient()`` \* этот
-класс представляет соединение к SSH-серверу. Он выполняет аутентификацию
-клиента. \*
-``client.set_missing_host_key_policy(paramiko.AutoAddPolicy())`` \*
-``set_missing_host_key_policy`` - устанавливает, какую политику
-использовать, когда выполнятся подключение к серверу, ключ которого
-неизвестен. \* ``paramiko.AutoAddPolicy()`` - политика, которая
-автоматически добавляет новое имя хоста и ключ в локальный объект
-HostKeys. \*
-``client.connect(IP, username=USER, password=PASSWORD, look_for_keys=False, allow_agent=False)``
-\* ``client.connect`` - метод, который выполняет подключение к
-SSH-серверу и аутентифицирует подключение \* ``hostname`` - имя хоста
-или IP-адрес \* ``username`` - имя пользователя \* ``password`` - пароль
-\* ``look_for_keys`` - по умолчанию paramiko выполняет аутентификацию по
-ключам. Чтобы отключить это, надо поставить флаг в False \*
-``allow_agent`` - paramiko может подключаться к локальному SSH агенту
-ОС. Это нужно при работе с ключами, а так как в данном случае
-аутентификация выполняется по логину/паролю, это нужно отключить. \*
-``with client.invoke_shell() as ssh`` \* после выполнения предыдущей
-команды уже есть подключение к серверу. Метод ``invoke_shell`` позволяет
-установить интерактивную сессию SSH с сервером. \* Внутри установленной
-сессии выполняются команды и получаются данные: \* ``ssh.send`` -
-отправляет указанную строку в сессию \* ``ssh.recv`` - получает данные
-из сессии. В скобках указывается максимальное значение в байтах, которое
-можно получить. Этот метод возвращает считанную строку \* Кроме этого,
-между отправкой команды и считыванием кое-где стоит строка
-``time.sleep`` \* с помощью неё указывается пауза - сколько времени
-подождать, прежде чем скрипт продолжит выполняться. Это делается для
-того, чтобы дождаться выполнения команды на оборудовании
+    * ``ssh.send`` - отправляет указанную строку в сессию 
+    * ``ssh.recv`` - получает данные из сессии. В скобках 
+      указывается максимальное значение в байтах, которое
+      можно получить. Этот метод возвращает считанную строку 
+    * Кроме этого, между отправкой команды и считыванием кое-где 
+      стоит строка ``time.sleep``. С помощью неё указывается пауза - сколько времени
+      подождать, прежде чем скрипт продолжит выполняться. Это делается для того,
+      чтобы дождаться выполнения команды на оборудовании
 
 Так выглядит результат выполнения скрипта:
 

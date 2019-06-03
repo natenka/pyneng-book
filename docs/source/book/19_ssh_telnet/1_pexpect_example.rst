@@ -4,87 +4,40 @@
 Пример использования pexpect для подключения к оборудованию и передачи
 команды show (файл 1_pexpect.py):
 
-тест 1
-
-
-.. literalinclude:: ../../examples/19_ssh_telnet/1_pexpect.py
+.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/1_pexpect.py
   :language: python
   :linenos:
 
-тест 2
-
-.. literalinclude:: 1_pexpect.py
-  :language: python
-  :linenos:
-
-
-исходный код
-
-.. code:: python
-
-    import pexpect
-    import getpass
-    import sys
-
-    COMMAND = sys.argv[1]
-    USER = input('Username: ')
-    PASSWORD = getpass.getpass()
-    ENABLE_PASS = getpass.getpass(prompt='Enter enable password: ')
-
-    DEVICES_IP = ['192.168.100.1','192.168.100.2','192.168.100.3']
-
-    for IP in DEVICES_IP:
-        print('Connection to device {}'.format(IP))
-        with pexpect.spawn('ssh {}@{}'.format(USER, IP)) as ssh:
-
-            ssh.expect('Password:')
-            ssh.sendline(PASSWORD)
-
-            ssh.expect('[#>]')
-            ssh.sendline('enable')
-
-            ssh.expect('Password:')
-            ssh.sendline(ENABLE_PASS)
-
-            ssh.expect('#')
-            ssh.sendline('terminal length 0')
-
-            ssh.expect('#')
-            ssh.sendline(COMMAND)
-
-            ssh.expect('#')
-            print(ssh.before.decode('utf-8'))
 
 Комментарии с скрипту: 
-* команда, которую нужно выполнить, передается
-как аргумент 
-* затем запрашивается логин, пароль и пароль на режим
-enable 
-* пароли запрашиваются с помощью модуля getpass 
-* ``ip_list`` -
-это список IP-адресов устройств, к которым будет выполняться подключение
 
+* команда, которую нужно выполнить, передается как аргумент 
+* затем запрашивается логин, пароль и пароль на режим enable 
+
+  * пароли запрашиваются с помощью модуля getpass 
+
+* ``ip_list`` - это список IP-адресов устройств, к которым будет выполняться подключение
 * в цикле выполняется подключение к устройствам из списка 
-* в классе
-spawn выполняется подключение по SSH к текущему адресу, используя
-указанное имя пользователя 
-* после этого начинают чередоваться пары
-методов: expect и sendline 
-* ``expect`` - ожидание подстроки 
-*
-``sendline`` - когда строка появилась, отправляется команда 
-* так
-происходит до конца цикла, и только последняя команда отличается: 
-*
-``before`` позволяет считать всё, что поймал pexpect до предыдущей
-подстроки в expect
+* в классе spawn выполняется подключение по SSH к текущему адресу, используя 
+  указанное имя пользователя 
+* после этого начинают чередоваться пары методов: expect и sendline
+
+  * ``expect`` - ожидание подстроки 
+  * ``sendline`` - когда строка появилась, отправляется команда 
+
+* так происходит до конца цикла, и только последняя команда отличается: 
+
+  * ``before`` позволяет считать всё, что поймал pexpect до предыдущей 
+    подстроки в expect
+
+.. note::
 
     Обратите внимание на строку ``ssh.expect('[#>]')``. Метод expect
     ожидает не просто строку, а регулярное выражение.
 
 Выполнение скрипта выглядит так:
 
-.. code:: python
+::
 
     $ python 1_pexpect.py "sh ip int br"
     Username: nata
@@ -132,3 +85,4 @@ spawn выполняется подключение по SSH к текущему
 
 Обратите внимание, что, так как в последнем expect указано, что надо
 ожидать подстроку ``#``, метод before показал и команду, и имя хоста.
+
