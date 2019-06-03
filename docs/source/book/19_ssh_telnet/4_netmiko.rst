@@ -15,7 +15,6 @@ Netmiko - это модуль, который позволяет упрости�
 
 .. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/4_netmiko.py
   :language: python
-  :emphasize-lines: 15-27
   :linenos:
 
 Пример, который использовался с pexpect, telnetlib и paramiko выглядит значительно

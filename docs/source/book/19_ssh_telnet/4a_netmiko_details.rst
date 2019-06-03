@@ -188,6 +188,7 @@ SSH.
   :linenos:
 
 Аналогично работают и методы: 
+
 * ``send_command_timing()`` 
 * ``find_prompt()`` 
 * ``send_config_set()`` 
