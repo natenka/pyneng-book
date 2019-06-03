@@ -1,0 +1,3 @@
+[submodule "docs/source/pyneng-examples-exercises"]
+	path = docs/source/pyneng-examples-exercises
+	url = https://github.com/natenka/pyneng-examples-exercises
