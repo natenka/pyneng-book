@@ -280,4 +280,4 @@ pexpect.EOF
 .. toctree::
    :maxdepth: 1
 
-   1_pexpect_example
+   pexpect_example

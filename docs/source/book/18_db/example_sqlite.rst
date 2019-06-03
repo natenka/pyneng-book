@@ -47,19 +47,6 @@ SQLite создаст таблицу только в том случае, есл
 .. literalinclude:: /pyneng-examples-exercises/examples/18_db/create_sqlite_ver1.py
   :language: python
   :linenos:
-.. code:: python
-
-    import sqlite3
-
-    conn = sqlite3.connect('dhcp_snooping.db')
-
-    print('Creating schema...')
-    with open('dhcp_snooping_schema.sql', 'r') as f:
-        schema = f.read()
-        conn.executescript(schema)
-    print('Done')
-
-    conn.close()
 
 Комментарии к файлу: 
 
@@ -221,7 +208,7 @@ binding в таблицу (файл dhcp_snooping.txt):
 
 Если есть и БД и данные:
 
-.. code:: python
+::
 
     $ python create_sqlite_ver3.py
     Database exists, assume dhcp table does, too.

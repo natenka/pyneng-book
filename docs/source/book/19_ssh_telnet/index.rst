@@ -54,10 +54,10 @@
 .. toctree::
    :maxdepth: 1
 
-   0_password
-   1_pexpect
-   2_telnetlib
-   3_paramiko
-   4_netmiko
+   password
+   pexpect
+   telnetlib
+   paramiko
+   netmiko
    further_reading
    ../../exercises/19_exercises

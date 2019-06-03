@@ -88,4 +88,4 @@ br.
 .. toctree::
    :maxdepth: 1
 
-   4a_netmiko_details
+   netmiko_details

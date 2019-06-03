@@ -205,4 +205,4 @@
 .. toctree::
    :maxdepth: 1
 
-   2_telnetlib_example
+   telnetlib_example
