@@ -3,7 +3,7 @@
    \newpage
 
 19. Подключение к оборудованию
-============================
+==============================
 
 В этом разделе рассматривается как подключиться к оборудованию по
 протоколам: 
@@ -56,11 +56,8 @@
 
    0_password
    1_pexpect
-   1_pexpect_example
    2_telnetlib
-   2_telnetlib_example
    3_paramiko
    4_netmiko
-   4a_netmiko_details
    further_reading
    ../../exercises/19_exercises

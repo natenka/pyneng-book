@@ -198,3 +198,7 @@
 
     In [32]: telnet.close()
 
+.. toctree::
+   :maxdepth: 1
+
+   2_telnetlib_example

@@ -82,6 +82,10 @@ latex_elements = {
 \setmainfont{DejaVu Sans}
 \setsansfont{DejaVu Serif}
 \setmonofont{DejaVu Sans Mono}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
 ''',
     'preamble': r'''
 \setcounter{tocdepth}{2}
