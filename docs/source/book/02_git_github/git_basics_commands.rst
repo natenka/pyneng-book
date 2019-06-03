@@ -17,7 +17,7 @@ Git есть команда git status
 .. only:: latex
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_0.png
-    :scale: 60
+    :scale: 30
 
 Git сообщает, что мы находимся в ветке master (эта ветка создаётся сама
 и используется по умолчанию), и что ему нечего добавлять в коммит. Кроме
