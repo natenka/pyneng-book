@@ -75,6 +75,7 @@ latex_elements = {
 \usepackage[margin=1.0in]{geometry}
 \usepackage{polyglossia}
 \setcounter{secnumdepth}{0}
+\renewcommand\@seccntformat[1]{}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
 \usepackage{fontspec}
@@ -82,10 +83,6 @@ latex_elements = {
 \setmainfont{DejaVu Sans}
 \setsansfont{DejaVu Serif}
 \setmonofont{DejaVu Sans Mono}
-\def\@seccntformat#1{%
-  \expandafter\ifx\csname c@#1\endcsname\c@section\else
-  \csname the#1\endcsname\quad
-  \fi}
 ''',
     'preamble': r'''
 \setcounter{tocdepth}{2}
