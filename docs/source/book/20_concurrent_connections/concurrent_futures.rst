@@ -31,3 +31,9 @@
 
 При этом нет необходимости создавать их вручную. Эти объекты создаются
 ThreadPoolExecutor и ProcessPoolExecutor.
+
+.. toctree::
+   :maxdepth: 1
+
+   concurrent_futures_map
+   concurrent_futures_submit
