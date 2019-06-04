@@ -27,6 +27,7 @@
 
    measure_script_execution_time
    cpython_gil
+   thread_safety
    concurrent_futures
    further_reading
    ../../exercises/20_exercises
