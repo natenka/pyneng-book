@@ -52,8 +52,8 @@
 Рекомендации при работе с потоками:
 
 1. Не пишите в один и тот же ресурс из разных потоков, если ресурс
-  или то, чем пишите не предназначено для многопоточной работы.
-  Выяснить это, проще всего, погуглив что-то вроде "python write to file from threads".
+   или то, чем пишите не предназначено для многопоточной работы.
+   Выяснить это, проще всего, погуглив что-то вроде "python write to file from threads".
 
   * В этой рекомендации есть нюансы. Например, можно писать из разных потоков
     в один и тот же файл, если использовать Lock или использовать потокобезопасную очередь.
@@ -67,9 +67,9 @@
     можно работать из разных потоков.
 
 2. Если есть воможность, избегайте коммуникаций между потоками в процессе их работы.
-  Это непростая задача и лучше постараться обойтись без нее.
+   Это непростая задача и лучше постараться обойтись без нее.
 3. Соблюдайте принцип KISS (Keep it simple, stupid) - постарайтесь, чтобы решение
-  было максимально простым.
+   было максимально простым.
 
 .. note::
 
@@ -89,4 +89,53 @@
 Модуль logging
 ~~~~~~~~~~~~~~
 
+Модуль logging - это модуль из стандартной библиотеки Python, который позволяет
+настраивать логирование из скрипта.
+У модуля logging очень много возможностей и огромное количество вариантов настройки.
+В этом разделе рассматривается только базовый вариант настройки.
+
+Самый простой вариант настройки логирования в скрипте, использовать logging.basicConfig:
+
+.. code:: python
+
+    import logging
+
+
+    logging.basicConfig(
+        format='%(threadName)s %(name)s %(levelname)s: %(message)s',
+        level=logging.INFO)
+
+В таком варианте настройки:
+
+* все сообщения будут выводиться на стандартный поток вывода, 
+* будут выводиться сообщения уровня INFO и выше, 
+* в каждом сообщении будет информация о потоке, имя логера, уровень сообщения и само сообщение.
+
+Теперь, чтобы вывести log-сообщение в этом скрипте, надо написать так ``logging.info("тест")``.
+
+
+.. code:: python
+
+    from datetime import datetime
+    import logging
+    import netmiko
+
+    logging.getLogger("paramiko").setLevel(logging.WARNING)
+
+    logging.basicConfig(
+        format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
+        level=logging.INFO)
+
+    start_msg = '===> {} Connection: {}'
+    received_msg = '<=== {} Received:   {}'
+
+
+    def send_show(device, show):
+        ip = device["ip"]
+        logging.info(start_msg.format(datetime.now().time(), ip))
+        with netmiko.ConnectHandler(**device) as ssh:
+            ssh.enable()
+            result =  ssh.send_command(show)
+            logging.info(received_msg.format(datetime.now().time(), ip))
+        return result
 
