@@ -138,4 +138,4 @@
 
     В модуле logging еще очень много возможностей. В этом разделе используется только
     базовый вариант настройки.
-    Узнать больше о возможностях модуля можно в `Logging HOWTO<https://docs.python.org/3/howto/logging.html#logging-basic-tutorial>`__
+    Узнать больше о возможностях модуля можно в `Logging HOWTO <https://docs.python.org/3/howto/logging.html#logging-basic-tutorial>`__

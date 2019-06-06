@@ -16,6 +16,7 @@
 .. toctree::
    :maxdepth: 1
 
+   f-string
    variable_unpacking  
    x_comprehensions
    working_with_dicts
