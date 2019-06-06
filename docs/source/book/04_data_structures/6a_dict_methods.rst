@@ -114,9 +114,9 @@ copy():
     None
 
     In [24]: london
-    Out[24]: {'ios': None, 'location': 'London Str', 'name': 'London1', 'vendor': 'Cisco'}
+    Out[24]: {'name': 'London1', 'location': 'London Str', 'vendor': 'Cisco', 'ios': None}
 
-Но, если ключ есть, setdefault возвращает значение, которое ему
+Если ключ есть, setdefault возвращает значение, которое ему
 соответствует:
 
 .. code:: python
@@ -136,11 +136,12 @@ copy():
 
     In [28]: london
     Out[28]:
-    {'ios': None,
-     'model': 'Cisco3580',
+    {'name': 'London1',
      'location': 'London Str',
-     'name': 'London1',
-     'vendor': 'Cisco'}
+     'vendor': 'Cisco',
+     'ios': None,
+     'model': 'Cisco3580'}
+
 
 Метод setdefault заменяет такую конструкцию:
 
