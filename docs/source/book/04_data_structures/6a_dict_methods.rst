@@ -222,7 +222,7 @@ copy():
 
     In [35]: london = {'name': 'London1', 'location': 'London Str', 'vendor': 'Cisco'}
 
-    In [36]: del(london['name'])
+    In [36]: del london['name']
 
     In [37]: london
     Out[37]: {'location': 'London Str', 'vendor': 'Cisco'}
