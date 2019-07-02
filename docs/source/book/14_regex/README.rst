@@ -112,7 +112,7 @@ Match:
 .. code:: python
 
     In [13]: re.search('Host (\S+) in vlan (\d+) is flapping between port (\S+) and port (\S+)', log2).groups()
-    Out[13]: ('f03a.b216.7ad7', '10', 'Gi0/5', 'Gi0/15')
+    Out[13]: ('f04d.a206.7fd6', '1', 'Gi0/5', 'Gi0/16')
 
 Метод groups возвращает только те части исходной строки, которые попали
 в круглые скобки. Таким образом, заключив часть выражения в скобки,
