@@ -1,96 +1,87 @@
 Метод submit и работа с futures
 -------------------------------
 
-При использовании метода map объект future использовался внутри, но в
-итоге мы получали уже готовый результат функции.
+Метод submit отличается от метода map:
 
-В модуле concurrent.futures есть метод submit, который позволяет
-запускать future, и функция as\_completed, которая ожидает как аргумент
-итерируемый объект с futures и возвращает future по мере завершения. В
-этом случае порядок не будет соблюдаться, как с map.
+* submit запускает в потоке только одну функцию
+* submit можно запускать разные функции с разными несвязанными аргументами,
+  а map надо обязательно запускать с итерируемым объектами в роли аргументов
+* submit сразу возвращает результат, не дожидаясь выполнения функции
+* submit возвращает специальный объект Future, который представляет
+  выполнение функции.
 
-Теперь функция threads\_conn выглядит немного по-другому (файл
-netmiko\_threads\_submit.py):
+  * submit возвращает Future для того чтобы вызов submit не блокировал
+    код. Как только submit вернул Future, код может выполняться дальше.
+    И как только запущены все функции в потоках, можно начинать запрашивать
+    Future о том готовы ли результаты. Или воспользоваться специальной функцией
+    as_completed, чтобы она сама запрашивала результат, а код только получал его
+    по мере готовности
 
-.. code:: python
+* submit возвращает результаты в порядке готовности, а не в порядке аргументов
+* submit можно передавать ключевые аргументы, а map только позиционные
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    from pprint import pprint
-    from datetime import datetime
-    import time
-
-    import yaml
-    from netmiko import ConnectHandler
-
-
-    start_msg = '===> {} Connection to device: {}'
-    received_msg = '<=== {} Received result from device: {}'
-
-
-    def connect_ssh(device_dict, command):
-        print(start_msg.format(datetime.now().time(), device_dict['ip']))
-        if device_dict['ip'] == '192.168.100.1':
-            time.sleep(10)
-        with ConnectHandler(**device_dict) as ssh:
-            ssh.enable()
-            result = ssh.send_command(command)
-            print(received_msg.format(datetime.now().time(), device_dict['ip']))
-        return {device_dict['ip']: result}
+Метод submit использует объект `Future <https://en.wikipedia.org/wiki/Futures_and_promises>`__ - это
+объект, который представляет отложенное вычисление. Этот объект можно
+запрашивать о состоянии (завершена работа или нет), можно получать
+результаты или исключения, которые возникли в процессе работы, по мере
+возникновения.
+Future не нужно создавать вручную, эти объекты создаются методом submit.
 
 
-    def threads_conn(function, devices, limit=2, command=''):
-        all_results = []
-        with ThreadPoolExecutor(max_workers=limit) as executor:
-            future_ssh = [executor.submit(function, device, command)
-                          for device in devices]
-            for f in as_completed(future_ssh):
-                all_results.append(f.result())
-        return all_results
+Теперь функция threads_conn выглядит немного по-другому (файл
+netmiko_threads_submit_basics.py):
+
+.. literalinclude:: /pyneng-examples-exercises/examples/20_concurrent_connections/netmiko_threads_submit_basics.py
+  :language: python
+  :linenos:
 
 
-    if __name__ == '__main__':
-        devices = yaml.load(open('devices.yaml'))
-        all_done = threads_conn(connect_ssh,
-                                devices['routers'],
-                                command='sh clock')
-        pprint(all_done)
-
-Остальной код не изменился, поэтому разобраться надо только с функцией
-threads\_conn:
+Остальной код не изменился, поэтому разобраться надо только с блоком,
+который запускает функцию send_show в потоках:
+threads_conn:
 
 .. code:: python
 
-    def threads_conn(function, devices, limit=2, command=''):
-        all_results = []
-        with ThreadPoolExecutor(max_workers=limit) as executor:
-            future_ssh = [executor.submit(function, device, command)
-                          for device in devices]
-            for f in as_completed(future_ssh):
-                all_results.append(f.result())
-        return all_results
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_list = []
+        for device in devices:
+            future = executor.submit(send_show, device, 'sh clock')
+            future_list.append(future)
+        for f in as_completed(future_list):
+            print(f.result())
 
-Теперь в блоке with два цикла: \* ``future_ssh`` - это список объектов
-future, который создается с помощью list comprehensions \* для создания
-future используется функция submit \* ей как аргументы передаются: имя
-функции, которую надо выполнить, и ее аргументы \* следующий цикл
-проходится по списку future с помощью функции as\_completed. Эта функция
-возвращает future только когда они завершили работу или были отменены.
-При этом future возвращаются по мере завершения работы
+Теперь в блоке with два цикла: 
+
+* ``future_list`` - это список объектов future:
+
+  * для создания future используется функция submit 
+  * ей как аргументы передаются: имя функции, которую надо выполнить, и ее аргументы 
+
+* следующий цикл проходится по списку future с помощью функции as_completed. Эта функция
+  возвращает future только когда они завершили работу или были отменены.
+  При этом future возвращаются по мере завершения работы
+
+
+.. note::
+
+    Создание списка с future можно сделать с помощью list comprehensions:
+    ``future_list = [executor.submit(send_show, device, 'sh clock') for device in devices]``
 
 Результат выполнения:
 
 ::
 
-    $ python netmiko_threads_submit.py
-    ===> 06:02:14.582011 Connection to device: 192.168.100.1
-    ===> 06:02:14.582155 Connection to device: 192.168.100.2
-    <=== 06:02:20.155865 Received result from device: 192.168.100.2
-    ===> 06:02:20.262584 Connection to device: 192.168.100.3
-    <=== 06:02:25.864270 Received result from device: 192.168.100.3
-    <=== 06:02:29.962225 Received result from device: 192.168.100.1
-    [{'192.168.100.2': '*06:02:19.983 UTC Mon Aug 28 2017'},
-     {'192.168.100.3': '*06:02:25.691 UTC Mon Aug 28 2017'},
-     {'192.168.100.1': '*06:02:29.789 UTC Mon Aug 28 2017'}]
+    $ python netmiko_threads_submit_basics.py
+    ThreadPoolExecutor-0_0 root INFO: ===> 17:32:59.088025 Connection: 192.168.100.1
+    ThreadPoolExecutor-0_1 root INFO: ===> 17:32:59.094103 Connection: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: <=== 17:33:11.639672 Received: 192.168.100.2
+    {'192.168.100.2': '*17:33:11.429 UTC Thu Jul 4 2019'}
+    ThreadPoolExecutor-0_1 root INFO: ===> 17:33:11.849132 Connection: 192.168.100.3
+    ThreadPoolExecutor-0_0 root INFO: <=== 17:33:17.735761 Received: 192.168.100.1
+    {'192.168.100.1': '*17:33:17.694 UTC Thu Jul 4 2019'}
+    ThreadPoolExecutor-0_1 root INFO: <=== 17:33:23.230123 Received: 192.168.100.3
+    {'192.168.100.3': '*17:33:23.188 UTC Thu Jul 4 2019'}
+
 
 Обратите внимание, что порядок не сохраняется и зависит от того, какие
 функции раньше завершили работу.
@@ -99,7 +90,7 @@ Future
 ~~~~~~
 
 Чтобы посмотреть на future, в скрипт добавлены несколько строк с выводом
-информации (netmiko\_threads\_submit\_verbose.py):
+информации (netmiko_threads_submit_verbose.py):
 
 .. code:: python
 
@@ -150,7 +141,7 @@ Future
         pprint(all_done)
 
     Так как в прошлом варианте мы уже проверили, что результат
-    возвращается в порядке выполнения, тут функция threads\_conn
+    возвращается в порядке выполнения, тут функция threads_conn
     возвращает словарь, а не список.
 
 Результат выполнения:
@@ -235,7 +226,7 @@ pending и ждет, пока до него дойдет очередь.
     Authentication failed.
 
 Так как исключение возникает при получении результата, легко добавить
-обработку исключений (файл netmiko\_threads\_submit\_exception.py):
+обработку исключений (файл netmiko_threads_submit_exception.py):
 
 .. code:: python
 
@@ -302,14 +293,14 @@ pending и ждет, пока до него дойдет очередь.
      '192.168.100.3': '*06:46:04.154 UTC Mon Aug 28 2017'}
 
 Конечно, обработка исключения может выполняться и внутри функции
-connect\_ssh, но это просто пример того, как можно работать с
+connect_ssh, но это просто пример того, как можно работать с
 исключениями при использовании future.
 
 ProcessPoolExecutor
 ~~~~~~~~~~~~~~~~~~~
 
 Так как все работает аналогичным образом и для процессов, тут приведет
-последний вариант (файл netmiko\_processes\_submit\_exception.py):
+последний вариант (файл netmiko_processes_submit_exception.py):
 
 .. code:: python
 
