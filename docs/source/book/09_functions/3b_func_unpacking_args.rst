@@ -199,4 +199,5 @@ Python сам 'распакует' список info и передаст в фу
     Пароль для пользователя user прошел все проверки
 
 Python распаковывает словарь и передает его в функцию как ключевые аргументы.
-Запись ``check_passwd(**data)`` превращается в вызов вида ``check_passwd('username'='cisco', 'password'='cisco'``.
+Запись ``check_passwd(**data)`` превращается в вызов вида ``check_passwd(username='cisco', password='cisco'``.
+
