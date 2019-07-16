@@ -38,7 +38,7 @@
      network {{ networks.network }} area {{ networks.area }}
      {% endfor %}
 
-Файл data\_files/for.yml с переменными:
+Файл data_files/for.yml с переменными:
 
 .. code:: yml
 

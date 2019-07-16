@@ -7,6 +7,8 @@
 
     pip install jinja2
 
+.. note::
+
     Далее термины Jinja и Jinja2 используются взаимозаменяемо.
 
 Главная идея Jinja: разделение данных и шаблона. Это позволяет
@@ -71,6 +73,7 @@ basic_generator.py):
     print(template.render(liverpool))
 
 Комментарии к файлу basic_generator.py: 
+
 * в первой строке из Jinja2 импортируется класс Template 
 * создается объект template, которому передается шаблон 
 * в шаблоне используются переменные в синтаксисе Jinja 

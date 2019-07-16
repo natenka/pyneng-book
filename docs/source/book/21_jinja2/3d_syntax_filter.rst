@@ -25,7 +25,7 @@ default
 не определена, будет выводиться значение, которое указано в фильтре
 default.
 
-Пример шаблона templates/filter\_default.txt:
+Пример шаблона templates/filter_default.txt:
 
 ::
 
@@ -35,10 +35,10 @@ default.
      network {{ networks.network }} area {{ networks.area }}
      {% endfor %}
 
-Если переменная ref\_bw определена в словаре, будет подставлено её
+Если переменная ref_bw определена в словаре, будет подставлено её
 значение. Если же переменной нет, будет подставлено значение 10000.
 
-Файл с данными (data\_files/filter\_default.yml):
+Файл с данными (data_files/filter_default.yml):
 
 .. code:: yml
 
@@ -132,7 +132,7 @@ dictsort
     После того, как dictsort отсортировал словарь, он возвращает список
     кортежей, а не словарь.
 
-Пример шаблона templates/filter\_dictsort.txt с использованием фильтра
+Пример шаблона templates/filter_dictsort.txt с использованием фильтра
 dictsort:
 
 ::
@@ -151,7 +151,7 @@ dictsort:
     Обратите внимание, что фильтр ожидает словарь, а не список кортежей
     или итератор.
 
-Файл с данными (data\_files/filter\_dictsort.yml):
+Файл с данными (data_files/filter_dictsort.yml):
 
 .. code:: yml
 
@@ -186,7 +186,7 @@ join
 С помощью фильтра join можно объединять элементы последовательности в
 строку с опциональным разделителем между элементами.
 
-Пример шаблона templates/filter\_join.txt с использованием фильтра join:
+Пример шаблона templates/filter_join.txt с использованием фильтра join:
 
 ::
 
@@ -201,7 +201,7 @@ join
      {% endif %}
     {% endfor %}
 
-Файл с данными (data\_files/filter\_join.yml):
+Файл с данными (data_files/filter_join.yml):
 
 .. code:: yml
 

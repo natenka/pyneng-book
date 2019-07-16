@@ -46,7 +46,7 @@ include
 
     {% include 'ospf.txt' %}
 
-Файл с данными для генерации конфигурации (data\_files/switch.yml):
+Файл с данными для генерации конфигурации (data_files/switch.yml):
 
 .. code:: json
 
@@ -97,7 +97,7 @@ ospf.txt и vlans.txt находились в шаблоне switch.txt.
 показать, что выражения include могут идти вперемешку с обычным
 шаблоном.
 
-Файл с данными (data\_files/router.yml):
+Файл с данными (data_files/router.yml):
 
 .. code:: json
 
