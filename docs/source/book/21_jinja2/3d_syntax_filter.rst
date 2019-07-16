@@ -40,7 +40,7 @@ default.
 
 Файл с данными (data_files/filter_default.yml):
 
-.. code:: yml
+.. code:: yaml
 
     ospf:
       - network: 10.0.1.0 0.0.0.255
@@ -153,7 +153,7 @@ dictsort:
 
 Файл с данными (data_files/filter_dictsort.yml):
 
-.. code:: yml
+.. code:: yaml
 
     trunks:
       Fa0/1:
@@ -203,7 +203,7 @@ join
 
 Файл с данными (data_files/filter_join.yml):
 
-.. code:: yml
+.. code:: yaml
 
     trunks:
       Fa0/1:
