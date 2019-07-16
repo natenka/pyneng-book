@@ -40,7 +40,7 @@
 
 Файл data_files/for.yml с переменными:
 
-.. code:: yml
+.. code:: yaml
 
     id: 3
     name: R3
