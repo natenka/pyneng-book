@@ -4,32 +4,26 @@
 Playbook (файл сценариев) — это файл, в котором описываются действия,
 которые нужно выполнить на какой-то группе хостов.
 
-Внутри playbook: \* play - это набор задач, которые нужно выполнить для
-группы хостов \* task - это конкретная задача. В задаче есть как
-минимум: \* описание (название задачи можно не писать, но очень
-рекомендуется) \* модуль и команда (действие в модуле)
+Внутри playbook: 
+
+* play - это набор задач, которые нужно выполнить для группы хостов 
+* task - это конкретная задача. В задаче есть как минимум: 
+
+  * описание (название задачи можно не писать, но очень рекомендуется) 
+  * модуль и команда (действие в модуле)
 
 Синтаксис playbook
 ------------------
 
 Playbook описываются в формате YAML.
 
-{% if book.book\_name == "ansible\_neteng" %} > Синтаксис YAML описан в
-`разделе YAML курса "Python для сетевых
-инженеров" <https://natenka.gitbooks.io/pyneng/content/book/17_serialization/3_yaml.html>`__
-или в `документации
-Ansible <http://docs.ansible.com/ansible/YAMLSyntax.html>`__. {% else %}
-> Синтаксис YAML описан в `разделе
-YAML <../../17_serialization/3_yaml.md>`__ или в `документации
-Ansible <http://docs.ansible.com/ansible/YAMLSyntax.html>`__. {% endif
-%}
 
 Пример синтаксиса playbook
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Все примеры этого раздела находятся в каталоге 2\_playbook\_basics
+    Все примеры этого раздела находятся в каталоге 2_playbook_basics
 
-Пример plabook 1\_show\_commands\_with\_raw.yml:
+Пример plabook 1_show_commands_with_raw.yml:
 
 ::
 
@@ -60,32 +54,34 @@ Ansible <http://docs.ansible.com/ansible/YAMLSyntax.html>`__. {% endif
         - name: run sh vlan
           raw: show vlan
 
-В playbook два сценария (play): \*
-``name: Run show commands on routers`` - имя сценария (play). Этот
-параметр обязательно должен быть в любом сценарии \*
-``hosts: cisco-routers`` - сценарий будет применяться к устройствам в
-группе cisco-routers \* тут может быть указано и несколько групп,
-например, таким образом: ``hosts: cisco-routers:cisco-switches``.
-Подробнее в
-`документации <http://docs.ansible.com/ansible/intro_patterns.html>`__
-\* обычно, в play надо указывать параметр **remote\_user**. Но, так как
-мы указали его в конфигурационном файле Ansible, можно не указывать его
-в play. \* ``gather_facts: false`` - отключение сбора фактов об
-устройстве, так как для сетевого оборудования надо использовать
-отдельные модули для сбора фактов. \* в разделе `конфигурационный
-файл <../1_ansible_basics/configuration..md>`__ рассматривалось, как
-отключить сбор фактов по умолчанию. Если он отключен, то параметр
-gather\_facts в play не нужно указывать. \* ``tasks:`` - дальше идет
-перечень задач \* в каждой задаче настроено имя (опционально) и
-действие. Действие может быть только одно. \* в действии указывается,
-какой модуль использовать, и параметры модуля.
+В playbook два сценария (play): 
+
+* ``name: Run show commands on routers`` - имя сценария (play). Этот
+  параметр обязательно должен быть в любом сценарии 
+* ``hosts: cisco-routers`` - сценарий будет применяться к устройствам в
+  группе cisco-routers. Тут может быть указано и несколько групп,
+  например, таким образом: ``hosts: cisco-routers:cisco-switches``.
+  Подробнее в `документации <http://docs.ansible.com/ansible/intro_patterns.html>`__
+* обычно, в play надо указывать параметр **remote_user**. Но, так как
+  мы указали его в конфигурационном файле Ansible, можно не указывать его
+  в play. 
+* ``gather_facts: false`` - отключение сбора фактов об
+  устройстве, так как для сетевого оборудования надо использовать
+  отдельные модули для сбора фактов. 
+
+  * в разделе "конфигурационный файл" рассматривалось, как
+    отключить сбор фактов по умолчанию. Если он отключен, то параметр
+    gather_facts в play не нужно указывать. 
+
+* ``tasks:`` - дальше идет перечень задач 
+
+  * в каждой задаче настроено имя (опционально) и действие. Действие может быть только одно. 
+  * в действии указывается, какой модуль использовать, и параметры модуля.
 
 И тот же playbook с отображением элементов:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook.png
-   :alt: Ansible playbook
 
-   Ansible playbook
 Так выглядит выполнение playbook:
 
 ::
@@ -93,12 +89,10 @@ gather\_facts в play не нужно указывать. \* ``tasks:`` - дал
     $ ansible-playbook 1_show_commands_with_raw.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook_execution.png
-   :alt: Ansible playbook
 
-   Ansible playbook
-    Обратите внимание, что для запуска playbook используется другая
-    команда. Для ad-hoc команды использовалась команда ansible. А для
-    playbook - ansible-playbook.
+Обратите внимание, что для запуска playbook используется другая
+команда. Для ad-hoc команды использовалась команда ansible. А для
+playbook - ansible-playbook.
 
 Для того, чтобы убедиться, что команды, которые указаны в задачах,
 выполнились на устройствах, запустите playbook с опцией -v (вывод
@@ -109,9 +103,7 @@ gather\_facts в play не нужно указывать. \* ``tasks:`` - дал
     $ ansible-playbook 1_show_commands_with_raw.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook-verbose.png
-   :alt: Verbose playbook
 
-   Verbose playbook
 В следующих разделах мы научимся отображать эти данные в нормальном
 формате и посмотрим, что с ними можно делать.
 
@@ -138,9 +130,7 @@ cisco) на маршрутизаторе 192.168.100.1 и запустим playb
     $ ansible-playbook 1_show_commands_with_raw.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook_failed_execution.png
-   :alt: Ansible playbook
 
-   Ansible playbook
 Обратите внимание на ошибку в выполнении первой задачи для
 маршрутизатора 192.168.100.1.
 
@@ -160,7 +150,7 @@ playbook, но расширение меняется на retry. (Если Вы 
 параллельно, то этот файл должен появиться у Вас)
 
 В этом файле хранится имя или адрес устройства, на котором возникла
-ошибка. Так выглядит файл 1\_show\_commands\_with\_raw.retry сейчас:
+ошибка. Так выглядит файл 1_show_commands_with_raw.retry сейчас:
 
 ::
 
@@ -178,9 +168,7 @@ playbook, но расширение меняется на retry. (Если Вы 
     $ ansible-playbook 1_show_commands_with_raw.yml --limit @/home/vagrant/repos/pyneng-examples-exercises/examples/23_ansible_basics/2_playbook_basics/1_show_commands_with_raw.retry
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook-retry.png
-   :alt: Ansible playbook
 
-   Ansible playbook
 Ansible взял список устройств, которые перечислены в файле retry, и
 выполнил playbook только для них.
 
@@ -221,3 +209,4 @@ playbook.
 Аналогично и с сетевым оборудованием. Если задача модуля - выполнить
 команду в конфигурационном режиме, а она уже есть на устройстве, модуль
 не будет вносить изменения.
+
