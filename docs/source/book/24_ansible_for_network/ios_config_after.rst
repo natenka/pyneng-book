@@ -4,9 +4,11 @@ after
 Параметр **after** указывает, какие команды выполнить после команд в
 списке lines (или commands).
 
-Команды, которые указаны в параметре after: \* выполняются, только если
-должны быть внесены изменения. \* при этом они будут выполнены
-независимо от того, есть они в конфигурации или нет.
+Команды, которые указаны в параметре after: 
+
+* выполняются, только если должны быть внесены изменения. 
+* при этом они будут выполнены
+  независимо от того, есть они в конфигурации или нет.
 
 Параметр after очень полезен в ситуациях, когда необходимо выполнить
 команду, которая не сохраняется в конфигурации.
@@ -14,13 +16,12 @@ after
 Например, команда no shutdown не сохраняется в конфигурации
 маршрутизатора, и если добавить её в список lines, изменения будут
 вноситься каждый раз при выполнении playbook.
-
-Но, если написать команду no shutdown в списке after, то она будет
+Если написать команду no shutdown в списке after, она будет
 применена только в том случае, если нужно вносить изменения (согласно
 списка lines).
 
 Пример использования параметра after в playbook
-7\_ios\_config\_after.yml:
+7_ios_config_after.yml:
 
 .. code:: yml
 
@@ -47,9 +48,7 @@ after
     $ ansible-playbook 7_ios_config_after.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6f_ios_config_after.png
-   :alt: 6f\_ios\_config\_after.png
 
-   6f\_ios\_config\_after.png
 Второй запуск playbook (изменений нет, поэтому команда no shutdown не
 выполняется):
 
@@ -58,13 +57,11 @@ after
     $ ansible-playbook 7_ios_config_after.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6f_ios_config_after_no_change.png
-   :alt: 6f\_ios\_config\_after\_no\_change
 
-   6f\_ios\_config\_after\_no\_change
 Рассмотрим ещё один пример использования after.
 
 С помощью after можно сохранять конфигурацию устройства (playbook
-7\_ios\_config\_after\_save.yml):
+7_ios_config_after_save.yml):
 
 .. code:: yml
 
@@ -94,7 +91,5 @@ after
     $ ansible-playbook 7_ios_config_after_save.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6f_ios_config_after_save.png
-   :alt: 6f\_ios\_config\_after\_save
 
-   6f\_ios\_config\_after\_save
 

@@ -41,7 +41,7 @@ sh run all. По умолчанию этот параметр отключен, 
 
 Если добавить параметр ``defaults: yes``, изменения уже не будут
 внесены, если не хватало только команды ip mtu 1500 (playbook
-6\_ios\_config\_defaults.yml):
+6_ios_config_defaults.yml):
 
 ::
 
@@ -68,7 +68,5 @@ sh run all. По умолчанию этот параметр отключен, 
     $ ansible-playbook 6_ios_config_defaults.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6e_ios_config_defaults.png
-   :alt: 6e\_ios\_config\_default
 
-   6e\_ios\_config\_default
 

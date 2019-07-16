@@ -4,8 +4,10 @@ before
 Параметр **before** указывает, какие действия выполнить до команд в
 списке lines.
 
-Команды, которые указаны в параметре before: \* выполняются, только если
-должны быть внесены изменения. \* при этом они будут выполнены
+Команды, которые указаны в параметре before: 
+* выполняются, только если
+должны быть внесены изменения. 
+* при этом они будут выполнены
 независимо от того, есть они в конфигурации или нет.
 
 Параметр before полезен в ситуациях, когда какие-то действия необходимо
@@ -15,7 +17,7 @@ before
 сравниваются с конфигурацией. То есть, по-прежнему сравниваются только
 команды в списке lines.
 
-Playbook 8\_ios\_config\_before.yml:
+Playbook 8_ios_config_before.yml:
 
 .. code:: yml
 
@@ -37,7 +39,7 @@ Playbook 8\_ios\_config\_before.yml:
               - permit tcp 10.0.1.0 0.0.0.255 any eq 22
               - permit icmp any any
 
-В playbook 8\_ios\_config\_before.yml ACL IN\_to\_OUT сначала удаляется
+В playbook 8_ios_config_before.yml ACL IN_to_OUT сначала удаляется
 с помощью параметра before, а затем создается заново.
 
 Таким образом, в ACL всегда находятся только те строки, которые заданы в
@@ -50,9 +52,7 @@ Playbook 8\_ios\_config\_before.yml:
     $ ansible-playbook 8_ios_config_before.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6g_ios_config_before.png
-   :alt: 6g\_ios\_config\_before
 
-   6g\_ios\_config\_before
 Запуск playbook без изменений (команда в списке before не выполняется):
 
 ::
@@ -60,7 +60,3 @@ Playbook 8\_ios\_config\_before.yml:
     $ ansible-playbook 8_ios_config_before.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6g_ios_config_before_no_updates.png
-   :alt: 6g\_ios\_config\_before\_no\_updates
-
-   6g\_ios\_config\_before\_no\_updates
-

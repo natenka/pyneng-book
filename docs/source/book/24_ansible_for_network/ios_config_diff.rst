@@ -1,3 +1,3 @@
-{% raw %} ## diff\_against, diff\_ignore\_lines, intended\_config
+{% raw %} ## diff_against, diff_ignore_lines, intended_config
 
     Добавлены в версии 2.4

@@ -2,12 +2,14 @@ match
 -----
 
 Параметр **match** указывает, как именно нужно сравнивать команды (что
-считается изменением): \* **line** - команды проверяются построчно. Этот
-режим используется по умолчанию \* **strict** - должны совпасть не
-только сами команды, но и их положение относительно друг друга \*
-**exact** - команды должны в точности совпадать с конфигурацией, и не
-должно быть никаких лишних строк \* **none** - модуль не будет
-сравнивать команды с текущей конфигурацией
+считается изменением): 
+
+* **line** - команды проверяются построчно. Этот режим используется по умолчанию 
+* **strict** - должны совпасть не
+  только сами команды, но и их положение относительно друг друга 
+* **exact** - команды должны в точности совпадать с конфигурацией, и не
+  должно быть никаких лишних строк 
+* **none** - модуль не будет сравнивать команды с текущей конфигурацией
 
 match: line
 ~~~~~~~~~~~
@@ -26,7 +28,7 @@ match: line
     ip access-list extended IN_to_OUT
      permit tcp 10.0.1.0 0.0.0.255 any eq 22
 
-Пример использования playbook 9\_ios\_config\_match\_line.yml в режиме
+Пример использования playbook 9_ios_config_match_line.yml в режиме
 line:
 
 .. code:: yml
@@ -54,9 +56,7 @@ line:
     $ ansible-playbook 9_ios_config_match_line.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_line.png
-   :alt: 6h\_ios\_config\_match\_line
 
-   6h\_ios\_config\_match\_line
 Обратите внимание, что в списке updates только две из трёх строк ACL.
 Так как в режиме lines модуль сравнивает команды независимо друг от
 друга, он обнаружил, что не хватает только двух команд из трех.
@@ -93,7 +93,7 @@ ACL на маршрутизаторе:
      permit tcp 10.0.1.0 0.0.0.255 any eq www
      deny   ip any any
 
-Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
+Playbook 9_ios_config_match_exact.yml (будет постепенно
 дополняться):
 
 .. code:: yml
@@ -122,9 +122,7 @@ Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
     $ ansible-playbook 9_ios_config_match_exact.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_exact_1.png
-   :alt: 6h\_ios\_config\_match\_exact
 
-   6h\_ios\_config\_match\_exact
 Теперь ACL выглядит так:
 
 ::
@@ -182,9 +180,7 @@ Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
     $ ansible-playbook 9_ios_config_match_exact.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_exact_2.png
-   :alt: 6h\_ios\_config\_match\_exact
 
-   6h\_ios\_config\_match\_exact
 И, соответственно, на маршрутизаторе:
 
 ::
@@ -193,11 +189,13 @@ Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
     ip access-list extended IN_to_OUT
      permit icmp any any
 
-Теперь в ACL осталась только одна строка: \* Модуль проверил, каких
-команд не хватает в ACL (так как режим по умолчанию match: line), \*
-обнаружил, что не хватает команды ``permit icmp any any``, и добавил её
+Теперь в ACL осталась только одна строка: 
 
-Но, так как в playbook ACL сначала удаляется, а затем применяется список
+* Модуль проверил, каких 
+  команд не хватает в ACL (так как режим по умолчанию match: line), 
+* обнаружил, что не хватает команды ``permit icmp any any``, и добавил её
+
+Так как в playbook ACL сначала удаляется, а затем применяется список
 команд lines, получилось, что в итоге в ACL одна строка.
 
 Поможет в такой ситуации вариант ``match: exact``:
@@ -224,7 +222,7 @@ Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
               - deny   ip any any
             match: exact
 
-Применение playbook 9\_ios\_config\_match\_exact.yml к текущему
+Применение playbook 9_ios_config_match_exact.yml к текущему
 состоянию маршрутизатора (в ACL одна строка):
 
 ::
@@ -232,9 +230,7 @@ Playbook 9\_ios\_config\_match\_exact.yml (будет постепенно
     $ ansible-playbook 9_ios_config_match_exact.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_exact_final.png
-   :alt: 6h\_ios\_config\_match\_exact
 
-   6h\_ios\_config\_match\_exact
 Теперь результат такой:
 
 ::
@@ -300,9 +296,7 @@ ACL:
     $ ansible-playbook 9_ios_config_match_exact.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_exact_final_2.png
-   :alt: 6h\_ios\_config\_match\_exact
 
-   6h\_ios\_config\_match\_exact
 Это значит, что при использовании ``match:exact`` важно, чтобы был
 какой-то способ удалить конфигурацию, если она не соответствует тому,
 что должно быть (или чтобы команды перезаписывались). Иначе эта задача
@@ -328,7 +322,7 @@ match: strict
      permit icmp any any
      deny   ip any any
 
-Playbook 9\_ios\_config\_match\_strict.yml:
+Playbook 9_ios_config_match_strict.yml:
 
 .. code:: yml
 
@@ -358,9 +352,7 @@ Playbook 9\_ios\_config\_match\_strict.yml:
     $ ansible-playbook 9_ios_config_match_strict.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_strict.png
-   :alt: 6h\_ios\_config\_match\_strict
 
-   6h\_ios\_config\_match\_strict
 Так как изменений не было, ACL остался таким же.
 
 В такой же ситуации, при использовании ``match: exact``, было бы
@@ -373,7 +365,7 @@ match: none
 раз при выполнении playbook будут отправляться команды, которые указаны
 в задаче.
 
-Пример playbook 9\_ios\_config\_match\_none.yml:
+Пример playbook 9_ios_config_match_none.yml:
 
 .. code:: yml
 
@@ -403,8 +395,6 @@ match: none
     $ ansible-playbook 9_ios_config_match_none.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6h_ios_config_match_none.png
-   :alt: 6h\_ios\_config\_match\_none
 
-   6h\_ios\_config\_match\_none
 Использование ``match: none`` подходит в тех случаях, когда, независимо
 от текущей конфигурации, нужно отправить все команды.

@@ -5,13 +5,13 @@ src
 шаблону конфигурации, которую нужно загрузить на устройство.
 
 Этот параметр взаимоисключающий с lines (то есть, можно указывать или
-lines, или src). Он заменяет модуль ios\_template, который скоро будет
+lines, или src). Он заменяет модуль ios_template, который скоро будет
 удален.
 
 Конфигурация
 ~~~~~~~~~~~~
 
-Пример playbook 11\_ios\_config\_src.yml:
+Пример playbook 11_ios_config_src.yml:
 
 .. code:: yml
 
@@ -26,7 +26,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
           ios_config:
             src: templates/acl_cfg.txt
 
-В файле templates/acl\_cfg.txt находится такая конфигурация:
+В файле templates/acl_cfg.txt находится такая конфигурация:
 
 ::
 
@@ -44,9 +44,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
     $ ansible-playbook 11_ios_config_src.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6j_ios_config_src.png
-   :alt: 6j\_ios\_config\_src
 
-   6j\_ios\_config\_src
 Теперь на маршрутизаторе настроен ACL:
 
 ::
@@ -66,9 +64,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
     $ ansible-playbook 11_ios_config_src.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6j_ios_config_src_2.png
-   :alt: 6j\_ios\_config\_src\_2
 
-   6j\_ios\_config\_src\_2
 Шаблон Jinja2
 ~~~~~~~~~~~~~
 
@@ -86,18 +82,19 @@ lines, или src). Он заменяет модуль ios\_template, котор
      network {{ ip }} 0.0.0.0 area 0
     {% endfor %}
 
-В шаблоне используются две переменные: \* mgmnt\_ip - IP-адрес, который
-будет использоваться как router-id \* ospf\_ints - список IP-адресов
-интерфейсов, на которых нужно включить OSPF
+В шаблоне используются две переменные: 
+
+* mgmnt_ip - IP-адрес, который будет использоваться как router-id 
+* ospf_ints - список IP-адресов интерфейсов, на которых нужно включить OSPF
 
 Для настройки OSPF на трёх маршрутизаторах нужно иметь возможность
 использовать разные значения этих переменных для разных устройств. Для
-таких задач используются файлы с переменными в каталоге host\_vars.
+таких задач используются файлы с переменными в каталоге host_vars.
 
-В каталоге host\_vars нужно создать такие файлы (если они ещё не
+В каталоге host_vars нужно создать такие файлы (если они ещё не
 созданы):
 
-Файл host\_vars/192.168.100.1:
+Файл host_vars/192.168.100.1:
 
 ::
 
@@ -111,7 +108,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
       - 10.0.0.1
       - 10.255.1.1
 
-Файл host\_vars/192.168.100.2:
+Файл host_vars/192.168.100.2:
 
 ::
 
@@ -125,7 +122,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
       - 10.0.0.2
       - 10.255.2.2
 
-Файл host\_vars/192.168.100.3:
+Файл host_vars/192.168.100.3:
 
 ::
 
@@ -139,7 +136,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
       - 10.0.0.3
       - 10.255.3.3
 
-Теперь можно создавать playbook 11\_ios\_config\_src\_jinja.yml:
+Теперь можно создавать playbook 11_ios_config_src_jinja.yml:
 
 .. code:: yml
 
@@ -154,7 +151,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
           ios_config:
             src: templates/ospf.j2
 
-Так как Ansible сам найдет переменные в каталоге host\_vars, их не нужно
+Так как Ansible сам найдет переменные в каталоге host_vars, их не нужно
 указывать. Можно сразу запускать playbook:
 
 ::
@@ -162,9 +159,7 @@ lines, или src). Он заменяет модуль ios\_template, котор
     $ ansible-playbook 11_ios_config_src_jinja.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6j_ios_config_src_jinja.png
-   :alt: 6j\_ios\_config\_src\_jinja
 
-   6j\_ios\_config\_src\_jinja
 Теперь на всех маршрутизаторах настроен OSPF:
 
 ::
@@ -202,11 +197,13 @@ lines, или src). Он заменяет модуль ios\_template, котор
     $ ansible-playbook 11_ios_config_src_jinja.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6j_ios_config_src_jinja_2.png
-   :alt: 6j\_ios\_config\_src\_jinja\_2
 
-   6j\_ios\_config\_src\_jinja\_2
 Совмещение с другими параметрами
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Параметр **src** совместим с такими параметрами: \* backup \* config \*
-defaults \* save (но у самого save в Ansible 2.2 проблемы с работой)
+Параметр **src** совместим с такими параметрами: 
+
+* backup 
+* config 
+* defaults 
+* save

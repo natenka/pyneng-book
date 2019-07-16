@@ -6,7 +6,7 @@ backup
 копироваться в каталог backup относительно каталога, в котором находится
 playbook (если каталог не существует, он будет создан).
 
-Playbook 5\_ios\_config\_backup.yml:
+Playbook 5_ios_config_backup.yml:
 
 .. code:: yml
 
@@ -35,9 +35,7 @@ Playbook 5\_ios\_config\_backup.yml:
     $ ansible-playbook 5_ios_config_backup.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6d_ios_config_backup.png
-   :alt: 6d\_ios\_config\_backup
 
-   6d\_ios\_config\_backup
 В каталоге backup теперь находятся файлы такого вида (при каждом запуске
 playbook они перезаписываются):
 
@@ -50,7 +48,7 @@ playbook они перезаписываются):
 При работе с Python 3, может возникнуть ошибка "RuntimeError: dictionary
 changed size during iteration". Ее можно исправить вручную. Для этого
 надо запустить playbook с опцией -vvv и посмотреть где находится модуль
-ios\_config. В выводе также будет информация о том в какой строке
+ios_config. В выводе также будет информация о том в какой строке
 ошибка.
 
 Пример ошибки:

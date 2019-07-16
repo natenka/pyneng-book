@@ -12,7 +12,7 @@ parents
      login local
      transport input ssh
 
-В таком случае, playbook 2\_ios\_config\_parents\_basic.yml будет
+В таком случае, playbook 2_ios_config_parents_basic.yml будет
 выглядеть так:
 
 .. code:: yml
@@ -39,9 +39,7 @@ parents
     $ ansible-playbook 2_ios_config_parents_basic.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6a_ios_config_parents_basic.png
-   :alt: 6a\_ios\_config\_parents\_basic
 
-   6a\_ios\_config\_parents\_basic
 Если команда находится в нескольких вложенных режимах, подрежимы
 указываются в списке parents.
 
@@ -53,7 +51,7 @@ parents
      class class-default
       shape average 100000000 1000000
 
-Тогда playbook 2\_ios\_config\_parents\_mult.yml будет выглядеть так:
+Тогда playbook 2_ios_config_parents_mult.yml будет выглядеть так:
 
 .. code:: yml
 

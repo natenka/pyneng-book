@@ -1,13 +1,12 @@
 lines (commands)
 ----------------
 
-Самый простой способ использовать модуль ios\_config - отправлять
+Самый простой способ использовать модуль ios_config - отправлять
 команды глобального конфигурационного режима с параметром lines.
+Для параметра lines есть alias commands, то есть, можно вместо lines
+писать commands.
 
-    Для параметра lines есть alias commands, то есть, можно вместо lines
-    писать commands.
-
-Пример playbook 1\_ios\_config\_lines.yml:
+Пример playbook 1_ios_config_lines.yml:
 
 .. code:: yml
 
@@ -23,8 +22,8 @@ lines (commands)
             lines:
               - service password-encryption
 
-    Используется переменная cli, которая указана в файле
-    group\_vars/all.yml.
+Используется переменная cli, которая указана в файле
+group_vars/all.yml.
 
 Результат выполнения playbook:
 
@@ -33,15 +32,19 @@ lines (commands)
     $ ansible-playbook 1_ios_config_lines.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6_ios_config_lines.png
-   :alt: 6\_ios\_config\_lines
 
-   6\_ios\_config\_lines
-Ansible выполняет такие команды: \* terminal length 0 \* enable \* show
-running-config - чтобы проверить, есть ли эта команда на устройстве.
-Если команда есть, задача выполняться не будет. Если команды нет, задача
-выполнится \* если команды, которая указана в задаче, нет в
-конфигурации: \* configure terminal \* service password-encryption \*
-end
+Ansible выполняет такие команды: 
+
+* terminal length 0 
+* enable 
+* show running-config - чтобы проверить, есть ли эта команда на устройстве.
+  Если команда есть, задача выполняться не будет. Если команды нет, задача
+  выполнится 
+* если команды, которая указана в задаче, нет в конфигурации: 
+
+  * configure terminal 
+  * service password-encryption 
+  * end
 
 Так как модуль каждый раз проверяет конфигурацию, прежде чем применит
 команду, модуль идемпотентен. То есть, если ещё раз запустить playbook,
@@ -52,9 +55,9 @@ end
     $ ansible-playbook 1_ios_config_lines.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6_ios_config_lines_2.png
-   :alt: 6\_ios\_config\_lines
 
-   6\_ios\_config\_lines
+.. warning::
+
     Обязательно пишите команды полностью, а не сокращенно. И обращайте
     внимание, что для некоторых команд IOS сам добавляет параметры. Если
     писать команду не в том виде, в котором она реально видна в
@@ -62,7 +65,7 @@ end
     время считать, что команды нет, и вносить изменения каждый раз.
 
 Параметр lines позволяет отправлять и несколько команд (playbook
-1\_ios\_config\_mult\_lines.yml):
+1_ios_config_mult_lines.yml):
 
 ::
 
@@ -88,7 +91,5 @@ end
     $ ansible-playbook 1_ios_config_mult_lines.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6_ios_config_mult_lines.png
-   :alt: 6\_ios\_config\_mult\_lines
 
-   6\_ios\_config\_mult\_lines
 

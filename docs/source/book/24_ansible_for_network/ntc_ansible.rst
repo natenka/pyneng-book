@@ -3,15 +3,11 @@ ntc-ansible
 
 **ntc-ansible** - это модуль для работы с сетевым оборудованием, который
 не только выполняет команды на оборудовании, но и обрабатывает вывод
-команд и преобразует с помощью {% if book.book\_name ==
-"ansible\_neteng"
-%}\ `TextFSM <https://natenka.gitbooks.io/pyneng/content/book/22_textfsm/>`__.{%
-else %}\ `TextFSM <../../22_textfsm/>`__.{% endif %}
-
+команд и преобразует с помощью TextFSM.
 Этот модуль не входит в число core модулей Ansible, поэтому его нужно
 установить.
 
-Но прежде нужно указать Ansible, где искать сторонние модули.
+Перед установкой нужно указать Ansible, где искать сторонние модули.
 Указывается путь в файле ansible.cfg:
 
 ::
@@ -71,9 +67,9 @@ else %}\ `TextFSM <../../22_textfsm/>`__.{% endif %}
 сетевым оборудованием и позволяют выполнять команды, из всех
 возможностей ntc-ansible наиболее полезной будет отправка команд show и
 получение структурированного вывода. За это отвечает модуль
-ntc\_show\_command.
+ntc_show_command.
 
-ntc\_show\_command
+ntc_show_command
 ------------------
 
 Модуль использует netmiko для подключения к оборудованию (netmiko должен
@@ -84,17 +80,20 @@ show с помощью TextFSM в структурированный вывод 
 найдена команда, и для команды был найден шаблон.
 
 Как и с предыдущими сетевыми модулями, в ntc-ansible нужно указывать ряд
-параметров для подключения: \* **connection** - тут возможны два
-варианта: ssh (подключение netmiko) или offline (чтение из файла для
-тестовых целей) \* **platform** - платформа, которая существует в index
-файле (library/ntc-ansible/ntc-templates/templates/index) \* **command**
-- команда, которую нужно выполнить на устройстве \* **host** - IP-адрес
-или имя устройства \* **username** - имя пользователя \* **password** -
-пароль \* **template\_dir** - путь к каталогу, в котором находятся
-шаблоны (в текущем варианте установки они находятся в каталоге
-library/ntc-ansible/ntc-templates/templates
+параметров для подключения: 
 
-Пример playbook 1\_ntc\_ansible.yml:
+* **connection** - тут возможны два 
+  варианта: ssh (подключение netmiko) или offline (чтение из файла для тестовых целей) 
+* **platform** - платформа, которая существует в index файле (library/ntc-ansible/ntc-templates/templates/index) 
+* **command** - команда, которую нужно выполнить на устройстве 
+* **host** - IP-адрес или имя устройства 
+* **username** - имя пользователя 
+* **password** - пароль 
+* **template_dir** - путь к каталогу, в котором находятся
+  шаблоны (в текущем варианте установки они находятся в каталоге
+  library/ntc-ansible/ntc-templates/templates
+
+Пример playbook 1_ntc_ansible.yml:
 
 ::
 
@@ -127,13 +126,11 @@ library/ntc-ansible/ntc-templates/templates
     $ ansible-playbook 1_ntc-ansible.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/7_ntc_ansible.png
-   :alt: Ansible playbook
 
-   Ansible playbook
 В переменной response находится структурированный вывод в виде списка
 словарей. Ключи в словарях получены на основании переменных, которые
 описаны в шаблоне
-library/ntc-ansible/ntc-templates/templates/cisco\_ios\_show\_ip\_int\_brief.template
+library/ntc-ansible/ntc-templates/templates/cisco_ios_show_ip_int_brief.template
 (единственное отличие - регистр):
 
 ::
@@ -157,9 +154,9 @@ library/ntc-ansible/ntc-templates/templates/cisco\_ios\_show\_ip\_int\_brief.tem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Для того, чтобы сохранить вывод, можно использовать тот же прием,
-который использовался для модуля ios\_facts.
+который использовался для модуля ios_facts.
 
-Пример playbook 2\_ntc\_ansible\_save.yml с сохранением результатов
+Пример playbook 2_ntc_ansible_save.yml с сохранением результатов
 команды:
 
 ::
@@ -196,12 +193,10 @@ library/ntc-ansible/ntc-templates/templates/cisco\_ios\_show\_ip\_int\_brief.tem
     $ ansible-playbook 2_ntc-ansible_save.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/7a_ntc_ansible_save.png
-   :alt: Ansible playbook
 
-   Ansible playbook
-В результате, в каталоге all\_facts появляются соответствующие файлы для
+В результате, в каталоге all_facts появляются соответствующие файлы для
 каждого маршрутизатора. Пример файла
-all\_facts/192.168.100.1\_sh\_ip\_int\_br.json:
+all_facts/192.168.100.1_sh_ip_int_br.json:
 
 ::
 
@@ -304,8 +299,3 @@ all\_facts/192.168.100.1\_sh\_ip\_int\_br.json:
     cisco_ios_show_aliases.template,  .*, cisco_ios, sh[[ow]] alia[[ses]]
     ...
 
-{% if book.book\_name == "ansible\_neteng" %} Синтаксис шаблонов и файла
-index описаны в разделе `TextFSM курса "Python для сетевых
-инженеров" <https://natenka.gitbooks.io/pyneng/content/book/22_textfsm/>`__.
-{% else %} Синтаксис шаблонов и файла index описаны в разделе
-`TextFSM <../../22_textfsm/>`__. {% endif %}

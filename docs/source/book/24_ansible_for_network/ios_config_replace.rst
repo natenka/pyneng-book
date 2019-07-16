@@ -1,10 +1,12 @@
 replace
 -------
 
-Параметр replace указывает, как именно нужно заменять конфигурацию: \*
-**line** - в этом режиме отправляются только те команды, которых нет в
-конфигурации. Этот режим используется по умолчанию \* **block** - в этом
-режиме отправляются все команды, если хотя бы одной команды нет
+Параметр replace указывает, как именно нужно заменять конфигурацию: 
+
+* **line** - в этом режиме отправляются только те команды, которых нет в
+  конфигурации. Этот режим используется по умолчанию 
+* **block** - в этом
+  режиме отправляются все команды, если хотя бы одной команды нет
 
 replace: line
 ~~~~~~~~~~~~~
@@ -22,7 +24,7 @@ replace: line
      permit tcp 10.0.1.0 0.0.0.255 any eq 22
      permit icmp any any
 
-Попробуем запустить такой playbook 10\_ios\_config\_replace\_line.yml:
+Попробуем запустить такой playbook 10_ios_config_replace_line.yml:
 
 .. code:: yml
 
@@ -52,9 +54,7 @@ replace: line
     $ ansible-playbook 10_ios_config_replace_line.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6i_ios_config_replace_line.png
-   :alt: 6i\_ios\_config\_replace\_line
 
-   6i\_ios\_config\_replace\_line
 После этого на маршрутизаторе такой ACL:
 
 ::
@@ -89,7 +89,7 @@ ACL на маршрутизаторе:
      permit tcp 10.0.1.0 0.0.0.255 any eq 22
      permit icmp any any
 
-Playbook 10\_ios\_config\_replace\_block.yml:
+Playbook 10_ios_config_replace_block.yml:
 
 .. code:: yml
 
@@ -120,9 +120,7 @@ Playbook 10\_ios\_config\_replace\_block.yml:
     $ ansible-playbook 10_ios_config_replace_block.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/6i_ios_config_replace_block.png
-   :alt: 6i\_ios\_config\_replace\_block
 
-   6i\_ios\_config\_replace\_block
 В результате на маршрутизаторе такой ACL:
 
 ::
