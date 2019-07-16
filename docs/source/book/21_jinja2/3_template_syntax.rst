@@ -5,22 +5,28 @@
 переменных. Это самый простой и понятный пример использования шаблонов.
 Но синтаксис шаблонов Jinja на этом не ограничивается.
 
-В шаблонах Jinja2 можно использовать: \* переменные \* условия (if/else)
-\* циклы (for) \* фильтры - специальные встроенные методы, которые
-позволяют делать преобразования переменных \* тесты - используются для
-проверки, соответствует ли переменная какому-то условию
+В шаблонах Jinja2 можно использовать: 
+
+* переменные 
+* условия (if/else)
+* циклы (for) 
+* фильтры - специальные встроенные методы, которые
+  позволяют делать преобразования переменных 
+* тесты - используются для проверки, 
+  соответствует ли переменная какому-то условию
 
 Кроме того, Jinja поддерживает наследование между шаблонами, а также
 позволяет добавлять содержимое одного шаблона в другой.
 
-Мы разберемся с основами этих возможностей. Подробнее о шаблонах Jinja2
-можно почитать в
-`документации <http://jinja.pocoo.org/docs/dev/templates/>`__.
+В этом разделе рассматриваются только основы этих возможностей. Подробнее о шаблонах Jinja2
+можно почитать в `документации <http://jinja.pocoo.org/docs/dev/templates/>`__.
+
+.. note::
 
     Все файлы, которые используются как примеры в этом подразделе,
-    находятся в каталоге 3\_template\_syntax/
+    находятся в каталоге 3_template_syntax/
 
-Для генерации шаблонов будет использоваться скрипт cfg\_gen.py
+Для генерации шаблонов будет использоваться скрипт cfg_gen.py
 
 .. code:: python
 
@@ -30,19 +36,27 @@
     import sys
     import os
 
-    TEMPLATE_DIR, template = os.path.split(sys.argv[1])
-    VARS_FILE = sys.argv[2]
+    #$ python cfg_gen.py templates/for.txt data_files/for.yml
+    template_dir, template = os.path.split(sys.argv[1])
 
-    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR),
-                      trim_blocks=True, lstrip_blocks=True)
-    template = env.get_template(template)
+    vars_file = sys.argv[2]
 
-    vars_dict = yaml.load(open(VARS_FILE))
+    env = Environment(
+        loader=FileSystemLoader(template_dir),
+        trim_blocks=True,
+        lstrip_blocks=True)
+    template = env.get_template(template_file)
+
+    with open(vars_file) as f:
+        vars_dict = yaml.load(f)
 
     print(template.render(vars_dict))
 
 Для того, чтобы посмотреть на результат, нужно вызвать скрипт и передать
-ему два аргумента: \* шаблон \* файл с переменными в формате YAML
+ему два аргумента: 
+
+* шаблон 
+* файл с переменными в формате YAML
 
 Результат будет выведен на стандартный поток вывода.
 
@@ -52,5 +66,17 @@
 
     $ python cfg_gen.py templates/variables.txt data_files/vars.yml
 
-    Параметры trim\_blocks и lstrip\_blocks описаны в следующем
+    Параметры trim_blocks и lstrip_blocks описаны в следующем
     подразделе.
+
+.. toctree::
+   :maxdepth: 1
+
+   3_whitespace_control
+   3a_syntax_variables
+   3b_syntax_for
+   3c_syntax_if
+   3d_syntax_filter
+   3e_syntax_test
+   3f_assignments
+   3g_include

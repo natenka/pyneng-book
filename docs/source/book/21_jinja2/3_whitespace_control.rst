@@ -1,14 +1,14 @@
 Контроль символов whitespace
 ----------------------------
 
-trim\_blocks, lstrip\_blocks
+trim_blocks, lstrip_blocks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Параметр ``trim_blocks`` удаляет первую пустую строку после блока
 конструкции, если его значение равно True (по умолчанию False).
 
-Посмотрим на эффект применения флага на примере шаблона
-templates/env\_flags.txt:
+Эффект применения флага рассматривается на примере шаблона
+templates/env_flags.txt:
 
 ::
 
@@ -18,10 +18,10 @@ templates/env\_flags.txt:
      neighbor {{ ibgp }} update-source {{ bgp.loopback }}
      {% endfor %}
 
-Если скрипт cfg\_gen.py запускается без флагов trim\_blocks,
-lstrip\_blocks:
+Если скрипт cfg_gen.py запускается без флагов trim_blocks,
+lstrip_blocks:
 
-::
+.. code:: python
 
     env = Environment(loader = FileSystemLoader(TEMPLATE_DIR))
 
@@ -46,7 +46,7 @@ lstrip\_blocks:
 
 По умолчанию такое же поведение будет с любыми другими блоками Jinja.
 
-При добавлении флага trim\_blocks таким образом:
+При добавлении флага trim_blocks таким образом:
 
 .. code:: python
 
@@ -66,12 +66,12 @@ lstrip\_blocks:
 
 Были удалены пустые строки после блока.
 
-Но перед строками ``neighbor ... remote-as`` появились два пробела. Так
+Перед строками ``neighbor ... remote-as`` появились два пробела. Так
 получилось из-за того, что перед блоком for стоит пробел. После того,
 как был отключен лишний перевод строки, пробелы и табы перед блоком
 добавляются к первой строке блока.
 
-Но это не влияет на следующие строки. Поэтому строки с
+Это не влияет на следующие строки. Поэтому строки с
 ``neighbor ... update-source`` отображаются с одним пробелом.
 
 Параметр ``lstrip_blocks`` контролирует то, будут ли удаляться пробелы и
@@ -80,7 +80,7 @@ lstrip\_blocks:
 
 Если добавить аргумент ``lstrip_blocks=True`` таким образом:
 
-::
+.. code:: python
 
     env = Environment(loader=FileSystemLoader(TEMPLATE_DIR),
                       trim_blocks=True, lstrip_blocks=True)
@@ -96,14 +96,14 @@ lstrip\_blocks:
      neighbor 10.0.0.3 remote-as 100
      neighbor 10.0.0.3 update-source lo100
 
-Отключение lstrip\_blocks для блока
+Отключение lstrip_blocks для блока
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Иногда нужно отключить функциональность lstrip\_blocks для блока.
+Иногда нужно отключить функциональность lstrip_blocks для блока.
 
 Например, если параметр ``lstrip_blocks`` установлен равным True в
 окружении, но нужно отключить его для второго блока в шаблоне (файл
-templates/env\_flags2.txt):
+templates/env_flags2.txt):
 
 ::
 
@@ -136,7 +136,7 @@ templates/env\_flags2.txt):
      neighbor 10.0.0.3 remote-as 100
      neighbor 10.0.0.3 update-source lo100
 
-Плюс после знака процента отключает lstrip\_blocks для блока, в данном
+Плюс после знака процента отключает lstrip_blocks для блока, в данном
 случае, только для начала блока.
 
 Если сделать таким образом (плюс добавлен в выражении для завершения
@@ -184,7 +184,7 @@ templates/env\_flags2.txt):
 
     env = Environment(loader = FileSystemLoader(TEMPLATE_DIR))
 
-Шаблон templates/env\_flags3.txt:
+Шаблон templates/env_flags3.txt:
 
 ::
 
