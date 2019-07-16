@@ -1,11 +1,20 @@
-Модуль ios\_facts
+Модуль ios_facts
 -----------------
 
-Модуль ios\_facts собирает информацию с устройств под управлением IOS.
+Модуль ios_facts собирает информацию с устройств под управлением IOS.
 
-Информация берется из таких команд: \* dir \* show version \* show
-memory statistics \* show interfaces \* show ipv6 interface \* show lldp
-\* show lldp neighbors detail \* show running-config
+Информация берется из таких команд: 
+
+* dir 
+* show version 
+* show memory statistics 
+* show interfaces 
+* show ipv6 interface 
+* show lldp
+* show lldp neighbors detail 
+* show running-config
+
+.. note::
 
     Чтобы видеть, какие команды Ansible выполняет на оборудовании, можно
     настроить `EEM
@@ -16,13 +25,31 @@ memory statistics \* show interfaces \* show ipv6 interface \* show lldp
 информацию, а можно только подмножество. По умолчанию модуль собирает
 всю информацию, кроме конфигурационного файла.
 
-Какую информацию собирать, указывается в параметре **gather\_subset**.
+Какую информацию собирать, указывается в параметре **gather_subset**.
 Поддерживаются такие варианты (указаны также команды, которые будут
-выполняться на устройстве): \* **all** \* **hardware** \* dir \* show
-version \* show memory statistics \* **config** \* show version \* show
-running-config \* **interfaces** \* dir \* show version \* show
-interfaces \* show ip interface \* show ipv6 interface \* show lldp \*
-show lldp neighbors detail
+выполняться на устройстве): 
+
+* **all** 
+* **hardware** 
+
+  * dir 
+  * show version 
+  * show memory statistics 
+
+* **config** 
+
+  * show version 
+  * show running-config 
+
+* **interfaces** 
+
+  * dir 
+  * show version 
+  * show interfaces 
+  * show ip interface 
+  * show ipv6 interface 
+  * show lldp 
+  * show lldp neighbors detail
 
 Собрать все факты:
 
@@ -47,24 +74,27 @@ show lldp neighbors detail
         gather_subset:
           - "!hardware"
 
-Ansible собирает такие факты: \* ansible\_net\_all\_ipv4\_addresses -
-список IPv4 адресов на устройстве \* ansible\_net\_all\_ipv6\_addresses
-- список IPv6 адресов на устройстве \* ansible\_net\_config -
-конфигурация (для Cisco sh run) \* ansible\_net\_filesystems - файловая
-система устройства \* ansible\_net\_gather\_subset - какая информация
-собирается (hardware, default, interfaces, config) \*
-ansible\_net\_hostname - имя устройства \* ansible\_net\_image - имя и
-путь ОС \* ansible\_net\_interfaces - словарь со всеми интерфейсами
-устройства. Имена интерфейсов - ключи, а данные - параметры каждого
-интерфейса \* ansible\_net\_memfree\_mb - сколько свободной памяти на
-устройстве \* ansible\_net\_memtotal\_mb - сколько памяти на устройстве
-\* ansible\_net\_model - модель устройства \* ansible\_net\_serialnum -
-серийный номер \* ansible\_net\_version - версия IOS
+Ansible собирает такие факты: 
+
+* ansible_net_all_ipv4_addresses - список IPv4 адресов на устройстве 
+* ansible_net_all_ipv6_addresses - список IPv6 адресов на устройстве 
+* ansible_net_config - конфигурация (для Cisco sh run) 
+* ansible_net_filesystems - файловая система устройства 
+* ansible_net_gather_subset - какая информация собирается (hardware, default, interfaces, config) 
+* ansible_net_hostname - имя устройства 
+* ansible_net_image - имя и путь ОС 
+* ansible_net_interfaces - словарь со всеми интерфейсами
+  устройства. Имена интерфейсов - ключи, а данные - параметры каждого интерфейса 
+* ansible_net_memfree_mb - сколько свободной памяти на устройстве 
+* ansible_net_memtotal_mb - сколько памяти на устройстве
+* ansible_net_model - модель устройства 
+* ansible_net_serialnum - серийный номер 
+* ansible_net_version - версия IOS
 
 Использование модуля
 ~~~~~~~~~~~~~~~~~~~~
 
-Пример playbook 1\_ios\_facts.yml с использованием модуля ios\_facts
+Пример playbook 1_ios_facts.yml с использованием модуля ios_facts
 (собираются все факты):
 
 ::
@@ -85,9 +115,7 @@ ansible\_net\_hostname - имя устройства \* ansible\_net\_image - и
     $ ansible-playbook 1_ios_facts.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/5_ios_facts.png
-   :alt: 5\_ios\_facts
 
-   5\_ios\_facts
 Для того, чтобы посмотреть, какие именно факты собираются с устройства,
 можно добавить флаг -v (информация сокращена):
 
@@ -97,14 +125,12 @@ ansible\_net\_hostname - имя устройства \* ansible\_net\_image - и
     Using /home/nata/pyneng_course/chapter15/ansible.cfg as config file
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/5_ios_facts_verbose.png
-   :alt: 5\_ios\_facts
 
-   5\_ios\_facts
 После того, как Ansible собрал факты с устройства, все факты доступны
 как переменные в playbook, шаблонах и т.д.
 
 Например, можно отобразить содержимое факта с помощью debug (playbook
-2\_ios\_facts\_debug.yml):
+2_ios_facts_debug.yml):
 
 .. code:: yml
 
@@ -132,9 +158,7 @@ ansible\_net\_hostname - имя устройства \* ansible\_net\_image - и
     $ ansible-playbook 2_ios_facts_debug.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/5_ios_facts_debug.png
-   :alt: 5\_ios\_facts\_debug
 
-   5\_ios\_facts\_debug
 Сохранение фактов
 ~~~~~~~~~~~~~~~~~
 
@@ -145,9 +169,9 @@ ansible\_net\_hostname - имя устройства \* ansible\_net\_image - и
 
 Для этого будет использоваться модуль copy.
 
-Playbook 3\_ios\_facts.yml собирает всю информацию об устройствах и
-записывает в разные файлы (создайте каталог all\_facts перед запуском
-playbook или раскомментируйте задачу Create all\_facts dir, и Ansible
+Playbook 3_ios_facts.yml собирает всю информацию об устройствах и
+записывает в разные файлы (создайте каталог all_facts перед запуском
+playbook или раскомментируйте задачу Create all_facts dir, и Ansible
 создаст каталог сам):
 
 ::
@@ -190,17 +214,18 @@ playbook или раскомментируйте задачу Create all\_facts 
 
 Но в данном случае нет исходного файла, содержимое которого нужно
 скопировать. Вместо этого, есть содержимое переменной
-ios\_facts\_result, которое нужно перенести в файл
-all\_facts/{{inventory\_hostname}}\_facts.json.
+ios_facts_result, которое нужно перенести в файл
+all_facts/{{inventory_hostname}}_facts.json.
 
 Для того, чтобы перенести содержимое переменной в файл, в модуле copy
 вместо src используется параметр content.
 
-В строке ``content: "{{ ios_facts_result | to_nice_json }}"`` \*
-параметр to\_nice\_json - это фильтр Jinja2, который преобразует
-информацию переменной в формат, в котором удобней читать информацию \*
-переменная в формате Jinja2 должна быть заключена в двойные фигурные
-скобки, а также указана в двойных кавычках
+В строке ``content: "{{ ios_facts_result | to_nice_json }}"`` 
+
+* параметр to_nice_json - это фильтр Jinja2, который преобразует
+  информацию переменной в формат, в котором удобней читать информацию 
+* переменная в формате Jinja2 должна быть заключена в двойные фигурные
+  скобки, а также указана в двойных кавычках
 
 Так как в пути dest используются имена устройств, будут сгенерированы
 уникальные файлы для каждого устройства.
@@ -212,10 +237,8 @@ all\_facts/{{inventory\_hostname}}\_facts.json.
     $ ansible-playbook 3_ios_facts.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/5a_ios_facts.png
-   :alt: 5a\_ios\_facts
 
-   5a\_ios\_facts
-После этого в каталоге all\_facts находятся такие файлы:
+После этого в каталоге all_facts находятся такие файлы:
 
 ::
 
@@ -223,7 +246,7 @@ all\_facts/{{inventory\_hostname}}\_facts.json.
     192.168.100.2_facts.json
     192.168.100.3_facts.json
 
-Содержимое файла all\_facts/192.168.100.1\_facts.json:
+Содержимое файла all_facts/192.168.100.1_facts.json:
 
 ::
 
@@ -257,7 +280,4 @@ all\_facts/{{inventory\_hostname}}\_facts.json.
     $ ansible-playbook 3_ios_facts.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/5a_ios_facts_no_change.png
-   :alt: 5a\_ios\_facts
-
-   5a\_ios\_facts
 
