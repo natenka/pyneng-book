@@ -26,5 +26,5 @@
    :maxdepth: 1
 
    str_repr
-   add_sub
+   add_method
    ../../exercises/26_exercises.rst

@@ -148,4 +148,4 @@ IP-адреса только из десятичного числа, надо о
 
     TypeError: unsupported operand type(s) for +: 'IPAddress' and 'str'
 
-
+.. seealso:: Руководство по специальным методам (англ) `Numeric magic methods <https://rszalski.github.io/magicmethods/#numeric>`__
