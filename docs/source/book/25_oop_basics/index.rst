@@ -11,7 +11,7 @@
    README
    create_class
    create_methods
-   self
+   parameter_self
    init_method
    class_namespace
    class_variables
