@@ -27,4 +27,5 @@
 
    str_repr
    add_method
+   iterable_iterator
    ../../exercises/26_exercises.rst
