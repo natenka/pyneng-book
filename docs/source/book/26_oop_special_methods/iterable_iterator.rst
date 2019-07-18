@@ -87,6 +87,23 @@
         ...:         subnet = ipaddress.ip_network(self.network)
         ...:         self.addresses = [str(ip) for ip in subnet.hosts()]
 
+Пример создания экземпляра класса Network:
+
+.. code:: python
+
+    In [14]: net1 = Network('10.1.1.192/30')
+
+    In [15]: net1
+    Out[15]: <__main__.Network at 0xb3124a6c>
+
+    In [16]: net1.addresses
+    Out[16]: ['10.1.1.193', '10.1.1.194']
+
+    In [17]: net1.network
+    Out[17]: '10.1.1.192/30'
+
+Создаем итератор из класса Network:
+
 .. code:: python
 
     In [12]: class Network:
@@ -110,7 +127,8 @@
         ...:             raise StopIteration
         ...:
 
-
-
+Метод __iter__ в итераторе должен возвращать сам объект, поэтому в методе 
+указано ``return self``, а метод __next__ возвращает элементы по одному и генерирует 
+исключение StopIteration, когда элементы закончились.
 
 .. code:: python
