@@ -89,7 +89,15 @@ netmiko_threads_submit_basics.py):
 Future
 ~~~~~~
 
+Пример запуска функции send_show с помощью submit и вывод информации о Future (обратите внимание на статус future в разные моменты времени):
+
 .. code:: python
+
+    In [1]: from concurrent.futures import ThreadPoolExecutor
+
+    In [2]: from netmiko_threads_submit_futures import send_show
+
+    In [3]: executor = ThreadPoolExecutor(max_workers=2)
 
     In [4]: f1 = executor.submit(send_show, r1, 'sh clock')
        ...: f2 = executor.submit(send_show, r2, 'sh clock')
@@ -121,7 +129,7 @@ Future
 
 
 Чтобы посмотреть на future, в скрипт добавлены несколько строк с выводом
-информации (netmiko_threads_submit_verbose.py):
+информации (netmiko_threads_submit_futures.py):
 
 .. literalinclude:: /pyneng-examples-exercises/examples/20_concurrent_connections/netmiko_threads_submit_futures.py
   :language: python
@@ -205,3 +213,4 @@ pending и ждет, пока до него дойдет очередь.
 Конечно, обработка исключения может выполняться и внутри функции
 send_show, но это просто пример того, как можно работать с
 исключениями при использовании future.
+

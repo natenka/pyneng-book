@@ -27,6 +27,7 @@
 
    measure_script_execution_time
    cpython_gil
+   thread_count
    thread_safety
    logging
    concurrent_futures
