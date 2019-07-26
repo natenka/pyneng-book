@@ -90,6 +90,7 @@ Future
 ~~~~~~
 
 .. code:: python
+
     In [4]: f1 = executor.submit(send_show, r1, 'sh clock')
        ...: f2 = executor.submit(send_show, r2, 'sh clock')
        ...: f3 = executor.submit(send_show, r3, 'sh clock')
@@ -122,78 +123,32 @@ Future
 Чтобы посмотреть на future, в скрипт добавлены несколько строк с выводом
 информации (netmiko_threads_submit_verbose.py):
 
-.. code:: python
+.. literalinclude:: /pyneng-examples-exercises/examples/20_concurrent_connections/netmiko_threads_submit_futures.py
+  :language: python
+  :linenos:
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    from pprint import pprint
-    from datetime import datetime
-    import time
-
-    import yaml
-    from netmiko import ConnectHandler
-
-
-    start_msg = '===> {} Connection to device: {}'
-    received_msg = '<=== {} Received result from device: {}'
-
-
-    def connect_ssh(device_dict, command):
-        print(start_msg.format(datetime.now().time(), device_dict['ip']))
-        if device_dict['ip'] == '192.168.100.1':
-            time.sleep(10)
-        with ConnectHandler(**device_dict) as ssh:
-            ssh.enable()
-            result = ssh.send_command(command)
-            print(received_msg.format(datetime.now().time(), device_dict['ip']))
-        return {device_dict['ip']: result}
-
-
-    def threads_conn(function, devices, limit=2, command=''):
-        all_results = {}
-        with ThreadPoolExecutor(max_workers=limit) as executor:
-            future_ssh = []
-            for device in devices:
-                future = executor.submit(function, device, command)
-                future_ssh.append(future)
-                print('Future: {} for device {}'.format(future, device['ip']))
-            for f in as_completed(future_ssh):
-                result = f.result()
-                print('Future done {}'.format(f))
-                all_results.update(result)
-        return all_results
-
-
-    if __name__ == '__main__':
-        devices = yaml.load(open('devices.yaml'))
-        all_done = threads_conn(connect_ssh,
-                                devices['routers'],
-                                command='sh clock')
-        pprint(all_done)
-
-    Так как в прошлом варианте мы уже проверили, что результат
-    возвращается в порядке выполнения, тут функция threads_conn
-    возвращает словарь, а не список.
 
 Результат выполнения:
 
 ::
 
-    $ python netmiko_threads_submit_verbose.py
-    ===> 06:16:56.059256 Connection to device: 192.168.100.1
-    Future: <Future at 0xb68427cc state=running> for device 192.168.100.1
-    ===> 06:16:56.059434 Connection to device: 192.168.100.2
-    Future: <Future at 0xb68483ac state=running> for device 192.168.100.2
-    Future: <Future at 0xb6848b4c state=pending> for device 192.168.100.3
-    <=== 06:17:01.482761 Received result from device: 192.168.100.2
-    ===> 06:17:01.589605 Connection to device: 192.168.100.3
-    Future done <Future at 0xb68483ac state=finished returned dict>
-    <=== 06:17:07.226815 Received result from device: 192.168.100.3
-    Future done <Future at 0xb6848b4c state=finished returned dict>
-    <=== 06:17:11.444831 Received result from device: 192.168.100.1
-    Future done <Future at 0xb68427cc state=finished returned dict>
-    {'192.168.100.1': '*06:17:11.273 UTC Mon Aug 28 2017',
-     '192.168.100.2': '*06:17:01.310 UTC Mon Aug 28 2017',
-     '192.168.100.3': '*06:17:07.055 UTC Mon Aug 28 2017'}
+    $ python netmiko_threads_submit_futures.py
+    Future: <Future at 0xb5ed938c state=running> for device 192.168.100.1
+    ThreadPoolExecutor-0_0 root INFO: ===> 07:14:26.298007 Connection: 192.168.100.1
+    Future: <Future at 0xb5ed96cc state=running> for device 192.168.100.2
+    Future: <Future at 0xb5ed986c state=pending> for device 192.168.100.3
+    ThreadPoolExecutor-0_1 root INFO: ===> 07:14:26.299095 Connection: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: <=== 07:14:32.056003 Received: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: ===> 07:14:32.164774 Connection: 192.168.100.3
+    Future done <Future at 0xb5ed96cc state=finished returned dict>
+    ThreadPoolExecutor-0_0 root INFO: <=== 07:14:36.714923 Received: 192.168.100.1
+    Future done <Future at 0xb5ed938c state=finished returned dict>
+    ThreadPoolExecutor-0_1 root INFO: <=== 07:14:37.577327 Received: 192.168.100.3
+    Future done <Future at 0xb5ed986c state=finished returned dict>
+    {'192.168.100.1': '*07:14:36.546 UTC Fri Jul 26 2019',
+     '192.168.100.2': '*07:14:31.865 UTC Fri Jul 26 2019',
+     '192.168.100.3': '*07:14:37.413 UTC Fri Jul 26 2019'}
+
 
 Так как по умолчанию используется ограничение в два потока, только два
 из трех future показывают статус running. Третий находится в состоянии
@@ -226,70 +181,27 @@ pending и ждет, пока до него дойдет очередь.
 Так как исключение возникает при получении результата, легко добавить
 обработку исключений (файл netmiko_threads_submit_exception.py):
 
-.. code:: python
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    from pprint import pprint
-    from datetime import datetime
-    import time
-
-    import yaml
-    from netmiko import ConnectHandler
-    from netmiko.ssh_exception import NetMikoAuthenticationException
-
-
-    start_msg = '===> {} Connection to device: {}'
-    received_msg = '<=== {} Received result from device: {}'
-
-
-    def connect_ssh(device_dict, command):
-        print(start_msg.format(datetime.now().time(), device_dict['ip']))
-        if device_dict['ip'] == '192.168.100.1':
-            time.sleep(10)
-        with ConnectHandler(**device_dict) as ssh:
-            ssh.enable()
-            result = ssh.send_command(command)
-            print(received_msg.format(datetime.now().time(), device_dict['ip']))
-        return {device_dict['ip']: result}
-
-
-    def threads_conn(function, devices, limit=2, command=''):
-        all_results = {}
-        with ThreadPoolExecutor(max_workers=limit) as executor:
-            future_ssh = [executor.submit(function, device, command)
-                          for device in devices]
-            for f in as_completed(future_ssh):
-                try:
-                    result = f.result()
-                except NetMikoAuthenticationException as e:
-                    print(e)
-                else:
-                    all_results.update(result)
-        return all_results
-
-
-    if __name__ == '__main__':
-        devices = yaml.load(open('devices.yaml'))
-        all_done = threads_conn(connect_ssh,
-                                devices['routers'],
-                                command='sh clock')
-        pprint(all_done)
+.. literalinclude:: /pyneng-examples-exercises/examples/20_concurrent_connections/netmiko_threads_submit_exception.py
+  :language: python
+  :linenos:
 
 Результат выполнения:
 
 ::
 
     $ python netmiko_threads_submit_exception.py
-    ===> 06:45:56.327892 Connection to device: 192.168.100.1
-    ===> 06:45:56.328190 Connection to device: 192.168.100.2
-    ===> 06:45:58.964806 Connection to device: 192.168.100.3
+    ThreadPoolExecutor-0_0 root INFO: ===> 07:21:21.190544 Connection: 192.168.100.1
+    ThreadPoolExecutor-0_1 root INFO: ===> 07:21:21.191429 Connection: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: ===> 07:21:23.672425 Connection: 192.168.100.3
     Authentication failure: unable to connect cisco_ios 192.168.100.2:22
     Authentication failed.
-    <=== 06:46:04.325812 Received result from device: 192.168.100.3
-    <=== 06:46:11.731541 Received result from device: 192.168.100.1
-    {'192.168.100.1': '*06:46:11.556 UTC Mon Aug 28 2017',
-     '192.168.100.3': '*06:46:04.154 UTC Mon Aug 28 2017'}
+    ThreadPoolExecutor-0_1 root INFO: <=== 07:21:29.095289 Received: 192.168.100.3
+    ThreadPoolExecutor-0_0 root INFO: <=== 07:21:31.607635 Received: 192.168.100.1
+    {'192.168.100.1': '*07:21:31.436 UTC Fri Jul 26 2019',
+     '192.168.100.3': '*07:21:28.930 UTC Fri Jul 26 2019'}
+
 
 Конечно, обработка исключения может выполняться и внутри функции
-connect_ssh, но это просто пример того, как можно работать с
+send_show, но это просто пример того, как можно работать с
 исключениями при использовании future.
