@@ -9,8 +9,14 @@
 объект будет вести себя как встроенный и использовать интерфейс понятный всем, 
 кто пишет на Python.
 
+.. note::
+
+    `Таблица с абстрактных классов в которой описаны какие методы должны присутствовать у объекта, чтобы он поддерживал определенный протокол <https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes>`__
+
+
 .. toctree::
    :maxdepth: 1
 
    iterable_iterator
    sequence_protocol
+   context_manager
