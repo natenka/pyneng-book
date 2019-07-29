@@ -7,13 +7,17 @@
 
 .. code:: python
 
-    In [41]: def info(sw_obj):
-        ...:     print('Hostname: {}\nModel: {}'.format(sw_obj.hostname, sw_obj.model))
-        ...:
+    In [1]: def info(sw_obj):
+       ...:     print('Hostname: {}\nModel: {}'.format(sw_obj.hostname, sw_obj.model))
+       ...:
 
-    In [42]: sw1 = Switch('sw1', 'Cisco 3850')
+    In [2]: sw1 = Switch()
 
-    In [43]: info(sw1)
+    In [3]: sw1.hostname = 'sw1'
+
+    In [4]: sw1.model = 'Cisco 3850'
+
+    In [5]: info(sw1)
     Hostname: sw1
     Model: Cisco 3850
 
