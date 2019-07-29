@@ -45,7 +45,7 @@
 
 .. code:: python
 
-    In [7]: sw1 = Switch()
+    In [7]: sw2 = Switch()
 
     In [8]: sw2.hostname = 'sw2'
 
