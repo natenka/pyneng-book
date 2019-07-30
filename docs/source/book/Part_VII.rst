@@ -24,3 +24,4 @@ VII.  Основы объектно-ориентированного прогр�
 
    25_oop_basics/index.rst
    26_oop_special_methods/index.rst
+   27_oop_inheritance/index.rst

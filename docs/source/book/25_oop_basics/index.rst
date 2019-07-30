@@ -15,3 +15,4 @@
    init_method
    class_namespace
    class_variables
+   ../../exercises/25_exercises.rst
