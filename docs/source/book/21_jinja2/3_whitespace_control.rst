@@ -23,7 +23,7 @@ lstrip_blocks:
 
 .. code:: python
 
-    env = Environment(loader = FileSystemLoader(TEMPLATE_DIR))
+    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 Вывод будет таким:
 
@@ -182,7 +182,7 @@ templates/env_flags2.txt):
 
 ::
 
-    env = Environment(loader = FileSystemLoader(TEMPLATE_DIR))
+    env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 Шаблон templates/env_flags3.txt:
 

@@ -42,7 +42,8 @@ multiprocessing распараллелить выполнение задачи.
     from netmiko import ConnectHandler
 
     #COMMAND = sys.argv[1]
-    devices = yaml.load(open('devices.yaml'))
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
 
 
     def connect_ssh(device_dict, commands):
@@ -105,7 +106,8 @@ netmiko (файл netmiko\_threading.py):
 
 
     COMMAND = sys.argv[1]
-    devices = yaml.load(open('devices.yaml'))
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
 
 
     def connect_ssh(device_dict, command):
@@ -187,7 +189,8 @@ netmiko\_threading\_data.py):
 
 
     COMMAND = sys.argv[1]
-    devices = yaml.load(open('devices.yaml'))
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
 
 
     def connect_ssh(device_dict, command, queue):
@@ -256,7 +259,8 @@ netmiko\_threading\_data.py):
 
 
     COMMAND = sys.argv[1]
-    devices = yaml.load(open('devices.yaml'))
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
 
 
     def connect_ssh(device_dict, command, queue):
@@ -314,7 +318,8 @@ netmiko\_multiprocessing.py):
 
 
     COMMAND = sys.argv[1]
-    devices = yaml.load(open('devices.yaml'))
+    with open('devices.yaml') as f:
+        devices = yaml.safe_load(f)
 
 
     def connect_ssh(device_dict, command, queue):

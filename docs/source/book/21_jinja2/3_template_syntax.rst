@@ -48,7 +48,7 @@
     template = env.get_template(template_file)
 
     with open(vars_file) as f:
-        vars_dict = yaml.load(f)
+        vars_dict = yaml.safe_load(f)
 
     print(template.render(vars_dict))
 
