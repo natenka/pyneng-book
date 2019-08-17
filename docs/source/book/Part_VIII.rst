@@ -1,16 +1,13 @@
 VIII. Дополнительная информация
 ###############################
 
+В этом разделе собрана информация, которая не вошла в основные разделы
+курса, но которая, тем не менее, может быть полезна.
+
 .. toctree::
    :maxdepth: 1
 
-   additional_info/README
    additional_info/old_str_formatting
    additional_info/naming_conventions/README
    additional_info/naming_conventions/underscore_names
-   additional_info/useful_functions/README
-   additional_info/useful_functions/lambda
-   additional_info/useful_functions/map
-   additional_info/useful_functions/filter
-   additional_info/threading_multiprocessing
    additional_info/py2_vs_py3
