@@ -8,8 +8,7 @@ Python для сетевых инженеров
 В книге используется Python 3.7.
 
 .. toctree::
-   :maxdepth: 3
-   :caption: Содержание:
+   :maxdepth: 2
 
    intro_index
    book/Part_I
