@@ -26,7 +26,7 @@ replace: line
 
 Попробуем запустить такой playbook 10_ios_config_replace_line.yml:
 
-.. code:: yml
+::
 
     ---
 
@@ -91,7 +91,7 @@ ACL на маршрутизаторе:
 
 Playbook 10_ios_config_replace_block.yml:
 
-.. code:: yml
+::
 
     ---
 

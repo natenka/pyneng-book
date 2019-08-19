@@ -15,7 +15,7 @@ parents
 В таком случае, playbook 2_ios_config_parents_basic.yml будет
 выглядеть так:
 
-.. code:: yml
+::
 
     ---
 
@@ -53,7 +53,7 @@ parents
 
 Тогда playbook 2_ios_config_parents_mult.yml будет выглядеть так:
 
-.. code:: yml
+::
 
     ---
 

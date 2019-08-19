@@ -13,7 +13,7 @@ lines, или src). Он заменяет модуль ios_template, котор�
 
 Пример playbook 11_ios_config_src.yml:
 
-.. code:: yml
+::
 
     ---
 
@@ -138,7 +138,7 @@ lines, или src). Он заменяет модуль ios_template, котор�
 
 Теперь можно создавать playbook 11_ios_config_src_jinja.yml:
 
-.. code:: yml
+::
 
     ---
 

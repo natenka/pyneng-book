@@ -19,7 +19,7 @@ before
 
 Playbook 8_ios_config_before.yml:
 
-.. code:: yml
+::
 
     ---
 

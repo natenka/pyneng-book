@@ -8,7 +8,7 @@ lines (commands)
 
 Пример playbook 1_ios_config_lines.yml:
 
-.. code:: yml
+::
 
     ---
 

@@ -8,7 +8,7 @@ playbook (если каталог не существует, он будет с�
 
 Playbook 5_ios_config_backup.yml:
 
-.. code:: yml
+::
 
     ---
 

@@ -23,7 +23,7 @@ after
 Пример использования параметра after в playbook
 7_ios_config_after.yml:
 
-.. code:: yml
+::
 
     ---
 
@@ -63,7 +63,7 @@ after
 С помощью after можно сохранять конфигурацию устройства (playbook
 7_ios_config_after_save.yml):
 
-.. code:: yml
+::
 
     ---
 

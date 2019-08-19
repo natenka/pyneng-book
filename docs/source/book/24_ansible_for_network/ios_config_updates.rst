@@ -6,7 +6,7 @@
 
 Playbook 2_ios_config_parents_basic.yml:
 
-.. code:: yml
+::
 
     ---
 

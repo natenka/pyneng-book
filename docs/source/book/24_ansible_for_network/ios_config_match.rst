@@ -31,7 +31,7 @@ match: line
 Пример использования playbook 9_ios_config_match_line.yml в режиме
 line:
 
-.. code:: yml
+::
 
     ---
 
@@ -96,7 +96,7 @@ ACL на маршрутизаторе:
 Playbook 9_ios_config_match_exact.yml (будет постепенно
 дополняться):
 
-.. code:: yml
+::
 
     ---
 
@@ -139,7 +139,7 @@ Playbook 9_ios_config_match_exact.yml (будет постепенно
 Можно добавить к этому playbook параметр before и сначала удалить ACL, а
 затем применять команды:
 
-.. code:: yml
+::
 
     ---
 
@@ -200,7 +200,7 @@ Playbook 9_ios_config_match_exact.yml (будет постепенно
 
 Поможет в такой ситуации вариант ``match: exact``:
 
-.. code:: yml
+::
 
     ---
 
@@ -250,7 +250,7 @@ Playbook 9_ios_config_match_exact.yml (будет постепенно
 
 Закомментируем в playbook строки с удалением ACL:
 
-.. code:: yml
+::
 
     ---
 
@@ -324,7 +324,7 @@ match: strict
 
 Playbook 9_ios_config_match_strict.yml:
 
-.. code:: yml
+::
 
     ---
 
@@ -367,7 +367,7 @@ match: none
 
 Пример playbook 9_ios_config_match_none.yml:
 
-.. code:: yml
+::
 
     ---
 

@@ -37,7 +37,7 @@ ios_command.
 
 Playbook 4_ios_config_save_when.yml:
 
-.. code:: yml
+::
 
     ---
 

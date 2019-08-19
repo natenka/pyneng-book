@@ -153,7 +153,7 @@ wait_for
 
 Пример playbook (файл 3_ios_command_wait_for.yml):
 
-.. code:: yml
+::
 
     ---
 
