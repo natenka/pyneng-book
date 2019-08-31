@@ -4,13 +4,10 @@
 Здесь собраны ссылки на все ресурсы, которые пригодятся в процессе
 обучения:
 
--  `варианты виртуальной машины для курса <book/01_intro/README.md>`__;
--  `репозиторий <https://github.com/natenka/pyneng-examples-exercises/>`__
-   с примерами и заданиями;
+-  `варианты виртуальной машины для курса <https://pyneng.github.io/docs/course-vm/>`__;
+-  `репозиторий с примерами и заданиями <https://github.com/natenka/pyneng-examples-exercises/>`__
 -  `вопросы <https://github.com/natenka/pyneng-examples-exercises/blob/master/tests.md>`__;
 -  `чат PyNEng <https://pyneng-slack.herokuapp.com/>`__ в Slack;
--  `презентации <https://github.com/natenka/pyneng-slides/>`__
-   пригодятся для повторения материала.
 
 Почти в каждой части книги есть глава Дополнительные материалы, в
 которой находятся полезные материалы и ссылки по теме, а также ссылки на
