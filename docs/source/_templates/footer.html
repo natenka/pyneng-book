@@ -36,9 +36,6 @@
       </span>
     {%- endif %}
     </p>
-    <p>
-    This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>.
-    </p>
   </div>
 
   {%- if show_sphinx %}
@@ -46,6 +43,14 @@
     {% set readthedocs_web = '<a href="https://readthedocs.org">Read the Docs</a>'  %}
       {% trans sphinx_web=sphinx_web, readthedocs_web=readthedocs_web %}Built with {{ sphinx_web }} using a{% endtrans %} <a href="https://github.com/rtfd/sphinx_rtd_theme">{% trans %}theme{% endtrans %}</a> {% trans %}provided by {{ readthedocs_web }}{% endtrans %}.
   {%- endif %}
+
+  <div role="contentinfo">
+    <p>
+    <span class="lastupdated">
+    This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA-4.0</a>.
+    </span>
+    </p>
+  </div>
 
   {%- block extrafooter %} {% endblock %}
 
