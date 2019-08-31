@@ -25,92 +25,119 @@ re.DOTALL
 
 С помощью регулярных выражений можно работать и с многострочной строкой.
 
-Например, из строки table надо получить только строки с соответствиями
-VLAN-MAC-interface:
+Например, из строки sh_cdp надо получить имя устройства, платформу и IOS:
 
 .. code:: python
 
-    In [11]: table = '''
-        ...: sw1#sh mac address-table
-        ...:           Mac Address Table
-        ...: -------------------------------------------
-        ...:
-        ...: Vlan    Mac Address       Type        Ports
-        ...: ----    -----------       --------    -----
-        ...:  100    aabb.cc10.7000    DYNAMIC     Gi0/1
-        ...:  200    aabb.cc20.7000    DYNAMIC     Gi0/2
-        ...:  300    aabb.cc30.7000    DYNAMIC     Gi0/3
-        ...:  100    aabb.cc40.7000    DYNAMIC     Gi0/4
-        ...:  500    aabb.cc50.7000    DYNAMIC     Gi0/5
-        ...:  200    aabb.cc60.7000    DYNAMIC     Gi0/6
-        ...:  300    aabb.cc70.7000    DYNAMIC     Gi0/7
-        ...: '''
+    In [2]: sh_cdp = '''
+       ...: Device ID: SW2
+       ...: Entry address(es):
+       ...:   IP address: 10.1.1.2
+       ...: Platform: cisco WS-C2960-8TC-L,  Capabilities: Switch IGMP
+       ...: Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0/1
+       ...: Holdtime : 164 sec
+       ...:
+       ...: Version :
+       ...: Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1)
+       ...: Technical Support: http://www.cisco.com/techsupport
+       ...: Copyright (c) 1986-2014 by Cisco Systems, Inc.
+       ...: Compiled Mon 03-Mar-14 22:53 by prod_rel_team
+       ...:
+       ...: advertisement version: 2
+       ...: VTP Management Domain: ''
+       ...: Native VLAN: 1
+       ...: Duplex: full
+       ...: Management address(es):
+       ...:   IP address: 10.1.1.2
+       ...: '''
 
 Конечно, в этом случае можно разделить строку на части и работать с
-каждой строкой отдельно, но можно получить часть с MAC-адресами и без разделения.
+каждой строкой отдельно, но можно получить нужные данные и без разделения.
 
-В этом примере нужно вырезать часть вывода, которая содержит
-соответствия.
-
-В этом выражении описана строка с MAC-адресом:
+В этом выражении описаны строки с нужными данными:
 
 .. code:: python
 
-    In [12]: m = re.search(r' *\d+ +[a-f0-9.]+ +\w+ +\S+', table)
+    In [3]: regex = r'Device ID: (\S+).+Platform: \w+ (\S+),.+Cisco IOS Software.+ Version (\S+),'
 
-В результат попадет первая строка с MAC-адресом:
-
-.. code:: python
-
-    In [13]: m.group()
-    Out[13]: ' 100    aabb.cc80.7000    DYNAMIC     Gi0/1'
-
-Учитывая то, что по умолчанию регулярные выражения жадные, можно
-получить все соответствия таким образом:
+В таком случае, совпадения не будет, потому что по умолчанию точка означает
+любой символ, кроме перевода строки:
 
 .. code:: python
 
-    In [14]: m = re.search(r'( *\d+ +[a-f0-9.]+ +\w+ +\S+\n)+', table)
 
-    In [15]: print(m.group())
-     100    aabb.cc10.7000    DYNAMIC     Gi0/1
-     200    aabb.cc20.7000    DYNAMIC     Gi0/2
-     300    aabb.cc30.7000    DYNAMIC     Gi0/3
-     100    aabb.cc40.7000    DYNAMIC     Gi0/4
-     500    aabb.cc50.7000    DYNAMIC     Gi0/5
-     200    aabb.cc60.7000    DYNAMIC     Gi0/6
-     300    aabb.cc70.7000    DYNAMIC     Gi0/7
+    In [4]: print(re.search(regex, sh_cdp))
+    None
 
-Тут описана строка с MAC-адресом, перевод строки, и указано, что это
-выражение должно повторяться, как минимум, один раз.
-
-Получается, что в данном случае надо получить все строки, начиная с
-первого соответствия VLAN-MAC-интерфейс.
-
-Это можно описать таким образом:
+Изменить поведение по умолчанию, можно с помощью флага re.DOTALL
 
 .. code:: python
 
-    In [16]: m = re.search(r' *\d+ +[a-f0-9.]+ +\w+ +\S+.*', table)
+    In [5]: match = re.search(regex, sh_cdp, re.DOTALL)
 
-    In [17]: print(m.group())
-     100    aabb.cc10.7000    DYNAMIC     Gi0/1
+    In [6]: match.groups()
+    Out[6]: ('SW2', 'WS-C2960-8TC-L', '12.2(55)SE9')
 
-Пока что в результате только одна строка, так как по умолчанию точка
-не включает в себя перевод строки.
-Однако, если добавить специальный флаг, re.DOTALL, точка будет включать и
-перевод строки, и в результат попадут все соответствия:
+Так как теперь в точку входит и перевод строки, комбинация ``.+`` захватывает все,
+между нужными данными.
+
+Теперь попробуем с помощью этого регулярного выражения, получить информацию про 
+всех соседей из файла sh_cdp_neighbors_sw1.txt.
+
+.. literalinclude:: /pyneng-examples-exercises/examples/15_module_re/sh_cdp_neighbors_sw1.txt
+  :linenos:
+
+
+Поиск всех совпадений с регулярным выражением:
 
 .. code:: python
 
-    In [18]: m = re.search(r' *\d+ +[a-f0-9.]+ +\w+ +\S+.*', table, re.DOTALL)
+    In [7]: with open('sh_cdp_neighbors_sw1.txt') as f:
+       ...:     sh_cdp = f.read()
+       ...:
 
-    In [19]: print(m.group())
-     100    aabb.cc10.7000    DYNAMIC     Gi0/1
-     200    aabb.cc20.7000    DYNAMIC     Gi0/2
-     300    aabb.cc30.7000    DYNAMIC     Gi0/3
-     100    aabb.cc40.7000    DYNAMIC     Gi0/4
-     500    aabb.cc50.7000    DYNAMIC     Gi0/5
-     200    aabb.cc60.7000    DYNAMIC     Gi0/6
-     300    aabb.cc70.7000    DYNAMIC     Gi0/7
+    In [8]: regex = r'Device ID: (\S+).+Platform: \w+ (\S+),.+Cisco IOS Software.+ Version (\S+),'
+
+    In [9]: match = re.finditer(regex, sh_cdp, re.DOTALL)
+
+    In [10]: for m in match:
+        ...:     print(m.groups())
+        ...:
+    ('SW2', '2911', '15.2(2)T1')
+
+На первый взгляд, кажется, что вместо трех устройств, в вывод попало только одно.
+Однако, если присмотреться к результатам, окажется, что кортеже находится 
+Device ID от первого соседа, а платформа и IOS от последнего.
+
+Короткий вариант вывода, чтобы легче было ориентироваться в результатах
+
+::
+
+    Device ID        Local Intrfce     Holdtme    Capability  Platform  Port ID
+    SW2              Gi 1/0/16         171              R S   C2960     Gi 0/1
+    R1               Gi 1/0/22         158              R     C3825     Gi 0/0
+    R2               Gi 1/0/21         177              R     C2911     Gi 0/0
+
+Так получилось из-за того, что между нужными частями вывода, указана комбинация ``.+``.
+Без флага ``re.DOTALL`` такое выражение захватило бы все до перевода строки, но
+с флагом, оно захватывает максимально длинный кусок текста, так как ``+`` жадный.
+В итоге регулярное выражение описывает строку от первого Device ID до последнего 
+места где встречается ``Cisco IOS Software.+ Version``.
+
+Такая читуация возникает очень часто при использовании ``re.DOTALL`` и чтобы исправить ее,
+надо не забыть отключить жадность:
+
+.. code:: python
+
+    In [10]: regex = r'Device ID: (\S+).+?Platform: \w+ (\S+),.+?Cisco IOS Software.+? Version (\S+),'
+
+    In [11]: match = re.finditer(regex, sh_cdp, re.DOTALL)
+
+    In [12]: for m in match:
+        ...:     print(m.groups())
+        ...:
+    ('SW2', 'WS-C2960-8TC-L', '12.2(55)SE9')
+    ('R1', '3825', '12.4(24)T1')
+    ('R2', '2911', '15.2(2)T1')
+
 

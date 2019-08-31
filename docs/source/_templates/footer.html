@@ -21,7 +21,7 @@
         &copy; <a href="{{ path }}">{% trans %}Copyright{% endtrans %}</a> {{ copyright }}.
       {%- else %}
         {% set copyright = copyright|e %}
-        &copy; {% trans %}Copyright{% endtrans %} <a href="https://natenka.github.io/thanks/"> {{ copyright }}.</a>
+        &copy; <a href="https://natenka.github.io/thanks/"> {{ copyright }}.</a>
       {%- endif %}
     {%- endif %}
     {%- if build_id and build_url %}
@@ -35,6 +35,9 @@
         {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       </span>
     {%- endif %}
+    </p>
+    <p>
+    This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
     </p>
   </div>
 
