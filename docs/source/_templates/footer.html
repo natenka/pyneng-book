@@ -18,12 +18,12 @@
       {%- if hasdoc('copyright') %}
         {% set path = pathto('copyright') %}
         {% set copyright = copyright|e %}
-        &copy; <a href="{{ path }}">Copyright</a> {{ copyright }}
+        &copy; <a href="{{ path }}">{% trans %}Copyright{% endtrans %}</a> {{ copyright }}.
       {%- else %}
         {% set copyright = copyright|e %}
-        &copy; Copyright {{ copyright }}
+        &copy; {% trans %}Copyright{% endtrans %} {{ copyright }}.
       {%- endif %}
-    <a href="https://natenka.github.io/thanks/">. Say Thanks! </a>
+    <a href="https://natenka.github.io/thanks/"> Say Thanks!</a>
     {%- endif %}
     {%- if build_id and build_url %}
       <span class="build">
@@ -33,7 +33,7 @@
       </span>
     {%- elif last_updated %}
       <span class="lastupdated">
-        Last updated on {{ last_updated }}.
+        {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       </span>
     {%- endif %}
     </p>
