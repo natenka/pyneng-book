@@ -9,7 +9,7 @@
 -  `вопросы <https://github.com/natenka/pyneng-examples-exercises/blob/master/tests.md>`__;
 -  `чат PyNEng <https://pyneng-slack.herokuapp.com/>`__ в Slack;
 
-Почти в каждой части книги есть глава Дополнительные материалы, в
+Почти в каждой части книги есть глава "Дополнительные материалы", в
 которой находятся полезные материалы и ссылки по теме, а также ссылки на
 документацию. Кроме того, я сделала
 `подборку <https://natenka.github.io/pyneng-resources/>`__ ресурсов по
