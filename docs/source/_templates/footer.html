@@ -23,8 +23,10 @@
         {% set copyright = copyright|e %}
         &copy; {% trans %}Copyright{% endtrans %} {{ copyright }}
       {%- endif %}
+    <a href="https://natenka.github.io/thanks/"> Say Thanks!</a>
     {%- endif %}
-
+    </p>
+    <p>
     {%- if build_id and build_url %}
       <span class="build">
         {# Translators: Build is a noun, not a verb #}
@@ -36,7 +38,6 @@
         {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %}
       </span>
     {%- endif %}
-    <a href="https://natenka.github.io/thanks/"> Say Thanks!</a>
     </p>
   </div>
 
