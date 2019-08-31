@@ -21,9 +21,8 @@
         &copy; <a href="{{ path }}">{% trans %}Copyright{% endtrans %}</a> {{ copyright }}.
       {%- else %}
         {% set copyright = copyright|e %}
-        &copy; {% trans %}Copyright{% endtrans %} {{ copyright }}.
+        &copy; {% trans %}Copyright{% endtrans %} <a href="https://natenka.github.io/thanks/"> {{ copyright }}.</a>
       {%- endif %}
-    <a href="https://natenka.github.io/thanks/"> Say Thanks!</a>
     {%- endif %}
     {%- if build_id and build_url %}
       <span class="build">
