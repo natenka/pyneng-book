@@ -23,7 +23,7 @@ git diff
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_add_git_diff.png
 
 Чтобы показать отличия между staging и последним коммитом, надо добавить
-параметр --staged
+параметр ``--staged``
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_diff_staged.png
 
@@ -42,12 +42,12 @@ git log
 времени. С помощью дополнительных параметров можно не только посмотреть
 информацию о коммитах, но и то, какие именно изменения были внесены.
 
-Флаг "-p" позволяет отобразить отличия, которые были внесены каждым
+Флаг ``-p`` позволяет отобразить отличия, которые были внесены каждым
 коммитом
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_log_p.png
 
-Более короткий вариант вывода можно вывести с флагом "--stat"
+Более короткий вариант вывода можно вывести с флагом ``--stat``
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_log_stat.png
 
