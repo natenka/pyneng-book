@@ -22,7 +22,7 @@ copyright = '2015-2019, Natasha Samoylenko'
 author = 'Natasha Samoylenko'
 
 # The full version, including alpha/beta/rc tags
-release = '2.5.1'
+release = '3.0'
 
 
 # -- General configuration ---------------------------------------------------
