@@ -18,10 +18,6 @@
 Для параллельного подключения к устройствам в этом разделе используется
 модуль concurrent.futures.
 
-Также в разделе `Дополнительная информация <https://pyneng.readthedocs.io/ru/latest/book/additional_info/threading_multiprocessing.html>`__
-рассматриваются основы работы с модулями: threading и multiprocessing.
-
-
 .. toctree::
    :maxdepth: 1
 

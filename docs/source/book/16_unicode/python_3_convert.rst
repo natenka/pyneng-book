@@ -84,6 +84,4 @@ str.encode, bytes.decode
 * внутри программы работать с юникод 
 * юникод надо преобразовать в байты как можно позже, перед передачей
 
-.. figure:: https://nedbatchelder.com/text/unipain_pix/034.png
-
 

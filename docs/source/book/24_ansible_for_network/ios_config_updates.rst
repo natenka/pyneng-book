@@ -23,10 +23,10 @@ Playbook 2_ios_config_parents_basic.yml:
               - login local
               - transport input ssh
 
-    Для того, чтобы playbook что-то менял, нужно сначала отменить
-    команды - либо вручную, либо изменив playbook. Например, на
-    маршрутизаторе 192.168.100.1 вместо строки transport input ssh
-    вручную прописать строку transport input all.
+Для того, чтобы playbook что-то менял, нужно сначала отменить
+команды - либо вручную, либо изменив playbook. Например, на
+маршрутизаторе 192.168.100.1 вместо строки transport input ssh
+вручную прописать строку transport input all.
 
 Например, можно выполнить playbook с флагом verbose:
 

@@ -15,3 +15,8 @@
 
 * `CSV <https://pymotw.com/3/csv/index.html>`__ 
 * `JSON <https://pymotw.com/3/json/index.html>`__
+
+Пример получения данных в формате JSON через GitHub API:
+
+* `Пример работы с GitHub API с помощью requests <https://pyneng.github.io/pyneng-3/GitHub-API-JSON-example/>`__
+* `Запись кириллицы и других не ASCII символов в формате JSON <https://pyneng.github.io/pyneng-3/json-module/>`__

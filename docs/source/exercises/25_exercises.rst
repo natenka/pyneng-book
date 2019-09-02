@@ -22,7 +22,7 @@
 
 Пример создания экземпляра класса:
 
-.. code-block:: python
+.. code:: python
 
     In [2]: top = Topology(topology_example)
 
@@ -40,7 +40,7 @@
 
 Пример топологии:
 
-.. code-block:: python
+.. code:: python
 
     topology_example = {('R1', 'Eth0/0'): ('SW1', 'Eth0/1'),
                         ('R2', 'Eth0/0'): ('SW1', 'Eth0/2'),
@@ -64,7 +64,7 @@
 
 При этом метод __init__ должен выглядеть таким образом:
 
-.. code-block:: python
+.. code:: python
 
     class Topology:
         def __init__(self, topology_dict):
@@ -83,7 +83,7 @@
 
 Создание топологии
 
-.. code-block:: python
+.. code:: python
 
     In [7]: t = Topology(topology_example)
 
@@ -98,7 +98,7 @@
 
 Удаление линка:
 
-.. code-block:: python
+.. code:: python
 
     In [9]: t.delete_link(('R3', 'Eth0/1'), ('R4', 'Eth0/0'))
 
@@ -112,7 +112,7 @@
 
 Удаление зеркального линка
 
-.. code-block:: python
+.. code:: python
 
     In [11]: t.delete_link(('R5', 'Eth0/0'), ('R3', 'Eth0/2'))
 
@@ -125,7 +125,7 @@
 
 Если такого соединения нет, выводится сообщение:
 
-.. code-block:: python
+.. code:: python
 
     In [13]: t.delete_link(('R5', 'Eth0/0'), ('R3', 'Eth0/2'))
     Такого соединения нет
@@ -140,7 +140,7 @@
 
 Создание топологии
 
-.. code-block:: python
+.. code:: python
 
     In [1]: t = Topology(topology_example)
 
@@ -155,7 +155,7 @@
 
 Удаление устройства:
 
-.. code-block:: python
+.. code:: python
 
     In [3]: t.delete_node('SW1')
 
@@ -167,7 +167,7 @@
 
 Если такого устройства нет, выводится сообщение:
 
-.. code-block:: python
+.. code:: python
 
     In [5]: t.delete_node('SW1')
     Такого устройства нет
@@ -184,7 +184,7 @@
 
 Пример создания топологии и добавления соединений
 
-.. code-block:: python
+.. code:: python
 
     In [7]: t = Topology(topology_example)
 
@@ -232,7 +232,7 @@
 
 Пример создания экземпляра класса:
 
-.. code-block:: python
+.. code:: python
 
     In [2]: from task_25_2 import CiscoTelnet
 
@@ -261,7 +261,7 @@
 
 Пример создания экземпляра класса:
 
-.. code-block:: python
+.. code:: python
 
     In [1]: r1_params = {
        ...:     'ip': '192.168.100.1',
@@ -275,7 +275,7 @@
 
 Использование метода send_show_command:
 
-.. code-block:: python
+.. code:: python
 
     In [4]: r1.send_show_command('sh ip int br', parse=False)
     Out[4]: 'sh ip int br\r\nInterface                  IP-Address      OK? Method Status                Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \r\nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \r\nEthernet0/3                192.168.130.1   YES NVRAM  up                    up      \r\nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      \r\nLoopback0                  10.1.1.1        YES NVRAM  up                    up      \r\nLoopback55                 5.5.5.5         YES manual up                    up      \r\nR1#'
@@ -330,7 +330,7 @@
 
 Пример создания экземпляра класса:
 
-.. code-block:: python
+.. code:: python
 
     In [1]: from task_25_2b import CiscoTelnet
 
@@ -365,7 +365,7 @@
 
 Пример создания экземпляра класса:
 
-.. code-block:: python
+.. code:: python
 
     In [1]: from task_25_2c import CiscoTelnet
 
@@ -383,7 +383,7 @@
 
 Использование метода send_config_commands:
 
-.. code-block:: python
+.. code:: python
 
     In [7]: print(r1.send_config_commands(commands, strict=False))
     При выполнении команды "logging 0255.255.1" на устройстве 192.168.100.1 возникла ошибка -> Invalid input detected at '^' marker.
