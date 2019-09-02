@@ -11,6 +11,3 @@
    acknowledgments
 
 
-
-При желании, Вы можете `сказать "спасибо" или поддержать автора книги <https://natenka.github.io/thanks/>`__.
-
