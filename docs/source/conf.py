@@ -73,7 +73,7 @@ html_last_updated_fmt = ''
 # -- Options for LaTeX output ---------------------------------------------
 
 
-#latex_engine = 'xelatex'
+latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
 \documentclass[a4paper]{article}
@@ -85,9 +85,6 @@ latex_elements = {
 \setotherlanguage{english}
 \usepackage{fontspec}
 \defaultfontfeatures{Scale=MatchLowercase}
-\setmainfont{DejaVu Sans}
-\setsansfont{DejaVu Serif}
-\setmonofont{DejaVu Sans Mono}
 ''',
     'preamble': r'''
 \setcounter{tocdepth}{2}
