@@ -90,7 +90,7 @@ Python для автоматизации работы с сетевым обор
    (Network Automation and Programmability Abstraction Layer with
    Multivendor support) это библиотека, которая позволяет работать с
    сетевым оборудованием разных вендоров, используя унифицированный API
--  `NOC Project <https://kb.nocproject.org/display/SITE/NOC>`__ - NOC is
+-  `NOC Project <https://getnoc.com/>`__ - NOC is
    the scalable, high-performance and open-source OSS system for ISP,
    service and content providers
 -  `Requests <https://github.com/kennethreitz/requests>`__ - библиотека
