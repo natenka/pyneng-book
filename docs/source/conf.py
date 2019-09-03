@@ -73,7 +73,7 @@ html_last_updated_fmt = ''
 # -- Options for LaTeX output ---------------------------------------------
 
 
-latex_engine = 'xelatex'
+#latex_engine = 'xelatex'
 latex_elements = {
     'fontpkg': r'''
 \documentclass[a4paper]{article}
