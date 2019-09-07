@@ -154,14 +154,14 @@ test_. Если правила соблюдаются, pytest автоматич
 ::
 
     $ pytest check_ip_functions.py
-    =================================== test session starts ====================================
+    ========================= test session starts ==========================
     platform linux -- Python 3.7.3, pytest-4.6.2, py-1.5.2, pluggy-0.12.0
     rootdir: /home/vagrant/repos/general/pyneng.github.io/code_examples/pytest
     collected 1 item
 
-    check_ip_functions.py .                                                              [100%]
+    check_ip_functions.py .                                          [100%]
 
-    ================================= 1 passed in 0.02 seconds =================================
+    ======================= 1 passed in 0.02 seconds =======================
 
 По умолчанию, если тесты проходят, каждый тест (функция test_check_ip)
 отмечается точкой. Так как в данном случае тест только один - функция
@@ -175,15 +175,15 @@ False (напишите return False в самом начале функции).
 ::
 
     $ pytest check_ip_functions.py
-    =================================== test session starts ====================================
+    ========================= test session starts ==========================
     platform linux -- Python 3.6.3, pytest-4.6.2, py-1.5.2, pluggy-0.12.0
     rootdir: /home/vagrant/repos/general/pyneng.github.io/code_examples/pytest
     collected 1 item
 
-    check_ip_functions.py F                                                              [100%]
+    check_ip_functions.py F                                          [100%]
 
-    ========================================= FAILURES =========================================
-    ______________________________________ test_check_ip _______________________________________
+    =============================== FAILURES ===============================
+    ____________________________ test_check_ip _____________________________
 
         def test_check_ip():
     >       assert check_ip('10.1.1.1') == True, 'При правильном IP, функция должна возвращать True'
@@ -192,7 +192,7 @@ False (напишите return False в самом начале функции).
     E        +  where False = check_ip('10.1.1.1')
 
     check_ip_functions.py:14: AssertionError
-    ================================= 1 failed in 0.06 seconds =================================
+    ======================= 1 failed in 0.06 seconds =======================
 
 Если тест не проходит, pytest выводит более подробную информацию и
 показывает в каком месте что-то пошло не так. В данном случае, при
@@ -244,12 +244,12 @@ False (напишите return False в самом начале функции).
 ::
 
     $ pytest
-    =================================== test session starts ====================================
+    ================= test session starts ========================
     platform linux -- Python 3.6.3, pytest-4.6.2, py-1.5.2, pluggy-0.12.0
     rootdir: /home/vagrant/repos/general/pyneng.github.io/code_examples/pytest
     collected 1 item
 
-    test_check_ip_function.py .                                                          [100%]
+    test_check_ip_function.py .                              [100%]
 
-    ================================= 1 passed in 0.02 seconds =================================
+    ================= 1 passed in 0.02 seconds ====================
 

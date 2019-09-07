@@ -129,12 +129,12 @@ correct_return_value.
     [~/repos/pyneng-7/pyneng-online-may-aug-2019/exercises/09_functions]
     vagrant: [master|✔]
     $ pytest tests/test_task_9_1.py
-    =================================== test session starts ====================================
+    ========================= test session starts ==========================
     platform linux -- Python 3.7.3, pytest-4.6.2, py-1.5.2, pluggy-0.12.0
     rootdir: /home/vagrant/repos/pyneng-7/pyneng-online-may-aug-2019/exercises/09_functions
     collected 3 items
 
-    tests/test_task_9_1.py ...                                                           [100%]
+    tests/test_task_9_1.py ...                                       [100%]
     ...
 
     При запуске тестов из каталога tests, возникнут ошибки и тесты не
@@ -171,18 +171,18 @@ diff между данными в тесте и тем, что получено 
     [~/repos/pyneng-7/pyneng-online-may-aug-2019/exercises/09_functions]
     vagrant: [master|✔]
     $ pytest
-    =========================================== test session starts ============================================
+    ================================= test session starts ==================================
     platform linux -- Python 3.6.3, pytest-4.6.2, py-1.5.2, pluggy-0.12.0
     rootdir: /home/vagrant/repos/pyneng-7/pyneng-online-may-aug-2019/exercises/09_functions
     collected 21 items
 
-    tests/test_task_9_1.py ..F                                                                           [ 14%]
-    tests/test_task_9_1a.py FFF                                                                          [ 28%]
-    tests/test_task_9_2.py FFF                                                                           [ 42%]
-    tests/test_task_9_2a.py FFF                                                                          [ 57%]
-    tests/test_task_9_3.py FFF                                                                           [ 71%]
-    tests/test_task_9_3a.py FFF                                                                          [ 85%]
-    tests/test_task_9_4.py FFF                                                                           [100%]
+    tests/test_task_9_1.py ..F                                                       [ 14%]
+    tests/test_task_9_1a.py FFF                                                      [ 28%]
+    tests/test_task_9_2.py FFF                                                       [ 42%]
+    tests/test_task_9_2a.py FFF                                                      [ 57%]
+    tests/test_task_9_3.py FFF                                                       [ 71%]
+    tests/test_task_9_3a.py FFF                                                      [ 85%]
+    tests/test_task_9_4.py FFF                                                       [100%]
 
     ...
 
