@@ -5,7 +5,7 @@
 Задания
 =======
 
-.. include:: ./exercises_intro.rst
+.. include:: ./pytest.rst
 
 Задание 17.1
 ~~~~~~~~~~~~
