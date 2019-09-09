@@ -149,7 +149,7 @@
 
     In [18]: f = open('r2.txt', 'w')
 
-    In [19]: f.writelines(cfg_lines3)
+    In [19]: f.writelines(cfg_lines2)
 
     In [20]: f.close()
 
