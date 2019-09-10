@@ -16,7 +16,7 @@
    Visually <http://treyhunner.com/2015/12/python-list-comprehensions-now-in-color/>`__
    - отличное объяснение list comprehensions, плюс видео
 
-Stackoverflow:
+Stack Overflow:
 
 -  `Ответ на stackoverflow со множеством вариантов
    распаковки <https://stackoverflow.com/questions/6967632/unpacking-extended-unpacking-and-nested-extended-unpacking>`__

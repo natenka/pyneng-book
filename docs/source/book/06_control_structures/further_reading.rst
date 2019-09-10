@@ -21,7 +21,7 @@
 -  `Python Exception Handling
    Techniques <https://doughellmann.com/blog/2009/06/19/python-exception-handling-techniques/>`__
 
-Stackoverflow:
+Stack Overflow:
 
 -  `Why does python use 'else' after for and while
    loops? <https://stackoverflow.com/questions/9979970/why-does-python-use-else-after-for-and-while-loops>`__

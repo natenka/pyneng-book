@@ -13,7 +13,7 @@
 -  `The Python "with" Statement by
    Example <http://preshing.com/20110920/the-python-with-statement-by-example/>`__
 
-Stackoverflow:
+Stack Overflow:
 
 -  `What is the python “with” statement designed
    for? <http://stackoverflow.com/questions/3012488/what-is-the-python-with-statement-designed-for>`__
