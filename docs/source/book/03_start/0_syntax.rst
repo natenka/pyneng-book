@@ -21,13 +21,13 @@
         print("B больше или равно A")
         print(b - a)
 
-    print("The End")
+    print("Конец")
 
     def open_file(filename):
-        print("Reading file", filename)
+        print("Чтение файла", filename)
         with open(filename) as f:
             return f.read()
-            print("Done")
+            print("Готово")
 
 .. note::
     Этот код показан для демонстрации синтаксиса. И, несмотря на то, что ещё не
