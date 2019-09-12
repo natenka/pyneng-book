@@ -18,6 +18,6 @@
 
 Stack Overflow:
 
--  `Ответ на stackoverflow со множеством вариантов
+-  `Ответ со множеством вариантов
    распаковки <https://stackoverflow.com/questions/6967632/unpacking-extended-unpacking-and-nested-extended-unpacking>`__
 
