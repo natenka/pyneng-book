@@ -28,9 +28,9 @@
     In [40]: try:
         ...:     con.execute(query)
         ...: except sqlite3.IntegrityError as e:
-        ...:     print("Error occured: ", e)
+        ...:     print("Error occurred: ", e)
         ...:
-    Error occured:  UNIQUE constraint failed: switch.mac
+    Error occurred:  UNIQUE constraint failed: switch.mac
 
 Обратите внимание, что надо перехватывать исключение
 sqlite3.IntegrityError, а не IntegrityError.

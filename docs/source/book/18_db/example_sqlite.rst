@@ -213,10 +213,10 @@ binding в таблицу (файл dhcp_snooping.txt):
     $ python create_sqlite_ver3.py
     Database exists, assume dhcp table does, too.
     Inserting DHCP Snooping data
-    Error occured:  UNIQUE constraint failed: dhcp.mac
-    Error occured:  UNIQUE constraint failed: dhcp.mac
-    Error occured:  UNIQUE constraint failed: dhcp.mac
-    Error occured:  UNIQUE constraint failed: dhcp.mac
+    Error occurred:  UNIQUE constraint failed: dhcp.mac
+    Error occurred:  UNIQUE constraint failed: dhcp.mac
+    Error occurred:  UNIQUE constraint failed: dhcp.mac
+    Error occurred:  UNIQUE constraint failed: dhcp.mac
 
 Теперь делаем отдельный скрипт, который занимается отправкой запросов в
 БД и выводом результатов. Он должен: 

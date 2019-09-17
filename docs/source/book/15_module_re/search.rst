@@ -26,7 +26,7 @@
     %SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in vlan 10 is flapping between port Gi0/24 and port Gi0/19
     %SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in vlan 10 is flapping between port Gi0/24 and port Gi0/16
 
-При этом, MAC-адрес может прыгать между несколькими портами. В таком
+При этом MAC-адрес может прыгать между несколькими портами. В таком
 случае очень важно знать, с каких портов прилетает MAC.
 
 Попробуем вычислить, между какими портами и в каком VLAN образовалась
@@ -112,7 +112,7 @@ detail.
 * платформу соседа (Platform: cisco WS-C2960-8TC-L) 
 * версию IOS (Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1))
 
-И, для удобства, надо получить данные в виде словаря. Пример итогового
+И для удобства надо получить данные в виде словаря. Пример итогового
 словаря для коммутатора SW2:
 
 .. code:: python
