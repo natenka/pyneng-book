@@ -19,9 +19,9 @@
 
 .. code:: python
 
-    In [3]: list = [1, 2, 3]
+    In [3]: numbers = [1, 2, 3]
 
-    In [4]: i = iter(list)
+    In [4]: i = iter(numbers)
 
 Теперь можно использовать функцию next(), которая вызывает метод
 ``__next__``, чтобы взять следующий элемент:
@@ -55,7 +55,7 @@ StopIteration.
 
 .. code:: python
 
-    In [9]: for item in lista:
+    In [9]: for item in numbers:
        ...:     print(item)
        ...:
     1
