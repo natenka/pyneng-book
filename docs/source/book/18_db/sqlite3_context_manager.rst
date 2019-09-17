@@ -6,7 +6,7 @@ Connection как менеджер контекста
 больше не нужно.
 
 Python позволяет использовать объект Connection как менеджер контекста.
-В таком случае, не нужно явно делать commit.
+В таком случае не нужно явно делать commit.
 
 При этом: 
 
@@ -83,7 +83,7 @@ create_sw_inventory_ver2_functions.py и подразумевается, что 
      ('0066.BBBB.CCCC', 'sw6', 'Cisco 3780', 'London, Green Str'),
      ('0000.AAAA.DDDD', 'sw7', 'Cisco 2960', 'London, Green Str'),
      ('0088.AAAA.CCCC', 'sw8', 'Cisco 3750', 'London, Green Str')]
-    Error occured:  UNIQUE constraint failed: switch.mac
+    Error occurred:  UNIQUE constraint failed: switch.mac
 
     Проверка содержимого БД
     [('0000.AAAA.CCCC', 'sw1', 'Cisco 3750', 'London, Green Str'),
