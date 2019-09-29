@@ -4,7 +4,7 @@
 В этом разделе рассматривается синтаксис языка SQL.
 
 Если Вы знакомы с базовым синтаксисом SQL, этот раздел можно пропустить
-и сразу перейти к разделу `Модуль sqlite3 <https://pyneng.readthedocs.io/ru/latest/book/18_db/4_sqlite3.html>`__.
+и сразу перейти к разделу `Модуль sqlite3 <https://pyneng.readthedocs.io/ru/latest/book/18_db/sqlite3.html>`__.
 
 .. toctree::
    :maxdepth: 1
