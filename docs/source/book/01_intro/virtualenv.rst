@@ -37,7 +37,7 @@ virtualenvwrapper
     export WORKON_HOME=~/venv
     . /usr/local/bin/virtualenvwrapper.sh
 
-Если Вы используете командный интерпретатор, отличный от bash,
+Если вы используете командный интерпретатор, отличный от bash,
 посмотрите, поддерживается ли он в
 `документации <http://virtualenvwrapper.readthedocs.io/en/latest/install.html>`__
 virtualenvwrapper. Переменная окружения VIRTUALENVWRAPPER\_PYTHON
@@ -71,7 +71,7 @@ Overflow <http://stackoverflow.com/questions/2518127/how-do-i-reload-bashrc-with
     (pyneng)$ 
 
 В скобках перед стандартным приглашением отображается имя виртуального
-окружения. Это означает, что Вы находитесь в нём. В virtualenvwrapper по
+окружения. Это означает, что вы находитесь в нём. В virtualenvwrapper по
 Tab работает автодополнение имени виртуального окружения. Это особенно
 удобно в тех случаях, когда виртуальных окружений много. Теперь в том
 каталоге, который был указан в переменной окружения WORKON_HOME, создан

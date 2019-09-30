@@ -62,4 +62,4 @@ GitHub, в правом верхнем углу нажмите на картин
     $ ssh -T git@github.com
     Hi username! You've successfully authenticated, but GitHub does not provide shell access.
 
-Теперь Вы готовы работать с Git и GitHub.
+Теперь вы готовы работать с Git и GitHub.
