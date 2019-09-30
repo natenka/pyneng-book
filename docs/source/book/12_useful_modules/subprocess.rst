@@ -12,7 +12,7 @@
 команда выполнилась без ошибок.
 
 .. note::
-    Синтаксис модуля subprocess изменился в Python 3.5. Если Вы
+    Синтаксис модуля subprocess изменился в Python 3.5. Если вы
     используете Python версии 3.4 или ранее, используйте `синтаксис для
     Python
     2.7 <https://natenka.gitbooks.io/pyneng/content/v/python2.7/book/16_additional_info/useful_modules/subprocess.html>`__

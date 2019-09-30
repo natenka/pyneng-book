@@ -15,7 +15,7 @@ playbook.
 Эта информация вынесена в отдельный курс `Ansible для сетевых
 инженеров <https://www.gitbook.com/book/natenka/ansible-dlya-setevih-inzhenerov>`__.
 Основы, которые рассматриваются тут, в том курсе повторяются, поэтому,
-если Вы прочитали весь раздел Ansible в этом курсе, можете начать сразу
+если вы прочитали весь раздел Ansible в этом курсе, можете начать сразу
 с четвертого раздела
 `Playbook <https://natenka.gitbooks.io/ansible-dlya-setevih-inzhenerov/content/book/4_playbooks/>`__.
 
