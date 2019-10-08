@@ -150,7 +150,7 @@ parse_sh_cdp_neighbors_detail_finditer.py):
 
         result = {}
 
-        with open('sh_cdp_neighbors_sw1.txt') as f:
+        with open(filename) as f:
             match_iter = re.finditer(regex, f.read())
             for match in match_iter:
                 if match.lastgroup == 'device':
@@ -167,14 +167,14 @@ parse_sh_cdp_neighbors_detail_finditer.py):
 
 .. code:: python
 
-        with open('sh_cdp_neighbors_sw1.txt') as f:
+        with open(filename) as f:
             match_iter = re.finditer(regex, f.read())
 
 Затем перебираются совпадения:
 
 .. code:: python
 
-        with open('sh_cdp_neighbors_sw1.txt') as f:
+        with open(filename) as f:
             match_iter = re.finditer(regex, f.read())
             for match in match_iter:
 
