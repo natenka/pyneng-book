@@ -23,7 +23,7 @@
 
 .. code:: python
 
-    In [1]: def sum_arg(a,*args):
+    In [1]: def sum_arg(a, *args):
       ....:     print(a, args)
       ....:     return a + sum(args)
       ....: 
