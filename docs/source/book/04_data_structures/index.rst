@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _data_structures_index:
+
 4. Типы данных в Python
 ============================
 

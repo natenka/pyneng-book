@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _ansible_basics_index:
+
 23. Основы Ansible
 ============================
 

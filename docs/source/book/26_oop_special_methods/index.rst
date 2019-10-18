@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _oop_special_methods_index:
+
 26. Специальные методы
 ======================
 

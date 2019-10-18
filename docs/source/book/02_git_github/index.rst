@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _git_github_index:
+
 2. Использование Git и GitHub
 =============================
 

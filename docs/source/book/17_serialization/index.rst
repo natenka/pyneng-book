@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _serialization_index:
+
 17. Работа с файлами в формате CSV, JSON, YAML
 ============================
 

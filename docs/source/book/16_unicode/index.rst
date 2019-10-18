@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _unicode_index:
+
 16. Unicode
 ============================
 

@@ -2,6 +2,8 @@
 
    \newpage
 
+.. _ansible_for_network_index:
+
 24. Сетевые модули
 ============================
 
