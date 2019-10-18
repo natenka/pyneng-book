@@ -16,8 +16,8 @@ II. Повторное использование кода
 соответственно, получать разный результат, в зависимости от входящих
 параметров.
 
-Созданию функций посвящён `девятый
-раздел <https://pyneng.readthedocs.io/ru/latest/book/09_functions/index.html>`__.
+Созданию функций посвящён девятый
+раздел :ref:`functions_index`.
 Кроме того, в `десятом
 разделе <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/index.html>`__
 рассматриваются полезные встроенные функции.
