@@ -178,7 +178,7 @@ print()
 было бы перевода строки, надо в качестве последнего выражения в print()
 указать дополнительный аргумент end.
 
-.. seealso:: Дополнительные параметры `функции print <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/print.html>`__
+.. seealso:: Дополнительные параметры функции print :ref:`print`
 
 dir()
 ^^^^^

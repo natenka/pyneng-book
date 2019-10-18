@@ -1,3 +1,6 @@
+
+.. _x_comprehensions:
+
 List, dict, set comprehensions
 ==============================
 

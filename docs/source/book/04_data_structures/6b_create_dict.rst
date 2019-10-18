@@ -97,4 +97,4 @@ dict.fromkeys
 при добавлении значения в один из списков обновляются и остальные.
 
 .. note::
-    Для такой задачи лучше подходит `генератор словаря <https://pyneng.readthedocs.io/ru/latest/book/08_python_basic_examples/x_comprehensions.html#dict-comprehensions>`__
+    Для такой задачи лучше подходит генератор словаря. Смотри раздел :ref:`x_comprehensions`

@@ -14,8 +14,8 @@ for:
 -  строка
 -  список
 -  словарь
--  функция `range <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/range.html>`__
--  любой `итерируемый объект <https://pyneng.readthedocs.io/ru/latest/book/13_iterator_generator/iterable.html>`__
+-  :ref:`range`
+-  любой :ref:`iterable`
 
 Пример преобразования строк в списке в верхний регистр без цикла for:
 
@@ -107,7 +107,7 @@ for:
 
 
 Иногда в цикле необходимо использовать последовательность чисел. В этом случае, лучше всего использовать функцию
-`range <https://pyneng.readthedocs.io/ru/latest/book/10_useful_functions/range.html>`__.
+:ref:`range`
 
 Пример цикла for с функцией range():
 
