@@ -165,7 +165,7 @@
     Out[16]:
     ['logging 0255.255.1',
      'logging',
-     'i',
+     'a',
      'logging buffered 20010',
      'ip http server']
 
@@ -173,7 +173,7 @@
     Подключаюсь к 192.168.100.1...
     Команда "logging 0255.255.1" выполнилась с ошибкой "Invalid input detected at '^' marker." на устройстве 192.168.100.1
     Команда "logging" выполнилась с ошибкой "Incomplete command." на устройстве 192.168.100.1
-    Команда "i" выполнилась с ошибкой "Ambiguous command:  "i"" на устройстве 192.168.100.1
+    Команда "a" выполнилась с ошибкой "Ambiguous command:  "a"" на устройстве 192.168.100.1
 
     In [18]: pprint(result, width=120)
     ({'ip http server': 'config term\n'
@@ -184,10 +184,10 @@
                                 'Enter configuration commands, one per line.  End with CNTL/Z.\n'
                                 'R1(config)#logging buffered 20010\n'
                                 'R1(config)#'},
-     {'i': 'config term\n'
+     {'a': 'config term\n'
            'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-           'R1(config)#i\n'
-           '% Ambiguous command:  "i"\n'
+           'R1(config)#a\n'
+           '% Ambiguous command:  "a"\n'
            'R1(config)#',
       'logging': 'config term\n'
                  'Enter configuration commands, one per line.  End with CNTL/Z.\n'
@@ -209,7 +209,7 @@
     Out[20]: dict_keys(['logging buffered 20010', 'ip http server'])
 
     In [21]: bad.keys()
-    Out[21]: dict_keys(['logging 0255.255.1', 'logging', 'i'])
+    Out[21]: dict_keys(['logging 0255.255.1', 'logging', 'a'])
 
 
 Примеры команд с ошибками:
@@ -223,15 +223,15 @@
     R1(config)#logging
     % Incomplete command.
 
-    R1(config)#i
-    % Ambiguous command:  "i"
+    R1(config)#a
+    % Ambiguous command:  "a"
 
 
 Списки команд с ошибками и без:
 
 .. code:: python
 
-    commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
+    commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
     correct_commands = ['logging buffered 20010', 'ip http server']
 
     commands = commands_with_errors + correct_commands
@@ -292,7 +292,7 @@
 
 .. code:: python
 
-    commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
+    commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
     correct_commands = ['logging buffered 20010', 'ip http server']
 
     commands = commands_with_errors + correct_commands
