@@ -7,5 +7,5 @@
     что не соответствует задаче. Как правило, после первого периода
     адаптации к тестам, становится проще делать задания с тестами.
 
-    `Как работать с тестами и основы pytest <https://pyneng.readthedocs.io/ru/latest/book/additional_info/pytest.html>`__. 
+    :ref:`Как работать с тестами и основы pytest <additional_info_pytest>`. 
 
