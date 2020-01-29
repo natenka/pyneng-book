@@ -1,4 +1,4 @@
-.. _sqlite3:
+.. _sqlite3_index:
 
 Модуль sqlite3
 --------------
