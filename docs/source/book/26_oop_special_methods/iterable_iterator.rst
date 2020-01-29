@@ -162,6 +162,7 @@
             while True:
                 try:
                     print(iterable[index])
+                    index += 1
                 except IndexError:
                     break
 
