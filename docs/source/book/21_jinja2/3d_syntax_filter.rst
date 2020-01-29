@@ -157,15 +157,15 @@ dictsort:
 .. code:: yaml
 
     trunks:
-      Fa0/1:
-        action: add
-        vlans: 10,20
       Fa0/2:
         action: only
         vlans: 10,30
       Fa0/3:
         action: delete
         vlans: 10
+      Fa0/1:
+        action: add
+        vlans: 10,20
 
 Результат выполнения будет таким (интерфейсы упорядочены):
 
