@@ -71,12 +71,14 @@
 
 .. code:: python
 
-    In [12]: os.path.basename(file)
-    Out[12]: 'README.md'
+    In [12]: file = 'Programming/PyNEng/book/25_additional_info/README.md'
 
-    In [13]: os.path.dirname(file)
-    Out[13]: 'Programming/PyNEng/book/25_additional_info'
+    In [13]: os.path.basename(file)
+    Out[13]: 'README.md'
 
-    In [14]: os.path.split(file)
-    Out[14]: ('Programming/PyNEng/book/25_additional_info', 'README.md')
+    In [14]: os.path.dirname(file)
+    Out[14]: 'Programming/PyNEng/book/25_additional_info'
+
+    In [15]: os.path.split(file)
+    Out[15]: ('Programming/PyNEng/book/25_additional_info', 'README.md')
 
