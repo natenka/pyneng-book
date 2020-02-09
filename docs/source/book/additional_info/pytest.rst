@@ -22,7 +22,7 @@
 .. note::
 
     `Запись лекции по использованию pytest для проверки
-    заданий <https://youtu.be/R8vWoJ13MFM>`__
+    заданий <https://youtu.be/TI6-vFFV9lk>`__
 
 .. toctree::
    :maxdepth: 1
