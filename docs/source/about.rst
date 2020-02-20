@@ -87,7 +87,7 @@ Python 3.x. Только в некоторых примерах требуетс
 есть ответы, очень часто вместо того, чтобы попытаться решить сложное
 задание самостоятельно, подглядывают в них. Конечно, иногда возникает
 ситуация, когда никак не получается решить задание – попробуйте отложить
-его, задать вопрос в `Slack <https://pyneng-slack.herokuapp.com>`__ и
+его, задать вопрос в `Slack <https://join.slack.com/t/pyneng/shared_invite/enQtNzkyNTYwOTU5Njk5LWE4OGNjMmM1ZTlkNWQ0N2RhODExZDA0OTNhNDJjZDZlOTZhOGRiMzIyZjBhZWYzYzc3MTg3ZmQzODllYmQ4OWU>`__ и
 сделать какое-либо другое.
 
 .. note::
