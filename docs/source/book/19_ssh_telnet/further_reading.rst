@@ -8,7 +8,7 @@
 -  `paramiko Client <http://docs.paramiko.org/en/2.0/api/client.html>`__
 -  `paramiko
    Channel <http://docs.paramiko.org/en/2.0/api/channel.html>`__
--  `netmiko <http://netmiko.readthedocs.io/en/stable/genindex.html>`__
+-  `netmiko <https://github.com/ktbyers/netmiko>`__
 -  `threading <https://docs.python.org/3/library/threading.html>`__
 -  `multiprocessing <https://docs.python.org/3/library/multiprocessing.html>`__
 -  `queue <https://docs.python.org/3/library/queue.html>`__
