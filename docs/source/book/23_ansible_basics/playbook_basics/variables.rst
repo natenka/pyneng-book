@@ -56,19 +56,19 @@
 
 ::
 
-    [cisco-routers]
+    [cisco_routers]
     192.168.100.1
     192.168.100.2
     192.168.100.3
 
-    [cisco-switches]
+    [cisco_switches]
     192.168.100.100
 
-    [cisco-routers:vars]
+    [cisco_routers:vars]
     ntp_server=192.168.255.100
     log_server=10.255.100.1
 
-Переменные ntp_server и log_server относятся к группе cisco-routers и
+Переменные ntp_server и log_server относятся к группе cisco_routers и
 могут использоваться, например, при генерации конфигурации на основе
 шаблона.
 
@@ -78,7 +78,7 @@
 Переменные можно задавать прямо в playbook. Это может быть удобно тем,
 что переменные находятся там же, где все действия.
 
-Например, можно задать переменные ntp_server и log_server в playbook
+Например, можно задать переменную interfaces в playbook
 таким образом:
 
 ::
@@ -86,20 +86,23 @@
     ---
 
     - name: Run show commands on routers
-      hosts: cisco-routers
+      hosts: cisco_routers
       gather_facts: false
 
+
       vars:
-        ntp_server: 192.168.255.100
-        log_server: 10.255.100.1
+        interfaces: sh ip int br
 
       tasks:
 
-        - name: run sh ip int br        
-          raw: sh ip int br | ex unass
+        - name: run sh ip int br
+          ios_command:
+            commands: "{{interfaces}}"
 
-        - name: run sh ip route
-          raw: sh ip route
+        - name: run sh ip arp
+          ios_command:
+            commands: sh ip arp
+
 
 Переменные в специальных файлах для группы/устройства
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -125,12 +128,12 @@ Ansible позволяет хранить переменные для групп
 
 ::
 
-    [cisco-routers]
+    [cisco_routers]
     192.168.100.1
     192.168.100.2
     192.168.100.3
 
-    [cisco-switches]
+    [cisco_switches]
     192.168.100.100
 
 Можно создать такую структуру каталогов:
@@ -139,8 +142,8 @@ Ansible позволяет хранить переменные для групп
 
     ├── group_vars                 _
     │   ├── all.yml                 |
-    │   ├── cisco-routers.yml       |  Каталог с переменными для групп устройств
-    │   └── cisco-switches.yml     _|
+    │   ├── cisco_routers.yml       |  Каталог с переменными для групп устройств
+    │   └── cisco_switches.yml     _|
     |
     ├── host_vars                  _
     │   ├── 192.168.100.1           |
@@ -148,7 +151,7 @@ Ansible позволяет хранить переменные для групп
     │   ├── 192.168.100.3           |  Каталог с переменными для устройств 
     │   └── 192.168.100.100        _|
     |
-    └── myhosts                     |  Инвентарный файл
+    └── myhosts.ini                 |  Инвентарный файл
 
 Ниже пример содержимого файлов переменных для групп устройств и для
 отдельных хостов.
@@ -160,29 +163,19 @@ group_vars/all.yml (в этом файле указываются значени
 
     ---
 
-    cli:
-      host: "{{ inventory_hostname }}"
-      username: "cisco"
-      password: "cisco"
-      authorize: yes
-      auth_pass: "cisco"
+    ansible_connection: network_cli
+    ansible_network_os: ios
+    ansible_user: cisco
+    ansible_password: cisco
+    ansible_become: yes
+    ansible_become_method: enable
+    ansible_become_pass: cisco
+
 
 В данном случае указываются переменные, которые предопределены самим
 Ansible.
 
-В файле group_vars/all.yml создан словарь cli. В этом словаре
-перечислены те аргументы, которые должны задаваться для работы с сетевым
-оборудованием через встроенные модули Ansible (рассматривается в разделе
-"сетевые модули")
-
-Интересный момент в этом файле - переменная host: "{{
-inventory_hostname }}": 
-
-* inventory_hostname - это специальная 
-  переменная, которая указывает на тот хост, для которого Ansible выполняет действия. 
-* синтаксис {{ inventory_hostname }} - это подстановка переменных. Используется формат Jinja
-
-group_vars/cisco-routers.yml
+group_vars/cisco_routers.yml
 
 ::
 
@@ -195,11 +188,11 @@ group_vars/cisco-routers.yml
       user2: pass2
       user3: pass3
 
-В файле group_vars/cisco-routers.yml находятся переменные, которые
+В файле group_vars/cisco_routers.yml находятся переменные, которые
 указывают IP-адреса Log и NTP серверов и нескольких пользователей. Эти
 переменные могут использоваться, например, в шаблонах конфигурации.
 
-group_vars/cisco-switches.yml
+group_vars/cisco_switches.yml
 
 ::
 
@@ -210,13 +203,13 @@ group_vars/cisco-switches.yml
       - 20
       - 30
 
-В файле group_vars/cisco-switches.yml указана переменная vlans со
+В файле group_vars/cisco_switches.yml указана переменная vlans со
 списком VLANов.
 
 Файлы с переменными для хостов однотипны, и в них меняются только адреса
 и имена:
 
-Файл host_vars/192.168.100.1
+Файл host_vars/192.168.100.1.yml
 
 ::
 
@@ -230,64 +223,21 @@ group_vars/cisco-switches.yml
       - 10.0.0.1
       - 10.255.1.1
 
-Файл host_vars/192.168.100.2
-
-::
-
-    ---
-
-    hostname: london_r2
-    mgmnt_loopback: 100
-    mgmnt_ip: 10.0.0.2
-    ospf_ints:
-      - 192.168.100.2
-      - 10.0.0.2
-      - 10.255.2.2
-
-Файл host_vars/192.168.100.3
-
-::
-
-    ---
-
-    hostname: london_r3
-    mgmnt_loopback: 100
-    mgmnt_ip: 10.0.0.3
-    ospf_ints:
-      - 192.168.100.3
-      - 10.0.0.3
-      - 10.255.3.3
-
-Файл host_vars/192.168.100.100
-
-::
-
-    ---
-
-    hostname: london_sw1
-    mgmnt_int: VLAN100
-    mgmnt_ip: 10.0.0.100
-
 Приоритет переменных
 --------------------
 
 .. note::
     В этом разделе не рассматривается размещение переменных: 
-    * в отдельных файлах, которые добавляются в playbook через include (как в Jinja2) 
-    * в ролях, которые затем используются 
-    * передача переменных при вызове playbook
 
-Чаще всего, переменная с определенным именем только одна. Но иногда
+        * в отдельных файлах, которые добавляются в playbook через include (как в Jinja2) 
+        * в ролях, которые затем используются 
+        * передача переменных при вызове playbook
+
+Чаще всего, переменная с определенным именем только одна, но иногда
 может понадобиться создать переменную в разных местах, и тогда нужно
 понимать, в каком порядке Ansible перезаписывает переменные.
 
 Приоритет переменных (последние значения переписывают предыдущие): 
-
-* Значения переменных в ролях 
-
-  * задачи в ролях будут видеть собственные 
-    значения. Задачи, которые определены вне роли, будут видеть последние
-    значения переменных роли 
 
 * переменные в инвентарном файле 
 * переменные для группы хостов в инвентарном файле 
@@ -296,12 +246,8 @@ group_vars/cisco-switches.yml
 * переменные в каталоге host_vars 
 * факты хоста 
 * переменные сценария (play) 
-* переменные сценария, которые запрашиваются через vars_prompt 
-* переменные, которые передаются в сценарий через vars_files 
 * переменные, полученные через параметр register 
-* set_facts 
-* переменные из роли и помещенные через include 
-* переменные блока (переписывают другие значения только для блока) 
-* переменные задачи (task) (переписывают другие значения только для задачи) 
 * переменные, которые передаются при вызове playbook через параметр --extra-vars
   (всегда наиболее приоритетные)
+
+`Более полный список в документации <https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#sts=Variable%20precedence:%20Where%20should%20I%20put%20a%20variable?%C2%B6>`__
