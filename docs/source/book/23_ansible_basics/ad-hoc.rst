@@ -73,3 +73,26 @@ Ansible есть возможность отключить эту первона
 
 Аналогичным образом можно попробовать выполнять и другие команды и/или
 на других комбинациях устройств.
+
+Часть параметров можно записать в инвентарный файл и тогда их не нужно будет указывать в команде:
+
+::
+
+    [cisco_routers]
+    192.168.100.1
+    192.168.100.2
+    192.168.100.3
+
+    [cisco_routers:vars]
+    ansible_connection=network_cli
+    ansible_network_os=ios
+    ansible_user=cisco
+    ansible_password=cisco
+
+Теперь ad-hoc команду можно вызвать так:
+
+::
+
+    $ ansible 192.168.100.1 -i myhosts.ini -m ios_command -a "commands='sh ip int br'"
+
+А результат выполнения остается тем же.

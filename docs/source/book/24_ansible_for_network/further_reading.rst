@@ -18,6 +18,9 @@ Ansible for network devices
 
 Документация:
 
+- `Gathering facts from network devices <https://docs.ansible.com/ansible/latest/network/getting_started/first_playbook.html#gathering-facts-from-network-devices>`__
+- `Interpreter Discovery <https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.html>`__
+- `Python 3 Support <https://docs.ansible.com/ansible/2.9/reference_appendices/python_3_support.html>`__
 -  `Networking
    Support <http://docs.ansible.com/ansible/devel/intro_networking.html>`__
 -  `Network
@@ -27,6 +30,11 @@ Ansible for network devices
 -  `ios_command <http://docs.ansible.com/ansible/devel/ios_command_module.html>`__
 -  `ios_facts <http://docs.ansible.com/ansible/devel/ios_facts_module.html>`__
 -  `ios_config <http://docs.ansible.com/ansible/devel/ios_config_module.html>`__
+
+Новые состояния rescued и ignored:
+
+- `Blocks error handling <https://docs.ansible.com/ansible/latest/user_guide/playbooks_blocks.html#blocks-error-handling>`__
+- `Ignoring Failed Commands <https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#ignoring-failed-commands>`__
 
 Отличные видео от Ansible: 
 

@@ -56,7 +56,7 @@ cisco_routers.
 
 .. code:: ini
 
-    [cisco-routers]
+    [cisco_routers]
     192.168.255.[1:5]
 
 Такая запись означает, что в группу попадут устройства с адресами
@@ -65,7 +65,7 @@ cisco_routers.
 
 .. code:: ini
 
-    [cisco-routers]
+    [cisco_routers]
     router[A:D].example.com
 
 Группа из групп
@@ -76,18 +76,18 @@ Ansible также позволяет объединять группы устр
 
 .. code:: ini
 
-    [cisco-routers]
+    [cisco_routers]
     192.168.255.1
     192.168.255.2
     192.168.255.3
 
-    [cisco-switches]
+    [cisco_switches]
     192.168.254.1
     192.168.254.2
 
-    [cisco-devices:children]
-    cisco-routers
-    cisco-switches
+    [cisco_devices:children]
+    cisco_routers
+    cisco_switches
 
 Группы по-умолчанию
 ~~~~~~~~~~~~~~~~~~~

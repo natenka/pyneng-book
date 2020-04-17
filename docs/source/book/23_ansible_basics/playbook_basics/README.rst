@@ -23,48 +23,46 @@ Playbook описываются в формате YAML.
 
     Все примеры этого раздела находятся в каталоге 2_playbook_basics
 
-Пример plabook 1_show_commands_with_raw.yml:
+Пример plabook 1_show_commands.yml:
 
 ::
 
     ---
 
     - name: Run show commands on routers
-      hosts: cisco-routers
+      hosts: cisco_routers
       gather_facts: false
 
       tasks:
 
-        - name: run sh ip int br        
-          raw: sh ip int br | ex unass
+        - name: run sh ip int br
+          ios_command:
+            commands: sh ip int br
 
-        - name: run sh ip route
-          raw: sh ip route
+        - name: run sh ip arp
+          ios_command:
+            commands: sh ip arp
 
 
-    - name: Run show commands on switches
-      hosts: cisco-switches
+    - name: Run command on R1
+      hosts: 192.168.100.1
       gather_facts: false
 
       tasks:
 
         - name: run sh int status
-          raw: sh int status
+          ios_command:
+            commands: sh clock
 
-        - name: run sh vlan
-          raw: show vlan
 
 В playbook два сценария (play): 
 
 * ``name: Run show commands on routers`` - имя сценария (play). Этот
   параметр обязательно должен быть в любом сценарии 
-* ``hosts: cisco-routers`` - сценарий будет применяться к устройствам в
+* ``hosts: cisco_routers`` - сценарий будет применяться к устройствам в
   группе cisco-routers. Тут может быть указано и несколько групп,
-  например, таким образом: ``hosts: cisco-routers:cisco-switches``.
-  Подробнее в `документации <http://docs.ansible.com/ansible/intro_patterns.html>`__
-* обычно, в play надо указывать параметр **remote_user**. Но, так как
-  мы указали его в конфигурационном файле Ansible, можно не указывать его
-  в play. 
+  например, таким образом: ``hosts: cisco_routers:cisco_switches``.
+  Подробнее в `документации <https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html>`__
 * ``gather_facts: false`` - отключение сбора фактов об
   устройстве, так как для сетевого оборудования надо использовать
   отдельные модули для сбора фактов. 
@@ -86,7 +84,7 @@ Playbook описываются в формате YAML.
 
 ::
 
-    $ ansible-playbook 1_show_commands_with_raw.yml
+    $ ansible-playbook 1_show_commands.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook_execution.png
 
@@ -100,7 +98,7 @@ playbook - ansible-playbook.
 
 ::
 
-    $ ansible-playbook 1_show_commands_with_raw.yml -v
+    $ ansible-playbook 1_show_commands.yml -v
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook-verbose.png
 
@@ -127,7 +125,7 @@ cisco) на маршрутизаторе 192.168.100.1 и запустим playb
 
 ::
 
-    $ ansible-playbook 1_show_commands_with_raw.yml
+    $ ansible-playbook 1_show_commands.yml
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook_failed_execution.png
 
@@ -138,48 +136,7 @@ cisco) на маршрутизаторе 192.168.100.1 и запустим playb
 маршрутизатор и выполняет задачу только для маршрутизаторов
 192.168.100.2 и 192.168.100.3.
 
-Еще один важный аспект - Ansible выдал сообщение:
-
-::
-
-    to retry, use: --limit @/home/vagrant/repos/pyneng-examples-exercises/examples/23_ansible/2_playbook_basics/1_show_commands_with_raw.retry
-
-Если при выполнении playbook, на каком-то устройстве возникла ошибка,
-Ansible создает специальный файл, который называется точно так же, как
-playbook, но расширение меняется на retry. (Если вы выполняете задания
-параллельно, то этот файл должен появиться у Вас)
-
-В этом файле хранится имя или адрес устройства, на котором возникла
-ошибка. Так выглядит файл 1_show_commands_with_raw.retry сейчас:
-
-::
-
-    192.168.100.1
-
-Создается этот файл для того, чтобы можно было перезапустить playbook
-заново только для проблемного устройства (устройств). То есть, надо
-исправить проблему с устройством и заново запустить playbook.
-
-Настраиваем правильный пароль на маршрутизаторе 192.168.100.1, а затем
-перезапускаем playbook таким образом:
-
-::
-
-    $ ansible-playbook 1_show_commands_with_raw.yml --limit @/home/vagrant/repos/pyneng-examples-exercises/examples/23_ansible_basics/2_playbook_basics/1_show_commands_with_raw.retry
-
-.. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/playbook-retry.png
-
-Ansible взял список устройств, которые перечислены в файле retry, и
-выполнил playbook только для них.
-
-Можно было запустить playbook и так (то есть, писать не полный путь к
-файлу retry):
-
-::
-
-    $ ansible-playbook 1_show_commands_with_raw.yml --limit @1_show_commands_with_raw.retry
-
-Параметр --limit очень полезная вещь. Он позволяет ограничивать, для
+Параметр --limit позволяет ограничивать, для
 каких хостов или групп будет выполняться playbook, при этом не меняя сам
 playbook.
 
@@ -188,7 +145,7 @@ playbook.
 
 ::
 
-    $ ansible-playbook 1_show_commands_with_raw.yml --limit 192.168.100.1
+    $ ansible-playbook 1_show_commands.yml --limit 192.168.100.1
 
 Идемпотентность
 ~~~~~~~~~~~~~~~
@@ -197,11 +154,10 @@ playbook.
 сколько угодно раз, но при этом модуль будет выполнять изменения, только
 если система не находится в желаемом состоянии.
 
-Но есть исключения из такого поведения. Например, модуль raw всегда
-вносит изменения. Поэтому при выполнении playbook выше всегда
-отображалось состояние changed.
+Из этого правила есть исключения. Например, модуль raw всегда
+вносит изменения.
 
-Но, если, например, в задаче указано, что на сервер Linux надо
+Если, например, в задаче указано, что на сервер Linux надо
 установить пакет httpd, то он будет установлен только в том случае, если
 его нет. То есть, действие не будет повторяться снова и снова при каждом
 запуске, а лишь тогда, когда пакета нет.
