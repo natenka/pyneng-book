@@ -37,10 +37,6 @@ verbose
 JSON: 
 
 * **changed** - ключ, который указывает, были ли внесены изменения 
-* **rc** - return code. Это поле появляется в выводе тех
-  модулей, которые выполняют какие-то команды 
-* **stderr** - ошибки при выполнении команды. Это поле
-  появляется в выводе тех модулей, которые выполняют какие-то команды 
 * **stdout** - вывод команды 
 * **stdout_lines** - вывод в виде списка команд, разбитых построчно
 
@@ -61,14 +57,16 @@ int br сохранен в переменную sh_ip_int_br_result:
     ---
 
     - name: Run show commands on routers
-      hosts: cisco-routers
+      hosts: 192.168.100.1
       gather_facts: false
 
       tasks:
 
         - name: run sh ip int br
-          raw: sh ip int br | ex unass
+          ios_command:
+            commands: sh ip int br
           register: sh_ip_int_br_result
+
 
 Если запустить этот playbook, вывод не будет отличаться, так как вывод
 только записан в переменную, но с переменной не выполняется никаких
@@ -90,13 +88,14 @@ debug
     ---
 
     - name: Run show commands on routers
-      hosts: cisco-routers
+      hosts: 192.168.100.1
       gather_facts: false
 
       tasks:
 
         - name: run sh ip int br
-          raw: sh ip int br | ex unass
+          ios_command:
+            commands: sh ip int br
           register: sh_ip_int_br_result
 
         - name: Debug registered var
@@ -133,19 +132,21 @@ register, debug, when
     ---
 
     - name: Run show commands on routers
-      hosts: cisco-routers
+      hosts: 192.168.100.1
       gather_facts: false
 
       tasks:
 
         - name: run sh ip int br
-          raw: sh ip int bri | ex unass
+          ios_command:
+            commands: sh ip int br
           register: sh_ip_int_br_result
 
         - name: Debug registered var
           debug:
-            msg: "Error in command"
-          when: "'invalid' in sh_ip_int_br_result.stdout"
+            msg: "IP адрес не найден"
+          when: "'4.4.4.4' not in sh_ip_int_br_result.stdout[0]"
+
 
 В последнем задании несколько изменений: 
 
@@ -153,16 +154,10 @@ register, debug, when
   а сообщение, которое указано в переменной msg. 
 * условие when указывает, что данная задача выполнится
   только при выполнении условия 
-* ``when: "'invalid' in sh_ip_int_br_result.stdout"`` - это условие
+* ``when: "'4.4.4.4' not in sh_ip_int_br_result.stdout[0]"`` - это условие
   означает, что задача будет выполнена только в том случае, если в выводе
-  sh_ip_int_br_result.stdout будет найдена строка invalid (например,
-  когда неправильно введена команда)
+  sh_ip_int_br_result.stdout будет найдена строка 4.4.4.4 
 
-.. note::
-
-    Модули, которые работают с сетевым оборудованием, автоматически
-    проверяют ошибки при выполнении команд. Тут этот пример используется
-    для демонстрации возможностей Ansible.
 
 Выполнение playbook:
 
@@ -176,28 +171,7 @@ register, debug, when
 выполнялась для указанных устройств. Не выполнилась она потому, что
 условие в when не было выполнено.
 
-Выполнение того же playbook, но с ошибкой в команде:
-
-::
-
-    ---
-
-    - name: Run show commands on routers
-      hosts: cisco-routers
-      gather_facts: false
-
-      tasks:
-
-        - name: run sh ip int br
-          raw: shh ip int bri | ex unass
-          register: sh_ip_int_br_result
-
-        - name: Debug registered var
-          debug:
-            msg: "Error in command"
-          when: "'invalid' in sh_ip_int_br_result.stdout"
-
-Теперь результат выполнения такой:
+Выполнение того же playbook, но после удаления адреса на устройстве:
 
 ::
 
@@ -205,5 +179,3 @@ register, debug, when
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/15_ansible/3_register_debug_when.png
 
-Так как команда была с ошибкой, сработало условие, которое описано в
-when, и задача вывела сообщение с помощью модуля debug.
