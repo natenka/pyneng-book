@@ -25,6 +25,9 @@
 
     pip install pytest-clarity pyyaml
 
+Для корректной работы тестов, надо скопировать себе не только каталог заданий
+одного раздела, а весь каталог exercises из `репозитория с заданиями <https://github.com/natenka/pyneng-examples-exercises>`__.
+А лучше создать себе копию репозитория с заданиями, как написано `тут <https://pyneng.readthedocs.io/ru/latest/book/02_git_github/git_github_changes.html>`__.
 
 .. note::
 
