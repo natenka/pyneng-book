@@ -38,6 +38,7 @@ Ansible for network devices
 
 Отличные видео от Ansible: 
 
+* `Ansible networking what's new in 2.9 and beyond <https://www.ansible.com/2019-nyc-ansible-networking-whats-new-in-2.9-and-beyond>`__
 * `AUTOMATING YOUR NETWORK <https://www.ansible.com/webinars-training/automating-your-network>`__. `Репозиторий с примерами из вебинара <https://github.com/privateip/Ansible-Webinar-Mar2016>`__
 
 Проекты, которые используют TextFSM: 
