@@ -132,7 +132,7 @@ MAC-адрес, VLAN и интерфейсы. В этом случае регу�
 
 .. code:: python
 
-    In [24]: match = re.search('(?P<intf>\S+)\s+(?P<address>[\d\.]+)\s+\w+\s+\w+\s+(?P<status>up|down|administratively down)\s+(?P<protocol>up|down)', line)
+    In [24]: match = re.search('(?P<intf>\S+)\s+(?P<address>[\d\.]+)\s+\w+\s+\w+\s+(?P<status>up|down)\s+(?P<protocol>up|down)', line)
 
     In [25]: match.groupdict()
     Out[25]:
