@@ -19,6 +19,9 @@
 
     In [1]: telnet = telnetlib.Telnet('192.168.100.1')
 
+Метод read_until
+~~~~~~~~~~~~~~~~
+
 С помощью метода read_until указывается до какой строки считать вывод.
 При этом, как аргумент надо передавать не обычную строку, а байты:
 
@@ -28,6 +31,9 @@
     Out[2]: b'\r\n\r\nUser Access Verification\r\n\r\nUsername'
 
 Метод read_until возвращает все, что он считал до указанной строки.
+
+Метод write
+~~~~~~~~~~~
 
 Для передачи данных используется метод write. Ему нужно передавать
 байтовую строку:
@@ -61,6 +67,9 @@
 
     In [8]: telnet.read_until(b'>')
     Out[8]: b'sh ip int br\r\nInterface                  IP-Address      OK? Method Status                Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \r\nEthernet0/2                19.1.1.1        YES NVRAM  up                    up      \r\nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \r\nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      \r\nR1>'
+
+Метод read_very_eager
+~~~~~~~~~~~~~~~~~~~~~
 
 Или использовать еще один метод для чтения read_very_eager.
 При использовании метода read_very_eager, можно отправить несколько
@@ -128,6 +137,9 @@
     In [19]: telnet.read_until(b'>')
     Out[19]: b'sh ip int br\r\nInterface                  IP-Address      OK? Method Status                Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \r\nEthernet0/2                19.1.1.1        YES NVRAM  up                    up      \r\nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \r\nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      \r\nR1>'
 
+read_until vs read_very_eager
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Важное отличие между read_until и read_very_eager заключается в том,
 как они реагируют на отсутствие вывода.
 
@@ -148,6 +160,10 @@
 
     In [21]: telnet.read_very_eager()
     Out[21]: b''
+
+
+Метод expect
+~~~~~~~~~~~~
 
 Метод expect позволяет указывать список с регулярными выражениями. Он
 работает похоже на pexpect, но в модуле telnetlib всегда надо передавать
@@ -200,90 +216,119 @@
     In [31]: output.decode('utf-8')
     Out[31]: 'sh clock\r\n*19:37:21.577 UTC Fri Nov 3 2017\r\nR1>'
 
-Закрывается соединение методом close:
+
+Метод close
+~~~~~~~~~~~
+
+
+Закрывается соединение методом close, но лучше открывать и закрывать сессию с помощью
+менеджера контекста:
 
 .. code:: python
 
     In [32]: telnet.close()
-
-Пример использования telnetlib
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Принцип работы telnetlib напоминает pexpect, поэтому пример ниже должен
-быть понятен.
-
-Файл 2_telnetlib.py:
-
-.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/2_telnetlib.py
-  :language: python
-  :linenos:
-
-telnetlib очень похож на pexpect: 
-
-  * ``with telnetlib.Telnet(ip) as t`` - класс Telnet представляет соединение к серверу. 
-  * в данном случае ему передается только IP-адрес, но можно передать и порт, 
-    к которому нужно подключаться 
-  * ``read_until`` - похож на метод ``expect`` в модуле pexpect. 
-    Указывает, до какой строки следует считывать вывод 
-  * ``write`` - передать строку 
-  * ``read_very_eager`` - считать всё, что получается
 
 .. note::
 
     Использование объекта Telnet как менеджера контекса добавлено в
     версии 3.6
 
+Пример использования telnetlib
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Файл 2_telnetlib.py:
+
+.. code:: python
+
+    import telnetlib
+    import time
+    from pprint import pprint
+
+
+    def to_bytes(line):
+        return f"{line}\n".encode("utf-8")
+
+
+    def send_show_command(ip, username, password, enable, commands):
+        with telnetlib.Telnet(ip) as telnet:
+            telnet.read_until(b"Username")
+            telnet.write(to_bytes(username))
+            telnet.read_until(b"Password")
+            telnet.write(to_bytes(password))
+            index, m, output = telnet.expect([b">", b"#"])
+            if index == 0:
+                telnet.write(b"enable\n")
+                telnet.read_until(b"Password")
+                telnet.write(to_bytes(enable))
+                telnet.read_until(b"#", timeout=5)
+            telnet.write(b"terminal length 0\n")
+            telnet.read_until(b"#", timeout=5)
+            time.sleep(3)
+            telnet.read_very_eager()
+
+            result = {}
+            for command in commands:
+                telnet.write(to_bytes(command))
+                output = telnet.read_until(b"#", timeout=5).decode("utf-8")
+                result[command] = output.replace("\r\n", "\n")
+            return result
+
+
+    if __name__ == "__main__":
+        devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
+        commands = ["sh ip int br", "sh arp"]
+        for ip in devices:
+            result = send_show_command(ip, "cisco", "cisco", "cisco", commands)
+            pprint(result, width=120)
+
+
+Так как методу write надо передавать байты и добавлять каждый раз перевод строки,
+создана небольшая функция to_bytes, которая выполняет преобразование в байты и
+добавление перевода строки.
+
+
 Выполнение скрипта:
 
 ::
 
-    $ python 2_telnetlib.py "sh ip int br"
-    Username: cisco
-    Password:
-    Enter enable secret:
-    Connection to device 192.168.100.1
-
-    R1#terminal length 0
-    R1#sh ip int br
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.1   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.1.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.1.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.1.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.1.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.1.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.1.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.1.70.1       YES manual up                    up
-    R1#
-    Connection to device 192.168.100.2
-
-    R2#terminal length 0
-    R2#sh ip int br
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.2   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.2.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.2.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.2.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.2.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.2.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.2.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.2.70.1       YES manual up                    up
-    R2#
-    Connection to device 192.168.100.3
-
-    R3#terminal length 0
-    R3#sh ip int br
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.3   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.3.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.3.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.3.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.3.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.3.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.3.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.3.70.1       YES manual up                    up
-    R3#
-
+    {'sh int desc': 'sh int desc\n'
+                    'Interface             Status         Protocol Description\n'
+                    'Et0/0                 up             up       \n'
+                    'Et0/1                 up             up       \n'
+                    'Et0/2                 up             up       \n'
+                    'Et0/3                 up             up       \n'
+                    'R1#',
+     'sh ip int br': 'sh ip int br\n'
+                     'Interface         IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0       192.168.100.1   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1       192.168.200.1   YES NVRAM  up                    up      \n'
+                     'Ethernet0/2       unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/3       192.168.130.1   YES NVRAM  up                    up      \n'
+                     'R1#'}
+    {'sh int desc': 'sh int desc\n'
+                    'Interface             Status         Protocol Description\n'
+                    'Et0/0                 up             up       \n'
+                    'Et0/1                 up             up       \n'
+                    'Et0/2                 admin down     down     \n'
+                    'Et0/3                 admin down     down     \n'
+                    'R2#',
+     'sh ip int br': 'sh ip int br\n'
+                     'Interface         IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0       192.168.100.2   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1       unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/2       unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3       unassigned      YES NVRAM  administratively down down    \n'
+                     'R2#'}
+    {'sh int desc': 'sh int desc\n'
+                    'Interface             Status         Protocol Description\n'
+                    'Et0/0                 up             up       \n'
+                    'Et0/1                 up             up       \n'
+                    'Et0/2                 admin down     down     \n'
+                    'Et0/3                 admin down     down     \n'
+                    'R3#',
+     'sh ip int br': 'sh ip int br\n'
+                     'Interface         IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0       192.168.100.3   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1       unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/2       unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3       unassigned      YES NVRAM  administratively down down    \n'
