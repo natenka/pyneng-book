@@ -327,10 +327,9 @@ pexpect.EOF
     return result
 
 Тут по очереди отправляются команды и expect ждет три варианта: приглашение, таймаут или EOF.
-Если метод expect не дождался ``#``, будет возвращено значение 1 и в этом случае выводится сообщение,
-что символ не найден. При этом, и когда совпадение найдено и когда был таймаут, полученный вывод
-записывается в словарь. Таким образом можно увидеть, что было получено с устройства, даже
-если приглашение не найдено.
+Если найдено совпадение с ``#``, с помощью before считывается вывод команды, в выводе последовательность
+символов ``\r\n`` заменяется на ``\n`` и результат записывается в словарь.
+Если совпадением был таймаут, 
 
 Вывод при запуске скрипта:
 
@@ -367,54 +366,4 @@ pexpect.EOF
                     'Et0/2                          admin down     down     \n'
                     'Et0/3                          admin down     down     \n'
                     'Lo33                           up             up       \n'}
-
-Работа с pexpect без отключения постраничного вывода команд
------------------------------------------------------------
-
-Пример использования pexpect для работы с постраничным выводом команд
-show (файл 1_pexpect_more.py):
-
-.. code:: python
-
-    import pexpect
-    import re
-    from pprint import pprint
-
-
-    def send_show_command(ip, username, password, enable, command, prompt="#"):
-        with pexpect.spawn(f"ssh {username}@{ip}", timeout=10, encoding="utf-8") as ssh:
-            ssh.expect("[Pp]assword")
-            ssh.sendline(password)
-            enable_status = ssh.expect([">", "#"])
-            if enable_status == 0:
-                ssh.sendline("enable")
-                ssh.expect("[Pp]assword")
-                ssh.sendline(enable)
-                ssh.expect(prompt)
-
-            ssh.sendline(command)
-            output = ""
-
-            while True:
-                match = ssh.expect([prompt, "--More--", pexpect.TIMEOUT])
-                page = ssh.before.replace("\r\n", "\n")
-                page = re.sub(" +\x08+ +\x08+", "\n", page)
-                output += page
-                if match == 0:
-                    break
-                elif match == 1:
-                    ssh.send(" ")
-                else:
-                    print("Ошибка: timeout")
-                    break
-            output = re.sub("\n +\n", "\n", output)
-            return output
-
-
-    if __name__ == "__main__":
-        devices = ["192.168.100.1", "192.168.100.2", "192.168.100.3"]
-        for ip in devices:
-            result = send_show_command(ip, "cisco", "cisco", "cisco", "sh run")
-            with open(f"{ip}_result.txt", "w") as f:
-                f.write(result)
 
