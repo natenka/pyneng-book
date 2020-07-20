@@ -287,6 +287,7 @@ SSH.
 Результат выполнения скрипта:
 
 ::
+
     {'sh clock': '*09:12:15.210 UTC Mon Jul 20 2020',
      'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
                      'Ethernet0/0   192.168.100.1   YES NVRAM  up                    up      \n'
