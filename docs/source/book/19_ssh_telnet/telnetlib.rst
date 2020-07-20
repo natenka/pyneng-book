@@ -337,7 +337,7 @@ read_until vs read_very_eager
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Пример использования telnetlib для работы с постраничным выводом команд
-show (файл 1_pexpect_more.py):
+show (файл 2_telnetlib_more.py):
 
 .. code:: python
 
