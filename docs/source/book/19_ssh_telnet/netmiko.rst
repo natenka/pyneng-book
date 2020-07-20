@@ -293,19 +293,19 @@ SSH.
                      'Ethernet0/0   192.168.100.1   YES NVRAM  up                    up      \n'
                      'Ethernet0/1   192.168.200.1   YES NVRAM  up                    up      \n'
                      'Ethernet0/2   unassigned      YES NVRAM  up                    up      \n'
-                     'Ethernet0/3   192.168.130.1   YES NVRAM  up                    up      \n'
+                     'Ethernet0/3   192.168.130.1   YES NVRAM  up                    up      \n'}
     {'sh clock': '*09:12:24.507 UTC Mon Jul 20 2020',
      'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
                      'Ethernet0/0   192.168.100.2   YES NVRAM  up                    up      \n'
                      'Ethernet0/1   unassigned      YES NVRAM  up                    up      \n'
                      'Ethernet0/2   unassigned      YES NVRAM  administratively down down    \n'
-                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'}
     {'sh clock': '*09:12:33.573 UTC Mon Jul 20 2020',
      'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
                      'Ethernet0/0   192.168.100.3   YES NVRAM  up                    up      \n'
                      'Ethernet0/1   unassigned      YES NVRAM  up                    up      \n'
                      'Ethernet0/2   unassigned      YES NVRAM  administratively down down    \n'
-                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'}
 
 
 Постраничный вывод команд
