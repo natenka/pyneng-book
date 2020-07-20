@@ -11,83 +11,6 @@ Netmiko - это модуль, который позволяет упрости�
 
     pip install netmiko
 
-Пример использования netmiko (файл 4_netmiko.py):
-
-.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/4_netmiko.py
-  :language: python
-  :linenos:
-
-Пример, который использовался с pexpect, telnetlib и paramiko выглядит значительно
-проще с netmiko. 
-
-Разберемся с содержимым скрипта: 
-
-* device_params - это словарь, в котором указываются параметры устройства. 
-  Параметр device_type - это предопределенные значения, которые понимает netmiko. 
-  В данном случае, так как подключение выполняется к устройству с Cisco IOS, 
-  используется значение ``cisco_ios``
-* ``with ConnectHandler(**device_params) as ssh`` - устанавливается соединение 
-  с устройством на основе параметров, которые находятся в словаре 
-
-  * две звездочки перед словарем - это распаковка словаря (подробнее в разделе :ref:`unpacking_args`)
-
-* ``ssh.enable()`` - переход в режим enable. Пароль передается автоматически - 
-  используется значение ключа secret, который указан в словаре device_params 
-* ``result = ssh.send_command(COMMAND)`` - отправка команды и получение вывода
-
-В этом примере не передается команда terminal length, так как netmiko по
-умолчанию выполняет эту команду.
-
-Так выглядит результат выполнения скрипта:
-
-::
-
-    $ python 4_netmiko.py "sh ip int br"
-    Username: cisco
-    Password:
-    Enter enable password:
-    Connection to device 192.168.100.1
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.1   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.1.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.1.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.1.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.1.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.1.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.1.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.1.70.1       YES manual up                    up
-    Connection to device 192.168.100.2
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.2   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.2.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.2.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.2.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.2.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.2.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.2.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.2.70.1       YES manual up                    up
-    Connection to device 192.168.100.3
-    Interface              IP-Address      OK? Method Status                Protocol
-    FastEthernet0/0        192.168.100.3   YES NVRAM  up                    up
-    FastEthernet0/1        unassigned      YES NVRAM  up                    up
-    FastEthernet0/1.10     10.3.10.1       YES manual up                    up
-    FastEthernet0/1.20     10.3.20.1       YES manual up                    up
-    FastEthernet0/1.30     10.3.30.1       YES manual up                    up
-    FastEthernet0/1.40     10.3.40.1       YES manual up                    up
-    FastEthernet0/1.50     10.3.50.1       YES manual up                    up
-    FastEthernet0/1.60     10.3.60.1       YES manual up                    up
-    FastEthernet0/1.70     10.3.70.1       YES manual up                    up
-
-В выводе нет никаких лишних приглашений, только вывод команды sh ip int
-br.
-
-Возможности netmiko
-~~~~~~~~~~~~~~~~~~~
-
-Так как netmiko наиболее удобный модуль для подключения к сетевому
-оборудованию, разберемся с ним подробней.
 
 Поддерживаемые типы устройств
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -273,10 +196,8 @@ SSH.
 В остальном, методы, которые применимы к SSH, применимы и к Telnet.
 Пример, аналогичный примеру с SSH (файл 4_netmiko_telnet.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/19_ssh_telnet/4_netmiko_telnet.py
-  :language: python
-  :emphasize-lines: 17
-  :linenos:
+.. code:: python
+
 
 Аналогично работают и методы: 
 
@@ -286,3 +207,106 @@ SSH.
 * ``send_config_from_file()`` 
 * ``check_enable_mode()`` 
 * ``disconnect()``
+
+
+Пример использования netmiko
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Пример использования netmiko (файл 4_netmiko.py):
+
+.. code:: python
+
+    from pprint import pprint
+    import yaml
+    from netmiko import (
+        ConnectHandler,
+        NetmikoTimeoutException,
+        NetmikoAuthenticationException,
+    )
+
+
+    def send_show_command(device, commands):
+        result = {}
+        try:
+            with ConnectHandler(**device) as ssh:
+                ssh.enable()
+                for command in commands:
+                    output = ssh.send_command(command)
+                    result[command] = output
+            return result
+        except (NetmikoTimeoutException, NetmikoAuthenticationException) as error:
+            print(error)
+
+
+    if __name__ == "__main__":
+        with open("devices.yaml") as f:
+            devices = yaml.safe_load(f)
+        for device in devices:
+            result = send_show_command(device, ["sh clock", "sh ip int br"])
+            pprint(result, width=120)
+
+
+
+В этом примере не передается команда terminal length, так как netmiko по
+умолчанию выполняет эту команду.
+
+Результат выполнения скрипта:
+
+::
+    {'sh clock': '*09:12:15.210 UTC Mon Jul 20 2020',
+     'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0   192.168.100.1   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1   192.168.200.1   YES NVRAM  up                    up      \n'
+                     'Ethernet0/2   unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/3   192.168.130.1   YES NVRAM  up                    up      \n'
+    {'sh clock': '*09:12:24.507 UTC Mon Jul 20 2020',
+     'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0   192.168.100.2   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1   unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/2   unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'
+    {'sh clock': '*09:12:33.573 UTC Mon Jul 20 2020',
+     'sh ip int br': 'Interface     IP-Address      OK? Method Status                Protocol\n'
+                     'Ethernet0/0   192.168.100.3   YES NVRAM  up                    up      \n'
+                     'Ethernet0/1   unassigned      YES NVRAM  up                    up      \n'
+                     'Ethernet0/2   unassigned      YES NVRAM  administratively down down    \n'
+                     'Ethernet0/3   unassigned      YES NVRAM  administratively down down    \n'
+
+
+Постраничный вывод команд
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Пример использования paramiko для работы с постраничным выводом команд
+show (файл 4_netmiko_more.py):
+
+.. code:: python
+
+    from netmiko import ConnectHandler, NetmikoTimeoutException
+    import yaml
+
+
+    def send_show_command(device_params, command):
+        with ConnectHandler(**device_params) as ssh:
+            ssh.enable()
+            prompt = ssh.find_prompt()
+            ssh.send_command("terminal length 100")
+            ssh.write_channel(f"{command}\n")
+            output = ""
+            while True:
+                try:
+                    page = ssh.read_until_pattern(f"More|{prompt}")
+                    output += page
+                    if "More" in page:
+                        ssh.write_channel(" ")
+                    elif prompt in output:
+                        break
+                except NetmikoTimeoutException:
+                    break
+        return output
+
+
+    if __name__ == "__main__":
+        with open("devices.yaml") as f:
+            devices = yaml.safe_load(f)
+        print(send_show_command(devices[0], "sh run"))
+
