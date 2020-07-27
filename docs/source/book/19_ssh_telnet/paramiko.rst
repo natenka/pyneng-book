@@ -114,7 +114,15 @@ SSHClient это класс, который представляет соеди�
         cl = paramiko.SSHClient()
         cl.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         cl.connect(
-            hostname=ip,                                                                                             username=username,                                                                                       password=password,                                                                                       look_for_keys=False,                                                                                     allow_agent=False,                                                                                   )                                                                                                        with cl.invoke_shell() as ssh:                                                                               ssh.send("enable\n")                                                                                     ssh.send(f"{enable}\n")
+            hostname=ip,
+            username=username,
+            password=password,
+            look_for_keys=False,
+            allow_agent=False,
+        )
+        with cl.invoke_shell() as ssh:
+            ssh.send("enable\n")
+            ssh.send(f"{enable}\n")
             time.sleep(short_pause)
             ssh.send("terminal length 0\n")
             time.sleep(short_pause)
