@@ -26,4 +26,4 @@ Python для сетевых инженеров
    book/Part_VIII
    resources/README
    testimonials
-
+   download
