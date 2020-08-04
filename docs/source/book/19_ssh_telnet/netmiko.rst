@@ -200,7 +200,9 @@ SSH.
 
 .. code:: python
 
-    from pprint import pprint                                                                                import yaml                                                                                              from netmiko import (
+    from pprint import pprint
+    import yaml
+    from netmiko import (
         ConnectHandler,
         NetmikoTimeoutException,
         NetmikoAuthenticationException,
