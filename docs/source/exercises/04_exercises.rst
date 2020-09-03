@@ -27,20 +27,20 @@
 
 .. code:: python
 
-    mac = 'AAAA:BBBB:CCCC'
+    mac = "AAAA:BBBB:CCCC"
 
 Задание 4.3
 ~~~~~~~~~~~
 
 Получить из строки config такой список VLANов:
 
-``['1', '3', '10', '20', '30', '100']``
+``["1", "3", "10", "20", "30", "100"]``
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    config = 'switchport trunk allowed vlan 1,3,10,20,30,100'
+    config = "switchport trunk allowed vlan 1,3,10,20,30,100"
 
 Задание 4.4
 ~~~~~~~~~~~
@@ -64,14 +64,14 @@ vlanы вручную.
 Из строк command1 и command2 получить список VLANов,
 которые есть и в команде command1 и в команде command2 (пересечение).
 
-Результатом должен быть такой список: ``['1', '3', '8']``
+Результатом должен быть такой список: ``["1", "3", "8"]``
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
 
-    command1 = 'switchport trunk allowed vlan 1,2,3,5,8'
-    command2 = 'switchport trunk allowed vlan 1,3,8,9'
+    command1 = "switchport trunk allowed vlan 1,2,3,5,8"
+    command2 = "switchport trunk allowed vlan 1,3,8,9"
 
 Задание 4.6
 ~~~~~~~~~~~
@@ -91,7 +91,7 @@ vlanы вручную.
 
 .. code:: python
 
-    ospf_route = '       10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0'
+    ospf_route = "       10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0"
 
 Задание 4.7
 ~~~~~~~~~~~
@@ -104,7 +104,7 @@ vlanы вручную.
 
 ::
 
-    mac = 'AAAA:BBBB:CCCC'
+    mac = "AAAA:BBBB:CCCC"
 
 Задание 4.8
 ~~~~~~~~~~~
@@ -131,5 +131,5 @@ vlanы вручную.
 
 ::
 
-    ip = '192.168.3.1'
+    ip = "192.168.3.1"
 
