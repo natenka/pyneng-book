@@ -13,12 +13,13 @@
 Список mac содержит MAC-адреса в формате XXXX:XXXX:XXXX.
 Однако, в оборудовании cisco MAC-адреса используются в формате XXXX.XXXX.XXXX.
 
-Создать скрипт, который преобразует MAC-адреса в формат cisco
+
+Написать код, который преобразует MAC-адреса в формат cisco
 и добавляет их в новый список mac_cisco
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-.. code-block:: python
+.. code:: python
 
     mac = ['aabb:cc80:7000', 'aabb:dd80:7340', 'aabb:ee80:7000', 'aabb:ff80:7000']
 
@@ -26,8 +27,7 @@
 ~~~~~~~~~~~
 
 1. Запросить у пользователя ввод IP-адреса в формате 10.0.1.1
-2. Определить тип IP-адреса.
-3. В зависимости от типа адреса, вывести на стандартный поток вывода:
+2. В зависимости от типа адреса (описаны ниже), вывести на стандартный поток вывода:
 
    * 'unicast' - если первый байт в диапазоне 1-223
    * 'multicast' - если первый байт в диапазоне 224-239
@@ -44,11 +44,12 @@
 
 Добавить проверку введенного IP-адреса. Адрес считается корректно заданным, если он:
 
-* состоит из 4 чисел разделенных точкой,
-* каждое число в диапазоне от 0 до 255.
+* состоит из 4 чисел (а не букв или других символов)
+* числа разделенны точкой
+* каждое число в диапазоне от 0 до 255
 
-Если адрес задан неправильно, выводить сообщение:
-'Неправильный IP-адрес'
+Если адрес задан неправильно, выводить сообщение: 'Неправильный IP-адрес'. Сообщение должно выводиться только один раз.
+
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
@@ -74,11 +75,13 @@
 
 Поэтому в соответствии каждому порту стоит список
 и первый (нулевой) элемент списка указывает как воспринимать номера VLAN,
-которые идут дальше:
+которые идут дальше.
 
-* add - VLANы надо будет добавить (команда switchport trunk allowed vlan add 10,20)
-* del - VLANы надо удалить из списка разрешенных (команда switchport trunk allowed vlan remove 17)
-* only - на интерфейсе должны остаться разрешенными только указанные VLANы (команда switchport trunk allowed vlan 11,30)
+Пример значения и соответствующей команды:
+
+* ['add', '10', '20'] - команда switchport trunk allowed vlan add 10,20
+* ['del', '17'] - команда switchport trunk allowed vlan remove 17
+* ['only', '11', '30'] - команда switchport trunk allowed vlan 11,30
 
 Задача для портов 0/1, 0/2, 0/4:
 
@@ -90,34 +93,29 @@ trunk будут другие номера интерфейсов, код дол
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-.. code-block:: python
+.. code:: python
 
     access_template = [
-        'switchport mode access', 'switchport access vlan',
-        'spanning-tree portfast', 'spanning-tree bpduguard enable'
+        "switchport mode access",
+        "switchport access vlan",
+        "spanning-tree portfast",
+        "spanning-tree bpduguard enable",
     ]
 
     trunk_template = [
-        'switchport trunk encapsulation dot1q', 'switchport mode trunk',
-        'switchport trunk allowed vlan'
+        "switchport trunk encapsulation dot1q",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan",
     ]
 
-    access = {
-        '0/12': '10',
-        '0/14': '11',
-        '0/16': '17',
-        '0/17': '150'
-    }
-    trunk = {
-            '0/1': ['add', '10', '20'],
-            '0/2': ['only', '11', '30'],
-            '0/4': ['del', '17']
-        }
+    access = {"0/12": "10", "0/14": "11", "0/16": "17", "0/17": "150"}
+    trunk = {"0/1": ["add", "10", "20"], "0/2": ["only", "11", "30"], "0/4": ["del", "17"]}
 
     for intf, vlan in access.items():
-        print('interface FastEthernet' + intf)
+        print("interface FastEthernet" + intf)
         for command in access_template:
-            if command.endswith('access vlan'):
-                print(' {} {}'.format(command, vlan))
+            if command.endswith("access vlan"):
+                print(f" {command} {vlan}")
             else:
-                print(' {}'.format(command))
+                print(f" {command}")
+
