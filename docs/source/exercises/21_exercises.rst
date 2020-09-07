@@ -21,27 +21,31 @@
 
 Проверить работу функции на шаблоне templates/for.txt и данных из файла data_files/for.yml.
 
+.. code:: python
+
+    import yaml
+
+
+    # так должен выглядеть вызов функции
+    if __name__ == "__main__":
+        data_file = "data_files/for.yml"
+        template_file = "templates/for.txt"
+        with open(data_file) as f:
+            data = yaml.safe_load(f)
+        print(generate_config(template_file, data))
+
 
 Задание 21.2
 ~~~~~~~~~~~~
 
-На основе конфигурации config_r1.txt, создать шаблоны:
-
-* templates/cisco_base.txt - в нем должны быть все строки, кроме настройки alias и event manager. Имя хоста должно быть переменной hostname
-* templates/alias.txt - в этот шаблон перенести все alias
-* templates/eem_int_desc.txt - в этом шаблоне должен быть event manager applet
-
-В шаблонах templates/alias.txt и templates/eem_int_desc.txt переменных нет.
-
-Создать шаблон templates/cisco_router_base.txt. В шаблон templates/cisco_router_base.txt должно быть включено содержимое шаблонов:
+Создать шаблон templates/cisco_router_base.txt.
+В шаблон templates/cisco_router_base.txt должно быть включено содержимое шаблонов:
 
 * templates/cisco_base.txt
 * templates/alias.txt
 * templates/eem_int_desc.txt
 
 При этом, нельзя копировать текст шаблонов.
-
-Шаблоны надо создавать вручную, скопировав части конфига в соответствующие шаблоны.
 
 Проверьте шаблон templates/cisco_router_base.txt, с помощью
 функции generate_config из задания 21.1. Не копируйте код функции generate_config.
@@ -53,6 +57,8 @@
 
 Создайте шаблон templates/ospf.txt на основе конфигурации OSPF в файле cisco_ospf.txt.
 Пример конфигурации дан, чтобы показать синтаксис.
+
+Шаблон надо создавать вручную, скопировав части конфига в соответствующий шаблон.
 
 Какие значения должны быть переменными:
 
@@ -92,6 +98,29 @@
 Проверьте получившийся шаблон templates/ospf.txt, на данных в файле data_files/ospf.yml,
 с помощью функции generate_config из задания 21.1.
 Не копируйте код функции generate_config.
+
+
+В результате должна получиться конфигурация такого вида
+(команды в режиме router ospf не обязательно должны быть в таком порядке, главное чтобы они были в нужном режиме):
+
+::
+
+    router ospf 10
+     router-id 10.0.0.1
+     auto-cost reference-bandwidth 20000
+     network 10.255.0.1 0.0.0.0 area 0
+     network 10.255.1.1 0.0.0.0 area 0
+     network 10.255.2.1 0.0.0.0 area 0
+     network 10.0.10.1 0.0.0.0 area 2
+     network 10.0.20.1 0.0.0.0 area 2
+     passive-interface Fa0/0.10
+     passive-interface Fa0/0.20
+    interface Fa0/1
+     ip ospf hello-interval 1
+    interface Fa0/1.100
+     ip ospf hello-interval 1
+    interface Fa0/1.200
+     ip ospf hello-interval 1
 
 
 Задание 21.4
@@ -178,8 +207,8 @@ cisco_vpn_1.txt и cisco_vpn_2.txt.
 * dst_template - имя файла с шаблоном, который создает конфигурацию для второй строны туннеля
 * vpn_data_dict - словарь со значениями, которые надо подставить в шаблоны
 
-Функция должна настроить VPN на основе шаблонов и данных на каждом устройстве.
-Функция возвращает вывод с набором команд с двух марушртизаторов (вывод, которые возвращает send_config_set).
+Функция должна настроить VPN на основе шаблонов и данных на каждом устройстве с помощью netmiko.
+Функция возвращает вывод с набором команд с двух марушртизаторов (вывод, которые возвращает метод netmiko send_config_set).
 
 При этом, в словаре data не указан номер интерфейса Tunnel, который надо использовать.
 Номер надо определить самостоятельно на основе информации с оборудования.

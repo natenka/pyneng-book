@@ -12,7 +12,7 @@
 
 Создать функцию parse_command_output. Параметры функции:
 
-* template - имя файла, в котором находится шаблон TextFSM
+* template - имя файла, в котором находится шаблон TextFSM (templates/sh_ip_int_br.template)
 * command_output - вывод соответствующей команды show (строка)
 
 Функция должна возвращать список:
@@ -22,6 +22,26 @@
 
 Проверить работу функции на выводе команды output/sh_ip_int_br.txt и шаблоне templates/sh_ip_int_br.template.
 
+.. code:: python
+
+    from netmiko import ConnectHandler
+
+
+    # вызов функции должен выглядеть так
+    if __name__ == "__main__":
+        r1_params = {
+            "device_type": "cisco_ios",
+            "host": "192.168.100.1",
+            "username": "cisco",
+            "password": "cisco",
+            "secret": "cisco",
+        }
+        with ConnectHandler(**r1_params) as r1:
+            r1.enable()
+            output = r1.send_command("sh ip int br")
+        result = parse_command_output("templates/sh_ip_int_br.template", output)
+        print(result)
+
 
 Задание 22.1a
 ~~~~~~~~~~~~~
@@ -30,7 +50,7 @@
 
 Параметры функции:
 
-* template - имя файла, в котором находится шаблон TextFSM
+* template - имя файла, в котором находится шаблон TextFSM (templates/sh_ip_int_br.template)
 * command_output - вывод соответствующей команды show (строка)
 
 Функция должна возвращать список словарей:
@@ -70,7 +90,7 @@
   * 'Vendor': вендор
 
 * index_file - имя файла, где хранится соответствие между командами и шаблонами. Значение по умолчанию - "index"
-* templ_path - каталог, где хранятся шаблоны. Значение по умолчанию - templates
+* templ_path - каталог, где хранятся шаблоны. Значение по умолчанию - "templates"
 
 Функция должна возвращать список словарей с результатами обработки вывода команды (как в задании 22.1a):
 
@@ -89,6 +109,7 @@
 * device_dict - словарь с параметрами подключения к одному устройству
 * command - команда, которую надо выполнить
 * templates_path - путь к каталогу с шаблонами TextFSM
+* index - имя индекс файла, значение по умолчанию "index"
 
 Функция должна подключаться к одному устройству, отправлять команду show с помощью netmiko,
 а затем парсить вывод команды с помощью TextFSM.
