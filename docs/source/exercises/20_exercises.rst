@@ -10,267 +10,228 @@
 Задание 20.1
 ~~~~~~~~~~~~
 
-Создать функцию ping_ip_addresses, которая проверяет пингуются ли IP-адреса.
-Проверка IP-адресов должна выполняться параллельно в разных потоках.
+Создать функцию generate_config.
 
 Параметры функции:
 
-* ip_list - список IP-адресов
-* limit - максимальное количество параллельных потоков (по умолчанию 3)
+* template - путь к файлу с шаблоном (например, "templates/for.txt")
+* data_dict - словарь со значениями, которые надо подставить в шаблон
 
-Функция должна возвращать кортеж с двумя списками:
+Функция должна возвращать строку с конфигурацией, которая была сгенерирована.
 
-* список доступных IP-адресов
-* список недоступных IP-адресов
+Проверить работу функции на шаблоне templates/for.txt и данных из файла data_files/for.yml.
 
-Для выполнения задания можно создавать любые дополнительные функции.
+.. code:: python
 
-Для проверки доступности IP-адреса, используйте ping.
+    import yaml
 
-.. note::
 
-    Подсказка о работе с concurrent.futures:
-    Если необходимо пинговать несколько IP-адресов в разных потоках,
-    надо создать функцию, которая будет пинговать один IP-адрес,
-    а затем запустить эту функцию в разных потоках для разных
-    IP-адресов с помощью concurrent.futures (это надо сделать в функции ping_ip_addresses).
+    # так должен выглядеть вызов функции
+    if __name__ == "__main__":
+        data_file = "data_files/for.yml"
+        template_file = "templates/for.txt"
+        with open(data_file) as f:
+            data = yaml.safe_load(f)
+        print(generate_config(template_file, data))
 
 
 Задание 20.2
 ~~~~~~~~~~~~
 
-Создать функцию send_show_command_to_devices, которая отправляет
-одну и ту же команду show на разные устройства в параллельных потоках,
-а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
+Создать шаблон templates/cisco_router_base.txt.
+В шаблон templates/cisco_router_base.txt должно быть включено содержимое шаблонов:
 
+* templates/cisco_base.txt
+* templates/alias.txt
+* templates/eem_int_desc.txt
 
-Параметры функции:
+При этом, нельзя копировать текст шаблонов.
 
-* devices - список словарей с параметрами подключения к устройствам
-* command - команда
-* filename - имя текстового файла, в который будут записаны выводы всех команд
-* limit - максимальное количество параллельных потоков (по умолчанию 3)
+Проверьте шаблон templates/cisco_router_base.txt, с помощью
+функции generate_config из задания 20.1. Не копируйте код функции generate_config.
 
-Функция ничего не возвращает.
-
-Вывод команд должен быть записан в обычный текстовый файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
-
-::
-
-    R1#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
-    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
-    R2#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.2   YES NVRAM  up                    up
-    Ethernet0/1                10.1.1.1        YES NVRAM  administratively down down
-    R3#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
-    Ethernet0/1                unassigned      YES NVRAM  administratively down down
-
-Для выполнения задания можно создавать любые дополнительные функции.
-
-Проверить работу функции на устройствах из файла devices.yaml
+В качестве данных, используйте информацию из файла data_files/router_info.yml
 
 Задание 20.3
 ~~~~~~~~~~~~
 
-Создать функцию send_command_to_devices, которая отправляет
-разные команды show на разные устройства в параллельных потоках,
-а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
+Создайте шаблон templates/ospf.txt на основе конфигурации OSPF в файле cisco_ospf.txt.
+Пример конфигурации дан, чтобы показать синтаксис.
 
-Параметры функции:
+Шаблон надо создавать вручную, скопировав части конфига в соответствующий шаблон.
 
-* devices - список словарей с параметрами подключения к устройствам
-* commands_dict - словарь в котором указано на какое устройство отправлять какую команду. Пример словаря - commands
-* filename - имя файла, в который будут записаны выводы всех команд
-* limit - максимальное количество параллельных потоков (по умолчанию 3)
+Какие значения должны быть переменными:
 
-Функция ничего не возвращает.
+* номер процесса. Имя переменной - process
+* router-id. Имя переменной - router_id
+* reference-bandwidth. Имя переменной - ref_bw
+* интерфейсы, на которых нужно включить OSPF. Имя переменной - ospf_intf.
+  На месте этой переменной ожидается список словарей с такими ключами:
 
-Вывод команд должен быть записан в файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
+  * name - имя интерфейса, вида Fa0/1, Vlan10, Gi0/0
+  * ip - IP-адрес интерфейса, вида 10.0.1.1
+  * area - номер зоны
+  * passive - является ли интерфейс пассивным. Допустимые значения: True или False
 
-::
-
-    R1#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
-    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
-    R2#sh arp
-    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-    Internet  192.168.100.1          76   aabb.cc00.6500  ARPA   Ethernet0/0
-    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
-    Internet  192.168.100.3         173   aabb.cc00.6700  ARPA   Ethernet0/0
-    R3#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
-    Ethernet0/1                unassigned      YES NVRAM  administratively down down
-
-
-Для выполнения задания можно создавать любые дополнительные функции.
-
-Проверить работу функции на устройствах из файла devices.yaml и словаре commands
-
-.. code:: python
-
-    # Этот словарь нужен только для проверки работа кода, в нем можно менять IP-адреса
-    # тест берет адреса из файла devices.yaml
-    commands = {
-        "192.168.100.3": "sh run | s ^router ospf",
-        "192.168.100.1": "sh ip int br",
-        "192.168.100.2": "sh int desc",
-    }
-
-
-Задание 20.3a
-~~~~~~~~~~~~~
-
-Создать функцию send_command_to_devices, которая отправляет
-список указанных команды show на разные устройства в параллельных потоках,
-а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
-
-Параметры функции:
-
-* devices - список словарей с параметрами подключения к устройствам
-* commands_dict - словарь в котором указано на какое устройство отправлять какие команды. Пример словаря - commands
-* filename - имя файла, в который будут записаны выводы всех команд
-* limit - максимальное количество параллельных потоков (по умолчанию 3)
-
-Функция ничего не возвращает.
-
-Вывод команд должен быть записан в файл в таком формате (перед выводом каждой команды надо написать имя хоста и саму команду):
+Для всех интерфейсов в списке ospf_intf, надо сгенерировать строки:
 
 ::
 
-    R2#sh arp
-    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-    Internet  192.168.100.1          87   aabb.cc00.6500  ARPA   Ethernet0/0
-    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
-    R1#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
-    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
-    R1#sh arp
-    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-    Internet  10.30.0.1               -   aabb.cc00.6530  ARPA   Ethernet0/3.300
-    Internet  10.100.0.1              -   aabb.cc00.6530  ARPA   Ethernet0/3.100
-    R3#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
-    Ethernet0/1                unassigned      YES NVRAM  administratively down down
-    R3#sh ip route | ex -
+    network x.x.x.x 0.0.0.0 area x
 
-    Gateway of last resort is not set
+Если интерфейс пассивный, для него должна быть добавлена строка:
 
-          10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
-    O        10.1.1.1/32 [110/11] via 192.168.100.1, 07:12:03, Ethernet0/0
-    O        10.30.0.0/24 [110/20] via 192.168.100.1, 07:12:03, Ethernet0/0
+::
+
+     passive-interface x
+
+Для интерфейсов, которые не являются пассивными, в режиме конфигурации интерфейса,
+надо добавить строку:
+
+::
+
+     ip ospf hello-interval 1
 
 
-Порядок команд в файле может быть любым.
+Все команды должны быть в соответствующих режимах.
 
-Для выполнения задания можно создавать любые дополнительные функции, а также использовать функции созданные в предыдущих заданиях.
+Проверьте получившийся шаблон templates/ospf.txt, на данных в файле data_files/ospf.yml,
+с помощью функции generate_config из задания 20.1.
+Не копируйте код функции generate_config.
 
-Проверить работу функции на устройствах из файла devices.yaml и словаре commands
 
-.. code:: python
+В результате должна получиться конфигурация такого вида
+(команды в режиме router ospf не обязательно должны быть в таком порядке, главное чтобы они были в нужном режиме):
 
-    # Этот словарь нужен только для проверки работа кода, в нем можно менять IP-адреса
-    # тест берет адреса из файла devices.yaml
-    commands = {
-        "192.168.100.3": ["sh ip int br", "sh ip route | ex -"],
-        "192.168.100.1": ["sh ip int br", "sh int desc"],
-        "192.168.100.2": ["sh int desc"],
-    }
+::
+
+    router ospf 10
+     router-id 10.0.0.1
+     auto-cost reference-bandwidth 20000
+     network 10.255.0.1 0.0.0.0 area 0
+     network 10.255.1.1 0.0.0.0 area 0
+     network 10.255.2.1 0.0.0.0 area 0
+     network 10.0.10.1 0.0.0.0 area 2
+     network 10.0.20.1 0.0.0.0 area 2
+     passive-interface Fa0/0.10
+     passive-interface Fa0/0.20
+    interface Fa0/1
+     ip ospf hello-interval 1
+    interface Fa0/1.100
+     ip ospf hello-interval 1
+    interface Fa0/1.200
+     ip ospf hello-interval 1
 
 
 Задание 20.4
 ~~~~~~~~~~~~
 
-Создать функцию send_commands_to_devices, которая отправляет команду show или config на разные устройства в параллельных потоках, а затем записывает вывод команд в файл.
+Создайте шаблон templates/add_vlan_to_switch.txt, который будет использоваться
+при необходимости добавить VLAN на коммутатор.
 
-Параметры функции:
+В шаблоне должны поддерживаться возможности:
 
-* devices - список словарей с параметрами подключения к устройствам
-* show - команда show, которую нужно отправить (по умолчанию, значение None)
-* config - команды конфигурационного режима, которые нужно отправить (по умолчанию, значение None)
-* filename - имя файла, в который будут записаны выводы всех команд
-* limit - максимальное количество параллельных потоков (по умолчанию 3)
+* добавления VLAN и имени VLAN
+* добавления VLAN как access, на указанном интерфейсе
+* добавления VLAN в список разрешенных, на указанные транки
 
-Функция ничего не возвращает.
-
-Вывод команд должен быть записан в файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
+Если VLAN необходимо добавить как access, надо настроить и режим интерфейса и добавить его в VLAN:
 
 ::
 
-    R1#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
-    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
-    R2#sh arp
-    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-    Internet  192.168.100.1          76   aabb.cc00.6500  ARPA   Ethernet0/0
-    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
-    Internet  192.168.100.3         173   aabb.cc00.6700  ARPA   Ethernet0/0
-    R3#sh ip int br
-    Interface                  IP-Address      OK? Method Status                Protocol
-    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
-    Ethernet0/1                unassigned      YES NVRAM  administratively down down
+    interface Gi0/1
+     switchport mode access
+     switchport access vlan 5
 
-Пример вызова функции:
+Для транков, необходимо только добавить VLAN в список разрешенных:
+
+::
+
+    interface Gi0/10
+     switchport trunk allowed vlan add 5
+
+Имена переменных надо выбрать на основании примера данных,
+в файле data_files/add_vlan_to_switch.yaml.
+
+
+Проверьте шаблон templates/add_vlan_to_switch.txt на данных в файле data_files/add_vlan_to_switch.yaml, с помощью функции generate_config из задания 20.1.
+Не копируйте код функции generate_config.
+
+
+Задание 20.5
+~~~~~~~~~~~~
+
+Создать шаблоны templates/gre_ipsec_vpn_1.txt и templates/gre_ipsec_vpn_2.txt,
+которые генерируют конфигурацию IPsec over GRE между двумя маршрутизаторами.
+
+Шаблон templates/gre_ipsec_vpn_1.txt создает конфигурацию для одной стороны туннеля,
+а templates/gre_ipsec_vpn_2.txt - для второй.
+
+Примеры итоговой конфигурации, которая должна создаваться на основе шаблонов в файлах:
+cisco_vpn_1.txt и cisco_vpn_2.txt.
+
+
+Создать функцию create_vpn_config, которая использует эти шаблоны для генерации конфигурации VPN на основе данных в словаре data.
+
+Параметры функции:
+
+* template1 - имя файла с шаблоном, который создает конфигурацию для одной строны туннеля
+* template2 - имя файла с шаблоном, который создает конфигурацию для второй строны туннеля
+* data_dict - словарь со значениями, которые надо подставить в шаблоны
+
+Функция должна возвращать кортеж с двумя конфигурациямя (строки), которые получены на основе шаблонов.
+
+Примеры конфигураций VPN, которые должна возвращать функция create_vpn_config в файлах
+cisco_vpn_1.txt и cisco_vpn_2.txt.
 
 .. code:: python
 
-    In [5]: send_commands_to_devices(devices, show='sh clock', filename='result.txt')
+    data = {
+        'tun_num': 10,
+        'wan_ip_1': '192.168.100.1',
+        'wan_ip_2': '192.168.100.2',
+        'tun_ip_1': '10.0.1.1 255.255.255.252',
+        'tun_ip_2': '10.0.1.2 255.255.255.252'
+    }
 
-    In [6]: cat result.txt
-    R1#sh clock
-    *04:56:34.668 UTC Sat Mar 23 2019
-    R2#sh clock
-    *04:56:34.687 UTC Sat Mar 23 2019
-    R3#sh clock
-    *04:56:40.354 UTC Sat Mar 23 2019
+Задание 20.5a
+~~~~~~~~~~~~~
 
-    In [11]: send_commands_to_devices(devices, config='logging 10.5.5.5', filename='result.txt')
+Создать функцию configure_vpn, которая использует шаблоны из задания 20.5 для настройки VPN на маршрутизаторах на основе данных в словаре data.
 
-    In [12]: cat result.txt
-    config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R1(config)#logging 10.5.5.5
-    R1(config)#end
-    R1#config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R2(config)#logging 10.5.5.5
-    R2(config)#end
-    R2#config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R3(config)#logging 10.5.5.5
-    R3(config)#end
-    R3#
+Параметры функции:
 
-    In [13]: send_commands_to_devices(devices,
-                                      config=['router ospf 55', 'network 0.0.0.0 255.255.255.255 area 0'],
-                                      filename='result.txt')
+* src_device_params - словарь с параметрами подключения к устройству
+* dst_device_params - словарь с параметрами подключения к устройству
+* src_template - имя файла с шаблоном, который создает конфигурацию для одной строны туннеля
+* dst_template - имя файла с шаблоном, который создает конфигурацию для второй строны туннеля
+* vpn_data_dict - словарь со значениями, которые надо подставить в шаблоны
 
-    In [14]: cat result.txt
-    config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R1(config)#router ospf 55
-    R1(config-router)#network 0.0.0.0 255.255.255.255 area 0
-    R1(config-router)#end
-    R1#config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R2(config)#router ospf 55
-    R2(config-router)#network 0.0.0.0 255.255.255.255 area 0
-    R2(config-router)#end
-    R2#config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R3(config)#router ospf 55
-    R3(config-router)#network 0.0.0.0 255.255.255.255 area 0
-    R3(config-router)#end
-    R3#
+Функция должна настроить VPN на основе шаблонов и данных на каждом устройстве с помощью netmiko.
+Функция возвращает вывод с набором команд с двух марушртизаторов (вывод, которые возвращает метод netmiko send_config_set).
 
+При этом, в словаре data не указан номер интерфейса Tunnel, который надо использовать.
+Номер надо определить самостоятельно на основе информации с оборудования.
+Если на маршрутизаторе нет интерфейсов Tunnel, взять номер 0, если есть взять ближайший свободный номер, но одинаковый для двух маршрутизаторов.
 
-Для выполнения задания можно создавать любые дополнительные функции.
+Например, если на маршрутизаторе src такие интерфейсы: Tunnel1, Tunnel4.
+А на маршрутизаторе dest такие: Tunnel2, Tunnel3, Tunnel8.
+Первый свободный номер одинаковый для двух маршрутизаторов будет 9.
+И надо будет настроить интерфейс Tunnel 9.
+
+.. note::
+
+    Для усложения задания можно сделать так, чтобы выбирался номер 5, а не 9.
+
+Для этого задания нет теста!
+
+.. code:: python
+
+    data = {
+        'tun_num': None,
+        'wan_ip_1': '192.168.100.1',
+        'wan_ip_2': '192.168.100.2',
+        'tun_ip_1': '10.0.1.1 255.255.255.252',
+        'tun_ip_2': '10.0.1.2 255.255.255.252'
+    }
+

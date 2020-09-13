@@ -4,7 +4,7 @@
 
 .. _textfsm_index:
 
-22. Обработка вывода команд TextFSM
+21. Обработка вывода команд TextFSM
 ===================================
 
 На оборудовании, которое не поддерживает какого-то программного
@@ -35,4 +35,4 @@ TextFSM - это библиотека, созданная Google для обра
    2_textfsm_examples
    3_textfsm_clitable
    further_reading
-   ../../exercises/22_exercises
+   ../../exercises/21_exercises
