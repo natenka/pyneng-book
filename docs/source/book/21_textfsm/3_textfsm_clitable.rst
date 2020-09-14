@@ -208,7 +208,7 @@ dir(cli_table)):
 
 .. code:: python
 
-    import clitable
+    from textfsm import clitable
 
     output_sh_ip_route_ospf = open('output/sh_ip_route_ospf.txt').read()
 
