@@ -10,342 +10,267 @@
 Задание 19.1
 ~~~~~~~~~~~~
 
-Создать функцию send_show_command.
-
-Функция подключается по SSH (с помощью netmiko) к ОДНОМУ устройству и выполняет указанную команду.
+Создать функцию ping_ip_addresses, которая проверяет пингуются ли IP-адреса.
+Проверка IP-адресов должна выполняться параллельно в разных потоках.
 
 Параметры функции:
 
-* device - словарь с параметрами подключения к устройству
-* command - команда, которую надо выполнить
+* ip_list - список IP-адресов
+* limit - максимальное количество параллельных потоков (по умолчанию 3)
 
-Функция возвращает строку с выводом команды.
+Функция должна возвращать кортеж с двумя списками:
 
-Скрипт должен отправлять команду command на все устройства из файла devices.yaml с помощью функции send_show_command (эта часть кода написана).
+* список доступных IP-адресов
+* список недоступных IP-адресов
 
-.. code:: python
-    import yaml
+Для выполнения задания можно создавать любые дополнительные функции.
 
+Для проверки доступности IP-адреса, используйте ping.
 
+.. note::
 
-    if __name__ == "__main__":
-        command = "sh ip int br"
-        with open("devices.yaml") as f:
-            devices = yaml.safe_load(f)
+    Подсказка о работе с concurrent.futures:
+    Если необходимо пинговать несколько IP-адресов в разных потоках,
+    надо создать функцию, которая будет пинговать один IP-адрес,
+    а затем запустить эту функцию в разных потоках для разных
+    IP-адресов с помощью concurrent.futures (это надо сделать в функции ping_ip_addresses).
 
-        for dev in devices:
-            print(send_show_command(dev, command))
-
-Задание 19.1a
-~~~~~~~~~~~~~
-
-Скопировать функцию send_show_command из задания 19.1 и переделать ее таким образом,
-чтобы обрабатывалось исключение, которое генерируется при ошибке аутентификации на устройстве.
-
-При возникновении ошибки, на стандартный поток вывода должно выводиться сообщение исключения.
-
-Для проверки измените пароль на устройстве или в файле devices.yaml.
-
-Задание 19.1b
-~~~~~~~~~~~~~
-
-Скопировать функцию send_show_command из задания 19.1a и переделать ее таким образом,
-чтобы обрабатывалось не только исключение, которое генерируется
-при ошибке аутентификации на устройстве, но и исключение,
-которое генерируется, когда IP-адрес устройства недоступен.
-
-При возникновении ошибки, на стандартный поток вывода должно выводиться сообщение исключения.
-
-Для проверки измените IP-адрес на устройстве или в файле devices.yaml.
 
 Задание 19.2
 ~~~~~~~~~~~~
 
-Создать функцию send_config_commands
+Создать функцию send_show_command_to_devices, которая отправляет
+одну и ту же команду show на разные устройства в параллельных потоках,
+а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
 
-Функция подключается по SSH (с помощью netmiko) к одному устройству и выполняет перечень команд в конфигурационном режиме на основании переданных аргументов.
 
 Параметры функции:
 
-* device - словарь с параметрами подключения к устройству
-* config_commands - список команд, которые надо выполнить
+* devices - список словарей с параметрами подключения к устройствам
+* command - команда
+* filename - имя текстового файла, в который будут записаны выводы всех команд
+* limit - максимальное количество параллельных потоков (по умолчанию 3)
 
-Функция возвращает строку с результатами выполнения команды:
+Функция ничего не возвращает.
 
-.. code:: python
-
-    In [7]: r1
-    Out[7]:
-    {'device_type': 'cisco_ios',
-     'ip': '192.168.100.1',
-     'username': 'cisco',
-     'password': 'cisco',
-     'secret': 'cisco'}
-
-    In [8]: commands
-    Out[8]: ['logging 10.255.255.1', 'logging buffered 20010', 'no logging console']
-
-    In [9]: result = send_config_commands(r1, commands)
-
-    In [10]: result
-    Out[10]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#logging 10.255.255.1\nR1(config)#logging buffered 20010\nR1(config)#no logging console\nR1(config)#end\nR1#'
-
-    In [11]: print(result)
-    config term
-    Enter configuration commands, one per line.  End with CNTL/Z.
-    R1(config)#logging 10.255.255.1
-    R1(config)#logging buffered 20010
-    R1(config)#no logging console
-    R1(config)#end
-    R1#
-
-
-Скрипт должен отправлять команду command на все устройства из файла devices.yaml с помощью функции send_config_commands.
-
-.. code:: python
-
-    commands = [
-        'logging 10.255.255.1', 'logging buffered 20010', 'no logging console'
-    ]
-
-Задание 19.2a
-~~~~~~~~~~~~~
-
-Скопировать функцию send_config_commands из задания 19.2 и добавить параметр log,
-который контролирует будет ли выводится на стандартный поток вывода
-информация о том к какому устройству выполняется подключение.
-
-По умолчанию, результат должен выводиться.
-
-Пример работы функции:
-
-.. code:: python
-
-    In [13]: result = send_config_commands(r1, commands)
-    Подключаюсь к 192.168.100.1...
-
-    In [14]: result = send_config_commands(r1, commands, log=False)
-
-    In [15]:
-
-Скрипт должен отправлять список команд commands на все устройства из файла devices.yaml с помощью функции send_config_commands.
-
-
-Задание 19.2b
-~~~~~~~~~~~~~
-
-Скопировать функцию send_config_commands из задания 19.2a и добавить проверку на ошибки.
-
-При выполнении каждой команды, скрипт должен проверять результат на такие ошибки:
-
-* Invalid input detected
-* Incomplete command
-* Ambiguous command
-
-Если при выполнении какой-то из команд возникла ошибка,
-функция должна выводить сообщение на стандартный поток вывода с информацией
-о том, какая ошибка возникла, при выполнении какой команды и на каком устройстве, например:
-Команда "logging" выполнилась с ошибкой "Incomplete command." на устройстве 192.168.100.1
-
-Ошибки должны выводиться всегда, независимо от значения параметра log.
-При этом, log по-прежнему должен контролировать будет ли выводиться сообщение:
-Подключаюсь к 192.168.100.1...
-
-
-Функция send_config_commands теперь должна возвращать кортеж из двух словарей:
-
-* первый словарь с выводом команд, которые выполнились без ошибки
-* второй словарь с выводом команд, которые выполнились с ошибками
-
-Оба словаря в формате (примеры словарей ниже):
-
-* ключ - команда
-* значение - вывод с выполнением команд
-
-Проверить работу функции можно на одном устройстве.
-
-
-Пример работы функции send_config_commands:
-
-.. code:: python
-
-    In [16]: commands
-    Out[16]:
-    ['logging 0255.255.1',
-     'logging',
-     'a',
-     'logging buffered 20010',
-     'ip http server']
-
-    In [17]: result = send_config_commands(r1, commands)
-    Подключаюсь к 192.168.100.1...
-    Команда "logging 0255.255.1" выполнилась с ошибкой "Invalid input detected at '^' marker." на устройстве 192.168.100.1
-    Команда "logging" выполнилась с ошибкой "Incomplete command." на устройстве 192.168.100.1
-    Команда "a" выполнилась с ошибкой "Ambiguous command:  "a"" на устройстве 192.168.100.1
-
-    In [18]: pprint(result, width=120)
-    ({'ip http server': 'config term\n'
-                        'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-                        'R1(config)#ip http server\n'
-                        'R1(config)#',
-      'logging buffered 20010': 'config term\n'
-                                'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-                                'R1(config)#logging buffered 20010\n'
-                                'R1(config)#'},
-     {'a': 'config term\n'
-           'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-           'R1(config)#a\n'
-           '% Ambiguous command:  "a"\n'
-           'R1(config)#',
-      'logging': 'config term\n'
-                 'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-                 'R1(config)#logging\n'
-                 '% Incomplete command.\n'
-                 '\n'
-                 'R1(config)#',
-      'logging 0255.255.1': 'config term\n'
-                            'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-                            'R1(config)#logging 0255.255.1\n'
-                            '                   ^\n'
-                            "% Invalid input detected at '^' marker.\n"
-                            '\n'
-                            'R1(config)#'})
-
-    In [19]: good, bad = result
-
-    In [20]: good.keys()
-    Out[20]: dict_keys(['logging buffered 20010', 'ip http server'])
-
-    In [21]: bad.keys()
-    Out[21]: dict_keys(['logging 0255.255.1', 'logging', 'a'])
-
-
-Примеры команд с ошибками:
+Вывод команд должен быть записан в обычный текстовый файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
 
 ::
 
-    R1(config)#logging 0255.255.1
-                       ^
-    % Invalid input detected at '^' marker.
+    R1#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
+    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
+    R2#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.2   YES NVRAM  up                    up
+    Ethernet0/1                10.1.1.1        YES NVRAM  administratively down down
+    R3#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
+    Ethernet0/1                unassigned      YES NVRAM  administratively down down
 
-    R1(config)#logging
-    % Incomplete command.
+Для выполнения задания можно создавать любые дополнительные функции.
 
-    R1(config)#a
-    % Ambiguous command:  "a"
-
-
-Списки команд с ошибками и без:
-
-.. code:: python
-
-    commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
-    correct_commands = ['logging buffered 20010', 'ip http server']
-
-    commands = commands_with_errors + correct_commands
-
-Задание 19.2c
-~~~~~~~~~~~~~
-
-Скопировать функцию send_config_commands из задания 19.2b и переделать ее таким образом:
-Если при выполнении команды возникла ошибка,
-спросить пользователя надо ли выполнять остальные команды.
-
-Варианты ответа [y]/n:
-
-* y - выполнять остальные команды. Это значение по умолчанию, поэтому нажатие любой комбинации воспринимается как y
-* n или no - не выполнять остальные команды
-
-Функция send_config_commands по-прежнему должна возвращать кортеж из двух словарей:
-
-* первый словарь с выводом команд, которые выполнились без ошибки
-* второй словарь с выводом команд, которые выполнились с ошибками
-
-Оба словаря в формате
-
-* ключ - команда
-* значение - вывод с выполнением команд
-
-Проверить работу функции можно на одном устройстве.
-
-Пример работы функции:
-
-.. code:: python
-
-    In [11]: result = send_config_commands(r1, commands)
-    Подключаюсь к 192.168.100.1...
-    Команда "logging 0255.255.1" выполнилась с ошибкой "Invalid input detected at '^' marker." на устройстве 192.168.100.1
-    Продолжать выполнять команды? [y]/n: y
-    Команда "logging" выполнилась с ошибкой "Incomplete command." на устройстве 192.168.100.1
-    Продолжать выполнять команды? [y]/n: n
-
-    In [12]: pprint(result)
-    ({},
-     {'logging': 'config term\n'
-                 'Enter configuration commands, one per line.  End with CNTL/Z.\n'
-                 'R1(config)#logging\n'
-                 '% Incomplete command.\n'
-                 '\n'
-                 'R1(config)#',
-      'logging 0255.255.1': 'config term\n'
-                            'Enter configuration commands, one per line.  End with '
-                            'CNTL/Z.\n'
-                            'R1(config)#logging 0255.255.1\n'
-                            '                   ^\n'
-                            "% Invalid input detected at '^' marker.\n"
-                            '\n'
-                            'R1(config)#'})
-
-Списки команд с ошибками и без:
-
-.. code:: python
-
-    commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
-    correct_commands = ['logging buffered 20010', 'ip http server']
-
-    commands = commands_with_errors + correct_commands
+Проверить работу функции на устройствах из файла devices.yaml
 
 Задание 19.3
 ~~~~~~~~~~~~
 
-Создать функцию send_commands (для подключения по SSH используется netmiko).
+Создать функцию send_command_to_devices, которая отправляет
+разные команды show на разные устройства в параллельных потоках,
+а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
 
 Параметры функции:
 
-* device - словарь с параметрами подключения к устройству, которому надо передать команды
-* show - одна команда show (строка)
-* config - список с командами, которые надо выполнить в конфигурационном режиме
+* devices - список словарей с параметрами подключения к устройствам
+* commands_dict - словарь в котором указано на какое устройство отправлять какую команду. Пример словаря - commands
+* filename - имя файла, в который будут записаны выводы всех команд
+* limit - максимальное количество параллельных потоков (по умолчанию 3)
 
-В зависимости от того, какой аргумент был передан, функция вызывает разные функции внутри.
-При вызове функции send_commands, всегда будет передаваться только один из аргументов show, config.
+Функция ничего не возвращает.
 
-Далее комбинация из аргумента и соответствующей функции:
+Вывод команд должен быть записан в файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
 
-* show - функция send_show_command из задания 19.1
-* config - функция send_config_commands из задания 19.2
+::
 
-Функция возвращает строку с результатами выполнения команд или команды.
+    R1#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
+    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
+    R2#sh arp
+    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+    Internet  192.168.100.1          76   aabb.cc00.6500  ARPA   Ethernet0/0
+    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
+    Internet  192.168.100.3         173   aabb.cc00.6700  ARPA   Ethernet0/0
+    R3#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
+    Ethernet0/1                unassigned      YES NVRAM  administratively down down
 
-Проверить работу функции:
 
-* со списком команд commands
-* командой command
+Для выполнения задания можно создавать любые дополнительные функции.
 
-Пример работы функции:
-
-
-.. code:: python
-
-    In [14]: send_commands(r1, show='sh clock')
-    Out[14]: '*17:06:12.278 UTC Wed Mar 13 2019'
-
-    In [15]: send_commands(r1, config=['username user5 password pass5', 'username user6 password pass6'])
-    Out[15]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#username user5 password pass5\nR1(config)#username user6 password pass6\nR1(config)#end\nR1#'
-
-Пример команд:
+Проверить работу функции на устройствах из файла devices.yaml и словаре commands
 
 .. code:: python
 
-    commands = [
-        'logging 10.255.255.1', 'logging buffered 20010']
-    command = 'sh ip int br'
+    # Этот словарь нужен только для проверки работа кода, в нем можно менять IP-адреса
+    # тест берет адреса из файла devices.yaml
+    commands = {
+        "192.168.100.3": "sh run | s ^router ospf",
+        "192.168.100.1": "sh ip int br",
+        "192.168.100.2": "sh int desc",
+    }
+
+
+Задание 19.3a
+~~~~~~~~~~~~~
+
+Создать функцию send_command_to_devices, которая отправляет
+список указанных команды show на разные устройства в параллельных потоках,
+а затем записывает вывод команд в файл. Вывод с устройств в файле может быть в любом порядке.
+
+Параметры функции:
+
+* devices - список словарей с параметрами подключения к устройствам
+* commands_dict - словарь в котором указано на какое устройство отправлять какие команды. Пример словаря - commands
+* filename - имя файла, в который будут записаны выводы всех команд
+* limit - максимальное количество параллельных потоков (по умолчанию 3)
+
+Функция ничего не возвращает.
+
+Вывод команд должен быть записан в файл в таком формате (перед выводом каждой команды надо написать имя хоста и саму команду):
+
+::
+
+    R2#sh arp
+    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+    Internet  192.168.100.1          87   aabb.cc00.6500  ARPA   Ethernet0/0
+    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
+    R1#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
+    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
+    R1#sh arp
+    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+    Internet  10.30.0.1               -   aabb.cc00.6530  ARPA   Ethernet0/3.300
+    Internet  10.100.0.1              -   aabb.cc00.6530  ARPA   Ethernet0/3.100
+    R3#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
+    Ethernet0/1                unassigned      YES NVRAM  administratively down down
+    R3#sh ip route | ex -
+
+    Gateway of last resort is not set
+
+          10.0.0.0/8 is variably subnetted, 4 subnets, 2 masks
+    O        10.1.1.1/32 [110/11] via 192.168.100.1, 07:12:03, Ethernet0/0
+    O        10.30.0.0/24 [110/20] via 192.168.100.1, 07:12:03, Ethernet0/0
+
+
+Порядок команд в файле может быть любым.
+
+Для выполнения задания можно создавать любые дополнительные функции, а также использовать функции созданные в предыдущих заданиях.
+
+Проверить работу функции на устройствах из файла devices.yaml и словаре commands
+
+.. code:: python
+
+    # Этот словарь нужен только для проверки работа кода, в нем можно менять IP-адреса
+    # тест берет адреса из файла devices.yaml
+    commands = {
+        "192.168.100.3": ["sh ip int br", "sh ip route | ex -"],
+        "192.168.100.1": ["sh ip int br", "sh int desc"],
+        "192.168.100.2": ["sh int desc"],
+    }
+
+
+Задание 19.4
+~~~~~~~~~~~~
+
+Создать функцию send_commands_to_devices, которая отправляет команду show или config на разные устройства в параллельных потоках, а затем записывает вывод команд в файл.
+
+Параметры функции:
+
+* devices - список словарей с параметрами подключения к устройствам
+* show - команда show, которую нужно отправить (по умолчанию, значение None)
+* config - команды конфигурационного режима, которые нужно отправить (по умолчанию, значение None)
+* filename - имя файла, в который будут записаны выводы всех команд
+* limit - максимальное количество параллельных потоков (по умолчанию 3)
+
+Функция ничего не возвращает.
+
+Вывод команд должен быть записан в файл в таком формате (перед выводом команды надо написать имя хоста и саму команду):
+
+::
+
+    R1#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
+    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
+    R2#sh arp
+    Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+    Internet  192.168.100.1          76   aabb.cc00.6500  ARPA   Ethernet0/0
+    Internet  192.168.100.2           -   aabb.cc00.6600  ARPA   Ethernet0/0
+    Internet  192.168.100.3         173   aabb.cc00.6700  ARPA   Ethernet0/0
+    R3#sh ip int br
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.3   YES NVRAM  up                    up
+    Ethernet0/1                unassigned      YES NVRAM  administratively down down
+
+Пример вызова функции:
+
+.. code:: python
+
+    In [5]: send_commands_to_devices(devices, show='sh clock', filename='result.txt')
+
+    In [6]: cat result.txt
+    R1#sh clock
+    *04:56:34.668 UTC Sat Mar 23 2019
+    R2#sh clock
+    *04:56:34.687 UTC Sat Mar 23 2019
+    R3#sh clock
+    *04:56:40.354 UTC Sat Mar 23 2019
+
+    In [11]: send_commands_to_devices(devices, config='logging 10.5.5.5', filename='result.txt')
+
+    In [12]: cat result.txt
+    config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R1(config)#logging 10.5.5.5
+    R1(config)#end
+    R1#config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R2(config)#logging 10.5.5.5
+    R2(config)#end
+    R2#config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R3(config)#logging 10.5.5.5
+    R3(config)#end
+    R3#
+
+    In [13]: send_commands_to_devices(devices,
+                                      config=['router ospf 55', 'network 0.0.0.0 255.255.255.255 area 0'],
+                                      filename='result.txt')
+
+    In [14]: cat result.txt
+    config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R1(config)#router ospf 55
+    R1(config-router)#network 0.0.0.0 255.255.255.255 area 0
+    R1(config-router)#end
+    R1#config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R2(config)#router ospf 55
+    R2(config-router)#network 0.0.0.0 255.255.255.255 area 0
+    R2(config-router)#end
+    R2#config term
+    Enter configuration commands, one per line.  End with CNTL/Z.
+    R3(config)#router ospf 55
+    R3(config-router)#network 0.0.0.0 255.255.255.255 area 0
+    R3(config-router)#end
+    R3#
+
+
+Для выполнения задания можно создавать любые дополнительные функции.

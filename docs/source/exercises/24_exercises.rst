@@ -5,176 +5,209 @@
 Задания
 =======
 
-.. include:: ./exercises_intro.rst
+.. include:: ./pytest.rst
+
 
 Задание 24.1
 ~~~~~~~~~~~~
 
-Создайте playbook task_24_1.yml, который выполняет такие задачи: 
+Создать класс CiscoSSH, который наследует класс BaseSSH из файла base_connect_class.py.
 
-* Подключается к маршрутизаторам и выполняет команду sh arp. Результат записывает в переменную sh_arp_output.
-* Отображает содержимое переменной sh_arp_output
+Создать метод __init__ в классе CiscoSSH таким образом, чтобы после подключения по SSH выполнялся переход в режим enable.
 
-Проверьте работу playbook на маршрутизаторах.
+Для этого в методе __init__ должен сначала вызываться метод __init__ класса ConnectSSH, а затем выполняться переход в режим enable.
+
+.. code:: python
+
+    In [2]: from task_24_1 import CiscoSSH
+
+    In [3]: r1 = CiscoSSH(**device_params)
+
+    In [4]: r1.send_show_command('sh ip int br')
+    Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
+
 
 Задание 24.1a
 ~~~~~~~~~~~~~
 
-Создайте playbook task_24_1a.yml, который выполняет такие задачи: 
+Дополнить класс CiscoSSH из задания 24.1.
 
-* Подключается к маршрутизаторам и выполняет команду sh arp. Результат 
-  записывает в переменную sh_arp_output.
-* Отображает результат выполнения команды, в виде списка строк, 
-  где каждая строка это одна строка вывода команды.
+Перед подключением по SSH необходимо проверить если ли в словаре
+с параметрами подключения такие параметры: username, password, secret.
+Если нет, запросить их у пользователя, а затем выполнять подключение.
+Если параметры есть, сразу выполнить подключение.
 
-Проверьте работу playbook на маршрутизаторах.
 
-Задание 24.1b
-~~~~~~~~~~~~~
+.. code:: python
 
-Создайте playbook task_24_1b.yml, который выполняет такие задачи: 
+    In [1]: from task_24_1a import CiscoSSH
 
-* Подключается к маршрутизаторам и выполняет команды sh arp и sh ip int br
+    In [2]: device_params = {
+       ...:         'device_type': 'cisco_ios',
+       ...:         'host': '192.168.100.1',
+       ...: }
 
-  * обе команды должны выполняться в одной задаче 
-  * результат записывает в переменную result 
+    In [3]: r1 = CiscoSSH(**device_params)
+    Введите имя пользователя: cisco
+    Введите пароль: cisco
+    Введите пароль для режима enable: cisco
 
-* Вторая задача отображает результат выполнения команд
-
-Проверьте работу playbook на маршрутизаторах.
-
-Задание 24.1c
-~~~~~~~~~~~~~
-
-Создайте playbook task_24_1c.yml, который выполняет такие задачи: 
-
-* Подключается к маршрутизаторам и выполняет команды sh arp и sh ip int br
-
-  * обе команды должны выполняться в одной задаче 
-  * результат записывает в переменную result 
-
-* Вторая задача отображает результат выполнения команды sh arp 
-* Третья задача отображает результат выполнения команды sh ip int br
-
-Вторая и третья задачи должны отображать вывод команды в виде списка
-строк.
-
-Проверьте работу playbook на маршрутизаторах.
+    In [4]: r1.send_show_command('sh ip int br')
+    Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
 
 Задание 24.2
 ~~~~~~~~~~~~
 
-Создайте playbook task_24_2.yml, который выполняет такие задачи: 
+Создать класс MyNetmiko, который наследует класс CiscoIosSSH из netmiko.
 
-* Собирает все факты с маршрутизаторов. Результат нельзя записывать в переменную.
-* Отображает содержимое факта об интерфейсах (в факте
-  находится словарь с интерфейсами и их параметрами).
+Переписать метод __init__ в классе MyNetmiko таким образом, чтобы после подключения по SSH выполнялся переход в режим enable.
 
-Проверьте работу playbook на маршрутизаторах.
+Для этого в методе __init__ должен сначала вызываться метод __init__ класса CiscoIosBase, а затем выполнялся переход в режим enable.
+
+Проверить, что в классе MyNetmiko доступны методы send_command и send_config_set
+
+.. code:: python
+
+    In [2]: from task_24_2 import MyNetmiko
+
+    In [3]: r1 = MyNetmiko(**device_params)
+
+    In [4]: r1.send_command('sh ip int br')
+    Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
+
+Импорт класса CiscoIosSSH:
+
+.. code:: python
+
+    from netmiko.cisco.cisco_ios import CiscoIosSSH
+
+
+    device_params = {
+        "device_type": "cisco_ios",
+        "ip": "192.168.100.1",
+        "username": "cisco",
+        "password": "cisco",
+        "secret": "cisco",
+    }
+
+
 
 Задание 24.2a
 ~~~~~~~~~~~~~
 
-Создайте playbook task_24_2a.yml, который выполняет такие задачи: 
+Дополнить класс MyNetmiko из задания 24.2.
 
-* собирает все факты с маршрутизаторов
+Добавить метод _check_error_in_command, который выполняет проверку на такие ошибки:
 
-  * результат нельзя записывать в переменную 
+* Invalid input detected
+* Incomplete command
+* Ambiguous command
 
-* записывает содержимое факта об интерфейсах в файл в каталог all_facts: 
+Метод ожидает как аргумент команду и вывод команды.
+Если в выводе не обнаружена ошибка, метод ничего не возвращает.
+Если в выводе найдена ошибка, метод генерирует исключение ErrorInCommand с сообщениеем о том какая ошибка была обнаружена, на каком устройстве и в какой команде.
 
-  * имя файла должно быть такого вида: hostname_intf_facts.yaml 
-  * hostname - это имя текущего устройства, для которого собираются факты 
-  * файл должен быть в формате YAML, в виде, который удобней для чтения человеком
+Переписать метод send_command netmiko, добавив в него проверку на ошибки.
 
-Проверьте работу playbook на маршрутизаторах.
+.. code:: python
+
+    In [2]: from task_24_2a import MyNetmiko
+
+    In [3]: r1 = MyNetmiko(**device_params)
+
+    In [4]: r1.send_command('sh ip int br')
+    Out[4]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
+
+    In [5]: r1.send_command('sh ip br')
+    ---------------------------------------------------------------------------
+    ErrorInCommand                            Traceback (most recent call last)
+    <ipython-input-2-1c60b31812fd> in <module>()
+    ----> 1 r1.send_command('sh ip br')
+    ...
+    ErrorInCommand: При выполнении команды "sh ip br" на устройстве 192.168.100.1 возникла ошибка "Invalid input detected at '^' marker."
+
+Исключение ErrorInCommand:
+
+.. code:: python
+
+    class ErrorInCommand(Exception):
+        """
+        Исключение генерируется, если при выполнении команды на оборудовании, возникла ошибка.
+        """
+
 
 Задание 24.2b
 ~~~~~~~~~~~~~
 
-Создайте playbook task_24_2b.yml, который выполняет такие задачи: 
+Скопировать класс MyNetmiko из задания 24.2a.
 
-* собирает все факты с маршрутизаторов 
+Дополнить функционал метода send_config_set netmiko и добавить в него проверку на ошибки с помощью метода _check_error_in_command.
 
-  * результат не записывать в переменную 
+Метод send_config_set должен отправлять команды по одной и проверять каждую на ошибки.
+Если при выполнении команд не обнаружены ошибки, метод send_config_set возвращает вывод команд.
 
-* выполняет команду sh ipv6 int br 
+.. code:: python
 
-  * вывод команды записывает в переменную show_result 
+    In [2]: from task_24_2b import MyNetmiko
 
-* отображает содержимое переменной show_result, но только в том случае, 
-  когда факт, в котором содержатся IPv6 адреса в виде списка, не пустой
+    In [3]: r1 = MyNetmiko(**device_params)
 
-Проверьте работу playbook на маршрутизаторах.
+    In [4]: r1.send_config_set('lo')
+    ---------------------------------------------------------------------------
+    ErrorInCommand                            Traceback (most recent call last)
+    <ipython-input-2-8e491f78b235> in <module>()
+    ----> 1 r1.send_config_set('lo')
+    ...
+    ErrorInCommand: При выполнении команды "lo" на устройстве 192.168.100.1 возникла ошибка "Incomplete command."
 
-
-Задание 24.3
-~~~~~~~~~~~~
-
-Создайте playbook task_24_3.yml, который выполняет такие задачи:
-создает ACL INET-to-LAN и применяет его к интерфейсу Ethernet0/1 для
-входящего трафика.
-
-При этом, подразумевается, что настройка ACL выполняется только с
-помощью Playbook. Поэтому, в ACL должны быть только те строки, которые
-указаны в задаче playbook.
-
-Задача должна выполнять такие действия: 
-
-* удалить ACL с интерфейса 
-* удалить ACL 
-* создать ACL и настроить правила ACL 
-* применить ACL к интерфейсу
-
-ACL должен быть таким:
-
-::
-
-    ip access-list extended INET-to-LAN
-     permit tcp 10.0.1.0 0.0.0.255 any eq www
-     permit tcp 10.0.1.0 0.0.0.255 any eq 22
-     permit icmp any any
-
-Проверьте работу playbook на маршрутизаторе R1.
-
-Задание 24.3a
+Задание 24.2c
 ~~~~~~~~~~~~~
 
-Проверьте работу playbook из задания 24.3, в ситуации, когда в ACL
-добавлена ещё одна строка.
+Проверить, что метод send_command класса MyNetmiko из задания 24.2b, принимает дополнительные аргументы (как в netmiko), кроме команды.
 
-Если, после добавления строки в задаче и выполнения playbook, ACL на
-маршрутизаторе выглядит так же, как описано в playbook, значит задание
-выполнено.
+Если возникает ошибка, переделать метод таким образом, чтобы он принимал любые аргументы, которые поддерживает netmiko.
 
-Если нет, исправьте соответственно задачу.
+.. code:: python
 
-Добавьте, например, такую строку в ACL:
+    In [2]: from task_24_2c import MyNetmiko
 
-::
+    In [3]: r1 = MyNetmiko(**device_params)
 
-     permit tcp 10.0.1.0 0.0.0.255 any eq telnet
+    In [4]: r1.send_command('sh ip int br', strip_command=False)
+    Out[4]: 'sh ip int br\nInterface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
 
-Проверьте работу playbook на маршрутизаторе R1.
+    In [5]: r1.send_command('sh ip int br', strip_command=True)
+    Out[5]: 'Interface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \nEthernet0/3                192.168.230.1   YES NVRAM  up                    up      \nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      '
 
-Задание 24.3b
+Задание 24.2d
 ~~~~~~~~~~~~~
 
-Добавьте в playbook из задания 24.3a ещё одну задачу: 
+Скопировать класс MyNetmiko из задания 24.2c или задания 24.2b.
 
-* она должна отображать, какие команды были отправлены на оборудование, в первой задаче 
-* команды должны отображаться только в том случае, если были выполнены изменения 
-* если нужно, можно изменять и первую задачу
+Добавить параметр ignore_errors в метод send_config_set.
+Если передано истинное значение, не надо выполнять проверку на ошибки и метод должен работать точно так же как метод send_config_set в netmiko.
+Если значение ложное, ошибки должны проверяться.
 
-Проверьте работу playbook на маршрутизаторе R1.
+По умолчанию ошибки должны игнорироваться.
 
-Задание 24.3c
-~~~~~~~~~~~~~
+.. code:: python
 
-Измените playbook из задания 24.3b таким образом, чтобы имя интерфейса,
-который указывается в задаче, указывалось как переменная outside_intf.
+    In [2]: from task_24_2d import MyNetmiko
 
-Создайте переменную для маршрутизатора R1, в соответствующем файле
-каталога host_vars.
+    In [3]: r1 = MyNetmiko(**device_params)
 
-Проверьте работу playbook на маршрутизаторе R1.
+    In [6]: r1.send_config_set('lo')
+    Out[6]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#lo\n% Incomplete command.\n\nR1(config)#end\nR1#'
+
+    In [7]: r1.send_config_set('lo', ignore_errors=True)
+    Out[7]: 'config term\nEnter configuration commands, one per line.  End with CNTL/Z.\nR1(config)#lo\n% Incomplete command.\n\nR1(config)#end\nR1#'
+
+    In [8]: r1.send_config_set('lo', ignore_errors=False)
+    ---------------------------------------------------------------------------
+    ErrorInCommand                            Traceback (most recent call last)
+    <ipython-input-8-704f2e8d1886> in <module>()
+    ----> 1 r1.send_config_set('lo', ignore_errors=False)
+
+    ...
+    ErrorInCommand: При выполнении команды "lo" на устройстве 192.168.100.1 возникла ошибка "Incomplete command."
+

@@ -4,7 +4,7 @@
 
 .. _oop_inheritance_index:
 
-27. Наследование
+24. Наследование
 ============================
 
 
@@ -12,4 +12,4 @@
    :maxdepth: 1
 
    inheritance
-   ../../exercises/27_exercises.rst
+   ../../exercises/24_exercises.rst

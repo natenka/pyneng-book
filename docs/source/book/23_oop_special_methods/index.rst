@@ -4,7 +4,7 @@
 
 .. _oop_special_methods_index:
 
-26. Специальные методы
+23. Специальные методы
 ======================
 
 Специальные методы в Python - это методы, которые отвечают за "стандартные" возможности
@@ -31,4 +31,4 @@
    str_repr
    add_method
    protocols
-   ../../exercises/26_exercises.rst
+   ../../exercises/23_exercises.rst

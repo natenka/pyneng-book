@@ -4,7 +4,7 @@
 
 .. _db_index:
 
-18. Работа с базами данных
+25. Работа с базами данных
 ============================
 
 
@@ -33,4 +33,4 @@
    sql_basics
    sqlite3
    further_reading
-   ../../exercises/18_exercises
+   ../../exercises/25_exercises
