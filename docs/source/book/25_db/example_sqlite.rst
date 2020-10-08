@@ -44,9 +44,19 @@ SQLite создаст таблицу только в том случае, есл
 Теперь надо создать файл БД, подключиться к базе данных и создать
 таблицу (файл create_sqlite_ver1.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/18_db/create_sqlite_ver1.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import sqlite3
+
+    conn = sqlite3.connect('dhcp_snooping.db')
+
+    print('Creating schema...')
+    with open('dhcp_snooping_schema.sql', 'r') as f:
+        schema = f.read()
+        conn.executescript(schema)
+    print("Done")
+
+    conn.close()
 
 Комментарии к файлу: 
 
@@ -98,9 +108,41 @@ binding в таблицу (файл dhcp_snooping.txt):
 обрабатывается регулярными выражениями, а затем записи добавляются в БД
 (файл create_sqlite_ver2.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/18_db/create_sqlite_ver2.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import sqlite3
+    import re
+
+    regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
+
+    result = []
+
+    with open('dhcp_snooping.txt') as data:
+        for line in data:
+            match = regex.search(line)
+            if match:
+                result.append(match.groups())
+
+    conn = sqlite3.connect('dhcp_snooping.db')
+
+    print('Creating schema...')
+    with open('dhcp_snooping_schema.sql', 'r') as f:
+        schema = f.read()
+        conn.executescript(schema)
+    print('Done')
+
+    print('Inserting DHCP Snooping data')
+
+    for row in result:
+        try:
+            with conn:
+                query = '''insert into dhcp (mac, ip, vlan, interface)
+                           values (?, ?, ?, ?)'''
+                conn.execute(query, row)
+        except sqlite3.IntegrityError as e:
+            print('Error occured: ', e)
+
+    conn.close()
 
 .. note::
 
@@ -170,9 +212,51 @@ binding в таблицу (файл dhcp_snooping.txt):
 
 Файл create_sqlite_ver3.py:
 
-.. literalinclude:: /pyneng-examples-exercises/examples/18_db/create_sqlite_ver3.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import os
+    import sqlite3
+    import re
+
+    data_filename = 'dhcp_snooping.txt'
+    db_filename = 'dhcp_snooping.db'
+    schema_filename = 'dhcp_snooping_schema.sql'
+
+    regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
+
+    result = []
+
+    with open('dhcp_snooping.txt') as data:
+        for line in data:
+            match = regex.search(line)
+            if match:
+                result.append(match.groups())
+
+    db_exists = os.path.exists(db_filename)
+
+    conn = sqlite3.connect(db_filename)
+
+    if not db_exists:
+        print('Creating schema...')
+        with open(schema_filename, 'r') as f:
+            schema = f.read()
+        conn.executescript(schema)
+        print('Done')
+    else:
+        print('Database exists, assume dhcp table does, too.')
+
+    print('Inserting DHCP Snooping data')
+
+    for row in result:
+        try:
+            with conn:
+                query = '''insert into dhcp (mac, ip, vlan, interface)
+                           values (?, ?, ?, ?)'''
+                conn.execute(query, row)
+        except sqlite3.IntegrityError as e:
+            print('Error occured: ', e)
+
+    conn.close()
 
 Теперь есть проверка наличия файла БД, и файл dhcp_snooping.db будет
 создаваться только в том случае, если его нет. Данные также записываются
@@ -230,9 +314,32 @@ binding в таблицу (файл dhcp_snooping.txt):
 
 Файл get_data_ver1.py:
 
-.. literalinclude:: /pyneng-examples-exercises/examples/18_db/get_data_ver1.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import sqlite3
+    import sys
+
+    db_filename = 'dhcp_snooping.db'
+
+    key, value = sys.argv[1:]
+    keys = ['mac', 'ip', 'vlan', 'interface']
+    keys.remove(key)
+
+    conn = sqlite3.connect(db_filename)
+
+    #Позволяет далее обращаться к данным в колонках, по имени колонки
+    conn.row_factory = sqlite3.Row
+
+    print('\nDetailed information for host(s) with', key, value)
+    print('-' * 40)
+
+    query = 'select * from dhcp where {} = ?'.format(key)
+    result = conn.execute(query, (value, ))
+
+    for row in result:
+        for k in keys:
+            print('{:12}: {}'.format(k, row[k]))
+        print('-' * 40)
 
 Комментарии к скрипту: 
 
@@ -298,9 +405,39 @@ binding в таблицу (файл dhcp_snooping.txt):
 
 Файл get_data_ver2.py:
 
-.. literalinclude:: /pyneng-examples-exercises/examples/18_db/get_data_ver2.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import sqlite3
+    import sys
+
+    db_filename = 'dhcp_snooping.db'
+
+    query_dict = {
+        'vlan': 'select mac, ip, interface from dhcp where vlan = ?',
+        'mac': 'select vlan, ip, interface from dhcp where mac = ?',
+        'ip': 'select vlan, mac, interface from dhcp where ip = ?',
+        'interface': 'select vlan, mac, ip from dhcp where interface = ?'
+    }
+
+    key, value = sys.argv[1:]
+    keys = query_dict.keys()
+
+    if not key in keys:
+        print('Enter key from {}'.format(', '.join(keys)))
+    else:
+        conn = sqlite3.connect(db_filename)
+        conn.row_factory = sqlite3.Row
+
+        print('\nDetailed information for host(s) with', key, value)
+        print('-' * 40)
+
+        query = query_dict[key]
+        result = conn.execute(query, (value, ))
+
+        for row in result:
+            for row_name in row.keys():
+                print('{:12}: {}'.format(row_name, row[row_name]))
+            print('-' * 40)
 
 В этом скрипте есть несколько недостатков: 
 
