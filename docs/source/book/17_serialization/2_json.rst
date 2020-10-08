@@ -15,10 +15,23 @@
 
 Файл sw_templates.json:
 
+.. code:: json
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/sw_templates.json
-  :language: json
-  :linenos:
+    {
+      "access": [
+        "switchport mode access",
+        "switchport access vlan",
+        "switchport nonegotiate",
+        "spanning-tree portfast",
+        "spanning-tree bpduguard enable"
+      ],
+      "trunk": [
+        "switchport trunk encapsulation dot1q",
+        "switchport mode trunk",
+        "switchport trunk native vlan 999",
+        "switchport trunk allowed vlan"
+      ]
+    }
 
 Для чтения в модуле json есть два метода: 
 
@@ -30,10 +43,18 @@ json.load()
 
 Чтение файла в формате JSON в объект Python (файл json_read_load.py):
 
+.. code:: python
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/json_read_load.py
-  :language: python
-  :linenos:
+    import json
+
+    with open('sw_templates.json') as f:
+        templates = json.load(f)
+
+    print(templates)
+
+    for section, commands in templates.items():
+        print(section)
+        print('\n'.join(commands))
 
 Вывод будет таким:
 
@@ -59,9 +80,19 @@ json.loads()
 Считывание строки в формате JSON в объект Python (файл
 json_read_loads.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/json_read_loads.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import json
+
+    with open('sw_templates.json') as f:
+        file_content = f.read()
+        templates = json.loads(file_content)
+
+    print(templates)
+
+    for section, commands in templates.items():
+        print(section)
+        print('\n'.join(commands))
 
 Результат будет аналогичен предыдущему выводу.
 
@@ -80,9 +111,28 @@ json.dumps()
 
 Преобразование объекта в строку в формате JSON (json_write_dumps.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/json_write_dumps.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import json
+
+    trunk_template = [
+        'switchport trunk encapsulation dot1q', 'switchport mode trunk',
+        'switchport trunk native vlan 999', 'switchport trunk allowed vlan'
+    ]
+
+    access_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
+
+    to_json = {'trunk': trunk_template, 'access': access_template}
+
+    with open('sw_templates.json', 'w') as f:
+        f.write(json.dumps(to_json))
+
+    with open('sw_templates.json') as f:
+        print(f.read())
 
 
 Метод json.dumps() подходит для ситуаций, когда надо вернуть строку в
@@ -93,9 +143,28 @@ json.dump()
 
 Запись объекта Python в файл в формате JSON (файл json_write_dump.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/json_write_dump.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import json
+
+    trunk_template = [
+        'switchport trunk encapsulation dot1q', 'switchport mode trunk',
+        'switchport trunk native vlan 999', 'switchport trunk allowed vlan'
+    ]
+
+    access_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
+
+    to_json = {'trunk': trunk_template, 'access': access_template}
+
+    with open('sw_templates.json', 'w') as f:
+        json.dump(to_json, f)
+
+    with open('sw_templates.json') as f:
+        print(f.read())
 
 Когда нужно записать информацию в формате JSON в файл, лучше
 использовать метод dump.
@@ -117,9 +186,28 @@ json.dump()
 Передав дополнительные параметры методу dump (или методу dumps), можно
 получить более удобный для чтения вывод (файл json_write_indent.py):
 
-.. literalinclude:: /pyneng-examples-exercises/examples/17_serialization/json/json_write_indent.py
-  :language: python
-  :linenos:
+.. code:: python
+
+    import json
+
+    trunk_template = [
+        'switchport trunk encapsulation dot1q', 'switchport mode trunk',
+        'switchport trunk native vlan 999', 'switchport trunk allowed vlan'
+    ]
+
+    access_template = [
+        'switchport mode access', 'switchport access vlan',
+        'switchport nonegotiate', 'spanning-tree portfast',
+        'spanning-tree bpduguard enable'
+    ]
+
+    to_json = {'trunk': trunk_template, 'access': access_template}
+
+    with open('sw_templates.json', 'w') as f:
+        json.dump(to_json, f, sort_keys=True, indent=2)
+
+    with open('sw_templates.json') as f:
+        print(f.read())
 
 Теперь содержимое файла sw_templates.json выглядит так:
 
