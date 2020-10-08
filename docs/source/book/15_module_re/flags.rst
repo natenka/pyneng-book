@@ -82,10 +82,46 @@ re.DOTALL
 между нужными данными.
 
 Теперь попробуем с помощью этого регулярного выражения, получить информацию про 
-всех соседей из файла sh_cdp_neighbors_sw1.txt.
+всех соседей из файла sh_cdp_neighbors_sw1.txt (вывод сокращен).
 
-.. literalinclude:: /pyneng-examples-exercises/examples/15_module_re/sh_cdp_neighbors_sw1.txt
-  :linenos:
+::
+
+    SW1#show cdp neighbors detail
+    -------------------------
+    Device ID: SW2
+    Entry address(es):
+      IP address: 10.1.1.2
+    Platform: cisco WS-C2960-8TC-L,  Capabilities: Switch IGMP
+    Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0/1
+    Holdtime : 164 sec
+
+    Version :
+    Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9, RELEASE SOFTWARE (fc1)
+    Technical Support: http://www.cisco.com/techsupport
+
+    -------------------------
+    Device ID: R1
+    Entry address(es):
+      IP address: 10.1.1.1
+    Platform: Cisco 3825,  Capabilities: Router Switch IGMP
+    Interface: GigabitEthernet1/0/22,  Port ID (outgoing port): GigabitEthernet0/0
+    Holdtime : 156 sec
+
+    Version :
+    Cisco IOS Software, 3800 Software (C3825-ADVENTERPRISEK9-M), Version 12.4(24)T1, RELEASE SOFTWARE (fc3)
+    Technical Support: http://www.cisco.com/techsupport
+
+    -------------------------
+    Device ID: R2
+    Entry address(es):
+      IP address: 10.2.2.2
+    Platform: Cisco 2911,  Capabilities: Router Switch IGMP
+    Interface: GigabitEthernet1/0/21,  Port ID (outgoing port): GigabitEthernet0/0
+    Holdtime : 156 sec
+
+    Version :
+    Cisco IOS Software, 2900 Software (C3825-ADVENTERPRISEK9-M), Version 15.2(2)T1, RELEASE SOFTWARE (fc3)
+    Technical Support: http://www.cisco.com/techsupport
 
 
 Поиск всех совпадений с регулярным выражением:
