@@ -115,4 +115,4 @@
 .. toctree::
    :maxdepth: 1
 
-   5a_list_methods
+   list_methods

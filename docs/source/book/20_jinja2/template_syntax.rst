@@ -72,11 +72,11 @@
 .. toctree::
    :maxdepth: 1
 
-   3_whitespace_control
-   3a_syntax_variables
-   3b_syntax_for
-   3c_syntax_if
-   3d_syntax_filter
-   3e_syntax_test
-   3f_assignments
-   3g_include
+   whitespace_control
+   syntax_variables
+   syntax_for
+   syntax_if
+   syntax_filter
+   syntax_test
+   assignments
+   include

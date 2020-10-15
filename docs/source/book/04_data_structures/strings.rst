@@ -160,6 +160,6 @@
 .. toctree::
    :maxdepth: 1
 
-   4a_string_methods
-   4b_string_format
-   4c_string_literal_concatenation
+   string_methods
+   string_format
+   string_literal_concatenation
