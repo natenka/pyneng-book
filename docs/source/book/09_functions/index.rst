@@ -57,9 +57,9 @@
 .. toctree::
    :maxdepth: 1
 
-   1_create_func
-   2_namespace
-   3_func_params_args
-   4_func_unpacking_and_var_args_example
+   create_func
+   namespace
+   func_params_args
+   func_unpacking_and_var_args_example
    further_reading
    ../../exercises/09_exercises

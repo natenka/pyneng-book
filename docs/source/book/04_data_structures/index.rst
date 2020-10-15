@@ -31,14 +31,14 @@
    :maxdepth: 1
 
    README
-   3_numbers
-   4_strings
-   5_lists
-   6_dicts
-   7_tuple
-   8_set
-   9_boolean
-   9_convert_type
-   9a_check_type
+   numbers
+   strings
+   lists
+   dicts
+   tuple
+   set
+   boolean
+   convert_type
+   check_type
    further_reading
    ../../exercises/04_exercises

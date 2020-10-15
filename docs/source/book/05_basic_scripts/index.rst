@@ -56,7 +56,7 @@ Windows использует расширение файла для опреде
 .. toctree::
    :maxdepth: 1
 
-   0_executable
-   1_args
-   2_user_input
+   executable
+   args
+   user_input
    ../../exercises/05_exercises

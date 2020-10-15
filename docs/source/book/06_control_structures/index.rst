@@ -19,11 +19,11 @@
 .. toctree::
    :maxdepth: 1
 
-   1_if_else
-   2_for
-   3_while
-   4_break_continue_pass
-   5_for_while_else
-   6_exceptions
+   if_else
+   for
+   while
+   break_continue_pass
+   for_while_else
+   exceptions
    further_reading
    ../../exercises/06_exercises

@@ -44,8 +44,8 @@
 .. toctree::
    :maxdepth: 1
 
-   1_csv
-   2_json
-   3_yaml
+   csv
+   json
+   yaml
    further_reading
    ../../exercises/17_exercises

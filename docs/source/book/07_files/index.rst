@@ -48,10 +48,10 @@
 .. toctree::
    :maxdepth: 1
 
-   1_open
-   2_read
-   3_write
-   4_close
-   5_with
+   open
+   read
+   write
+   close
+   with
    further_reading
    ../../exercises/07_exercises

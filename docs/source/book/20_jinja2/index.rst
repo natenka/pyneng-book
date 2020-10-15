@@ -25,9 +25,8 @@ Jinja2 используется для генерации документов �
    :maxdepth: 1
 
    README
-   1_example
-   2_example
-   3_template_syntax
-   4_template_inheritance
+   example
+   template_syntax
+   template_inheritance
    further_reading
    ../../exercises/20_exercises
