@@ -16,6 +16,7 @@ Python для сетевых инженеров
    :maxdepth: 2
 
    intro_index
+   course_links
    book/Part_I
    book/Part_II
    book/Part_III
