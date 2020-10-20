@@ -18,7 +18,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Python для сетевых инженеров'
-copyright = '2015-2019, Natasha Samoylenko'
+copyright = '2015-2020, Natasha Samoylenko'
 author = 'Natasha Samoylenko'
 
 # The full version, including alpha/beta/rc tags
@@ -69,6 +69,13 @@ html_theme_options = {
 html_static_path = ['_static']
 html_last_updated_fmt = ''
 
+html_static_path = ['_static']
+
+html_context = {
+    'css_files': [
+        '_static/theme_overrides.css',  # override wide tables in RTD theme
+        ],
+     }
 # -- Options for LaTeX output ---------------------------------------------
 
 
