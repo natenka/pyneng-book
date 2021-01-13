@@ -112,19 +112,19 @@ Python без привязки к сетевому оборудованию
 
 Основы:
 
-* [Think Python](https://greenteapress.com/wp/think-python-2e/) - хорошая книга по основам Python. В книге есть задания.
-* [Python Crash Course: A Hands-On, Project-Based Introduction to Programming](https://www.amazon.com/Python-Crash-Course-Hands-Project-Based-ebook/dp/B018UXJ9RI/) - книга по основам Python. Половина книги посвящена "стандартному" описанию основ Python, а во второй половине эти основы используются для проектов. В книге есть задания.
-* [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/). [На русском](https://www.ozon.ru/context/detail/id/137673590/) -  в этой книге можно найти много идей по автоматизации ежедневной работы. Тут рассматриваются такие темы: работа с файлами PDF, Excel, Word, отправка писем, работа с картинками, работа в веб
+* `Think Python <https://greenteapress.com/wp/think-python-2e/>`__ - хорошая книга по основам Python. В книге есть задания.
+* `Python Crash Course: A Hands-On, Project-Based Introduction to Programming <https://www.amazon.com/Python-Crash-Course-Hands-Project-Based-ebook/dp/B018UXJ9RI/>`__ - книга по основам Python. Половина книги посвящена "стандартному" описанию основ Python, а во второй половине эти основы используются для проектов. В книге есть задания.
+* `Automate the Boring Stuff with Python <https://automatetheboringstuff.com/>`__. `На русском <https://www.ozon.ru/context/detail/id/137673590/>`__ -  в этой книге можно найти много идей по автоматизации ежедневной работы. Тут рассматриваются такие темы: работа с файлами PDF, Excel, Word, отправка писем, работа с картинками, работа в веб
 
 
 Среднего/продвинутого уровня:
 
-* [Python Tricks](https://www.amazon.com/Python-Tricks-Buffet-Awesome-Features-ebook/dp/B0785Q7GSY) - отличный вариант для 2-3 книги по Python. В книге описываются различные аспекты Python и то как правильно использовать. Книга достаточно новая (конец 2017 года), в ней рассматривается Python 3.
-* [Effective Python: 59 Specific Ways to Write Better Python (Effective Software Development Series)](https://www.amazon.com/Effective-Python-Specific-Software-Development-ebook-dp-B00TKGY0GU/dp/B00TKGY0GU/) - книга полезных советов как лучше писать код. В конце 2019 года [планируется выход второго издания книги](https://www.amazon.com/Effective-Python-Specific-Software-Development/dp/0134853989/).
-* [Dive Into Python 3](http://diveintopython3.problemsolving.io/) - коротко рассматриваются основы Python, а затем более продвинутые темы: closure, генераторы, тесты и так далее. Книга 2009 года, но рассматриваюется Python 3 и 99% тем остались без изменений.
-* [Problem Solving with Algorithms and Data Structures using Python](https://runestone.academy/runestone/static/pythonds/index.html) - отличная книга по структурам данных и алгоритмам. Много примеров и домашних заданий. [На русском](http://aliev.me/runestone/)
-* [Fluent Python](https://www.amazon.com/gp/product/1491946008/) - отличная книга по более продвинутым темам. Даже те темы, которые устарели в текущей версии Python (asyncio) стоит прочитать ради прекрасного объяснения темы.
-* [Python Cookbook](https://www.amazon.com/gp/product/1449340377/) - отличная книга рецептов. Рассматривается огромное количество сценариев с решениями и пояснением.
+* `Python Tricks <https://www.amazon.com/Python-Tricks-Buffet-Awesome-Features-ebook/dp/B0785Q7GSY>`__ - отличный вариант для 2-3 книги по Python. В книге описываются различные аспекты Python и то как правильно использовать. Книга достаточно новая (конец 2017 года), в ней рассматривается Python 3.
+* `Effective Python: 59 Specific Ways to Write Better Python (Effective Software Development Series) <https://www.amazon.com/Effective-Python-Specific-Software-Development-ebook-dp-B00TKGY0GU/dp/B00TKGY0GU/>`__ - книга полезных советов как лучше писать код. В конце 2019 года `планируется выход второго издания книги <https://www.amazon.com/Effective-Python-Specific-Software-Development/dp/0134853989/>`__.
+* `Dive Into Python 3 <http://diveintopython3.problemsolving.io/>`__ - коротко рассматриваются основы Python, а затем более продвинутые темы: closure, генераторы, тесты и так далее. Книга 2009 года, но рассматриваюется Python 3 и 99% тем остались без изменений.
+* `Problem Solving with Algorithms and Data Structures using Python <https://runestone.academy/runestone/static/pythonds/index.html>`__ - отличная книга по структурам данных и алгоритмам. Много примеров и домашних заданий. `На русском <http://aliev.me/runestone/>`__
+* `Fluent Python <https://www.amazon.com/gp/product/1491946008/>`__ - отличная книга по более продвинутым темам. Даже те темы, которые устарели в текущей версии Python (asyncio) стоит прочитать ради прекрасного объяснения темы.
+* `Python Cookbook <https://www.amazon.com/gp/product/1449340377/>`__ - отличная книга рецептов. Рассматривается огромное количество сценариев с решениями и пояснением.
 
 
 Курсы
