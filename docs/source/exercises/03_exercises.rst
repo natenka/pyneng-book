@@ -18,9 +18,9 @@
 .. code:: python
 
     $ ipython
-    Python 3.7.3 (default, May 13 2019, 15:44:23)
+    Python 3.8.0 (default, Nov  9 2019, 12:40:50)
     Type 'copyright', 'credits' or 'license' for more information
-    IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.
+    IPython 7.18.1 -- An enhanced Interactive Python. Type '?' for help.
 
     In [1]:
 
