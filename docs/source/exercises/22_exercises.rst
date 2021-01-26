@@ -13,16 +13,20 @@
 
 Создать класс Topology, который представляет топологию сети.
 
-При создании экземпляра класса, как аргумент передается словарь, который описывает топологию.
-Словарь может содержать дублирующиеся соединения.
-
-Дублем считается ситуация, когда в словаре есть такие пары:
+При создании экземпляра класса, как аргумент передается словарь,
+который описывает топологию. Словарь может содержать "дублирующиеся" соединения.
+Тут "дублирующиеся" соединения, это ситуация когда в словаре есть два соединения:
 
 ::
 
-    ('R1', 'Eth0/0'): ('SW1', 'Eth0/1') и ('SW1', 'Eth0/1'): ('R1', 'Eth0/0')
+    ("R1", "Eth0/0"): ("SW1", "Eth0/1")
+    ("SW1", "Eth0/1"): ("R1", "Eth0/0")
 
-В каждом экземпляре должна быть создана переменная topology, в которой содержится словарь топологии, но уже без дублей.
+Задача оставить только один из этих линков в итоговом словаре, не важно какой.
+
+В каждом экземпляре должна быть создана переменная topology, в которой содержится
+словарь топологии, но уже без "дублей". Переменная topology должна содержать словарь
+без "дублей" сразу после создания экземпляра.
 
 Пример создания экземпляра класса:
 
@@ -63,9 +67,7 @@
 
 Скопировать класс Topology из задания 22.1 и изменить его.
 
-Если в задании 22.1 удаление дублей выполнялось в методе __init__,
-надо перенести функциональность удаления дублей в метод _normalize.
-
+Перенести функциональность удаления "дублей" в метод _normalize.
 При этом метод __init__ должен выглядеть таким образом:
 
 .. code:: python
@@ -81,7 +83,7 @@
 Изменить класс Topology из задания 22.1a или 22.1.
 
 Добавить метод delete_link, который удаляет указанное соединение.
-Метод должен удалять и зеркальное соединение, если оно есть (ниже пример).
+Метод должен удалять и "обратное" соединение, если оно есть (ниже пример).
 
 Если такого соединения нет, выводится сообщение "Такого соединения нет".
 
@@ -114,8 +116,9 @@
      ('R3', 'Eth0/0'): ('SW1', 'Eth0/3'),
      ('R3', 'Eth0/2'): ('R5', 'Eth0/0')}
 
-Удаление зеркального линка: в словаре есть запись ``('R3', 'Eth0/2'): ('R5', 'Eth0/0')``,
-но вызов delete_link с указанием ключа и значения в обратном порядке, должно удалять соединение:
+Удаление "обратного" линка:
+в словаре есть запись ``('R3', 'Eth0/2'): ('R5', 'Eth0/0')``, но вызов delete_link
+с указанием ключа и значения в обратном порядке, должно удалять соединение:
 
 .. code:: python
 
@@ -231,9 +234,6 @@
 
 У класса CiscoTelnet, кроме __init__, должно быть, как минимум, два метода:
 
-
-У класса CiscoTelnet, кроме __init__, должно быть, как минимум, два метода:
-
 * _write_line - принимает как аргумент строку и отправляет на оборудование строку преобразованную в байты и добавляет перевод строки в конце.
   Метод _write_line должен использоваться внутри класса.
 * send_show_command - принимает как аргумент команду show и возвращает вывод полученный с обрудования
@@ -244,7 +244,6 @@
 * username - имя пользователя
 * password - пароль
 * secret - пароль enable
-
 
 
 Пример создания экземпляра класса:
@@ -300,11 +299,8 @@
 
 .. code:: python
 
-    In [4]: r1.send_show_command('sh ip int br', parse=False)
-    Out[4]: 'sh ip int br\r\nInterface                  IP-Address      OK? Method Status                Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up      \r\nEthernet0/2                190.16.200.1    YES NVRAM  up                    up      \r\nEthernet0/3                192.168.130.1   YES NVRAM  up                    up      \r\nEthernet0/3.100            10.100.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.200            10.200.0.1      YES NVRAM  up                    up      \r\nEthernet0/3.300            10.30.0.1       YES NVRAM  up                    up      \r\nLoopback0                  10.1.1.1        YES NVRAM  up                    up      \r\nLoopback55                 5.5.5.5         YES manual up                    up      \r\nR1#'
-
-    In [5]: r1.send_show_command('sh ip int br', parse=True)
-    Out[5]:
+    In [4]: r1.send_show_command("sh ip int br", parse=True)
+    Out[4]:
     [{'intf': 'Ethernet0/0',
       'address': '192.168.100.1',
       'status': 'up',
@@ -314,33 +310,14 @@
       'status': 'up',
       'protocol': 'up'},
      {'intf': 'Ethernet0/2',
-      'address': '190.16.200.1',
-      'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Ethernet0/3',
       'address': '192.168.130.1',
       'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Ethernet0/3.100',
-      'address': '10.100.0.1',
-      'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Ethernet0/3.200',
-      'address': '10.200.0.1',
-      'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Ethernet0/3.300',
-      'address': '10.30.0.1',
-      'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Loopback0',
-      'address': '10.1.1.1',
-      'status': 'up',
-      'protocol': 'up'},
-     {'intf': 'Loopback55',
-      'address': '5.5.5.5',
-      'status': 'up',
       'protocol': 'up'}]
+
+    In [5]: r1.send_show_command("sh ip int br", parse=False)
+    Out[5]: 'sh ip int br\r\nInterface                  IP-Address      OK? Method Status
+    Protocol\r\nEthernet0/0                192.168.100.1   YES NVRAM  up
+    up      \r\nEthernet0/1                192.168.200.1   YES NVRAM  up...'
 
 Задание 22.2b
 ~~~~~~~~~~~~~
@@ -383,7 +360,7 @@
 
 У метода send_config_commands должен быть дополнительный параметр strict:
 
-* strict=True значит, что при обнаружении ошибки, необходимо сгенерировать исключение ValueError
+* strict=True значит, что при обнаружении ошибки, необходимо сгенерировать исключение ValueError (значение по умолчанию)
 * strict=False значит, что при обнаружении ошибки, надо только вывести на стандартный поток вывода сообщене об ошибке
 
 Метод дожен возвращать вывод аналогичный методу send_config_set у netmiko (пример вывода ниже). Текст исключения и ошибки в примере ниже.
@@ -402,7 +379,7 @@
 
     In [3]: r1 = CiscoTelnet(**r1_params)
 
-    In [4]: commands_with_errors = ['logging 0255.255.1', 'logging', 'i']
+    In [4]: commands_with_errors = ['logging 0255.255.1', 'logging', 'a']
     In [5]: correct_commands = ['logging buffered 20010', 'ip http server']
     In [6]: commands = commands_with_errors+correct_commands
 
@@ -413,7 +390,7 @@
     In [7]: print(r1.send_config_commands(commands, strict=False))
     При выполнении команды "logging 0255.255.1" на устройстве 192.168.100.1 возникла ошибка -> Invalid input detected at '^' marker.
     При выполнении команды "logging" на устройстве 192.168.100.1 возникла ошибка -> Incomplete command.
-    При выполнении команды "i" на устройстве 192.168.100.1 возникла ошибка -> Ambiguous command:  "i"
+    При выполнении команды "a" на устройстве 192.168.100.1 возникла ошибка -> Ambiguous command:  "a"
     conf t
     Enter configuration commands, one per line.  End with CNTL/Z.
     R1(config)#logging 0255.255.1
@@ -423,8 +400,8 @@
     R1(config)#logging
     % Incomplete command.
 
-    R1(config)#i
-    % Ambiguous command:  "i"
+    R1(config)#a
+    % Ambiguous command:  "a"
     R1(config)#logging buffered 20010
     R1(config)#ip http server
     R1(config)#end
