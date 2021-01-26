@@ -50,7 +50,11 @@
     "spanning-tree bpduguard enable",
     ...]
 
-Проверить работу функции на примере словаря access_config.
+Проверить работу функции на примере словаря access_config
+и списка команд access_mode_template.
+Если предыдущая проверка прошла успешно, проверить работу функции еще раз на словаре
+access_config_2 и убедиться, что в итоговом списке правильные номера интерфейсов
+и вланов.
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
@@ -68,6 +72,11 @@
         "FastEthernet0/16": 17
     }
 
+    access_config_2 = {
+        "FastEthernet0/03": 100,
+        "FastEthernet0/07": 101,
+        "FastEthernet0/09": 107,
+    }
 
     def generate_access_config(intf_vlan_mapping, access_template):
         """
@@ -287,6 +296,32 @@
 
 Проверить работу функции на примере файла config_sw1.txt
 
+Часть словаря, который должна возвращать функция (полный вывод можно посмотреть
+в тесте test_task_9_4.py):
+
+.. code:: python
+
+    {
+        "version 15.0": [],
+        "service timestamps debug datetime msec": [],
+        "service timestamps log datetime msec": [],
+        "no service password-encryption": [],
+        "hostname sw1": [],
+        "interface FastEthernet0/0": [
+            "switchport mode access",
+            "switchport access vlan 10",
+        ],
+        "interface FastEthernet0/1": [
+            "switchport trunk encapsulation dot1q",
+            "switchport trunk allowed vlan 100,200",
+            "switchport mode trunk",
+        ],
+        "interface FastEthernet0/2": [
+            "switchport mode access",
+            "switchport access vlan 20",
+        ],
+    }
+
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 .. code:: python
@@ -305,5 +340,8 @@
         * True, если в команде содержится слово из списка ignore
         * False - если нет
         """
-        return any(word in command for word in ignore)
-
+        ignore_status = False
+        for word in ignore:
+            if word in command:
+                ignore_status = True
+        return ignore_status
