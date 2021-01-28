@@ -18,8 +18,7 @@
 мелочи, которые могут влиять на результат.
 
 Для запуска тестов используется ``pyneng.py`` - скрипт, который находится в
-`репозитории заданий <https://github.com/natenka/pyneng-examples-exercises>`__
-и в вашем репозитории, если он создавался из шаблона pyneng-examples-exercises.
+`репозитории заданий <https://github.com/natenka/pyneng-examples-exercises>`__.
 
 Где решать задания
 ------------------
