@@ -11,5 +11,5 @@ VIII. Дополнительная информация
    additional_info/naming_conventions/README
    additional_info/naming_conventions/underscore_names
    additional_info/py2_vs_py3
-   additional_info/pytest
    additional_info/pyneng
+   additional_info/pytest
