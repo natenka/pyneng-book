@@ -61,5 +61,6 @@
    namespace
    func_params_args
    func_unpacking_and_var_args_example
+   keyword_only_args
    further_reading
    ../../exercises/09_exercises
