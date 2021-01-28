@@ -41,8 +41,8 @@
 Для установки скрипта, в репозитории должны находиться файлы
 `pyneng.py <https://github.com/natenka/pyneng-examples-exercises/blob/master/pyneng.py>`__
 и `setup.py <https://github.com/natenka/pyneng-examples-exercises/blob/master/setup.py>`__.
-Если репозиторий создать из шаблона pyneng-examples-exercises, эти файлы будут находиться
-в корне репозитория.
+Если репозиторий создавался после 28 января 2021 из шаблона pyneng-examples-exercises, эти файлы находится
+в корне репозитория. Иначе, их надо скопировать в свой репозиторий самостоятельно.
 
 Надо перейти в свой репозиторий, например (пишите имя своего репозитория):
 
