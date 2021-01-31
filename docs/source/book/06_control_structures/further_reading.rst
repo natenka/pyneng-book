@@ -19,7 +19,7 @@
 -  `Robust exception
    handling <http://eli.thegreenplace.net/2008/08/21/robust-exception-handling/>`__
 -  `Python Exception Handling
-   Techniques <https://doughellmann.com/blog/2009/06/19/python-exception-handling-techniques/>`__
+   Techniques <https://doughellmann.com/posts/python-exception-handling-techniques/>`__
 
 Stack Overflow:
 
