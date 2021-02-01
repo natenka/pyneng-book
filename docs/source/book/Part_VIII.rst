@@ -7,6 +7,7 @@ VIII. Дополнительная информация
 .. toctree::
    :maxdepth: 1
 
+   additional_info/argparse
    additional_info/old_str_formatting
    additional_info/naming_conventions/README
    additional_info/naming_conventions/underscore_names

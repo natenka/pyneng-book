@@ -191,8 +191,6 @@ argparse сам определяет, что указаны опции, так �
 .. code:: python
 
     import subprocess
-    from tempfile import TemporaryFile
-
     import argparse
 
 

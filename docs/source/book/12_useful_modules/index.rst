@@ -11,7 +11,6 @@
 
 * subprocess
 * os
-* argparse
 * ipaddress
 * pprint
 * tabulate
@@ -24,5 +23,4 @@
    ipaddress
    tabulate
    pprint
-   argparse
    ../../exercises/12_exercises
