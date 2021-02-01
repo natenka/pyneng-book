@@ -40,5 +40,6 @@
    boolean
    convert_type
    check_type
+   method_chaining
    further_reading
    ../../exercises/04_exercises
