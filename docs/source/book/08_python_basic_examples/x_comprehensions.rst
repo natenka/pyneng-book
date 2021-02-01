@@ -244,7 +244,7 @@ Dict comprehensions (генераторы словарей)
     In [33]: lower_r1 = {}
 
     In [34]: for key, value in r1.items():
-        ...:     lower_r1[str.lower(key)] = value
+        ...:     lower_r1[key.lower()] = value
         ...:
 
     In [35]: lower_r1
@@ -268,7 +268,7 @@ Dict comprehensions (генераторы словарей)
         ...:   'vendor': 'Cisco'}
         ...:
 
-    In [37]: lower_r1 = {str.lower(key): value for key, value in r1.items()}
+    In [37]: lower_r1 = {key.lower(): value for key, value in r1.items()}
 
     In [38]: lower_r1
     Out[38]:
@@ -316,7 +316,7 @@ Dict comprehensions (генераторы словарей)
     In [41]: for device, params in london_co.items():
         ...:     lower_london_co[device] = {}
         ...:     for key, value in params.items():
-        ...:         lower_london_co[device][str.lower(key)] = value
+        ...:         lower_london_co[device][key.lower()] = value
         ...:
 
     In [42]: lower_london_co
@@ -344,7 +344,7 @@ Dict comprehensions (генераторы словарей)
 
 .. code:: python
 
-    In [43]: result = {device: {str.lower(key):value for key, value in params.items()} for device, params in london_co.items()}
+    In [43]: result = {device: {key.lower():value for key, value in params.items()} for device, params in london_co.items()}
 
     In [44]: result
     Out[44]:
