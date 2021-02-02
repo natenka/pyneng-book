@@ -16,12 +16,12 @@
 
 .. code:: python
 
-    In [32]: class Switch:
-        ...:     def __init__(self, hostname, model):
-        ...:         self.hostname = hostname
-        ...:         self.model = model
-        ...:
-        ...:     def info(self):
-        ...:         print('Hostname: {}\nModel: {}'.format(self.hostname, self.model))
-        ...:
+    class Switch:
+        def __init__(self, hostname, model):
+            self.hostname = hostname
+            self.model = model
+
+        def info(self):
+            print('Hostname: {}\nModel: {}'.format(self.hostname, self.model))
+
 

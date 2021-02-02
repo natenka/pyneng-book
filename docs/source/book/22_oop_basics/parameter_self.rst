@@ -13,7 +13,7 @@
 
     In [15]: class Switch:
         ...:     def info(sw_object):
-        ...:         print('Hostname: {}\nModel: {}'.format(sw_object.hostname, sw_object.model))
+        ...:         print(f'Hostname: {sw_object.hostname}\nModel: {sw_object.model}')
         ...:
 
 Работать все будет аналогично:
@@ -48,7 +48,7 @@ generate_interfaces должен сгенерировать список с ин
 
     In [5]: class Switch:
        ...:     def generate_interfaces(self, intf_type, number_of_intf):
-       ...:         interfaces = ['{}{}'.format(intf_type, number) for number in range(1, number_of_intf+1)]
+       ...:         interfaces = [f"{intf_type}{number}" for number in range(1, number_of_intf + 1)]
        ...:
 
 В этом случае, в экземплярах класса не будет переменной interfaces:
@@ -78,10 +78,10 @@ generate_interfaces должен сгенерировать список с ин
 
     In [9]: class Switch:
        ...:     def info(self):
-       ...:         print('Hostname: {}\nModel: {}'.format(self.hostname, self.model))
+       ...:         print(f"Hostname: {self.hostname}\nModel: {self.model}")
        ...:
        ...:     def generate_interfaces(self, intf_type, number_of_intf):
-       ...:         interfaces = ['{}{}'.format(intf_type, number) for number in range(1, number_of_intf+1)]
+       ...:         interfaces = [f"{intf_type}{number}" for number in range(1, number_of_intf+1)]
        ...:         self.interfaces = interfaces
        ...:
 

@@ -40,7 +40,8 @@ netmiko_threads_map_basics.py):
 
     logging.basicConfig(
         format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
-        level=logging.INFO)
+        level=logging.INFO,
+    )
 
 
     def send_show(device, show):
@@ -185,7 +186,8 @@ netmiko_threads_map_basics.py):
 
     logging.basicConfig(
         format = '%(threadName)s %(name)s %(levelname)s: %(message)s',
-        level=logging.INFO)
+        level=logging.INFO,
+    )
 
 
     def send_show(device_dict, command):

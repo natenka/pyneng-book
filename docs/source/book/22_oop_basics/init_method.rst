@@ -43,7 +43,7 @@ netmiko, надо передать параметры подключения.
         ...:         self.model = model
         ...:
         ...:     def info(self):
-        ...:         print('Hostname: {}\nModel: {}'.format(self.hostname, self.model))
+        ...:         print(f'Hostname: {self.hostname}\nModel: {self.model}')
         ...:
 
 Обратите внимание на то, что у каждого экземпляра, который создан из этого класса,

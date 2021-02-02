@@ -68,7 +68,7 @@ basic_generator.py):
      network 10.0.0.0 0.255.255.255 area 0
     ''')
 
-    liverpool = {'id':'11', 'name':'Liverpool', 'int':'Gi1/0/17', 'ip':'10.1.1.10'}
+    liverpool = {'id': '11', 'name': 'Liverpool', 'int': 'Gi1/0/17', 'ip': '10.1.1.10'}
 
     print(template.render(liverpool))
 

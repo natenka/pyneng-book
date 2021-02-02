@@ -73,7 +73,6 @@
 
 .. code:: python
 
-    # -*- coding: utf-8 -*-
     from jinja2 import Environment, FileSystemLoader
     import yaml
 
@@ -85,7 +84,7 @@
 
     for router in routers:
         r1_conf = router['name']+'_r1.txt'
-        with open(r1_conf,'w') as f:
+        with open(r1_conf, 'w') as f:
             f.write(template.render(router))
 
 Файл router_config_generator.py импортирует из модуля jinja2: 

@@ -88,6 +88,7 @@ TextFSM.
 
 
 .. warning::
+
     В зависимости от версии textfsm, надо по-разному импортировать clitable:
 
     * ``import clitable`` для версии <= 0.4.1
@@ -122,7 +123,7 @@ TextFSM.
 
 .. code:: python
 
-    In [4]: attributes = {'Command': 'show ip route ospf' , 'Vendor': 'Cisco'}
+    In [4]: attributes = {'Command': 'show ip route ospf', 'Vendor': 'Cisco'}
 
 Методу ParseCmd надо передать вывод команды и словарь с параметрами:
 
@@ -214,7 +215,7 @@ dir(cli_table)):
 
     cli_table = clitable.CliTable('index', 'templates')
 
-    attributes = {'Command': 'show ip route ospf' , 'Vendor': 'Cisco'}
+    attributes = {'Command': 'show ip route ospf', 'Vendor': 'Cisco'}
 
     cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
     print('CLI Table output:\n', cli_table)

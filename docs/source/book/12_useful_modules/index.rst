@@ -23,4 +23,5 @@
    ipaddress
    tabulate
    pprint
+   further_reading
    ../../exercises/12_exercises
