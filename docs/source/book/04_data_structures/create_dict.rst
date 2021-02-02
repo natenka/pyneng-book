@@ -29,7 +29,7 @@ dict
 
 .. code:: python
 
-    In [4]: r1 = dict([('model','4451'), ('ios','15.4')])
+    In [4]: r1 = dict([('model', '4451'), ('ios', '15.4')])
 
     In [5]: r1
     Out[5]: {'model': '4451', 'ios': '15.4'}

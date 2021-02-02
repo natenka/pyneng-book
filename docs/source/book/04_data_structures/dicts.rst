@@ -25,13 +25,13 @@
 
     london = {
         'id': 1,
-        'name':'London',
-        'it_vlan':320,
-        'user_vlan':1010,
-        'mngmt_vlan':99,
+        'name': 'London',
+        'it_vlan': 320,
+        'user_vlan': 1010,
+        'mngmt_vlan': 99,
         'to_name': None,
         'to_id': None,
-        'port':'G1/0/11'
+        'port': 'G1/0/11'
     }
 
 Для того, чтобы получить значение из словаря, надо обратиться по ключу,

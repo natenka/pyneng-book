@@ -69,7 +69,7 @@ comprehension генерирует список.
 
     In [48]: list_of_words = ['one', 'two', 'list', '', 'dict']
 
-    In [49]: [ str.upper(word) for word in list_of_words ]
+    In [49]: [str.upper(word) for word in list_of_words]
     Out[49]: ['ONE', 'TWO', 'LIST', '', 'DICT']
 
 Конвертация в числа:
@@ -78,7 +78,7 @@ comprehension генерирует список.
 
     In [50]: list_of_str = ['1', '2', '5', '10']
 
-    In [51]: [ int(i) for i in list_of_str ]
+    In [51]: [int(i) for i in list_of_str]
     Out[51]: [1, 2, 5, 10]
 
 Форматирование строк:
@@ -87,7 +87,7 @@ comprehension генерирует список.
 
     In [52]:  vlans = [100, 110, 150, 200, 201, 202]
 
-    In [53]: [ 'vlan {}'.format(x) for x in vlans ]
+    In [53]: ['vlan {}'.format(x) for x in vlans]
     Out[53]: ['vlan 100', 'vlan 110', 'vlan 150', 'vlan 200', 'vlan 201', 'vlan 202']
 
 Для получения пар элементов используется zip:
@@ -98,6 +98,6 @@ comprehension генерирует список.
 
     In [55]: nums2 = [100, 200, 300, 400, 500]
 
-    In [56]: [ x*y for x, y in zip(nums,nums2) ]
+    In [56]: [x*y for x, y in zip(nums,nums2)]
     Out[56]: [100, 400, 900, 1600, 2500]
 
