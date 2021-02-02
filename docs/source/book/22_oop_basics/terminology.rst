@@ -25,61 +25,67 @@
    экземпляра, то есть конкретного дома
 -  Дом можно продать, перекрасить, отремонтировать - это методы
 
-Рассмотрим практический пример использования ООП.
+Например, при работе с netmiko первое, что нужно было сделать
+создать подключение:
 
-В разделе "18. Работа с базами данных" первое, что нужно было сделать
-для работы с БД, подключиться к ней:
+.. code:: python
+    
+    from netmiko import ConnectHandler
+
+    device = {
+        "device_type": "cisco_ios",
+        "ip": "192.168.100.1",
+        "username": "cisco",
+        "password": "cisco",
+        "secret": "cisco",
+    }
+
+    ssh = ConnectHandler(**device)
+
+
+Переменная ``ssh`` - это объект, который представляет реальное
+соединение с оборудованием. Благодаря функции type, можно выяснить экземпляром
+какого класса является объект ssh:
 
 .. code:: python
 
-    In [1]: import sqlite3
+    In [3]: type(ssh)
+    Out[3]: netmiko.cisco.cisco_ios.CiscoIosSSH
 
-    In [2]: conn = sqlite3.connect('dhcp_snooping.db')
 
-Переменная ``conn`` - это объект, который представляет реальное
-соединение с БД. Благодаря функции type, можно выяснить экземпляром
-какого класса является объект conn:
-
-.. code:: python
-
-    In [3]: type(conn)
-    Out[3]: sqlite3.Connection
-
-У conn есть свои методы и переменные, которые зависят от состояния
-текущего объекта. Например, переменная экземпляра conn.in_transaction
-доступна у каждого экземпляра класса sqlite3.Connection и возвращает
-True или False, в зависимости от того все ли изменения закоммичены:
+У ``ssh`` есть свои методы и переменные, которые зависят от состояния
+текущего объекта. Например, переменная экземпляра ``ssh.host`` 
+доступна у каждого экземпляра класса ``netmiko.cisco.cisco_ios.CiscoIosSSH`` и возвращает
+IP-адрес или имя хоста, в зависимости от того что указывалось в словаре device:
 
 .. code:: python
 
-    In [15]: conn.in_transaction
-    Out[15]: False
+    In [4]: ssh.host
+    Out[4]: '192.168.100.1'
 
-Метод execute выполняет команду SQL:
 
-.. code:: python
-
-    In [19]: query = 'insert into dhcp (mac, ip, vlan, interface) values (?, ?, ?, ?)'
-
-    In [5]: conn.execute(query, ('0000.1111.7777', '10.255.1.1', '10', 'Gi0/7'))
-    Out[5]: <sqlite3.Cursor at 0xb57328a0>
-
-При этом, объект conn сохраняет состояние: теперь переменная экзепляра
-conn.in_transaction, возвращает True:
+Метод send_command выполняет команду на оборудовании:
 
 .. code:: python
 
-    In [6]: conn.in_transaction
-    Out[6]: True
+    In [5]: ssh.send_command("sh clock")
+    Out[5]: '*10:08:50.654 UTC Tue Feb 2 2021'
 
-После вызова метода commit, она опять равна False:
+
+Метод enable переходит в режим enable и при этом объект ssh 
+сохраняет состояние: до и после перехода видно разное приглашение:
 
 .. code:: python
 
-    In [7]: conn.commit()
+    In [6]: ssh.find_prompt()
+    Out[6]: 'R1>'
 
-    In [8]: conn.in_transaction
-    Out[8]: False
+    In [7]: ssh.enable()
+    Out[7]: 'enable\r\nPassword: \r\nR1#'
+
+    In [8]: ssh.find_prompt()
+    Out[8]: 'R1#'
+
 
 В этом примере показаны важные аспекты ООП: объединение данных и
 действия над данными, а также сохранение состояния.

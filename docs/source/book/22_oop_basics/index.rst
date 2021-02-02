@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 1
 
-   README
+   terminology
    create_class
    create_methods
    parameter_self
