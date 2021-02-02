@@ -1,7 +1,7 @@
 Функция all
 -----------
 
-Функция ``all()`` возвращает True, если все элементы истинные (или объект
+Функция ``all`` возвращает True, если все элементы истинные (или объект
 пустой).
 
 .. code:: python
@@ -15,23 +15,23 @@
     In [3]: all([])
     Out[3]: True
 
-Например, с помощью all можно проверить, все ли октеты в IP-адресе
+Например, с помощью ``all`` можно проверить, все ли октеты в IP-адресе
 являются числами:
 
 .. code:: python
 
     In [4]: IP = '10.0.1.1'
 
-    In [5]: all( i.isdigit() for i in IP.split('.'))
+    In [5]: all(i.isdigit() for i in IP.split('.'))
     Out[5]: True
 
-    In [6]: all( i.isdigit() for i in '10.1.1.a'.split('.'))
+    In [6]: all(i.isdigit() for i in '10.1.1.a'.split('.'))
     Out[6]: False
 
 Функция any
 -----------
 
-Функция any() возвращает True, если хотя бы один элемент истинный.
+Функция ``any`` возвращает True, если хотя бы один элемент истинный.
 
 .. code:: python
 
@@ -44,7 +44,7 @@
     In [9]: any([])
     Out[9]: False
 
-    In [10]: any( i.isdigit() for i in '10.1.1.a'.split('.'))
+    In [10]: any(i.isdigit() for i in '10.1.1.a'.split('.'))
     Out[10]: True
 
 Например, с помощью any, можно заменить функцию ignore_command:

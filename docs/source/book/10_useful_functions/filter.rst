@@ -1,7 +1,7 @@
 Функция filter
 --------------
 
-Функция ``filter()`` применяет функцию ко всем элементам последовательности
+Функция ``filter`` применяет функцию ко всем элементам последовательности
 и возвращает итератор с теми объектами, для которых функция вернула
 True.
 
@@ -21,14 +21,14 @@ True.
 
 .. code:: python
 
-    In [3]: list(filter(lambda x: x%2, [10, 111, 102, 213, 314, 515]))
+    In [3]: list(filter(lambda x: x % 2 == 1, [10, 111, 102, 213, 314, 515]))
     Out[3]: [111, 213, 515]
 
 Аналогично, только четные:
 
 .. code:: python
 
-    In [4]: list(filter(lambda x: not x%2, [10, 111, 102, 213, 314, 515]))
+    In [4]: list(filter(lambda x: x % 2 == 0, [10, 111, 102, 213, 314, 515]))
     Out[4]: [10, 102, 314]
 
 Из списка слов оставить только те, у которых количество букв больше
@@ -54,7 +54,7 @@ List comprehension вместо filter
 
     In [7]: list_of_strings = ['one', 'two', 'list', '', 'dict', '100', '1', '50']
 
-    In [8]: [ s for s in list_of_strings if s.isdigit() ]
+    In [8]: [s for s in list_of_strings if s.isdigit()]
     Out[8]: ['100', '1', '50']
 
 Нечетные/четные числа:
@@ -63,10 +63,10 @@ List comprehension вместо filter
 
     In [9]: nums = [10, 111, 102, 213, 314, 515]
 
-    In [10]: [ n for n in nums if n % 2 ]
+    In [10]: [n for n in nums if n % 2 == 1]
     Out[10]: [111, 213, 515]
 
-    In [11]: [ n for n in nums if not n % 2 ]
+    In [11]: [n for n in nums if n % 2 == 0]
     Out[11]: [10, 102, 314]
 
 Из списка слов оставить только те, у которых количество букв больше
@@ -76,6 +76,6 @@ List comprehension вместо filter
 
     In [12]: list_of_words = ['one', 'two', 'list', '', 'dict']
 
-    In [13]: [ word for word in list_of_words if len(word) > 2 ]
+    In [13]: [word for word in list_of_words if len(word) > 2]
     Out[13]: ['one', 'two', 'list', 'dict']
 
