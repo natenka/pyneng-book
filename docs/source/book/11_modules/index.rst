@@ -27,4 +27,5 @@
    import
    create
    if_name_main
+   module_search
    ../../exercises/11_exercises

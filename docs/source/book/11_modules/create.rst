@@ -34,7 +34,6 @@
 
 Функция ipaddress.ip_address сама проверяет правильность IP-адреса
 и генерирует исключение ValueError, если адрес не прошел проверку.
-
 Функция check_ip возвращает True, если адрес прошел проверку и False - если нет.
 
 Если запустить скрипт check_ip_function.py вывод будет таким:
@@ -98,23 +97,22 @@ check_ip_function.py.
 В Python есть возможность указать, что некоторые строки не должны выполняться при импорте.
 Это рассматривается в следующем подразделе.
 
-.. note::
-    Функцию return_correct_ip можно заменить filter или генератором списка,
-    выше используется более длинный, но скорее всего, пока что более понятный
-    вариант:
+Функцию return_correct_ip можно заменить filter или генератором списка,
+выше используется более длинный, но скорее всего, пока что более понятный
+вариант:
 
-    .. code:: python
+.. code:: python
 
-        In [19]: list(filter(check_ip, ip_list))
-        Out[19]: ['10.1.1.1', '8.8.8.8']
+    In [19]: list(filter(check_ip, ip_list))
+    Out[19]: ['10.1.1.1', '8.8.8.8']
 
-        In [20]: [ip for ip in ip_list if check_ip(ip)]
-        Out[20]: ['10.1.1.1', '8.8.8.8']
+    In [20]: [ip for ip in ip_list if check_ip(ip)]
+    Out[20]: ['10.1.1.1', '8.8.8.8']
 
-        In [21]: def return_correct_ip(ip_addresses):
-            ...:     return [ip for ip in ip_addresses if check_ip(ip)]
-            ...:
+    In [21]: def return_correct_ip(ip_addresses):
+        ...:     return [ip for ip in ip_addresses if check_ip(ip)]
+        ...:
 
-        In [22]: return_correct_ip(ip_list)
-        Out[22]: ['10.1.1.1', '8.8.8.8']
+    In [22]: return_correct_ip(ip_list)
+    Out[22]: ['10.1.1.1', '8.8.8.8']
 
