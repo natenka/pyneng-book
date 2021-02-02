@@ -7,7 +7,7 @@ break, continue, pass
 Оператор break
 ~~~~~~~~~~~~~~
 
-**Оператор break** позволяет досрочно прервать цикл:
+Оператор ``break`` позволяет досрочно прервать цикл:
 
 * break прерывает текущий цикл и продолжает выполнение следующих выражений
 * если используется несколько вложенных циклов, break прерывает внутренний цикл
@@ -51,12 +51,12 @@ break, continue, pass
     4
 
 Использование break в примере с запросом пароля (файл
-check\_password\_with\_while\_break.py):
+check_password_with_while_break.py):
 
 .. code:: python
 
-    username = input('Введите имя пользователя: ' )
-    password = input('Введите пароль: ' )
+    username = input('Введите имя пользователя: ')
+    password = input('Введите пароль: ')
 
     while True:
         if len(password) < 8:

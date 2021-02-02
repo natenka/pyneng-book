@@ -13,12 +13,9 @@
                        'spanning-tree portfast',
                        'spanning-tree bpduguard enable']
 
-    fast_int = {'access': { '0/12':10,
-                            '0/14':11,
-                            '0/16':17,
-                            '0/17':150}}
+    access = {'0/12': 10, '0/14': 11, '0/16': 17, '0/17': 150}}
 
-    for intf, vlan in fast_int['access'].items():
+    for intf, vlan in access.items():
         print('interface FastEthernet' + intf)
         for command in access_template:
             if command.endswith('access vlan'):
@@ -28,7 +25,7 @@
 
 Комментарии к коду:
 
-* В первом цикле for перебираются ключи и значения во вложенном словаре fast\_int['access']
+* В первом цикле for перебираются ключи и значения во вложенном словаре access
 * Текущий ключ, на данный момент цикла, хранится в переменной intf
 * Текущее значение, на данный момент цикла, хранится в переменной vlan
 * Выводится строка interface FastEthernet с добавлением к ней номера интерфейса

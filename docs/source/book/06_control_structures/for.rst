@@ -114,7 +114,7 @@ for:
 .. code:: python
 
     In [2]: for i in range(10):
-       ...:     print('interface FastEthernet0/{}'.format(i))
+       ...:     print(f'interface FastEthernet0/{i}')
        ...:
     interface FastEthernet0/0
     interface FastEthernet0/1
@@ -137,8 +137,8 @@ for:
 
     In [3]: vlans = [10, 20, 30, 40, 100]
     In [4]: for vlan in vlans:
-       ...:     print('vlan {}'.format(vlan))
-       ...:     print(' name VLAN_{}'.format(vlan))
+       ...:     print(f'vlan {vlan}')
+       ...:     print(f' name VLAN_{vlan}')
        ...:     
     vlan 10
      name VLAN_10
