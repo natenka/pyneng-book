@@ -111,14 +111,15 @@
 ::
 
     $ python csv_read_dict.py
-    OrderedDict([('hostname', 'sw1'), ('vendor', 'Cisco'), ('model', '3750'), ('location', 'London')])
+    {'hostname': 'sw1', 'vendor': 'Cisco', 'model': '3750', 'location': 'London, Globe Str 1 '}
     sw1 3750
-    OrderedDict([('hostname', 'sw2'), ('vendor', 'Cisco'), ('model', '3850'), ('location', 'Liverpool')])
+    {'hostname': 'sw2', 'vendor': 'Cisco', 'model': '3850', 'location': 'Liverpool'}
     sw2 3850
-    OrderedDict([('hostname', 'sw3'), ('vendor', 'Cisco'), ('model', '3650'), ('location', 'Liverpool')])
+    {'hostname': 'sw3', 'vendor': 'Cisco', 'model': '3650', 'location': 'Liverpool'}
     sw3 3650
-    OrderedDict([('hostname', 'sw4'), ('vendor', 'Cisco'), ('model', '3650'), ('location', 'London')])
+    {'hostname': 'sw4', 'vendor': 'Cisco', 'model': '3650', 'location': 'London, Grobe Str 1'}
     sw4 3650
+
 
 DictReader создает не стандартные словари Python, а упорядоченные
 словари. За счет этого порядок элементов соответствует порядку столбцов
@@ -126,7 +127,7 @@ DictReader создает не стандартные словари Python, а 
 
 .. note::
 
-    До Python 3.6 возвращались обычные словари, а не упорядоченные.
+    До Python 3.8 возвращался отдельный тип упорядоченные словари (OrderedDict).
 
 В остальном с упорядоченными словарями можно работать, используя те же
 методы, что и в обычных словарях.

@@ -35,10 +35,10 @@
 
 Для чтения в модуле json есть два метода: 
 
-* json.load() - метод считывает файл в формате JSON и возвращает объекты Python 
-* json.loads() - метод считывает строку в формате JSON и возвращает объекты Python
+* ``json.load`` - метод считывает файл в формате JSON и возвращает объекты Python 
+* ``json.loads`` - метод считывает строку в формате JSON и возвращает объекты Python
 
-json.load()
+``json.load``
 ^^^^^^^^^^^
 
 Чтение файла в формате JSON в объект Python (файл json_read_load.py):
@@ -74,7 +74,7 @@ json.load()
     switchport trunk native vlan 999
     switchport trunk allowed vlan
 
-json.loads()
+``json.loads``
 ^^^^^^^^^^^^
 
 Считывание строки в формате JSON в объект Python (файл
@@ -103,10 +103,10 @@ json_read_loads.py):
 
 Для записи информации в формате JSON в модуле json также два метода: 
 
-* json.dump() - метод записывает объект Python в файл в формате JSON 
-* json.dumps() - метод возвращает строку в формате JSON
+* ``json.dump`` - метод записывает объект Python в файл в формате JSON 
+* ``json.dumps`` - метод возвращает строку в формате JSON
 
-json.dumps()
+``json.dumps``
 ^^^^^^^^^^^^
 
 Преобразование объекта в строку в формате JSON (json_write_dumps.py):
@@ -135,10 +135,10 @@ json.dumps()
         print(f.read())
 
 
-Метод json.dumps() подходит для ситуаций, когда надо вернуть строку в
+Метод ``json.dumps`` подходит для ситуаций, когда надо вернуть строку в
 формате JSON. Например, чтобы передать ее API.
 
-json.dump()
+``json.dump``
 ^^^^^^^^^^^
 
 Запись объекта Python в файл в формате JSON (файл json_write_dump.py):
@@ -320,7 +320,7 @@ json.dump()
 
 .. code:: python
 
-    In [23]: to_json = { ('trunk', 'cisco'): trunk_template, 'access': access_template}
+    In [23]: to_json = {('trunk', 'cisco'): trunk_template, 'access': access_template}
 
     In [24]: with open('sw_templates.json', 'w') as f:
         ...:     json.dump(to_json, f)
@@ -333,7 +333,7 @@ json.dump()
 
 .. code:: python
 
-    In [25]: to_json = { ('trunk', 'cisco'): trunk_template, 'access': access_template}
+    In [25]: to_json = {('trunk', 'cisco'): trunk_template, 'access': access_template}
 
     In [26]: with open('sw_templates.json', 'w') as f:
         ...:     json.dump(to_json, f, skipkeys=True)
@@ -349,7 +349,7 @@ json.dump()
 
 .. code:: python
 
-    In [28]: d = {1:100, 2:200}
+    In [28]: d = {1: 100, 2: 200}
 
     In [29]: json.dumps(d)
     Out[29]: '{"1": 100, "2": 200}'

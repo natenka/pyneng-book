@@ -54,8 +54,7 @@
 
     UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 
-Наличие ошибок - это хорошо. Они явно говорят, в
-чем проблема.
+Наличие ошибок - это хорошо. Они явно говорят, в чем проблема.
 Хуже, когда получается так:
 
 .. code:: python
