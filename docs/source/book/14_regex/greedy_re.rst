@@ -10,8 +10,10 @@
 .. code:: python
 
     In [1]: import re
+
     In [2]: line = '<text line> some text>'
-    In [3]: match = re.search('<.*>', line)
+
+    In [3]: match = re.search(r'<.*>', line)
 
     In [4]: match.group()
     Out[4]: '<text line> some text>'
@@ -26,7 +28,7 @@
 
     In [5]: line = '<text line> some text>'
 
-    In [6]: match = re.search('<.*?>', line)
+    In [6]: match = re.search(r'<.*?>', line)
 
     In [7]: match.group()
     Out[7]: '<text line>'
@@ -38,7 +40,7 @@
 
     In [8]: line = '1500     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [9]: re.search('\d+\s+\S+', line).group()
+    In [9]: re.search(r'\d+\s+\S+', line).group()
     Out[9]: '1500     aab1.a1a1.a5d3'
 
 Символ ``\S`` обозначает все, кроме пробельных символов. Поэтому выражение
@@ -50,6 +52,6 @@
 
 .. code:: python
 
-    In [10]: re.search('\d+\s+\S+?', line).group()
+    In [10]: re.search(r'\d+\s+\S+?', line).group()
     Out[10]: '1500     a'
 

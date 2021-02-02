@@ -17,7 +17,7 @@
 
 .. code:: python
 
-    In [2]: match = re.search('((\w{4}\.){2}\w{4}).+vlan (\d+).+port (\S+).+port (\S+)', log)
+    In [2]: match = re.search(r'((\w{4}\.){2}\w{4}).+vlan (\d+).+port (\S+).+port (\S+)', log)
 
 Выражение состоит из таких частей: 
 
@@ -47,7 +47,7 @@
 
 .. code:: python
 
-    In [4]: match = re.search('((?:\w{4}\.){2}\w{4}).+vlan (\d+).+port (\S+).+port (\S+)', log)
+    In [4]: match = re.search(r'((?:\w{4}\.){2}\w{4}).+vlan (\d+).+port (\S+).+port (\S+)', log)
 
 И, соответственно, группы:
 

@@ -1,7 +1,7 @@
 Функция search
 --------------
 
-Функция ``search()``: 
+Функция ``search``: 
 
 * используется для поиска подстроки, которая соответствует шаблону 
 * возвращает объект Match, если подстрока найдена
@@ -66,10 +66,10 @@
 
     import re
 
-    regex = ('Host \S+ '
-             'in vlan (\d+) '
-             'is flapping between port '
-             '(\S+) and port (\S+)')
+    regex = (r'Host \S+ '
+             r'in vlan (\d+) '
+             r'is flapping between port '
+             r'(\S+) and port (\S+)')
 
     ports = set()
 
@@ -154,16 +154,16 @@ detail.
         with open(filename) as f:
             for line in f:
                 if line.startswith('Device ID'):
-                    neighbor = re.search('Device ID: (\S+)', line).group(1)
+                    neighbor = re.search(r'Device ID: (\S+)', line).group(1)
                     result[neighbor] = {}
                 elif line.startswith('  IP address'):
-                    ip = re.search('IP address: (\S+)', line).group(1)
+                    ip = re.search(r'IP address: (\S+)', line).group(1)
                     result[neighbor]['ip'] = ip
                 elif line.startswith('Platform'):
-                    platform = re.search('Platform: (\S+ \S+),', line).group(1)
+                    platform = re.search(r'Platform: (\S+ \S+),', line).group(1)
                     result[neighbor]['platform'] = platform
                 elif line.startswith('Cisco IOS Software'):
-                    ios = re.search('Cisco IOS Software, (.+), RELEASE',
+                    ios = re.search(r'Cisco IOS Software, (.+), RELEASE',
                                     line).group(1)
                     result[neighbor]['ios'] = ios
 
@@ -203,10 +203,10 @@ detail.
 
 
     def parse_cdp(filename):
-        regex = ('Device ID: (?P<device>\S+)'
-                 '|IP address: (?P<ip>\S+)'
-                 '|Platform: (?P<platform>\S+ \S+),'
-                 '|Cisco IOS Software, (?P<ios>.+), RELEASE')
+        regex = (r'Device ID: (?P<device>\S+)'
+                 r'|IP address: (?P<ip>\S+)'
+                 r'|Platform: (?P<platform>\S+ \S+),'
+                 r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
 
         result = {}
 

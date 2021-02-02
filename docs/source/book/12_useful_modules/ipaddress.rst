@@ -7,10 +7,10 @@
     С версии Python 3.3 модуль ipaddress входит в стандартную библиотеку
     Python.
 
-``ipaddress.ip_address()``
+``ipaddress.ip_address``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Функция ``ipaddress.ip_address()`` позволяет создавать объект
+Функция ``ipaddress.ip_address`` позволяет создавать объект
 IPv4Address или IPv6Address соответственно:
 
 .. code:: python
@@ -84,10 +84,10 @@ IPv4Address или IPv6Address соответственно:
     In [19]: ip1 - 5
     Out[19]: IPv4Address('10.0.0.252')
 
-``ipaddress.ip_network()``
+``ipaddress.ip_network``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Функция ``ipaddress.ip_network()`` позволяет создать объект, который
+Функция ``ipaddress.ip_network`` позволяет создать объект, который
 описывает сеть (IPv4 или IPv6):
 
 .. code:: python
@@ -113,8 +113,8 @@ IPv4Address или IPv6Address соответственно:
     In [25]: subnet1.num_addresses
     Out[25]: 16
 
-Метод hosts() возвращает генератор, поэтому, чтобы посмотреть все хосты,
-надо применить функцию list:
+Метод ``hosts`` возвращает генератор, поэтому, чтобы посмотреть все хосты,
+надо применить функцию ``list``:
 
 .. code:: python
 
@@ -141,7 +141,7 @@ IPv4Address или IPv6Address соответственно:
 .. code:: python
 
     In [27]: list(subnet1.subnets())
-    Out[27]: [IPv4Network('80.0.1.0/29'), IPv4Network(u'80.0.1.8/29')]
+    Out[27]: [IPv4Network('80.0.1.0/29'), IPv4Network('80.0.1.8/29')]
 
 Параметр prefixlen_diff позволяет указать количество бит
 для подсетей:
@@ -168,7 +168,7 @@ IPv4Address или IPv6Address соответственно:
      IPv4Network('80.0.1.12/30')]
 
     In [30]: list(subnet1.subnets(new_prefix=29))
-    Out[30]: [IPv4Network('80.0.1.0/29'), IPv4Network(u'80.0.1.8/29')]
+    Out[30]: [IPv4Network('80.0.1.0/29'), IPv4Network('80.0.1.8/29')]
 
 По IP-адресам в сети можно проходиться в цикле:
 
@@ -213,10 +213,10 @@ IPv4Address или IPv6Address соответственно:
     In [35]: ip1 in subnet1
     Out[35]: True
 
-``ipaddress.ip_interface()``
+``ipaddress.ip_interface``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Функция ``ipaddress.ip_interface()`` позволяет создавать объект
+Функция ``ipaddress.ip_interface`` позволяет создавать объект
 IPv4Interface или IPv6Interface соответственно:
 
 .. code:: python

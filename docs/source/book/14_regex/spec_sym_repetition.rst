@@ -16,20 +16,20 @@
 
 Например, тут повторение относится к букве a:
 
-.. code:: py
+.. code:: python
 
     In [1]: line = '100     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [2]: re.search('a+', line).group()
+    In [2]: re.search(r'a+', line).group()
     Out[2]: 'aa'
 
 А в этом выражении повторяется строка 'a1':
 
-.. code:: py
+.. code:: python
 
     In [3]: line = '100     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [4]: re.search('(a1)+', line).group()
+    In [4]: re.search(r'(a1)+', line).group()
     Out[4]: 'a1a1'
 
     В выражении ``(a1)+`` скобки используются для того, чтобы указать,
@@ -50,7 +50,7 @@ sh_ip_int_br:
 
     In [5]: sh_ip_int_br = 'Ethernet0/1    192.168.200.1   YES NVRAM  up          up'
 
-    In [6]: re.search('\d+\.\d+\.\d+\.\d+', sh_ip_int_br).group()
+    In [6]: re.search(r'\d+\.\d+\.\d+\.\d+', sh_ip_int_br).group()
     Out[6]: '192.168.200.1'
 
 Еще один пример выражения: ``\d+\s+\S+`` - оно описывает строку, в
@@ -58,11 +58,11 @@ sh_ip_int_br:
 а затем непробельные символы (все, кроме пробела, таба и других подобных символов).
 С его помощью можно получить VLAN и MAC-адрес из строки:
 
-.. code:: py
+.. code:: python
 
     In [7]: line = '1500     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [8]: re.search('\d+\s+\S+', line).group()
+    In [8]: re.search(r'\d+\s+\S+', line).group()
     Out[8]: '1500     aab1.a1a1.a5d3'
 
 ``*``
@@ -76,11 +76,11 @@ sh_ip_int_br:
 
 Выражение ``ba*`` означает b, а затем ноль или более повторений a:
 
-.. code:: py
+.. code:: python
 
     In [9]: line = '100     a011.baaa.a5d3    FastEthernet0/1'
 
-    In [10]: re.search('ba*', line).group()
+    In [10]: re.search(r'ba*', line).group()
     Out[10]: 'baaa'
 
 Если в строке line до подстроки baaa встретится b, то совпадением будет
@@ -90,7 +90,7 @@ b:
 
     In [11]: line = '100     ab11.baaa.a5d3    FastEthernet0/1'
 
-    In [12]: re.search('ba*', line).group()
+    In [12]: re.search(r'ba*', line).group()
     Out[12]: 'b'
 
 Допустим, необходимо написать регулярное выражение, которое описывает
@@ -108,7 +108,7 @@ b:
 
 .. code:: python
 
-    In [14]: re.search('\w+@\w+\.\w+', email1).group()
+    In [14]: re.search(r'\w+@\w+\.\w+', email1).group()
     Out[14]: 'user1@gmail.com'
 
 Но такое выражение не подходит для электронного адреса с точкой:
@@ -117,14 +117,14 @@ b:
 
     In [15]: email2 = 'user2.test@gmail.com'
 
-    In [16]: re.search('\w+@\w+\.\w+', email2).group()
+    In [16]: re.search(r'\w+@\w+\.\w+', email2).group()
     Out[16]: 'test@gmail.com'
 
 Регулярное выражение для адреса с точкой:
 
 .. code:: python
 
-    In [17]: re.search('\w+\.\w+@\w+\.\w+', email2).group()
+    In [17]: re.search(r'\w+\.\w+@\w+\.\w+', email2).group()
     Out[17]: 'user2.test@gmail.com'
 
 Чтобы описать оба варианта адресов, надо указать, что точка в адресе
@@ -142,10 +142,10 @@ b:
 
     In [19]: email2 = 'user2.test@gmail.com'
 
-    In [20]: re.search('\w+\.*\w+@\w+\.\w+', email1).group()
+    In [20]: re.search(r'\w+\.*\w+@\w+\.\w+', email1).group()
     Out[20]: 'user1@gmail.com'
 
-    In [21]: re.search('\w+\.*\w+@\w+\.\w+', email2).group()
+    In [21]: re.search(r'\w+\.*\w+@\w+\.\w+', email2).group()
     Out[21]: 'user2.test@gmail.com'
 
 ``?``
@@ -162,10 +162,10 @@ b:
 .. code:: python
 
     In [22]: mail_log = ['Jun 18 14:10:35 client-ip=154.10.180.10 from=user1@gmail.com, size=551',
-         ...:             'Jun 18 14:11:05 client-ip=150.10.180.10 from=user2.test@gmail.com, size=768']
+        ...:             'Jun 18 14:11:05 client-ip=150.10.180.10 from=user2.test@gmail.com, size=768']
 
     In [23]: for message in mail_log:
-         ...:     match = re.search('\w+\.?\w+@\w+\.\w+', message)
+         ...:     match = re.search(r'\w+\.?\w+@\w+\.\w+', message)
          ...:     if match:
          ...:         print("Found email: ", match.group())
          ...:
@@ -186,7 +186,7 @@ b:
 
     In [24]: line = '100     aab1.a1a1.a5d3    FastEthernet0/1'
 
-    In [25]: re.search('\w{4}\.\w{4}\.\w{4}', line).group()
+    In [25]: re.search(r'\w{4}\.\w{4}\.\w{4}', line).group()
     Out[25]: 'aab1.a1a1.a5d3'
 
 В фигурных скобках можно указывать и диапазон повторений. Например,
@@ -216,7 +216,7 @@ b:
 .. code:: python
 
     In [27]: for line in mac_table.split('\n'):
-        ...:     match = re.search('\d{1,4}', line)
+        ...:     match = re.search(r'\d{1,4}', line)
         ...:     if match:
         ...:         print('VLAN: ', match.group())
         ...:
@@ -241,7 +241,7 @@ b:
 .. code:: python
 
     In [28]: for line in mac_table.split('\n'):
-        ...:     match = re.search('\d{1,4} +', line)
+        ...:     match = re.search(r'\d{1,4} +', line)
         ...:     if match:
         ...:         print('VLAN: ', match.group())
         ...:

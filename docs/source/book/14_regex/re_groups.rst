@@ -36,7 +36,7 @@ MAC-адрес, VLAN и интерфейсы. В этом случае регу�
 .. code:: python
 
     In [8]: line = "FastEthernet0/1            10.0.12.1       YES manual up                    up"
-    In [9]: match = re.search('(\S+)\s+([\w.]+)\s+.*', line)
+    In [9]: match = re.search(r'(\S+)\s+([\w.]+)\s+.*', line)
 
 В данном примере указаны две группы:
 
@@ -106,7 +106,7 @@ MAC-адрес, VLAN и интерфейсы. В этом случае регу�
 
     In [19]: line = "FastEthernet0/1            10.0.12.1       YES manual up                    up"
 
-    In [20]: match = re.search('(?P<intf>\S+)\s+(?P<address>[\d.]+)\s+', line)
+    In [20]: match = re.search(r'(?P<intf>\S+)\s+(?P<address>[\d.]+)\s+', line)
 
 Теперь к этим группам можно обращаться по имени:
 
@@ -132,7 +132,7 @@ MAC-адрес, VLAN и интерфейсы. В этом случае регу�
 
 .. code:: python
 
-    In [24]: match = re.search('(?P<intf>\S+)\s+(?P<address>[\d\.]+)\s+\w+\s+\w+\s+(?P<status>up|down)\s+(?P<protocol>up|down)', line)
+    In [24]: match = re.search(r'(?P<intf>\S+)\s+(?P<address>[\d\.]+)\s+\w+\s+\w+\s+(?P<status>up|down)\s+(?P<protocol>up|down)', line)
 
     In [25]: match.groupdict()
     Out[25]:

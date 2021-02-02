@@ -10,12 +10,12 @@ binding:
 
 ::
 
-    MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
-    ------------------  ---------------  ----------  -------------  ----  --------------------
-    00:09:BB:3D:D6:58   10.1.10.2        86250       dhcp-snooping   10    FastEthernet0/1
-    00:04:A3:3E:5B:69   10.1.5.2         63951       dhcp-snooping   5     FastEthernet0/10
-    00:05:B3:7E:9B:60   10.1.5.4         63253       dhcp-snooping   5     FastEthernet0/9
-    00:09:BC:3F:A6:50   10.1.10.6        76260       dhcp-snooping   10    FastEthernet0/3
+    MacAddress          IpAddress     Lease(sec)  Type           VLAN  Interface
+    ------------------  ------------  ----------  -------------  ----  --------------------
+    00:09:BB:3D:D6:58   10.1.10.2     86250       dhcp-snooping   10    FastEthernet0/1
+    00:04:A3:3E:5B:69   10.1.5.2      63951       dhcp-snooping   5     FastEthernet0/10
+    00:05:B3:7E:9B:60   10.1.5.4      63253       dhcp-snooping   5     FastEthernet0/9
+    00:09:BC:3F:A6:50   10.1.10.6     76260       dhcp-snooping   10    FastEthernet0/3
     Total number of bindings: 4
 
 Для начала попробуем разобрать одну строку:
@@ -29,7 +29,7 @@ binding:
 
 .. code:: python
 
-    In [2]: match = re.search('(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)', line)
+    In [2]: match = re.search(r'(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)', line)
 
 Комментарии к регулярному выражению:
 
@@ -62,7 +62,7 @@ binding:
 
 Так как регулярное выражение отработало как нужно, можно создавать
 скрипт.
-В скрипте перебираются все строки файла dhcp\_snooping.txt, и на
+В скрипте перебираются все строки файла dhcp_snooping.txt, и на
 стандартный поток вывода выводится информация об устройствах.
 
 Файл parse_dhcp_snooping.py:
@@ -73,7 +73,7 @@ binding:
     import re
 
     #'00:09:BB:3D:D6:58   10.1.10.2        86250       dhcp-snooping   10    FastEthernet0/1'
-    regex = re.compile('(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)')
+    regex = re.compile(r'(?P<mac>\S+) +(?P<ip>\S+) +\d+ +\S+ +(?P<vlan>\d+) +(?P<port>\S+)')
     result = []
 
     with open('dhcp_snooping.txt') as data:
@@ -87,7 +87,7 @@ binding:
     for num, comp in enumerate(result, 1):
         print('Параметры устройства {}:'.format(num))
         for key in comp:
-            print('{:10}: {:10}'.format(key,comp[key]))
+            print('{:10}: {:10}'.format(key, comp[key]))
 
 Результат выполнения:
 

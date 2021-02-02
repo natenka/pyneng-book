@@ -50,7 +50,7 @@
 .. code:: python
 
     In [11]: print(match)
-    <_sre.SRE_Match object; span=(0, 104), match='%SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in >
+    <_sre.SRE_Match object; span=(0, 104), match='%SW_MATM-4-MACFLAP_NOTIF: Host 01e2.4c18.0156 in '>
 
     In [12]: match.groups()
     Out[12]: ('10', 'Gi0/16', 'Gi0/24')

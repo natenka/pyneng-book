@@ -35,7 +35,7 @@
        ...: Holdtime : 164 sec
        ...: '''
 
-    In [2]: re.search('Interface.+Port ID.+', cdp).group()
+    In [2]: re.search(r'Interface.+Port ID.+', cdp).group()
     Out[2]: 'Interface: GigabitEthernet1/0/16,  Port ID (outgoing port): GigabitEthernet0/1'
 
 В результат попала только одна строка, так как точка обозначает любой
@@ -53,16 +53,16 @@
 
     In [3]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [4]: re.search('^\d+', line).group()
+    In [4]: re.search(r'^\d+', line).group()
     Out[4]: '100'
 
 Символы с начала строки и до решетки (включая решетку):
 
-.. code:: py
+.. code:: python
 
     In [5]: prompt = 'SW1#show cdp neighbors detail'
 
-    In [6]: re.search('^.+#', prompt).group()
+    In [6]: re.search(r'^.+#', prompt).group()
     Out[6]: 'SW1#'
 
 ``$``
@@ -77,7 +77,7 @@
 
     In [7]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [8]: re.search('\S+$', line).group()
+    In [8]: re.search(r'\S+$', line).group()
     Out[8]: 'FastEthernet0/1'
 
 ``[]``
@@ -91,10 +91,10 @@
 
     In [9]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [10]: re.search('[Ff]ast', line).group()
+    In [10]: re.search(r'[Ff]ast', line).group()
     Out[10]: 'Fast'
 
-    In [11]: re.search('[Ff]ast[Ee]thernet', line).group()
+    In [11]: re.search(r'[Ff]ast[Ee]thernet', line).group()
     Out[11]: 'FastEthernet'
 
 С помощью квадратных скобок можно указать, какие символы могут
@@ -110,7 +110,7 @@
         ...:
 
     In [13]: for line in commands:
-        ...:     match = re.search('^.+[>#]', line)
+        ...:     match = re.search(r'^.+[>#]', line)
         ...:     if match:
         ...:         print(match.group())
         ...:
@@ -121,32 +121,32 @@
 В квадратных скобках можно указывать диапазоны символов. Например, таким
 образом можно указать, что нас интересует любая цифра от 0 до 9:
 
-.. code:: py
+.. code:: python
 
     In [14]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [15]: re.search('[0-9]+', line).group()
+    In [15]: re.search(r'[0-9]+', line).group()
     Out[15]: '100'
 
 Аналогичным образом можно указать буквы:
 
-.. code:: py
+.. code:: python
 
     In [16]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [17]: re.search('[a-z]+', line).group()
+    In [17]: re.search(r'[a-z]+', line).group()
     Out[17]: 'aa'
 
-    In [18]: re.search('[A-Z]+', line).group()
+    In [18]: re.search(r'[A-Z]+', line).group()
     Out[18]: 'F'
 
 В квадратных скобках можно указывать несколько диапазонов:
 
-.. code:: py
+.. code:: python
 
     In [19]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [20]: re.search('[a-f0-9]+\.[a-f0-9]+\.[a-f0-9]+', line).group()
+    In [20]: re.search(r'[a-f0-9]+\.[a-f0-9]+\.[a-f0-9]+', line).group()
     Out[20]: 'aa12.35fe.a5d3'
 
 Выражение ``[a-f0-9]+\.[a-f0-9]+\.[a-f0-9]+`` описывает три группы
@@ -166,11 +166,11 @@ a-f или цифры 0-9. Это выражение описывает MAC-ад
 
 Для строки line совпадением будет такая подстрока:
 
-.. code:: py
+.. code:: python
 
     In [21]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [22]: re.search('[a-f0-9]+[./][a-f0-9]+', line).group()
+    In [22]: re.search(r'[a-f0-9]+[./][a-f0-9]+', line).group()
     Out[22]: 'aa12.35fe'
 
 Если после открывающейся квадратной скобки указан символ ``^``,
@@ -180,7 +180,7 @@ a-f или цифры 0-9. Это выражение описывает MAC-ад
 
     In [23]: line = 'FastEthernet0/0    15.0.15.1       YES manual up         up'
 
-    In [24]: re.search('[^a-zA-Z]+', line).group()
+    In [24]: re.search(r'[^a-zA-Z]+', line).group()
     Out[24]: '0/0    15.0.15.1       '
 
 В данном случае выражение описывает все, кроме букв.
@@ -194,7 +194,7 @@ a-f или цифры 0-9. Это выражение описывает MAC-ад
 
     In [25]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [26]: re.search('Fast|0/1', line).group()
+    In [26]: re.search(r'Fast|0/1', line).group()
     Out[26]: 'Fast'
 
 Обратите внимание на то, как срабатывает ``|`` - Fast и 0/1
@@ -215,7 +215,7 @@ a-f или цифры 0-9. Это выражение описывает MAC-ад
 
     In [27]: line = "100     aa12.35fe.a5d3    FastEthernet0/1"
 
-    In [28]: re.search('[0-9]([a-f]|[0-9])[0-9]', line).group()
+    In [28]: re.search(r'[0-9]([a-f]|[0-9])[0-9]', line).group()
     Out[28]: '100'
 
 Скобки позволяют указывать, какое выражение является одним целым. Это
@@ -225,7 +225,7 @@ a-f или цифры 0-9. Это выражение описывает MAC-ад
 
     In [29]: line = 'FastEthernet0/0    15.0.15.1       YES manual up         up'
 
-    In [30]: re.search('([0-9]+\.)+[0-9]+', line).group()
+    In [30]: re.search(r'([0-9]+\.)+[0-9]+', line).group()
     Out[30]: '15.0.15.1'
 
 Скобки позволяют не только группировать выражения. Строка, которая
