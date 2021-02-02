@@ -44,11 +44,11 @@
 
 .. code:: python
 
-    In [2]: sum_arg(1,10,20,30)
+    In [2]: sum_arg(1, 10, 20, 30)
     1 (10, 20, 30)
     Out[2]: 61
 
-    In [3]: sum_arg(1,10)
+    In [3]: sum_arg(1, 10)
     1 (10,)
     Out[3]: 11
 
@@ -85,7 +85,7 @@
 
 .. code:: python
 
-    In [8]: def sum_arg(a,**kwargs):
+    In [8]: def sum_arg(a, **kwargs):
       ....:     print(a, kwargs)
       ....:     return a + sum(kwargs.values())
       ....: 

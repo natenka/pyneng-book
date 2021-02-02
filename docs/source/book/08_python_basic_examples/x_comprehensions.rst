@@ -35,7 +35,7 @@ List comprehensions (генераторы списков)
 
 .. code:: python
 
-    In [1]: vlans = ['vlan {}'.format(num) for num in range(10,16)]
+    In [1]: vlans = [f'vlan {num}' for num in range(10,16)]
 
     In [2]: print(vlans)
     ['vlan 10', 'vlan 11', 'vlan 12', 'vlan 13', 'vlan 14', 'vlan 15']
@@ -51,7 +51,7 @@ List comprehensions (генераторы списков)
     In [3]: vlans = []
 
     In [4]: for num in range(10,16):
-       ...:     vlans.append('vlan {}'.format(num))
+       ...:     vlans.append(f'vlan {num}')
        ...:
 
     In [5]: print(vlans)
@@ -211,7 +211,7 @@ Dict comprehensions (генераторы словарей)
 
     In [27]: d = {}
 
-    In [28]: for num in range(1,11):
+    In [28]: for num in range(1, 11):
         ...:     d[num] = num**2
         ...:
 
@@ -222,7 +222,7 @@ Dict comprehensions (генераторы словарей)
 
 .. code:: python
 
-    In [30]: d = {num: num**2 for num in range(1,11)}
+    In [30]: d = {num: num**2 for num in range(1, 11)}
 
     In [31]: print(d)
     {1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
@@ -344,7 +344,7 @@ Dict comprehensions (генераторы словарей)
 
 .. code:: python
 
-    In [43]: result = {device: {key.lower():value for key, value in params.items()} for device, params in london_co.items()}
+    In [43]: result = {device: {key.lower(): value for key, value in params.items()} for device, params in london_co.items()}
 
     In [44]: result
     Out[44]:

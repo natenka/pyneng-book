@@ -206,7 +206,7 @@ item_type нижним подчеркиванием:
 
 .. code:: python
 
-    In [39]: first, *rest = range(1,6)
+    In [39]: first, *rest = range(1, 6)
 
     In [40]: first
     Out[40]: 1
@@ -218,9 +218,9 @@ item_type нижним подчеркиванием:
 
 .. code:: python
 
-    In [42]: a = [1,2,3,4,5]
+    In [42]: a = [1, 2, 3, 4, 5]
 
-    In [43]: b = [100,200,300,400,500]
+    In [43]: b = [100, 200, 300, 400, 500]
 
     In [44]: zip(a, b)
     Out[44]: <zip at 0xb4df4fac>
@@ -252,13 +252,10 @@ item_type нижним подчеркиванием:
         ...:                    'spanning-tree bpduguard enable']
         ...:
 
-    In [51]: access = {'0/12':10,
-        ...:           '0/14':11,
-        ...:           '0/16':17}
-        ...:
+    In [51]: access = {'0/12': 10, '0/14': 11, '0/16': 17}
 
     In [52]: for intf in access:
-        ...:     print('interface FastEthernet' + intf)
+        ...:     print(f'interface FastEthernet {intf}')
         ...:     for command in access_template:
         ...:         if command.endswith('access vlan'):
         ...:             print(' {} {}'.format(command, access[intf]))
@@ -287,7 +284,7 @@ item_type нижним подчеркиванием:
 .. code:: python
 
     In [53]: for intf, vlan in access.items():
-        ...:     print('interface FastEthernet' + intf)
+        ...:     print(f'interface FastEthernet {intf}')
         ...:     for command in access_template:
         ...:         if command.endswith('access vlan'):
         ...:             print(' {} {}'.format(command, vlan))
