@@ -10,7 +10,7 @@
 .. toctree::
    :maxdepth: 1
 
-   README
+   syntax
    spec_sym_sets
    spec_sym_repetition
    spec_sym
