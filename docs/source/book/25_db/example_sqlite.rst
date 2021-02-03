@@ -113,7 +113,7 @@ binding в таблицу (файл dhcp_snooping.txt):
     import sqlite3
     import re
 
-    regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
+    regex = re.compile(r'(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
 
     result = []
 
@@ -222,7 +222,7 @@ binding в таблицу (файл dhcp_snooping.txt):
     db_filename = 'dhcp_snooping.db'
     schema_filename = 'dhcp_snooping_schema.sql'
 
-    regex = re.compile('(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
+    regex = re.compile(r'(\S+) +(\S+) +\d+ +\S+ +(\d+) +(\S+)')
 
     result = []
 

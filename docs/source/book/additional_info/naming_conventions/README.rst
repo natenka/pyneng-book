@@ -71,7 +71,7 @@
 
     class CiscoSwitch:
         
-        def __init__(self, name, vendor = 'cisco', model = '3750'):
+        def __init__(self, name, vendor='cisco', model='3750'):
             self.name = name
             self.vendor = vendor
             self.model = model

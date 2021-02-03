@@ -178,9 +178,9 @@ dict.keys(), values(), items()
 
 .. code:: python
 
-    In [27]: a, *b, c = [1,2,3,4,5]
+    In [27]: a, *b, c = [1, 2, 3, 4, 5]
       File "<ipython-input-10-e3f57143ffb4>", line 1
-        a, *b, c = [1,2,3,4,5]
+        a, *b, c = [1, 2, 3, 4, 5]
            ^
     SyntaxError: invalid syntax
 
@@ -191,26 +191,26 @@ dict.keys(), values(), items()
 
 .. code:: python
 
-    In [28]: map(str, [1,2,3,4,5])
+    In [28]: map(str, [1, 2, 3, 4, 5])
     Out[28]: ['1', '2', '3', '4', '5']
 
-    In [29]: filter(lambda x: x>3, [1,2,3,4,5])
+    In [29]: filter(lambda x: x > 3, [1, 2, 3, 4, 5])
     Out[29]: [4, 5]
 
-    In [30]: zip([1,2,3], [100,200,300])
+    In [30]: zip([1, 2, 3], [100, 200, 300])
     Out[30]: [(1, 100), (2, 200), (3, 300)]
 
 В Python 3 они возвращают итератор:
 
 .. code:: python
 
-    In [31]: map(str, [1,2,3,4,5])
+    In [31]: map(str, [1, 2, 3, 4, 5])
     Out[31]: <map at 0xb4ee3fec>
 
-    In [32]: filter(lambda x: x>3, [1,2,3,4,5])
+    In [32]: filter(lambda x: x > 3, [1, 2, 3, 4, 5])
     Out[32]: <filter at 0xb448c68c>
 
-    In [33]: zip([1,2,3], [100,200,300])
+    In [33]: zip([1, 2, 3], [100, 200, 300])
     Out[33]: <zip at 0xb4efc1ec>
 
 `subprocess.run <../12_useful_modules/subprocess.html>`__
@@ -221,7 +221,7 @@ dict.keys(), values(), items()
 получения вывода команд.
 
 Соответственно, вместо функций call и check\_output используется функция
-run. Но функции call и check\_output остались.
+run, но функции call и check\_output остались.
 
 Jinja2
 ~~~~~~

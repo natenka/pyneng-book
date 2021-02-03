@@ -33,28 +33,28 @@ argparse не единственный модуль для обработки а
 
 
     def ping_ip(ip_address, count):
-        '''
+        """
         Ping IP address and return tuple:
         On success: (return code = 0, command output)
         On failure: (return code, error output (stderr))
-        '''
-        reply = subprocess.run('ping -c {count} -n {ip}'
-                               .format(count=count, ip=ip_address),
-                               shell=True,
-                               stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE,
-                               encoding='utf-8')
+        """
+        reply = subprocess.run(
+            f"ping -c {count} -n {ip_address}",
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+        )
         if reply.returncode == 0:
             return True, reply.stdout
         else:
-            return False, reply.stdout+reply.stderr
+            return False, reply.stdout + reply.stderr
 
 
+    parser = argparse.ArgumentParser(description="Ping script")
 
-    parser = argparse.ArgumentParser(description='Ping script')
-
-    parser.add_argument('-a', action="store", dest="ip")
-    parser.add_argument('-c', action="store", dest="count", default=2, type=int)
+    parser.add_argument("-a", dest="ip", required=True)
+    parser.add_argument("-c", dest="count", default=2, type=int)
 
     args = parser.parse_args()
     print(args)
@@ -62,18 +62,19 @@ argparse не единственный модуль для обработки а
     rc, message = ping_ip(args.ip, args.count)
     print(message)
 
+
 Создание парсера:
 
 * ``parser = argparse.ArgumentParser(description='Ping script')``
 
 Добавление аргументов:
 
-* ``parser.add_argument('-a', action="store", dest="ip")``
+* ``parser.add_argument('-a', dest="ip")``
 
   * аргумент, который передается после опции ``-a``, сохранится в
     переменную ``ip``
 
-* ``parser.add_argument('-c', action="store", dest="count", default=2, type=int)``
+* ``parser.add_argument('-c', dest="count", default=2, type=int)``
 
   * аргумент, который передается после опции ``-c``, будет сохранен в
     переменную ``count``, но прежде будет конвертирован в число. Если
@@ -153,7 +154,7 @@ argparse, возникла бы ошибка, что не все аргумен�
 
 .. code:: python
 
-    parser.add_argument('-a', action="store", dest="ip", required=True)
+    parser.add_argument('-a', dest="ip", required=True)
 
 Теперь, если вызвать скрипт без аргументов, вывод будет таким:
 
@@ -193,36 +194,36 @@ argparse сам определяет, что указаны опции, так �
     import subprocess
     import argparse
 
-
     def ping_ip(ip_address, count):
-        '''
+        """
         Ping IP address and return tuple:
         On success: (return code = 0, command output)
         On failure: (return code, error output (stderr))
-        '''
-        reply = subprocess.run('ping -c {count} -n {ip}' .format(count=count, ip=ip_address),
-                               shell=True,
-                               stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE,
-                               encoding='utf-8')
+        """
+        reply = subprocess.run(
+            f"ping -c {count} -n {ip_address}",
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            encoding="utf-8",
+        )
         if reply.returncode == 0:
             return True, reply.stdout
         else:
-            return False, reply.stdout+reply.stderr
+            return False, reply.stdout + reply.stderr
 
 
+    parser = argparse.ArgumentParser(description="Ping script")
 
-    parser = argparse.ArgumentParser(description='Ping script')
-
-    parser.add_argument('host', action="store", help="IP or name to ping")
-    parser.add_argument('-c', action="store", dest="count", default=2, type=int,
-                        help="Number of packets")
+    parser.add_argument("host", help="IP or name to ping")
+    parser.add_argument("-c", dest="count", default=2, type=int, help="Number of packets")
 
     args = parser.parse_args()
     print(args)
 
-    rc, message = ping_ip( args.host, args.count )
+    rc, message = ping_ip(args.host, args.count)
     print(message)
+
 
 Теперь вместо указания опции ``-a``, можно просто передать IP-адрес.
 Он будет автоматически сохранен в переменной ``host``.
@@ -287,26 +288,26 @@ argparse сам определяет, что указаны опции, так �
 
 
     def create(args):
-        print("Creating DB {} with DB schema {}".format((args.name, args.schema)))
+        print(f"Creating DB {args.name} with DB schema {args.schema}")
 
 
     def add(args):
         if args.sw_true:
             print("Adding switch data to database")
         else:
-            print("Reading info from file(s) \n{}".format(', '.join(args.filename)))
-            print("\nAdding data to db {}".format(args.db_file))
+            print(f"Reading info from file(s) \n{', '.join(args.filename)}")
+            print(f"\nAdding data to db {args.db_file}")
 
 
     def get(args):
         if args.key and args.value:
-            print("Geting data from DB: {}".format(args.db_file))
-            print("Request data for host(s) with {} {}".format((args.key, args.value)))
+            print(f"Geting data from DB: {args.db_file}")
+            print(f"Request data for host(s) with {args.key} {args.value}")
         elif args.key or args.value:
             print("Please give two or zero args\n")
             print(show_subparser_help('get'))
         else:
-            print("Showing {} content...".format(args.db_file))
+            print(f"Showing {args.db_file} content...")
 
 
     parser = argparse.ArgumentParser()

@@ -2,7 +2,7 @@ Connection как менеджер контекста
 ---------------------------------
 
 После выполнения операций изменения должны быть сохранены (надо
-выполнить ``commit()``), а затем можно закрыть соединение, если оно
+выполнить ``commit``, а затем можно закрыть соединение, если оно
 больше не нужно.
 
 Python позволяет использовать объект Connection как менеджер контекста.
@@ -39,7 +39,7 @@ Python позволяет использовать объект Connection ка�
             con.executemany(query, data)
 
     except sqlite3.IntegrityError as e:
-        print('Error occured: ', e)
+        print('Возникла ошибка: ', e)
 
     for row in con.execute('select * from switch'):
         print(row)
@@ -92,7 +92,7 @@ create_sw_inventory_ver2_functions.py):
             with connection:
                 connection.executemany(query, data)
         except sqlite3.IntegrityError as e:
-            print('Error occured: ', e)
+            print('Возникла ошибка: ', e)
             return False
         else:
             print('Запись данных прошла успешно')
@@ -165,9 +165,8 @@ create_sw_inventory_ver2_functions.py и подразумевается, что 
     #MAC-адрес sw7 совпадает с MAC-адресом коммутатора sw3 в списке data
     data2 = [('0055.AAAA.CCCC', 'sw5', 'Cisco 3750', 'London, Green Str'),
              ('0066.BBBB.CCCC', 'sw6', 'Cisco 3780', 'London, Green Str'),
-             ('0000.AAAA.DDDD', 'sw7', 'Cisco 2960',
-              'London, Green Str'), ('0088.AAAA.CCCC', 'sw8', 'Cisco 3750',
-                                     'London, Green Str')]
+             ('0000.AAAA.DDDD', 'sw7', 'Cisco 2960', 'London, Green Str'),
+             ('0088.AAAA.CCCC', 'sw8', 'Cisco 3750', 'London, Green Str')]
 
     con = dbf.create_connection('sw_inventory3.db')
 
