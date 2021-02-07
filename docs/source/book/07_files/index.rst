@@ -53,5 +53,6 @@
    write
    close
    with
+   working_with_files
    further_reading
    ../../exercises/07_exercises

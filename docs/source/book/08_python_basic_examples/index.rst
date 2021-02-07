@@ -21,5 +21,4 @@
    f-string
    variable_unpacking  
    x_comprehensions
-   working_with_dicts
    further_reading
