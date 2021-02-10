@@ -15,6 +15,7 @@
    create_methods
    parameter_self
    init_method
+   class_example
    class_namespace
    class_variables
    ../../exercises/22_exercises.rst
