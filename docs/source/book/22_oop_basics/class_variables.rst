@@ -12,7 +12,9 @@
 
         def __init__(self, network):
             self.network = network
-            self.hosts = tuple(str(ip) for ip in ipaddress.ip_network(network).hosts())
+            self.hosts = tuple(
+                str(ip) for ip in ipaddress.ip_network(network).hosts()
+            )
             self.allocated = []
 
         def allocate(self, ip):
@@ -27,9 +29,9 @@
 
 К переменным класса можно обращаться по-разному:
 
-* self.all_allocated_ip
-* Network.all_allocated_ip
-* type(self).all_allocated_ip
+* ``self.all_allocated_ip``
+* ``Network.all_allocated_ip``
+* ``type(self).all_allocated_ip``
 
 Вариант ``self.all_allocated_ip`` позволяет обратиться к значению переменной
 класса или добавить элемент, если переменная класса изменяемый тип данных.
