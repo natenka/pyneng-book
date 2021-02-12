@@ -5,7 +5,7 @@
 
 -  `репозиторий с примерами, заданиями <https://github.com/natenka/pyneng-examples-exercises/>`__
 -  `репозиторий с ответами <https://github.com/natenka/pyneng-answers/>`__
--  `вопросы (мини-задания) <https://github.com/natenka/pyneng-examples-exercises/blob/master/tests.md>`__
+-  `вопросы (мини-задания) <https://github.com/natenka/pyneng-examples-exercises/tree/master/tests>`__
 -  `в чате slack PyNEng можно задать вопросы <https://join.slack.com/t/pyneng/shared_invite/enQtNzkyNTYwOTU5Njk5LWE4OGNjMmM1ZTlkNWQ0N2RhODExZDA0OTNhNDJjZDZlOTZhOGRiMzIyZjBhZWYzYzc3MTg3ZmQzODllYmQ4OWU>`__
 
 Виртуальная машина
