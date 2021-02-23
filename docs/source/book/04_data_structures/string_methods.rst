@@ -105,6 +105,27 @@
     In [44]: string1.endswith('0/2')
     Out[44]: False
 
+Методам ``startswith()`` и ``endswith()`` можно передавать несколько значений
+(обязательно как кортеж):
+
+.. code:: python
+
+    In [1]: "test".startswith(("r", "t"))
+    Out[1]: True
+
+    In [2]: "test".startswith(("r", "a"))
+    Out[2]: False
+
+    In [3]: "rtest".startswith(("r", "a"))
+    Out[3]: True
+
+    In [4]: "rtest".endswith(("r", "a"))
+    Out[4]: False
+
+    In [5]: "rtest".endswith(("r", "t"))
+    Out[5]: True
+
+
 Метод replace
 ^^^^^^^^^^^^^
 
