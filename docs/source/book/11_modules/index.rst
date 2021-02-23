@@ -28,4 +28,5 @@
    create
    if_name_main
    module_search
+   code_structure
    ../../exercises/11_exercises
