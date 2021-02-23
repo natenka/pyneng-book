@@ -12,4 +12,4 @@
    HOWTO <https://docs.python.org/3/howto/functional.html>`__
 -  `Функция
    range <https://docs.python.org/3.6/library/stdtypes.html#range>`__
-
+-  `Подробнее о функциях в Python <https://realpython.com/defining-your-own-python-function/>`__
