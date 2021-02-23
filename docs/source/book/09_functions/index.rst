@@ -60,7 +60,7 @@
    create_func
    namespace
    func_params_args
-   func_unpacking_and_var_args_example
    keyword_only_args
+   common_gotchas
    further_reading
    ../../exercises/09_exercises
