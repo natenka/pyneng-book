@@ -149,8 +149,8 @@
 
 Ответы по желанию, можно добавлять в репозиторий с помощью git.
 
-Вывод ptest
------------
+Вывод pyneng
+------------
 
 Warning
 ^^^^^^^
@@ -191,10 +191,5 @@ Warning
 В этом случае Right это правильный вывод, Left вывод задания:
 
 .. figure:: https://raw.githubusercontent.com/pyneng/pyneng.github.io/master/assets/images/ptest_output_2.png
-
-
-
-
-.. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_status_0.png
 
 
