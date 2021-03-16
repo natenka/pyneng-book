@@ -133,19 +133,6 @@ submit можно также использовать функцию as_complete
             print(f.result())
 
 
-Остальной код не изменился, поэтому разобраться надо только с блоком,
-который запускает функцию send_show в потоках:
-
-.. code:: python
-
-    with ThreadPoolExecutor(max_workers=2) as executor:
-        future_list = []
-        for device in devices:
-            future = executor.submit(send_show, device, 'sh clock')
-            future_list.append(future)
-        for f in as_completed(future_list):
-            print(f.result())
-
 Теперь цикл проходится по списку future с помощью функции as_completed. Эта функция
 возвращает future только когда они завершили работу или были отменены.
 При этом future возвращаются по мере завершения работы, не в порядке добавления в
