@@ -17,7 +17,6 @@
     as_completed, которая сама запрашивает результат, а код получает его
     по мере готовности
 
-* submit возвращает результаты в порядке готовности, а не в порядке аргументов
 * submit можно передавать ключевые аргументы, а map только позиционные
 
 Метод submit использует объект `Future <https://en.wikipedia.org/wiki/Futures_and_promises>`__ - это
@@ -26,13 +25,12 @@
 результаты или исключения, которые возникли в процессе работы.
 Future не нужно создавать вручную, эти объекты создаются методом submit.
 
-
 Пример запуска функции в потоках с помощью submit (файл
 netmiko_threads_submit_basics.py):
 
 .. code:: python
 
-    from concurrent.futures import ThreadPoolExecutor, as_completed
+    from concurrent.futures import ThreadPoolExecutor
     from pprint import pprint
     from datetime import datetime
     import time
@@ -72,11 +70,67 @@ netmiko_threads_submit_basics.py):
         for device in devices:
             future = executor.submit(send_show, device, 'sh clock')
             future_list.append(future)
-        # то же самое в виде list comprehensions:
-        # future_list = [executor.submit(send_show, device, 'sh clock') for device in devices]
-        for f in as_completed(future_list):
+        for f in future_list:
             print(f.result())
 
+
+Остальной код не изменился, поэтому разобраться надо только с блоком,
+который запускает функцию send_show в потоках:
+
+.. code:: python
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_list = []
+        for device in devices:
+            future = executor.submit(send_show, device, 'sh clock')
+            future_list.append(future)
+        for f in future_list:
+            print(f.result())
+
+Теперь в блоке with два цикла: 
+
+* ``future_list`` - это список объектов future:
+
+  * для создания future используется функция submit 
+  * ей как аргументы передаются: имя функции, которую надо выполнить, и ее аргументы 
+
+* следующий цикл проходится по списку future и получает результат с помощью метода result
+
+
+Результат выполнения:
+
+::
+
+    ThreadPoolExecutor-0_0 root INFO: ===> 12:13:39.194657 Connection: 192.168.100.1
+    ThreadPoolExecutor-0_1 root INFO: ===> 12:13:39.195841 Connection: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: <=== 12:13:40.024725 Received: 192.168.100.2
+    ThreadPoolExecutor-0_1 root INFO: ===> 12:13:40.257218 Connection: 192.168.100.3
+    ThreadPoolExecutor-0_1 root INFO: <=== 12:13:41.085220 Received: 192.168.100.3
+    ThreadPoolExecutor-0_0 root INFO: <=== 12:13:45.025395 Received: 192.168.100.1
+    {'192.168.100.1': '*12:13:45.017 UTC Tue Mar 16 2021'}
+    {'192.168.100.2': '*12:13:40.019 UTC Tue Mar 16 2021'}
+    {'192.168.100.3': '*12:13:41.077 UTC Tue Mar 16 2021'}
+
+
+В этом случае результаты возвращаются в порядке создания Future, но при использовании
+submit можно также использовать функцию as_completed, которая позволяет получать результаты
+по мере того как функции завершают работу.
+
+Пример запуска функции в потоках с помощью submit и as_completed
+(полный код в файле netmiko_threads_submit_basics_as_completed.py):
+
+.. code:: python
+
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        future_list = []
+        for device in devices:
+            future = executor.submit(send_show, device, 'sh clock')
+            future_list.append(future)
+        for f in as_completed(future_list):
+            print(f.result())
 
 
 Остальной код не изменился, поэтому разобраться надо только с блоком,
@@ -92,17 +146,10 @@ netmiko_threads_submit_basics.py):
         for f in as_completed(future_list):
             print(f.result())
 
-Теперь в блоке with два цикла: 
-
-* ``future_list`` - это список объектов future:
-
-  * для создания future используется функция submit 
-  * ей как аргументы передаются: имя функции, которую надо выполнить, и ее аргументы 
-
-* следующий цикл проходится по списку future с помощью функции as_completed. Эта функция
-  возвращает future только когда они завершили работу или были отменены.
-  При этом future возвращаются по мере завершения работы, не в порядке добавления в
-  список future_list
+Теперь цикл проходится по списку future с помощью функции as_completed. Эта функция
+возвращает future только когда они завершили работу или были отменены.
+При этом future возвращаются по мере завершения работы, не в порядке добавления в
+список future_list.
 
 
 .. note::
