@@ -130,7 +130,8 @@
 | Juniper JunOS| JunosDriver  | juniper_junos     |
 +--------------+--------------+-------------------+
 
-Пример подключения с использованием драйвера IOSXEDriver:
+Пример подключения с использованием драйвера IOSXEDriver (технически
+подключение выполняется к Cisco IOS):
 
 .. code:: python
 
@@ -149,8 +150,8 @@
         ...:
     R1#
 
-Метод send_command
-~~~~~~~~~~~~~~~~~~
+Метод send_command и объект Response
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: python
 
@@ -196,4 +197,32 @@
     Out[19]: b"\n        ^\n% Invalid input detected at '^' marker.\n\nR1#"
 
 
+
+Подключение telnet
+~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    from scrapli.driver.core import IOSXEDriver
+
+    r1 = {
+        "host": "192.168.100.1",
+        "auth_username": "cisco",
+        "auth_password": "cisco",
+        "auth_secondary": "cisco",
+        "auth_strict_key": False,
+        "transport": "telnet",
+        "port": 23, # обязательно указывать при подключении telnet
+    }
+
+
+    def send_show(device, show_command):
+        with IOSXEDriver(**r1) as ssh:
+            reply = ssh.send_command(show_command)
+            return reply.result
+
+
+    if __name__ == "__main__":
+        output = send_show(r1, "sh ip int br")
+        print(output)
 
