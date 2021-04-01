@@ -342,13 +342,73 @@ send_config, в атрибуте result будет пустая строка (е
     Out[38]: 'R1(config)#'
 
 
-Метод send_commands
-~~~~~~~~~~~~~~~~~~~
+Методы send_commands, send_configs
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* strip_prompt: bool = True,
-* failed_when_contains: Union[str, List[str], NoneType] = None,
-* stop_on_failed: bool = False,
-* eager: bool = False,
+Методы send_commands, send_configs отличаются от send_command, send_config тем,
+что могут отправлять несколько команд.
+Кроме того, эти методы возвращают не Response, а MultiResponse, который можно
+в целом воспринимать как список Response, по одному для каждой команды.
+
+.. code:: python
+
+    In [44]: reply = ssh.send_commands(["sh clock", "sh ip int br"])
+
+    In [45]: reply
+    Out[45]: MultiResponse <Success: True; Response Elements: 2>
+
+    In [46]: for r in reply:
+        ...:     print(r)
+        ...:     print(r.result)
+        ...:
+    Response <Success: True>
+    *08:38:20.115 UTC Thu Apr 1 2021
+    Response <Success: True>
+    Interface                  IP-Address      OK? Method Status                Protocol
+    Ethernet0/0                192.168.100.1   YES NVRAM  up                    up
+    Ethernet0/1                192.168.200.1   YES NVRAM  up                    up
+    Ethernet0/2                unassigned      YES NVRAM  up                    up
+    Ethernet0/3                192.168.130.1   YES NVRAM  up                    up
+
+    In [47]: reply.result
+    Out[47]: 'sh clock\n*08:38:20.115 UTC Thu Apr 1 2021sh ip int br\nInterface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up\nEthernet0/2                unassigned      YES NVRAM  up                    up\nEthernet0/3                192.168.130.1   YES NVRAM  up                    up'
+
+    In [48]: reply[0]
+    Out[48]: Response <Success: True>
+
+    In [49]: reply[1]
+    Out[49]: Response <Success: True>
+
+    In [50]: reply[0].result
+    Out[50]: '*08:38:20.115 UTC Thu Apr 1 2021'
+
+При отправке нескольких команд также очень удобно использовать параметр
+``stop_on_failed``. По умолчанию он равен False, поэтому выполняются все
+команды, но если указать ``stop_on_failed=True``, после возникновения
+ошибки в какой-то команде, следующие команды не будут выполняться:
+
+.. code:: python
+
+    In [59]: reply = ssh.send_commands(["ping 192.168.100.2", "sh clck", "sh ip int br"], stop_on_failed=True)
+
+    In [60]: reply
+    Out[60]: MultiResponse <Success: False; Response Elements: 2>
+
+    In [61]: reply.result
+    Out[61]: "ping 192.168.100.2\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.100.2, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/2/6 mssh clck\n        ^\n% Invalid input detected at '^' marker."
+
+    In [62]: for r in reply:
+        ...:     print(r)
+        ...:     print(r.result)
+        ...:
+    Response <Success: True>
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 192.168.100.2, timeout is 2 seconds:
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/6 ms
+    Response <Success: False>
+            ^
+    % Invalid input detected at '^' marker.
 
 
 Подключение telnet
@@ -420,21 +480,9 @@ telnet и обязательно указать параметр port равны
             print(error, device["host"])
 
 
-    def send_cfg(device, cfg_commands):
-        try:
-            with IOSXEDriver(**r1) as ssh:
-                reply = ssh.send_configs(cfg_commands)
-                return reply.result
-        except ScrapliException as error:
-            print(error, device["host"])
-
-
     if __name__ == "__main__":
         output = send_show(r1, "sh ip int br")
         print(output)
-
-        output_cfg = send_cfg(r1, ["interface lo11", "ip address 11.1.1.1 255.255.255.255"])
-        print(output_cfg)
 
 
 .. code:: python
@@ -491,7 +539,6 @@ telnet и обязательно указать параметр port равны
         with Scrapli(**r1) as ssh:
             reply = ssh.send_configs(cfg_commands, stop_on_failed=strict)
             for cmd_reply in reply:
-                # cmd_reply.raise_for_status()
                 if cmd_reply.failed:
                     print(f"При выполнении команды возникла ошибка:\n{reply.result}\n")
             output = reply.result
