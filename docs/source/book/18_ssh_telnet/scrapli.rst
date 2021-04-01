@@ -181,22 +181,56 @@
 
 Метод send_command и другие методы для отправки команд на оборудование
 возвращают объект Response (не вывод команды).
+Response позволяет получить не только вывод команды, но и такие вещи как
+время работы команды, выполнилась команда с ошибками или без, структурированный
+вывод с помощью textfsm и так далее.
 
 .. code:: python
 
-    In [19]: reply = ssh.send_command("sh clock")
+    In [15]: reply = ssh.send_command("sh clock")
 
-    In [20]: reply
-    Out[20]: Response <Success: True>
+    In [16]: reply
+    Out[16]: Response <Success: True>
 
-    In [21]: reply.result
-    Out[21]: '*17:31:54.232 UTC Wed Mar 31 2021'
+Получить вывод команды можно обратившись к атрибуту result:
 
-    In [22]: reply.failed
-    Out[22]: False
+.. code:: python
 
-    In [23]: reply.raw_result
-    Out[23]: b'\n*17:31:54.232 UTC Wed Mar 31 2021\nR1#'
+    In [17]: reply.result
+    Out[17]: '*17:31:54.232 UTC Wed Mar 31 2021'
+
+Атрибут raw_result содержит байтовую строку с полным выводом:
+
+.. code:: python
+
+    In [18]: reply.raw_result
+    Out[18]: b'\n*17:31:54.232 UTC Wed Mar 31 2021\nR1#'
+
+Для команд, которые выполняются дольше обычных show, может быть необходимо
+знать время выполнения команды:
+
+.. code:: python
+
+    In [18]: r = ssh.send_command("ping 10.1.1.1")
+
+    In [19]: r.result
+    Out[19]: 'Type escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 10.1.1.1, timeout is 2 seconds:\n.....\nSuccess rate is 0 percent (0/5)'
+
+    In [20]: r.elapsed_time
+    Out[20]: 10.047594
+
+    In [21]: r.start_time
+    Out[21]: datetime.datetime(2021, 4, 1, 7, 10, 56, 63697)
+
+    In [22]: r.finish_time
+    Out[22]: datetime.datetime(2021, 4, 1, 7, 11, 6, 111291)
+
+Атрибут channel_input возвращает команду, которая была отправлена на оборудование:
+
+.. code:: python
+
+    In [23]: r.channel_input
+    Out[23]: 'ping 10.1.1.1'
 
 
 Метод send_command
@@ -225,18 +259,30 @@
     In [16]: reply
     Out[16]: Response <Success: True>
 
-Параметр timeout_ops:
+Параметр timeout_ops указывает сколько ждать выполнения команды:
 
 .. code:: python
 
-    In [99]: ssh.send_command("ping 8.8.8.8", timeout_ops=20)
-    Out[99]: Response <Success: True>
+    In [19]: ssh.send_command("ping 8.8.8.8", timeout_ops=20)
+    Out[19]: Response <Success: True>
 
-    In [100]: ssh.send_command("ping 8.8.8.8", timeout_ops=2)
+Если команда не выполнилась за указанное время, сгенерируется исключение
+ScrapliTimeout (вывод сокращен):
+
+.. code:: python
+
+    In [20]: ssh.send_command("ping 8.8.8.8", timeout_ops=2)
     ---------------------------------------------------------------------------
     ScrapliTimeout                            Traceback (most recent call last)
-    <ipython-input-100-e062fb19f0e6> in <module>
+    <ipython-input-20-e062fb19f0e6> in <module>
     ----> 1 ssh.send_command("ping 8.8.8.8", timeout_ops=2)
+
+Метод send_config
+~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    In [13]: reply = conn.send_config("logging 10.1.1.200")
 
 
 Метод send_commands
@@ -247,13 +293,6 @@
 * stop_on_failed: bool = False,
 * eager: bool = False,
 
-
-Метод send_config
-~~~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    In [13]: reply = conn.send_config("logging 10.1.1.200")
 
 
 Обнаружение ошибок
