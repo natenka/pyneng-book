@@ -57,16 +57,26 @@
 * Cisco IOS-XR
 * Arista EOS
 
-.. note::
-
-    Кроме этих платформ, есть также платформы
-    `scrapli community <https://github.com/scrapli/scrapli_community>`__.
+Кроме этих платформ, есть также платформы
+`scrapli community <https://github.com/scrapli/scrapli_community>`__.
+И одно из преимуществ scrapli то, что добавлять платформы относительно легко.
 
 В scrapli глобально есть два варианта подключения: используя общий класс Scrapli,
 который выбирает нужный driver по параметру platform или конкретный driver,
 например, IOSXEDriver. При этом параметры передаются те же самые и конкретному
 драйверу и Scrapli.
 
+.. note::
+
+    Кроме этих вариантов, есть также общие (базовые) драйверы.
+
+Если в scrapli (или scrapli community) нет поддержки необходимой платформы, можно
+`добавить платформу в scrapli community <https://github.com/scrapli/scrapli_community#adding-a-platform>`__
+или использовать (не рассматривается в книге):
+
+* `Driver <https://carlmontanari.github.io/scrapli/user_guide/advanced_usage/#using-driver-directly>`__
+* `GenericDriver <https://carlmontanari.github.io/scrapli/user_guide/advanced_usage/#using-the-genericdriver>`__
+* `NetworkDriver <https://carlmontanari.github.io/scrapli/user_guide/advanced_usage/>`__
 
 Параметры подключения
 ~~~~~~~~~~~~~~~~~~~~~
