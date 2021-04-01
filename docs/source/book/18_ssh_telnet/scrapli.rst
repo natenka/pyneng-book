@@ -361,6 +361,44 @@ telnet и обязательно указать параметр port равны
 .. code:: python
 
     from scrapli.driver.core import IOSXEDriver
+    from scrapli.exceptions import ScrapliException
+    import socket
+
+    r1 = {
+        "host": "192.168.100.1",
+        "auth_username": "cisco",
+        "auth_password": "cisco2",
+        "auth_secondary": "cisco",
+        "auth_strict_key": False,
+        "transport": "telnet",
+        "port": 23,  # обязательно указывать при подключении telnet
+    }
+
+
+    def send_show(device, show_command):
+        try:
+            with IOSXEDriver(**r1) as ssh:
+                reply = ssh.send_command(show_command)
+                return reply.result
+        except socket.timeout as error:
+            print(error)
+        except ScrapliException as error:
+            print(error, device["host"])
+
+
+    if __name__ == "__main__":
+        output = send_show(r1, "sh ip int br")
+        print(output)
+
+
+Примеры использования scrapli
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    from scrapli.driver.core import IOSXEDriver
+    from scrapli.exceptions import ScrapliException
+
 
     r1 = {
         "host": "192.168.100.1",
@@ -368,18 +406,101 @@ telnet и обязательно указать параметр port равны
         "auth_password": "cisco",
         "auth_secondary": "cisco",
         "auth_strict_key": False,
-        "transport": "telnet",
-        "port": 23, # обязательно указывать при подключении telnet
+        "timeout_socket": 5,  # timeout for establishing socket/initial connection
+        "timeout_transport": 10,  # timeout for ssh|telnet transport
     }
 
 
     def send_show(device, show_command):
-        with IOSXEDriver(**r1) as ssh:
-            reply = ssh.send_command(show_command)
-            return reply.result
+        try:
+            with IOSXEDriver(**r1) as ssh:
+                reply = ssh.send_command(show_command)
+                return reply.result
+        except ScrapliException as error:
+            print(error, device["host"])
+
+
+    def send_cfg(device, cfg_commands):
+        try:
+            with IOSXEDriver(**r1) as ssh:
+                reply = ssh.send_configs(cfg_commands)
+                return reply.result
+        except ScrapliException as error:
+            print(error, device["host"])
 
 
     if __name__ == "__main__":
         output = send_show(r1, "sh ip int br")
         print(output)
+
+        output_cfg = send_cfg(r1, ["interface lo11", "ip address 11.1.1.1 255.255.255.255"])
+        print(output_cfg)
+
+
+.. code:: python
+
+    from pprint import pprint
+    from scrapli import Scrapli
+
+    r1 = {
+        "host": "192.168.100.1",
+        "auth_username": "cisco",
+        "auth_password": "cisco",
+        "auth_secondary": "cisco",
+        "auth_strict_key": False,
+        "platform": "cisco_iosxe",
+    }
+
+
+    def send_show(device, show_commands):
+        if type(show_commands) == str:
+            show_commands = [show_commands]
+        cmd_dict = {}
+        with Scrapli(**r1) as ssh:
+            for cmd in show_commands:
+                reply = ssh.send_command(cmd)
+                cmd_dict[cmd] = reply.result
+        return cmd_dict
+
+
+    if __name__ == "__main__":
+        print("show".center(20, "#"))
+        output = send_show(r1, ["sh ip int br", "sh ver | i uptime"])
+        pprint(output, width=120)
+
+
+.. code:: python
+
+    from pprint import pprint
+    from scrapli import Scrapli
+
+    r1 = {
+        "host": "192.168.100.1",
+        "auth_username": "cisco",
+        "auth_password": "cisco",
+        "auth_secondary": "cisco",
+        "auth_strict_key": False,
+        "platform": "cisco_iosxe",
+    }
+
+
+    def send_cfg(device, cfg_commands, strict=False):
+        output = ""
+        if type(cfg_commands) == str:
+            cfg_commands = [cfg_commands]
+        with Scrapli(**r1) as ssh:
+            reply = ssh.send_configs(cfg_commands, stop_on_failed=strict)
+            for cmd_reply in reply:
+                # cmd_reply.raise_for_status()
+                if cmd_reply.failed:
+                    print(f"При выполнении команды возникла ошибка:\n{reply.result}\n")
+            output = reply.result
+        return output
+
+
+    if __name__ == "__main__":
+        output_cfg = send_cfg(
+            r1, ["interfacelo11", "ip address 11.1.1.1 255.255.255.255"], strict=True
+        )
+        print(output_cfg)
 
