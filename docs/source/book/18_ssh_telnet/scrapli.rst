@@ -251,6 +251,11 @@
 Метод send_config
 ~~~~~~~~~~~~~~~~~
 
+.. code:: python
+
+    In [13]: reply = conn.send_config("logging 10.1.1.200")
+
+
 Обнаружение ошибок
 ~~~~~~~~~~~~~~~~~~
 
