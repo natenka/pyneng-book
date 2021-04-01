@@ -8,6 +8,17 @@
 (и другие модули) для самого подключения, но при этом предоставляет одинаковый
 интерфейс работы для разных типов подключения и разного оборудования.
 
+Установка scrapli:
+
+::
+
+    pip install scrapli
+
+
+.. note::
+
+    Рассматривается scrapli версии 2021.1.30.
+
 Три основные составляющие части scrapli:
 
 * transport - это конкретный способ подключения к оборудованию
@@ -20,12 +31,12 @@
 
 Доступные варианты транспорта:
 
-* system
-* paramiko
-* ssh2
-* telnet
-* asyncssh
-* asynctelnet
+* system - используется встроенный SSH клиент, подразумевается использование клиента на Linux/MacOS
+* paramiko - модуль paramiko
+* ssh2 - используется модуль ssh2-python (обертка вокруг C библиотеки libssh2)
+* telnet - будет использоваться telnetlib
+* asyncssh - модуль asyncssh
+* asynctelnet - telnet клиент написанный с использованием asyncio
 
 Основные примеры будут с использованием транспорта system. Так как интерфейс
 модуля одинаковый для всех синхронных вариантов транспорта, для использовании
@@ -150,8 +161,26 @@
         ...:
     R1#
 
-Метод send_command и объект Response
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Отправка команд
+~~~~~~~~~~~~~~~
+
+В scrapli есть несколько методов для отправки команд:
+
+* ``send_command`` - отправить одну show команду 
+* ``send_commands`` - отправить список show команд
+* ``send_commands_from_file`` - отправить show команды из файла
+* ``send_config`` - отправить одну команду в конфигурационном режиме 
+* ``send_configs`` - отправить список команд в конфигурационном режиме 
+* ``send_configs_from_file`` - отправить команды из файла в конфигурационном режиме
+* ``send_interactive``
+
+Все эти методы возвращают объект Response, а не вывод команды в виде строки.
+
+Объект Response
+~~~~~~~~~~~~~~~
+
+Метод send_command и другие методы для отправки команд на оборудование
+возвращают объект Response (не вывод команды).
 
 .. code:: python
 
@@ -169,6 +198,58 @@
     In [23]: reply.raw_result
     Out[23]: b'\n*17:31:54.232 UTC Wed Mar 31 2021\nR1#'
 
+
+Метод send_command
+~~~~~~~~~~~~~~~~~~
+
+Метод ``send_command`` позволяет отправить одну команду на устройство.
+
+.. code:: python
+
+    In [14]: reply = ssh.send_command("sh clock")
+
+Параметры метода (все эти параметры надо передавать как ключевые):
+
+* ``strip_prompt`` - удалить приглашение из вывода. По умолчанию удаляется 
+* ``failed_when_contains`` - если вывод содержит указанную строку или одну из
+  строк в списке, будет считаться, что команда выполнилась с ошибкой
+* ``timeout_ops`` - максимальное время на выполнение команды, по умолчанию
+  равно 30 секунд для IOSXEDriver
+
+Пример вызова метода ``send_command``:
+
+.. code:: python
+
+    In [15]: reply = ssh.send_command("sh clock")
+
+    In [16]: reply
+    Out[16]: Response <Success: True>
+
+Параметр timeout_ops:
+
+.. code:: python
+
+    In [99]: ssh.send_command("ping 8.8.8.8", timeout_ops=20)
+    Out[99]: Response <Success: True>
+
+    In [100]: ssh.send_command("ping 8.8.8.8", timeout_ops=2)
+    ---------------------------------------------------------------------------
+    ScrapliTimeout                            Traceback (most recent call last)
+    <ipython-input-100-e062fb19f0e6> in <module>
+    ----> 1 ssh.send_command("ping 8.8.8.8", timeout_ops=2)
+
+
+Метод send_commands
+~~~~~~~~~~~~~~~~~~~
+
+* strip_prompt: bool = True,
+* failed_when_contains: Union[str, List[str], NoneType] = None,
+* stop_on_failed: bool = False,
+* eager: bool = False,
+
+
+Метод send_config
+~~~~~~~~~~~~~~~~~
 
 Обнаружение ошибок
 ~~~~~~~~~~~~~~~~~~
@@ -195,8 +276,6 @@
 
     In [19]: reply.raw_result
     Out[19]: b"\n        ^\n% Invalid input detected at '^' marker.\n\nR1#"
-
-
 
 Подключение telnet
 ~~~~~~~~~~~~~~~~~~
