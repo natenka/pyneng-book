@@ -277,6 +277,38 @@ ScrapliTimeout (вывод сокращен):
     <ipython-input-20-e062fb19f0e6> in <module>
     ----> 1 ssh.send_command("ping 8.8.8.8", timeout_ops=2)
 
+Кроме получения обычного вывода команды, scrapli также позволяет получить
+структурированный вывод, например, с помощью метода textfsm_parse_output:
+
+.. code:: python
+
+    In [21]: reply = ssh.send_command("sh ip int br")
+
+    In [22]: reply.textfsm_parse_output()
+    Out[22]:
+    [{'intf': 'Ethernet0/0',
+      'ipaddr': '192.168.100.1',
+      'status': 'up',
+      'proto': 'up'},
+     {'intf': 'Ethernet0/1',
+      'ipaddr': '192.168.200.1',
+      'status': 'up',
+      'proto': 'up'},
+     {'intf': 'Ethernet0/2',
+      'ipaddr': 'unassigned',
+      'status': 'up',
+      'proto': 'up'},
+     {'intf': 'Ethernet0/3',
+      'ipaddr': '192.168.130.1',
+      'status': 'up',
+      'proto': 'up'}]
+
+.. note::
+
+    Что такое TextFSM и как с ним работать рассматривается в 21 разделе.
+    Scrapli использует готовые шаблоны для того чтобы получать структурированный
+    вывод и в базовых случаях не требует значения TextFSM.
+
 Обнаружение ошибок
 ~~~~~~~~~~~~~~~~~~
 

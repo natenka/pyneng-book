@@ -9,6 +9,7 @@
 -  `paramiko Channel <http://docs.paramiko.org/en/2.0/api/channel.html>`__
 -  `netmiko <https://github.com/ktbyers/netmiko>`__
 -  `scrapli <https://carlmontanari.github.io/scrapli/user_guide/basic_usage/>`__
+-  `scrapli-cfg <https://scrapli.github.io/scrapli_cfg/user_guide/quickstart/>`__
 -  `time <https://docs.python.org/3/library/time.html>`__
 -  `datetime <https://docs.python.org/3/library/datetime.html>`__
 -  `getpass <https://docs.python.org/3/library/getpass.html>`__
