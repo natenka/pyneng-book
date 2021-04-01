@@ -166,11 +166,11 @@
 
 В scrapli есть несколько методов для отправки команд:
 
-* ``send_command`` - отправить одну show команду 
+* ``send_command`` - отправить одну show команду
 * ``send_commands`` - отправить список show команд
 * ``send_commands_from_file`` - отправить show команды из файла
-* ``send_config`` - отправить одну команду в конфигурационном режиме 
-* ``send_configs`` - отправить список команд в конфигурационном режиме 
+* ``send_config`` - отправить одну команду в конфигурационном режиме
+* ``send_configs`` - отправить список команд в конфигурационном режиме
 * ``send_configs_from_file`` - отправить команды из файла в конфигурационном режиме
 * ``send_interactive``
 
@@ -244,7 +244,7 @@ Response позволяет получить не только вывод ком
 
 Параметры метода (все эти параметры надо передавать как ключевые):
 
-* ``strip_prompt`` - удалить приглашение из вывода. По умолчанию удаляется 
+* ``strip_prompt`` - удалить приглашение из вывода. По умолчанию удаляется
 * ``failed_when_contains`` - если вывод содержит указанную строку или одну из
   строк в списке, будет считаться, что команда выполнилась с ошибкой
 * ``timeout_ops`` - максимальное время на выполнение команды, по умолчанию
@@ -277,12 +277,69 @@ ScrapliTimeout (вывод сокращен):
     <ipython-input-20-e062fb19f0e6> in <module>
     ----> 1 ssh.send_command("ping 8.8.8.8", timeout_ops=2)
 
-Метод send_config
-~~~~~~~~~~~~~~~~~
+Обнаружение ошибок
+~~~~~~~~~~~~~~~~~~
+
+Методы для отправки команд автоматически проверяют вывод на наличие ошибок.
+Для каждого вендора/типа оборудования это свои ошибки, плюс можно самостоятельно
+указать наличие каких строк в выводе будет считаться ошибкой.
+По умолчанию для IOSXEDriver ошибками будут считаться такие строки:
 
 .. code:: python
 
-    In [13]: reply = conn.send_config("logging 10.1.1.200")
+    In [21]: ssh.failed_when_contains
+    Out[21]:
+    ['% Ambiguous command',
+     '% Incomplete command',
+     '% Invalid input detected',
+     '% Unknown command']
+
+Атрибут failed у объекта Response возвращает True, если команда отработала с
+ошибкой и False, если без ошибки:
+
+.. code:: python
+
+    In [23]: reply = ssh.send_command("sh clck")
+
+    In [24]: reply.result
+    Out[24]: "        ^\n% Invalid input detected at '^' marker."
+
+    In [25]: reply
+    Out[25]: Response <Success: False>
+
+    In [26]: reply.failed
+    Out[26]: True
+
+
+Метод send_config
+~~~~~~~~~~~~~~~~~
+
+Метод ``send_config`` позволяет отправить одну команду конфигурационного режима.
+
+Пример использования:
+
+.. code:: python
+
+    In [33]: r = ssh.send_config("username user1 password password1")
+
+Так как scrapli удаляет команду из вывода, по умолчанию, при использовании
+send_config, в атрибуте result будет пустая строка (если не было ошибки при
+выполнении команды):
+
+.. code:: python
+
+    In [34]: r.result
+    Out[34]: ''
+
+Можно добавлять параметр ``strip_prompt=False`` и тогда в выводе появится
+приглашение:
+
+.. code:: python
+
+    In [37]: r = ssh.send_config("username user1 password password1", strip_prompt=False)
+
+    In [38]: r.result
+    Out[38]: 'R1(config)#'
 
 
 Метод send_commands
@@ -294,35 +351,12 @@ ScrapliTimeout (вывод сокращен):
 * eager: bool = False,
 
 
-
-Обнаружение ошибок
-~~~~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    In [13]: reply = conn.send_command("sh clck")
-
-    In [14]: reply.result
-    Out[14]: "        ^\n% Invalid input detected at '^' marker."
-
-    In [15]: reply
-    Out[15]: Response <Success: False>
-
-    In [16]: reply.failed
-    Out[16]: True
-
-    In [17]: reply.failed_when_contains
-    Out[17]:
-    ['% Ambiguous command',
-     '% Incomplete command',
-     '% Invalid input detected',
-     '% Unknown command']
-
-    In [19]: reply.raw_result
-    Out[19]: b"\n        ^\n% Invalid input detected at '^' marker.\n\nR1#"
-
 Подключение telnet
 ~~~~~~~~~~~~~~~~~~
+
+Для подключения к оборудовани по Telnet надо указать transport равным
+telnet и обязательно указать параметр port равным 23 (или тому порту который
+используется у вас для подключения по Telnet):
 
 .. code:: python
 
