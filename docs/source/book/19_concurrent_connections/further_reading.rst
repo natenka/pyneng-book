@@ -21,6 +21,9 @@ concurrent.futures
 -  `PEP 3148 <https://www.python.org/dev/peps/pep-3148/>`__
 -  `PyMOTW. concurrent.futures — Manage Pools of Concurrent
    Tasks <https://pymotw.com/3/concurrent.futures/index.html>`__
+-  `threading <https://docs.python.org/3/library/threading.html>`__
+-  `multiprocessing <https://docs.python.org/3/library/multiprocessing.html>`__
+-  `queue <https://docs.python.org/3/library/queue.html>`__
 
 Статьи:
 
