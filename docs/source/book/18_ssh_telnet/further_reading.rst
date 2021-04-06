@@ -23,5 +23,6 @@
 
 Примеры кода:
 
-* `Примеры netmiko <https://github.com/ktbyers/netmiko/tree/develop/examples>`__
-* `Примеры scrapli <https://github.com/carlmontanari/scrapli/tree/master/examples>`__
+* `netmiko <https://github.com/ktbyers/netmiko/tree/develop/examples>`__
+* `scrapli <https://github.com/carlmontanari/scrapli/tree/master/examples>`__
+* `netmiko, paramiko, telnetlib, scrapli, pexpect <https://github.com/natenka/pyneng-examples/tree/main/ssh_telnet>`__
