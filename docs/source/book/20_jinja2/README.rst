@@ -49,39 +49,26 @@ basic_generator.py):
 
 .. code:: python
 
-    from jinja2 import Template
+    from jinja2 import Environment, FileSystemLoader
+    import yaml
 
-    template = Template('''
-    hostname {{name}}
-    !
-    interface Loopback255
-     description Management loopback
-     ip address 10.255.{{id}}.1 255.255.255.255
-    !
-    interface GigabitEthernet0/0
-     description LAN to {{name}} sw1 {{int}}
-     ip address {{ip}} 255.255.255.0
-    !
-    router ospf 10
-     router-id 10.255.{{id}}.1
-     auto-cost reference-bandwidth 10000
-     network 10.0.0.0 0.255.255.255 area 0
-    ''')
 
-    liverpool = {'id': '11', 'name': 'Liverpool', 'int': 'Gi1/0/17', 'ip': '10.1.1.10'}
+    env = Environment(
+        loader=FileSystemLoader("."), trim_blocks=True, lstrip_blocks=True
+    )
+    templ = env.get_template("cfg_template.txt")
 
-    print(template.render(liverpool))
+    liverpool = {"id": "11", "name": "Liverpool", "int": "Gi1/0/17", "ip": "10.1.1.10"}
+    print(templ.render(liverpool))
 
-Комментарии к файлу basic_generator.py: 
+Файл router_config_generator.py импортирует из модуля jinja2:
 
-* в первой строке из Jinja2 импортируется класс Template 
-* создается объект template, которому передается шаблон 
-* в шаблоне используются переменные в синтаксисе Jinja 
-* в словаре liverpool ключи должны быть такими же, как имена переменных в шаблоне 
-* значения, которые соответствуют ключам - это те данные,
-  которые будут подставлены на место переменных 
-* последняя строка рендерит шаблон, используя словарь liverpool, то есть,
-  подставляет значения в переменные.
+* FileSystemLoader - загрузчик, который позволяет работать с файловой системой
+  тут указывается путь к каталогу, где находятся шаблоны
+  в данном случае шаблон находится в каталоге templates
+* Environment - класс для описания параметров окружения. В данном случае указан
+  только загрузчик, но в нём можно указывать методы обработки шаблона
+
 
 Если запустить скрипт basic_generator.py, то вывод будет таким:
 
