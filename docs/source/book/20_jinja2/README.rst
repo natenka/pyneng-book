@@ -53,9 +53,7 @@ basic_generator.py):
     import yaml
 
 
-    env = Environment(
-        loader=FileSystemLoader("."), trim_blocks=True, lstrip_blocks=True
-    )
+    env = Environment(loader=FileSystemLoader("."))
     templ = env.get_template("cfg_template.txt")
 
     liverpool = {"id": "11", "name": "Liverpool", "int": "Gi1/0/17", "ip": "10.1.1.10"}
@@ -63,9 +61,9 @@ basic_generator.py):
 
 Скрипт импортирует из модуля jinja2:
 
-* FileSystemLoader - загрузчик, который позволяет работать с файловой системой
-  тут указывается путь к каталогу, где находятся шаблоны
-  в данном случае шаблон находится в каталоге templates
+* FileSystemLoader - загрузчик, который позволяет работать с файловой системой.
+  Тут указывается путь к каталогу, где находятся шаблоны
+  в данном случае шаблон находится в текущем каталоге
 * Environment - класс для описания параметров окружения. В данном случае указан
   только загрузчик, но в нём можно указывать методы обработки шаблона
 
