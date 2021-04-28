@@ -281,7 +281,7 @@ try\_except\_divide.py):
         else:
             print("Поддерживаются только числа")
 
-Но далеко не всегда аналогичный вариант без использования исключений
+Далеко не всегда аналогичный вариант без использования исключений
 будет простым и понятным.
 
 Важно в каждой конкретной ситуации оценивать, какой вариант кода более
@@ -301,3 +301,33 @@ raise
 .. code:: python
 
     raise ValueError("При выполнении команды возникла ошибка")
+
+
+Встроенные исключения
+~~~~~~~~~~~~~~~~~~~~~
+
+В Python есть много `встроенных исключений <https://docs.python.org/3/library/exceptions.html#exception-hierarchy>`__,
+каждое из которых генерируется в
+определенной ситуации.
+
+Например, TypeError обычно генерируется когда ожидался один тип данных, а передали другой
+
+.. code:: python
+
+    In [1]: "a" + 3
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-1-5aa8a24e3e06> in <module>
+    ----> 1 "a" + 3
+    TypeError: can only concatenate str (not "int") to str
+
+ValueError когда значение не соответствует ожидаемому:
+
+.. code:: python
+
+    In [2]: int("a")
+    ---------------------------------------------------------------------------
+    ValueError                                Traceback (most recent call last)
+    <ipython-input-2-d9136db7b558> in <module>
+    ----> 1 int("a")
+    ValueError: invalid literal for int() with base 10: 'a'
