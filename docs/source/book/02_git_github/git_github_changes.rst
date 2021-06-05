@@ -1,7 +1,13 @@
 Работа со своим репозиторием заданий
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-В данной главе описывается, как создать свой репозиторий с копией файлов заданий для курса.
+В данной главе описывается, как создать свой репозиторий с копией файлов заданий.
+
+.. warning::
+
+    Если вы учитесь на курсе "Python для сетевых инженеров", эту часть НЕ надо выполнять.
+    На курсе инструктор создает отдельный приватный репозиторий каждому слушателю.
+    Все `инструции для курса по работе с git/github находятся на сайте курса <https://pyneng.github.io/docs/git-github-course/>`__.
 
 Создание репозитория на GitHub
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -9,12 +15,12 @@
 Для создания своего репозитория на основе шаблона нужно:
 
 -  залогиниться на `GitHub <https://github.com/>`__
--  открыть `репозиторий с заданиями <https://github.com/natenka/pyneng-examples-exercises>`__
+-  открыть `репозиторий с заданиями <https://github.com/natenka/natenka-examples-exercises>`__
 -  нажать "Use this template" и создать новый репозиторий на основе этого шаблона
 -  в открывшемся окне надо ввести название репозитория
 -  после этого готов новый репозиторий с копией всех файлов из исходного репозитория с заданиями
 
-.. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/github_use_template.png
+.. figure:: https://raw.githubusercontent.com/natenka/natenka/master/images/git/github_use_template.png
 
 Клонирование репозитория с GitHub
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -25,8 +31,8 @@
 
 ::
 
-    $ git clone ssh://git@github.com/pyneng/online-2-natasha-samoylenko.git
-    Cloning into 'online-2-natasha-samoylenko'...
+    $ git clone ssh://git@github.com/natenka/my_pyneng_tasks.git
+    Cloning into 'my_pyneng_tasks'...
     remote: Counting objects: 241, done.
     remote: Compressing objects: 100% (191/191), done.
     remote: Total 241 (delta 43), reused 239 (delta 41), pack-reused 0
@@ -36,13 +42,13 @@
 
 По сравнению с приведённой в этом листинге командой, вам нужно изменить:
 
--  имя пользователя pyneng на имя своего пользователя на GitHub;
--  имя репозитория online-2-natasha-samoylenko на имя своего
+-  имя пользователя natenka на имя своего пользователя на GitHub;
+-  имя репозитория my_pyneng_tasks на имя своего
    репозитория на GitHub.
 
 В итоге, в текущем каталоге, в котором была выполнена команда git clone,
 появится каталог с именем репозитория, в моём случае –
-"online-2-natasha-samoylenko". В этом каталоге теперь находится
+"my_pyneng_tasks". В этом каталоге теперь находится
 содержимое репозитория на GitHub.
 
 Работа с репозиторием
@@ -77,7 +83,7 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Все команды выполняются внутри каталога репозитория (в примере выше -
-online-2-natasha-samoylenko).
+my_pyneng_tasks).
 
 Если содержимое локального репозитория одинаково с удалённым, вывод
 будет таким:
@@ -96,7 +102,7 @@ online-2-natasha-samoylenko).
     remote: Compressing objects: 100% (1/1), done.
     remote: Total 5 (delta 4), reused 5 (delta 4), pack-reused 0
     Unpacking objects: 100% (5/5), done.
-    From ssh://github.com/pyneng/online-2-natasha-samoylenko
+    From ssh://github.com/natenka/my_pyneng_tasks
        89c04b6..fc4c721  master     -> origin/master
     Updating 89c04b6..fc4c721
     Fast-forward
@@ -131,7 +137,7 @@ push:
     Writing objects: 100% (5/5), 426 bytes | 0 bytes/s, done.
     Total 5 (delta 4), reused 0 (delta 0)
     remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
-    To ssh://git@github.com/pyneng/online-2-natasha-samoylenko.git
+    To ssh://git@github.com/natenka/my_pyneng_tasks.git
        fc4c721..edcf417  master -> master
 
 Перед выполнением git push можно выполнить команду ``git log -p
