@@ -20,7 +20,7 @@
 -  в открывшемся окне надо ввести название репозитория
 -  после этого готов новый репозиторий с копией всех файлов из исходного репозитория с заданиями
 
-.. figure:: https://raw.githubusercontent.com/natenka/natenka/master/images/git/github_use_template.png
+.. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/github_use_template.png
 
 Клонирование репозитория с GitHub
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
