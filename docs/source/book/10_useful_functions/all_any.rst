@@ -20,9 +20,9 @@
 
 .. code:: python
 
-    In [4]: IP = '10.0.1.1'
+    In [4]: ip = '10.0.1.1'
 
-    In [5]: all(i.isdigit() for i in IP.split('.'))
+    In [5]: all(i.isdigit() for i in ip.split('.'))
     Out[5]: True
 
     In [6]: all(i.isdigit() for i in '10.1.1.a'.split('.'))
@@ -76,5 +76,5 @@
         '''
         ignore = ['duplex', 'alias', 'Current configuration']
 
-        return any(word in command for word in ignore)
+        return any([word in command for word in ignore])
 
