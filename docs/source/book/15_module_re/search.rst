@@ -217,7 +217,7 @@ detail.
                     if match.lastgroup == 'device':
                         device = match.group(match.lastgroup)
                         result[device] = {}
-                    elif device:
+                    else:
                         result[device][match.lastgroup] = match.group(
                             match.lastgroup)
 
