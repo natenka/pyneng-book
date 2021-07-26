@@ -7,17 +7,21 @@
 
 .. code:: python
 
-    In [1]: def info(sw_obj):
+    In [1]: class Switch:
+       ...:     pass
+       ...:
+    
+    In [2]: def info(sw_obj):
        ...:     print('Hostname: {}\nModel: {}'.format(sw_obj.hostname, sw_obj.model))
        ...:
 
-    In [2]: sw1 = Switch()
+    In [3]: sw1 = Switch()
 
-    In [3]: sw1.hostname = 'sw1'
+    In [4]: sw1.hostname = 'sw1'
 
-    In [4]: sw1.model = 'Cisco 3850'
+    In [5]: sw1.model = 'Cisco 3850'
 
-    In [5]: info(sw1)
+    In [6]: info(sw1)
     Hostname: sw1
     Model: Cisco 3850
 
