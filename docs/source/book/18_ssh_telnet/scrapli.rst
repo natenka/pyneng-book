@@ -129,7 +129,7 @@
 
 .. code:: python
 
-    In [8]: with Scrapli(**r1_driver) as ssh:
+    In [8]: with Scrapli(**r1) as ssh:
        ...:     print(ssh.get_prompt())
        ...:
     R1#
@@ -202,7 +202,8 @@ Response позволяет получить не только вывод ком
     In [15]: reply = ssh.send_command("sh clock")
 
     In [16]: reply
-    Out[16]: Response <Success: True>
+    Out[16]: Response(host='192.168.100.1',channel_input='sh clock',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])
+
 
 Получить вывод команды можно обратившись к атрибуту result:
 
@@ -269,7 +270,8 @@ Response позволяет получить не только вывод ком
     In [15]: reply = ssh.send_command("sh clock")
 
     In [16]: reply
-    Out[16]: Response <Success: True>
+    Out[16]: Response(host='192.168.100.1',channel_input='sh clock',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])
+
 
 Параметр timeout_ops указывает сколько ждать выполнения команды:
 
@@ -349,7 +351,7 @@ ScrapliTimeout (вывод сокращен):
     Out[24]: "        ^\n% Invalid input detected at '^' marker."
 
     In [25]: reply
-    Out[25]: Response <Success: False>
+    Out[25]: Response(host='192.168.100.1',channel_input='sh clck',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])
 
     In [26]: reply.failed
     Out[26]: True
@@ -399,7 +401,8 @@ send_config, в атрибуте result будет пустая строка (е
     In [44]: reply = ssh.send_commands(["sh clock", "sh ip int br"])
 
     In [45]: reply
-    Out[45]: MultiResponse <Success: True; Response Elements: 2>
+    Out[45]: [Response(host='192.168.100.1',channel_input='sh clock',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command']), Response(host='192.168.100.1',channel_input='sh ip int br',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])]
+
 
     In [46]: for r in reply:
         ...:     print(r)
@@ -418,10 +421,11 @@ send_config, в атрибуте result будет пустая строка (е
     Out[47]: 'sh clock\n*08:38:20.115 UTC Thu Apr 1 2021sh ip int br\nInterface                  IP-Address      OK? Method Status                Protocol\nEthernet0/0                192.168.100.1   YES NVRAM  up                    up\nEthernet0/1                192.168.200.1   YES NVRAM  up                    up\nEthernet0/2                unassigned      YES NVRAM  up                    up\nEthernet0/3                192.168.130.1   YES NVRAM  up                    up'
 
     In [48]: reply[0]
-    Out[48]: Response <Success: True>
+    Out[48]: Response(host='192.168.100.1',channel_input='sh clock',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])
 
     In [49]: reply[1]
-    Out[49]: Response <Success: True>
+    Out[49]: Response(host='192.168.100.1',channel_input='sh ip int br',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])
+
 
     In [50]: reply[0].result
     Out[50]: '*08:38:20.115 UTC Thu Apr 1 2021'
@@ -436,12 +440,15 @@ send_config, в атрибуте result будет пустая строка (е
     In [59]: reply = ssh.send_commands(["ping 192.168.100.2", "sh clck", "sh ip int br"], stop_on_failed=True)
 
     In [60]: reply
-    Out[60]: MultiResponse <Success: False; Response Elements: 2>
+    Out[60]: [Response(host='192.168.100.1',channel_input='ping 192.168.100.2',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command']), Response(host='192.168.100.1',channel_input='sh clck',textfsm_platform='cisco_iosxe',genie_platform='iosxe',failed_when_contains=['% Ambiguous command', '% Incomplete command', '% Invalid input detected', '% Unknown command'])]
 
-    In [61]: reply.result
-    Out[61]: "ping 192.168.100.2\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.100.2, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/2/6 mssh clck\n        ^\n% Invalid input detected at '^' marker."
+    In [61]: print(reply)
+    MultiResponse <Success: False; Response Elements: 2>
 
-    In [62]: for r in reply:
+    In [62]: reply.result
+    Out[62]: "ping 192.168.100.2\nType escape sequence to abort.\nSending 5, 100-byte ICMP Echos to 192.168.100.2, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 1/2/6 mssh clck\n        ^\n% Invalid input detected at '^' marker."
+
+    In [63]: for r in reply:
         ...:     print(r)
         ...:     print(r.result)
         ...:
@@ -481,7 +488,7 @@ telnet и обязательно указать параметр port равны
 
     def send_show(device, show_command):
         try:
-            with IOSXEDriver(**r1) as ssh:
+            with IOSXEDriver(**device) as ssh:
                 reply = ssh.send_command(show_command)
                 return reply.result
         except socket.timeout as error:
@@ -517,7 +524,7 @@ telnet и обязательно указать параметр port равны
 
     def send_show(device, show_command):
         try:
-            with IOSXEDriver(**r1) as ssh:
+            with IOSXEDriver(**device) as ssh:
                 reply = ssh.send_command(show_command)
                 return reply.result
         except ScrapliException as error:
@@ -548,7 +555,7 @@ telnet и обязательно указать параметр port равны
         if type(show_commands) == str:
             show_commands = [show_commands]
         cmd_dict = {}
-        with Scrapli(**r1) as ssh:
+        with Scrapli(**device) as ssh:
             for cmd in show_commands:
                 reply = ssh.send_command(cmd)
                 cmd_dict[cmd] = reply.result
@@ -580,7 +587,7 @@ telnet и обязательно указать параметр port равны
         output = ""
         if type(cfg_commands) == str:
             cfg_commands = [cfg_commands]
-        with Scrapli(**r1) as ssh:
+        with Scrapli(**device) as ssh:
             reply = ssh.send_configs(cfg_commands, stop_on_failed=strict)
             for cmd_reply in reply:
                 if cmd_reply.failed:
