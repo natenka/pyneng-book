@@ -137,7 +137,7 @@ F-строка сразу выполняется и в нее подставля
     In [2]: intf_name = '0/3'
 
     In [3]: f'interface {intf_type}/{intf_name}'
-    Out[3]: 'interface Gi/0/3'
+    Out[3]: 'interface Gi0/3'
 
 Выравнивание столбцами:
 
