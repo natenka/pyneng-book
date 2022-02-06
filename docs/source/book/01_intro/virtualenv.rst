@@ -11,11 +11,84 @@
 -  пакеты, которые установлены в виртуальных окружениях, не перебивают
    глобальные пакеты.
 
-.. note::
-    В Python есть несколько вариантов для создания виртуальных окружений.
-    Использовать можно любой из них. Для начала можно использовать virtualenvwrapper,
-    а затем со временем уже разбираться с тем, какие еще есть варианты.
 
+Встроенный модуль venv
+^^^^^^^^^^^^^^^^^^^^^^
+
+Начиная с версии 3.5, в Python рекомендуется использовать модуль venv
+для создания виртуальных окружений:
+
+::
+
+    $ python3.7 -m venv new/pyneng
+
+Вместо python3.7 может использоваться python или python3, в зависимости
+от того, как установлен Python 3.7. Эта команда создаёт указанный
+каталог и все необходимые каталоги внутри него, если они не были
+созданы.
+
+Команда создаёт следующую структуру каталогов:
+
+::
+
+    $ ls -ls new/pyneng
+    total 16
+    4 drwxr-xr-x 2 vagrant vagrant 4096 Aug 21 14:50 bin
+    4 drwxr-xr-x 2 vagrant vagrant 4096 Aug 21 14:50 include
+    4 drwxr-xr-x 3 vagrant vagrant 4096 Aug 21 14:50 lib
+    4 -rw-r--r-- 1 vagrant vagrant   75 Aug 21 14:50 pyvenv.cfg
+
+Для перехода в виртуальное окружение надо выполнить команду:
+
+::
+
+    $ source new/pyneng/bin/activate
+
+Для выхода из виртуального окружения используется команда deactivate:
+
+::
+
+    $ deactivate
+
+Подробнее о модуле venv в
+`документации <https://docs.python.org/3/library/venv.html#module-venv>`__.
+
+Установка пакетов
+^^^^^^^^^^^^^^^^^
+
+Например, установим в виртуальном окружении пакет simplejson.
+
+::
+
+    (pyneng)$ pip install simplejson
+    ...
+    Successfully installed simplejson
+    Cleaning up...
+
+Если перейти в интерпретатор Python и импортировать simplejson, то он доступен
+и никаких ошибок нет:
+
+::
+
+    (pyneng)$ python
+    >>> import simplejson
+    >>> simplejson
+    <module 'simplejson' from '/home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/simplejson/__init__.py'>
+    >>>
+
+Но если выйти из виртуального окружения и попытаться сделать то же
+самое, то такого модуля нет:
+
+::
+
+    (pyneng)$ deactivate 
+
+    $ python
+    >>> import simplejson
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ModuleNotFoundError: No module named 'simplejson'
+    >>> 
 
 virtualenvwrapper
 ^^^^^^^^^^^^^^^^^
@@ -58,6 +131,12 @@ Overflow <http://stackoverflow.com/questions/2518127/how-do-i-reload-bashrc-with
 
 Работа с виртуальными окружениями
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note::
+
+    В Python есть несколько вариантов для создания виртуальных окружений.
+    Использовать можно любой из них.
+
 
 Создание нового виртуального окружения, в котором Python 3.7
 используется по умолчанию:
@@ -147,82 +226,4 @@ rmvirtualenv:
     path.py-8.1.1-py2.7.egg-info           test_path.pyc
     path.pyc                               traitlets
     pexpect                                traitlets-4.0.0-py2.7.egg-info
-
-Встроенный модуль venv
-^^^^^^^^^^^^^^^^^^^^^^
-
-Начиная с версии 3.5, в Python рекомендуется использовать модуль venv
-для создания виртуальных окружений:
-
-::
-
-    $ python3.7 -m venv new/pyneng
-
-Вместо python3.7 может использоваться python или python3, в зависимости
-от того, как установлен Python 3.7. Эта команда создаёт указанный
-каталог и все необходимые каталоги внутри него, если они не были
-созданы.
-
-Команда создаёт следующую структуру каталогов:
-
-::
-
-    $ ls -ls new/pyneng
-    total 16
-    4 drwxr-xr-x 2 vagrant vagrant 4096 Aug 21 14:50 bin
-    4 drwxr-xr-x 2 vagrant vagrant 4096 Aug 21 14:50 include
-    4 drwxr-xr-x 3 vagrant vagrant 4096 Aug 21 14:50 lib
-    4 -rw-r--r-- 1 vagrant vagrant   75 Aug 21 14:50 pyvenv.cfg
-
-Для перехода в виртуальное окружение надо выполнить команду:
-
-::
-
-    $ source new/pyneng/bin/activate
-
-Для выхода из виртуального окружения используется команда deactivate:
-
-::
-
-    $ deactivate
-
-Подробнее о модуле venv в
-`документации <https://docs.python.org/3/library/venv.html#module-venv>`__.
-
-Установка пакетов
-^^^^^^^^^^^^^^^^^
-
-Например, установим в виртуальном окружении пакет simplejson.
-
-::
-
-    (pyneng)$ pip install simplejson
-    ...
-    Successfully installed simplejson
-    Cleaning up...
-
-Если перейти в интерпретатор Python и импортировать simplejson, то он доступен
-и никаких ошибок нет:
-
-::
-
-    (pyneng)$ python
-    >>> import simplejson
-    >>> simplejson
-    <module 'simplejson' from '/home/vagrant/venv/pyneng-py3-7/lib/python3.7/site-packages/simplejson/__init__.py'>
-    >>>
-
-Но если выйти из виртуального окружения и попытаться сделать то же
-самое, то такого модуля нет:
-
-::
-
-    (pyneng)$ deactivate 
-
-    $ python
-    >>> import simplejson
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    ModuleNotFoundError: No module named 'simplejson'
-    >>> 
 
