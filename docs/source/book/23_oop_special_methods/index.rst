@@ -31,4 +31,5 @@
    str_repr
    add_method
    protocols
+   further_reading
    ../../exercises/23_exercises.rst
