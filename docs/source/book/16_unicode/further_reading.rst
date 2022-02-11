@@ -23,4 +23,4 @@
 -  `The Unicode Consortium <http://www.unicode.org/>`__
 -  `Unicode (Wikipedia) <https://en.wikipedia.org/wiki/Unicode>`__
 -  `UTF-8 (Wikipedia) <https://en.wikipedia.org/wiki/UTF-8>`__
-
+-  `CRLF vs. LF: Normalizing Line Endings in Git <https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/>`__

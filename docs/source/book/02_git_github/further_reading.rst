@@ -21,4 +21,4 @@
    `книга <https://git-scm.com/book/ru/v2/>`__ на русском;
 -  `Системы контроля версий (GIT) (курс на
    Hexlet) <https://ru.hexlet.io/courses/intro_to_git/>`__.
-
+-  `CRLF vs. LF: Normalizing Line Endings in Git <https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/>`__
