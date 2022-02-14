@@ -11,6 +11,7 @@
    Exceptions <https://docs.python.org/3.6/tutorial/errors.html>`__
 -  `Built-in
    Exceptions <https://docs.python.org/3.6/library/exceptions.html>`__
+-  `Operator precedence <https://docs.python.org/3/reference/expressions.html#operator-precedence>`__
 
 Статьи:
 
