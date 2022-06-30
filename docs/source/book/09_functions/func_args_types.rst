@@ -9,6 +9,8 @@
 * как **ключевые** - передаются с указанием имени аргумента и его значения.
   В таком случае, аргументы могут быть указаны в любом порядке, так как их имя указывается явно.
 
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args.png
+
 Позиционные и ключевые аргументы могут быть использоваться одновременно при вызове функции.
 При этом сначала должны идти позиционные аргументы, а только потом - ключевые.
 
@@ -17,17 +19,17 @@ check_passwd (файл func_check_passwd_optional_param.py):
 
 .. code:: python
 
-    In [1]: def check_passwd(username, password):
-       ...:     if len(password) < 8:
-       ...:         print('Пароль слишком короткий')
-       ...:         return False
-       ...:     elif username in password:
-       ...:         print('Пароль содержит имя пользователя')
-       ...:         return False
-       ...:     else:
-       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
-       ...:         return True
-       ...:
+    def check_passwd(username, password):
+        if len(password) < 8:
+            print('Пароль слишком короткий')
+            return False
+        elif username in password:
+            print('Пароль содержит имя пользователя')
+            return False
+        else:
+            print(f'Пароль для пользователя {username} прошел все проверки')
+            return True
+
 
 Позиционные аргументы
 ~~~~~~~~~~~~~~~~~~~~~
@@ -102,17 +104,17 @@ check_passwd (файл func_check_passwd_optional_param.py):
 
 .. code:: python
 
-    In [12]: def check_passwd(username, password, min_length=8, check_username=True):
-        ...:     if len(password) < min_length:
-        ...:         print('Пароль слишком короткий')
-        ...:         return False
-        ...:     elif check_username and username in password:
-        ...:         print('Пароль содержит имя пользователя')
-        ...:         return False
-        ...:     else:
-        ...:         print(f'Пароль для пользователя {username} прошел все проверки')
-        ...:         return True
-        ...:
+    def check_passwd(username, password, min_length=8, check_username=True):
+        if len(password) < min_length:
+            print('Пароль слишком короткий')
+            return False
+        elif check_username and username in password:
+            print('Пароль содержит имя пользователя')
+            return False
+        else:
+            print(f'Пароль для пользователя {username} прошел все проверки')
+            return True
+
 
 По умолчанию флаг равен True, а значит проверку выполнять надо:
 

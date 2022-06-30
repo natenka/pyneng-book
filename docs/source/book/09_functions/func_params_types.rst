@@ -7,6 +7,8 @@
 * **обязательными параметрами**
 * **необязательными параметрами** (опциональными, параметрами со значением по умолчанию)
 
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_params.png
+
 Обязательные параметры
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -19,17 +21,16 @@
 
 .. code:: python
 
-    In [1]: def check_passwd(username, password):
-       ...:     if len(password) < 8:
-       ...:         print('Пароль слишком короткий')
-       ...:         return False
-       ...:     elif username in password:
-       ...:         print('Пароль содержит имя пользователя')
-       ...:         return False
-       ...:     else:
-       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
-       ...:         return True
-       ...:
+    def check_passwd(username, password):
+        if len(password) < 8:
+            print('Пароль слишком короткий')
+            return False
+        elif username in password:
+            print('Пароль содержит имя пользователя')
+            return False
+        else:
+            print(f'Пароль для пользователя {username} прошел все проверки')
+            return True
 
 
 Функция check_passwd ожидает два аргумента: username и password.
@@ -64,17 +65,17 @@ True, если пароль прошел проверки:
 
 .. code:: python
 
-    In [6]: def check_passwd(username, password, min_length=8):
-       ...:     if len(password) < min_length:
-       ...:         print('Пароль слишком короткий')
-       ...:         return False
-       ...:     elif username in password:
-       ...:         print('Пароль содержит имя пользователя')
-       ...:         return False
-       ...:     else:
-       ...:         print(f'Пароль для пользователя {username} прошел все проверки')
-       ...:         return True
-       ...:
+    def check_passwd(username, password, min_length=8):
+        if len(password) < min_length:
+            print('Пароль слишком короткий')
+            return False
+        elif username in password:
+            print('Пароль содержит имя пользователя')
+            return False
+        else:
+            print(f'Пароль для пользователя {username} прошел все проверки')
+            return True
+
 
 Так как у параметра min_length есть значение по умолчанию, соответствующий аргумент
 можно не указывать при вызове функции, если значение по умолчанию подходит:
