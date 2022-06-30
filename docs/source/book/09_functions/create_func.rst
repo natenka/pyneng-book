@@ -14,18 +14,16 @@
   * он используется для прекращения работы функции и выхода из нее
   * чаще всего, оператор return возвращает какое-то значение
 
-.. note::
-    Код функций, которые используются в этом подразделе, можно
-    скопировать из файла create_func.py
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_basics.png
 
 Пример функции:
 
 .. code:: python
 
-    In [1]: def configure_intf(intf_name, ip, mask):
-       ...:     print('interface', intf_name)
-       ...:     print('ip address', ip, mask)
-       ...:
+    def configure_intf(intf_name, ip, mask):
+        print('interface', intf_name)
+        print('ip address', ip, mask)
+
 
 Функция configure_intf создает конфигурацию интерфейса с указанным именем и IP-адресом.
 У функции есть три параметра: intf_name, ip, mask. При вызове функции в эти параметры
