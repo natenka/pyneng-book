@@ -130,3 +130,89 @@
     In [24]: add_item(2)
     Out[24]: [2]
 
+Ошибка UnboundLocalError: local variable referenced before assignment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ошибка может возникнуть в таких случаях:
+
+* обращение к переменной в функции идет до ее создания - это может быть
+  случайность (ошибка) или следствие того, что какое-то условие не выполнилось
+* обращение внутри функции к глобальной переменной, но при этом внутри функции
+  создана такая же переменная позже
+
+Первый случай - обратились к переменной до ее создания:
+
+.. code:: python
+
+    def f():
+        print(b)
+        b = 55
+
+    In [6]: f()
+    ---------------------------------------------------------------------------
+    UnboundLocalError                         Traceback (most recent call last)
+    Input In [6], in <cell line: 1>()
+    ----> 1 f()
+
+    Input In [5], in f()
+          1 def f():
+    ----> 2     print(b)
+          3     b = 55
+
+    UnboundLocalError: local variable 'b' referenced before assignment
+
+Переменная создается в условии, а условие не выполнилось:
+
+.. code:: python
+
+    def f():
+        if 5 > 8:
+            b = 55
+        print(b)
+
+    In [8]: f()
+    ---------------------------------------------------------------------------
+    UnboundLocalError                         Traceback (most recent call last)
+    Input In [8], in <cell line: 1>()
+    ----> 1 f()
+
+    Input In [7], in f()
+          2 if 5 > 8:
+          3     b = 55
+    ----> 4 print(b)
+
+    UnboundLocalError: local variable 'b' referenced before assignment
+
+Имя глобальной и локальной переменной одинаковое и внутри функции сначала идет
+попытка обращения к глобальной, потом создание локальной:
+
+.. code:: python
+
+    a = 10
+
+    def f():
+        print(a)
+        a = 55
+        print(a)
+
+
+    In [4]: f()
+    ---------------------------------------------------------------------------
+    UnboundLocalError                         Traceback (most recent call last)
+    Input In [4], in <cell line: 1>()
+    ----> 1 f()
+
+    Input In [3], in f()
+          1 def f():
+    ----> 2     print(a)
+          3     a = 55
+          4     print(a)
+
+    UnboundLocalError: local variable 'a' referenced before assignment
+
+
+Python должен определить область видимости переменной. И в случае функций, Python
+считает, что переменная локальная, если она создана внутри функции.
+На момент когда мы доходим до вызова функции, Python уже решил, что ``a`` это
+локальная переменная и именно из-за этого первая строка ``print(a)`` дает ошибку.
+
