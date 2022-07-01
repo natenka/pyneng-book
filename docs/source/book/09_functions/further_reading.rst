@@ -13,3 +13,7 @@
 -  `Функция
    range <https://docs.python.org/3.6/library/stdtypes.html#range>`__
 -  `Подробнее о функциях в Python <https://realpython.com/defining-your-own-python-function/>`__
+
+Статьи:
+
+-  `Asterisks in Python: what they are and how to use them <https://treyhunner.com/2018/10/asterisks-in-python-what-they-are-and-how-to-use-them/>`__
