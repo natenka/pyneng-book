@@ -30,6 +30,7 @@
 
 Помощь в изучении регулярных выражений:
 
+-  `regexlearn.com <https://regexlearn.com/>`__
 -  `Визуализация регулярного выражения <https://regexper.com/>`__
 -  `Regex Cross­word <https://regexcrossword.com/>`__
 
