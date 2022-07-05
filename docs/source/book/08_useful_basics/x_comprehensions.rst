@@ -57,6 +57,10 @@ List comprehensions (генераторы списков)
     In [5]: print(vlans)
     ['vlan 10', 'vlan 11', 'vlan 12', 'vlan 13', 'vlan 14', 'vlan 15']
 
+Соответствие между обычным циклом и генератором списка:
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+
 В list comprehensions можно использовать выражение if. Таким образом
 можно добавлять в список только некоторые объекты.
 
@@ -65,14 +69,13 @@ List comprehensions (генераторы списков)
 
 .. code:: python
 
-    In [6]: items = ['10', '20', 'a', '30', 'b', '40']
+    items = ['10', '20', 'a', '30', 'b', '40']
 
-    In [7]: only_digits = []
+    only_digits = []
 
-    In [8]: for item in items:
-       ...:     if item.isdigit():
-       ...:         only_digits.append(int(item))
-       ...:
+    for item in items:
+        if item.isdigit():
+            only_digits.append(int(item))
 
     In [9]: print(only_digits)
     [10, 20, 30, 40]
@@ -81,18 +84,22 @@ List comprehensions (генераторы списков)
 
 .. code:: python
 
-    In [10]: items = ['10', '20', 'a', '30', 'b', '40']
-
-    In [11]: only_digits = [int(item) for item in items if item.isdigit()]
+    items = ['10', '20', 'a', '30', 'b', '40']
+    only_digits = [int(item) for item in items if item.isdigit()]
 
     In [12]: print(only_digits)
     [10, 20, 30, 40]
+
+Соответствие между циклом с условием и генератором списка с условием:
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if.png
 
 Конечно, далеко не все циклы можно переписать как генератор списка, но
 когда это можно сделать, и при этом выражение не усложняется, лучше
 использовать генераторы списка.
 
 .. note::
+
     В Python генераторы списка могут также заменить функции filter и map
     и считаются более понятными вариантами решения.
 
@@ -101,44 +108,44 @@ List comprehensions (генераторы списков)
 
 .. code:: python
 
-    In [13]: london_co = {
-        ...:     'r1' : {
-        ...:     'hostname': 'london_r1',
-        ...:     'location': '21 New Globe Walk',
-        ...:     'vendor': 'Cisco',
-        ...:     'model': '4451',
-        ...:     'IOS': '15.4',
-        ...:     'IP': '10.255.0.1'
-        ...:     },
-        ...:     'r2' : {
-        ...:     'hostname': 'london_r2',
-        ...:     'location': '21 New Globe Walk',
-        ...:     'vendor': 'Cisco',
-        ...:     'model': '4451',
-        ...:     'IOS': '15.4',
-        ...:     'IP': '10.255.0.2'
-        ...:     },
-        ...:     'sw1' : {
-        ...:     'hostname': 'london_sw1',
-        ...:     'location': '21 New Globe Walk',
-        ...:     'vendor': 'Cisco',
-        ...:     'model': '3850',
-        ...:     'IOS': '3.6.XE',
-        ...:     'IP': '10.255.0.101'
-        ...:     }
-        ...: }
+    london_co = {
+        'r1' : {
+        'hostname': 'london_r1',
+        'location': '21 New Globe Walk',
+        'vendor': 'Cisco',
+        'model': '4451',
+        'ios': '15.4',
+        'ip': '10.255.0.1'
+        },
+        'r2' : {
+        'hostname': 'london_r2',
+        'location': '21 New Globe Walk',
+        'vendor': 'Cisco',
+        'model': '4451',
+        'ios': '15.4',
+        'ip': '10.255.0.2'
+        },
+        'sw1' : {
+        'hostname': 'london_sw1',
+        'location': '21 New Globe Walk',
+        'vendor': 'Cisco',
+        'model': '3850',
+        'ios': '3.6.XE',
+        'ip': '10.255.0.101'
+        }
+    }
 
-    In [14]: [london_co[device]['IOS'] for device in london_co]
+    In [14]: [london_co[device]['ios'] for device in london_co]
     Out[14]: ['15.4', '15.4', '3.6.XE']
 
-    In [15]: [london_co[device]['IP'] for device in london_co]
+    In [15]: [london_co[device]['ip'] for device in london_co]
     Out[15]: ['10.255.0.1', '10.255.0.2', '10.255.0.101']
 
-На самом деле, синтаксис генератора списка выглядит так:
+Полный синтаксис генератора списка выглядит так:
 
 .. code:: python
 
-    [expression for item1 in iterable1 if condition1 
+    [expression for item1 in iterable1 if condition1
                 for item2 in iterable2 if condition2
                 ...
                 for itemN in iterableN if conditionN ]
@@ -150,19 +157,19 @@ VLAN'ами:
 
 .. code:: python
 
-    In [16]: vlans = [[10,21,35], [101, 115, 150], [111, 40, 50]]
+    In [16]: vlans = [[10, 21, 35], [101, 115, 150], [111, 40, 50]]
 
 Из этого списка надо сформировать один плоский список с номерами VLAN.
 Первый вариант — с помощью циклов for:
 
 .. code:: python
 
-    In [17]: result = []
+    result = []
 
-    In [18]: for vlan_list in vlans:
-        ...:     for vlan in vlan_list:
-        ...:         result.append(vlan)
-        ...:
+    for vlan_list in vlans:
+        for vlan in vlan_list:
+            result.append(vlan)
+
 
     In [19]: print(result)
     [10, 21, 35, 101, 115, 150, 111, 40, 50]
@@ -171,12 +178,15 @@ VLAN'ами:
 
 .. code:: python
 
-    In [20]: vlans = [[10,21,35], [101, 115, 150], [111, 40, 50]]
-
-    In [21]: result = [vlan for vlan_list in vlans for vlan in vlan_list]
+    vlans = [[10, 21, 35], [101, 115, 150], [111, 40, 50]]
+    result = [vlan for vlan_list in vlans for vlan in vlan_list]
 
     In [22]: print(result)
     [10, 21, 35, 101, 115, 150, 111, 40, 50]
+
+Соответствие между двумя вложенными циклами и генератором списка с двумя циклами:
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for.png
 
 Можно одновременно проходиться по двум последовательностям, используя
 zip:
@@ -233,8 +243,8 @@ Dict comprehensions (генераторы словарей)
 
 .. code:: python
 
-    In [32]: r1 = {'IOS': '15.4',
-        ...:       'IP': '10.255.0.1',
+    In [32]: r1 = {'ios': '15.4',
+        ...:       'ip': '10.255.0.1',
         ...:       'hostname': 'london_r1',
         ...:       'location': '21 New Globe Walk',
         ...:       'model': '4451',
@@ -260,8 +270,8 @@ Dict comprehensions (генераторы словарей)
 
 .. code:: python
 
-    In [36]: r1 = {'IOS': '15.4',
-        ...:   'IP': '10.255.0.1',
+    In [36]: r1 = {'ios': '15.4',
+        ...:   'ip': '10.255.0.1',
         ...:   'hostname': 'london_r1',
         ...:   'location': '21 New Globe Walk',
         ...:   'model': '4451',
@@ -290,24 +300,24 @@ Dict comprehensions (генераторы словарей)
         ...:     'location': '21 New Globe Walk',
         ...:     'vendor': 'Cisco',
         ...:     'model': '4451',
-        ...:     'IOS': '15.4',
-        ...:     'IP': '10.255.0.1'
+        ...:     'ios': '15.4',
+        ...:     'ip': '10.255.0.1'
         ...:     },
         ...:     'r2' : {
         ...:     'hostname': 'london_r2',
         ...:     'location': '21 New Globe Walk',
         ...:     'vendor': 'Cisco',
         ...:     'model': '4451',
-        ...:     'IOS': '15.4',
-        ...:     'IP': '10.255.0.2'
+        ...:     'ios': '15.4',
+        ...:     'ip': '10.255.0.2'
         ...:     },
         ...:     'sw1' : {
         ...:     'hostname': 'london_sw1',
         ...:     'location': '21 New Globe Walk',
         ...:     'vendor': 'Cisco',
         ...:     'model': '3850',
-        ...:     'IOS': '3.6.XE',
-        ...:     'IP': '10.255.0.101'
+        ...:     'ios': '3.6.XE',
+        ...:     'ip': '10.255.0.101'
         ...:     }
         ...: }
 
