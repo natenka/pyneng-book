@@ -29,7 +29,6 @@
   рассматривается в разделе :ref:`f_string` с дополнительными примерами и
   пояснениями.
 
-
 Форматирование строк с методом format
 -------------------------------------
 
@@ -80,14 +79,22 @@
     In [5]: print("{:15} {:15} {:15}".format(vlan, mac, intf))
     100             aabb.cc80.7000  Gi0/1
 
+Примеры выравнивания
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/04_str_format_align_all_left.png
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/04_str_format_align_all_right.png
+
+.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/04_str_format_align_l_r_r.png
+
 Шаблон для вывода может быть и многострочным:
 
 .. code:: python
 
-    In [6]: ip_template = '''
-       ...: IP address:
-       ...: {}
-       ...: '''
+    ip_template = '''
+    IP address:
+    {}
+    '''
 
     In [7]: print(ip_template.format('10.1.1.1'))
 
@@ -147,11 +154,11 @@
 
 .. code:: python
 
-    In [19]: ip_template = '''
-        ...: IP address:
-        ...: {:<8} {:<8} {:<8} {:<8}
-        ...: {:08b} {:08b} {:08b} {:08b}
-        ...: '''
+    ip_template = '''
+    IP address:
+    {:<8} {:<8} {:<8} {:<8}
+    {:08b} {:08b} {:08b} {:08b}
+    '''
 
     In [20]: print(ip_template.format(192, 100, 1, 1, 192, 100, 1, 1))
 
@@ -167,11 +174,11 @@
 
 .. code:: python
 
-    In [21]: ip_template = '''
-        ...: IP address:
-        ...: {0:<8} {1:<8} {2:<8} {3:<8}
-        ...: {0:08b} {1:08b} {2:08b} {3:08b}
-        ...: '''
+    ip_template = '''
+    IP address:
+    {0:<8} {1:<8} {2:<8} {3:<8}
+    {0:08b} {1:08b} {2:08b} {3:08b}
+    '''
 
     In [22]: print(ip_template.format(192, 100, 1, 1))
 
