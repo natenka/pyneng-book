@@ -81,3 +81,35 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 html_last_updated_fmt = ""
+
+# -- Options for LaTeX output ---------------------------------------------
+
+
+latex_engine = 'xelatex'
+latex_elements = {
+    'fontpkg': r'''
+\documentclass[a4paper]{article}
+\usepackage[12pt]{extsizes}
+\usepackage[margin=1.0in]{geometry}
+\usepackage{polyglossia}
+\setcounter{secnumdepth}{0}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Serif}
+\setmonofont{DejaVu Sans Mono}
+''',
+    'preamble': r'''
+\setcounter{tocdepth}{2}
+\usepackage[titles]{tocloft}
+\cftsetpnumwidth {1.25cm}\cftsetrmarg{1.5cm}
+\setlength{\cftchapnumwidth}{0.75cm}
+\setlength{\cftsecindent}{\cftchapnumwidth}
+\setlength{\cftsecnumwidth}{1.25cm}
+''',
+    'fncychap': r'\usepackage[Bjornstrup]{fncychap}',
+    'printindex': r'\footnotesize\raggedright\printindex',
+    'figure_align': 'H',
+}
