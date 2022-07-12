@@ -217,6 +217,7 @@ for:
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    for_in_for
    for_if

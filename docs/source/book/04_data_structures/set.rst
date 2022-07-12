@@ -23,6 +23,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    set_methods
    set_operations

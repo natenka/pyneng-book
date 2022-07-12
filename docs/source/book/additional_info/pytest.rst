@@ -42,6 +42,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    pytest_basics
    pytest_pyneng

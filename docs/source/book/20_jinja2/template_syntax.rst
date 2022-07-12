@@ -71,6 +71,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    whitespace_control
    syntax_variables

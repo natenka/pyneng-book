@@ -114,5 +114,6 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    list_methods

@@ -117,6 +117,7 @@ True если пароль прошел проверки:
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    func_params_types.rst
    func_args_types.rst

@@ -16,6 +16,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    iterable_iterator
    sequence_protocol

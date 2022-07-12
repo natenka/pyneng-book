@@ -114,6 +114,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    dict_methods
    create_dict

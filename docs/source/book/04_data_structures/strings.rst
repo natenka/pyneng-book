@@ -159,6 +159,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    string_methods
    string_format
