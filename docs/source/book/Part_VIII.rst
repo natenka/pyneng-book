@@ -6,6 +6,7 @@ VIII. Дополнительная информация
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    additional_info/argparse
    additional_info/old_str_formatting

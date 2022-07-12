@@ -44,6 +44,7 @@ IV. Запись и передача данных
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    16_unicode/index.rst
    17_serialization/index.rst

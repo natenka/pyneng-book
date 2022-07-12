@@ -3,5 +3,6 @@ VII. Работа с базами данных
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    25_db/index.rst
