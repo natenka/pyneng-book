@@ -13,10 +13,11 @@
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args_dark.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args_dark.png
+       :align: center
+       :class: only-dark
 
 Позиционные и ключевые аргументы могут быть использоваться одновременно при вызове функции.
 При этом сначала должны идти позиционные аргументы, а только потом - ключевые.

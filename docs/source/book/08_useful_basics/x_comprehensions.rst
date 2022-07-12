@@ -66,10 +66,11 @@ List comp выше аналогичен такой цикл:
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+       :align: center
+       :class: only-dark
 
 В list comprehensions можно использовать выражение if. Таким образом
 можно добавлять в список только некоторые объекты.
@@ -106,10 +107,11 @@ List comp выше аналогичен такой цикл:
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if_dark.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if_dark.png
+       :align: center
+       :class: only-dark
 
 Конечно, далеко не все циклы можно переписать как генератор списка, но
 когда это можно сделать, и при этом выражение не усложняется, лучше
@@ -207,10 +209,11 @@ VLAN'ами:
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for_dark.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for_dark.png
+       :align: center
+       :class: only-dark
 
 Можно одновременно проходиться по двум последовательностям, используя
 zip:

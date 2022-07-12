@@ -31,10 +31,11 @@ B (built-in) - во встроенной (зарезервированные з�
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_legb_enclosing_dark.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_legb_enclosing_dark.png
+       :align: center
+       :class: only-dark
 
 Локальные и глобальные переменные
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,10 +55,11 @@ B (built-in) - во встроенной (зарезервированные з�
    :align: center
    :class: only-light
 
+.. only:: html
 
-.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_local_global_dark.png
-   :align: center
-   :class: only-dark
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_local_global_dark.png
+       :align: center
+       :class: only-dark
 
 Пример локальной intf_config:
 
