@@ -4,8 +4,5 @@
 Скачать PDF/Epub
 ================
 
-В мобильной версии сначала надо нажать на иконку "гамбургер".
-
-Нажмите в нижнем левом углу на "Read the Docs" и в открывшейся панели
-нажмите PDF или Epub.
-
+* `Epub <https://pyneng.readthedocs.io/_/downloads/ru/latest/epub/>`__
+* `PDF <https://pyneng.readthedocs.io/_/downloads/ru/latest/pdf/>`__
