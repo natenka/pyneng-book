@@ -29,6 +29,7 @@ TextFSM - это библиотека, созданная Google для обра
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    README
    textfsm_syntax

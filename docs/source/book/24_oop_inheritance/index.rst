@@ -10,6 +10,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    inheritance
    ../../exercises/24_exercises.rst

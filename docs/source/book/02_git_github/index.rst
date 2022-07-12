@@ -42,6 +42,7 @@ GitHub позволяет централизованно хранить все �
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    git_basics
    git_basics_bash_status

@@ -59,6 +59,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    password
    pexpect

@@ -22,6 +22,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    measure_script_execution_time
    cpython_gil

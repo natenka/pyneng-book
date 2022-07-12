@@ -28,6 +28,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    unicode_standard
    python_3_unicode

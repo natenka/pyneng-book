@@ -21,6 +21,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    print
    range

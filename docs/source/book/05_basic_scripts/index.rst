@@ -53,6 +53,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    executable
    args

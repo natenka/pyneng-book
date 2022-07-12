@@ -18,6 +18,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    if_else
    for

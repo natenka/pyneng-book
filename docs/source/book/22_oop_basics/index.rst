@@ -9,6 +9,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    terminology
    create_class

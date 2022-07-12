@@ -27,6 +27,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    sql
    sqlite

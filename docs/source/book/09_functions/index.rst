@@ -56,6 +56,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    create_func
    namespace

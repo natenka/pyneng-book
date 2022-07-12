@@ -28,6 +28,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    match_object
    search

@@ -17,6 +17,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    0_syntax
    1_ipython

@@ -9,6 +9,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    syntax
    spec_sym_sets

@@ -26,6 +26,7 @@
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
 
    underscore_names
    str_repr
