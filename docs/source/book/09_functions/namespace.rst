@@ -27,7 +27,14 @@ G (global) - в глобальной (в скрипте)
 B (built-in) - во встроенной (зарезервированные значения Python)
 
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_legb_enclosing.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_legb_enclosing.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_legb_enclosing_dark.png
+   :align: center
+   :class: only-dark
 
 Локальные и глобальные переменные
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -43,7 +50,14 @@ B (built-in) - во встроенной (зарезервированные з�
 * эти переменные 'глобальны' только в пределах модуля, чтобы они были доступны
   в другом модуле, их надо импортировать
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_local_global.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_local_global.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_local_global_dark.png
+   :align: center
+   :class: only-dark
 
 Пример локальной intf_config:
 

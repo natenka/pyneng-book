@@ -9,7 +9,14 @@
 * как **ключевые** - передаются с указанием имени аргумента и его значения.
   В таком случае, аргументы могут быть указаны в любом порядке, так как их имя указывается явно.
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_args_dark.png
+   :align: center
+   :class: only-dark
 
 Позиционные и ключевые аргументы могут быть использоваться одновременно при вызове функции.
 При этом сначала должны идти позиционные аргументы, а только потом - ключевые.

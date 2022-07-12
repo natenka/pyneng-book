@@ -7,7 +7,14 @@
 * **обязательными параметрами**
 * **необязательными параметрами** (опциональными, параметрами со значением по умолчанию)
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_params.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_params.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/09_function_params_dark.png
+   :align: center
+   :class: only-dark
 
 Обязательные параметры
 ~~~~~~~~~~~~~~~~~~~~~~

@@ -62,7 +62,14 @@ List comp выше аналогичен такой цикл:
 
 Соответствие между обычным циклом и генератором списка:
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+   :align: center
+   :class: only-dark
 
 В list comprehensions можно использовать выражение if. Таким образом
 можно добавлять в список только некоторые объекты.
@@ -95,7 +102,14 @@ List comp выше аналогичен такой цикл:
 
 Соответствие между циклом с условием и генератором списка с условием:
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_if_dark.png
+   :align: center
+   :class: only-dark
 
 Конечно, далеко не все циклы можно переписать как генератор списка, но
 когда это можно сделать, и при этом выражение не усложняется, лучше
@@ -189,7 +203,14 @@ VLAN'ами:
 
 Соответствие между двумя вложенными циклами и генератором списка с двумя циклами:
 
-.. figure:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for.png
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for.png
+   :align: center
+   :class: only-light
+
+
+.. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_for_for_dark.png
+   :align: center
+   :class: only-dark
 
 Можно одновременно проходиться по двум последовательностям, используя
 zip:
