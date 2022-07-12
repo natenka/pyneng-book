@@ -37,3 +37,13 @@ Python. Задача книги – объяснить понятным язык
    resources/README
    testimonials
    download
+
+
+.. toctree::
+   :caption: Ресурсы
+   :maxdepth: 1
+   :hidden:
+
+   Задания, примеры кода <https://github.com/natenka/pyneng-examples-exercises/>
+   Задать вопрос <https://github.com/natenka/pyneng-book/discussions>
+
