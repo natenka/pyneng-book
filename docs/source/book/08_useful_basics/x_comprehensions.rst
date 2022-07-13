@@ -68,7 +68,7 @@ List comp выше аналогичен такой цикл:
 
 .. only:: html
 
-    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp.png
+    .. image:: https://raw.githubusercontent.com/natenka/pyneng-book/master/images/08_list_comp_dark.png
        :align: center
        :class: only-dark
 
