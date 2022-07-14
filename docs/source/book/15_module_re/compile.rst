@@ -18,34 +18,8 @@
 
     In [52]: regex = re.compile(r'\d+ +\S+ +\w+ +\S+')
 
-Она возвращает объект RegexObject:
 
-.. code:: python
-
-    In [53]: regex
-    Out[53]: re.compile(r'\d+ +\S+ +\w+ +\S+', re.UNICODE)
-
-У объекта RegexObject доступны такие методы и атрибуты:
-
-.. code:: python
-
-    In [55]: [method for method in dir(regex) if not method.startswith('_')]
-    Out[55]:
-    ['findall',
-     'finditer',
-     'flags',
-     'fullmatch',
-     'groupindex',
-     'groups',
-     'match',
-     'pattern',
-     'scanner',
-     'search',
-     'split',
-     'sub',
-     'subn']
-
-Обратите внимание, что у объекта Regex доступны методы search, match,
+У объекта который возвращает re.compile, доступны методы search, match,
 finditer, findall. Это те же функции, которые доступны в модуле
 глобально, но теперь их надо применять к объекту.
 
@@ -69,6 +43,15 @@ finditer, findall. Это те же функции, которые доступ�
 
     In [70]: match.group()
     Out[70]: '100    a1b2.ac10.7000    DYNAMIC     Gi0/1'
+
+При использовании re.compile, флаги надо указывать внутри re.compile, не в
+методах search/finditer:
+
+.. code:: python
+
+    regex = re.compile(r'^Device ID: \S+.+?Cisco IOS', re.MULTILINE | re.DOTALL)
+    match_all = regex.finditer(output)
+
 
 Пример компиляции регулярного выражения и его использования на примере
 разбора лог-файла (файл parse_log_compile.py):
