@@ -855,5 +855,5 @@ output/sh_etherchannel_summary2.txt):
 
 Примеры шаблонов для Cisco и другого оборудования можно посмотреть в
 проекте
-`ntc-ansible <https://github.com/networktocode/ntc-templates/tree/89c57342b47c9990f0708226fb3f268c6b8c1549/templates>`__.
+`ntc-ansible <https://github.com/networktocode/ntc-templates/tree/master/ntc_templates/templates>`__.
 
