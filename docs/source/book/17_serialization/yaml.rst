@@ -24,7 +24,7 @@ YAML более приятен для восприятия человеком, �
 
 .. code:: yaml
 
-    [switchport mode access, switchport access vlan, switchport nonegotiate, spanning-tree portfast, spanning-tree bpduguard enable]
+    [switchport mode access, switchport access vlan, switchport nonegotiate]
 
 Или каждый элемент списка в своей строке:
 
@@ -33,8 +33,6 @@ YAML более приятен для восприятия человеком, �
     - switchport mode access
     - switchport access vlan
     - switchport nonegotiate
-    - spanning-tree portfast
-    - spanning-tree bpduguard enable
 
 Когда список записан таким блоком, каждая строка должна начинаться с
 ``-`` (минуса и пробела), и все строки в списке должны быть на одном
@@ -203,21 +201,20 @@ YAML более приятен для восприятия человеком, �
 
     import yaml
 
-    trunk_template = [
-        'switchport trunk encapsulation dot1q', 'switchport mode trunk',
-        'switchport trunk native vlan 999', 'switchport trunk allowed vlan'
-    ]
-
-    access_template = [
-        'switchport mode access', 'switchport access vlan',
-        'switchport nonegotiate', 'spanning-tree portfast',
-        'spanning-tree bpduguard enable'
-    ]
-
-    to_yaml = {'trunk': trunk_template, 'access': access_template}
+    to_yaml = {
+       'access': ['switchport mode access',
+                  'switchport access vlan',
+                  'switchport nonegotiate',
+                  'spanning-tree portfast',
+                  'spanning-tree bpduguard enable'],
+       'trunk': ['switchport trunk encapsulation dot1q',
+                 'switchport mode trunk',
+                 'switchport trunk native vlan 999',
+                 'switchport trunk allowed vlan'],
+    }
 
     with open('sw_templates.yaml', 'w') as f:
-        yaml.dump(to_yaml, f, default_flow_style=False)
+        yaml.dump(to_yaml, f)
 
     with open('sw_templates.yaml') as f:
         print(f.read())
@@ -238,4 +235,8 @@ YAML более приятен для восприятия человеком, �
     - switchport mode trunk
     - switchport trunk native vlan 999
     - switchport trunk allowed vlan
+
+yaml.full_load()
+^^^^^^^^^^^^^^^^
+
 
