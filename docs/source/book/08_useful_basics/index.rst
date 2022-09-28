@@ -17,4 +17,5 @@
    f-string
    variable_unpacking  
    x_comprehensions
+   debug
    further_reading
