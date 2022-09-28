@@ -559,69 +559,25 @@ Breakpoint с условием
      pp result_dict
     end
 
-pdbr: rich + pdb
-----------------
+ipdb
+----------
 
-Модуль `pdbr <https://github.com/cansarigol/pdbr>`__ это одна из разновидностей
-pdb, которая добавляет несколько полезных команд для начинающих:
+Модуль `ipdb <https://github.com/gotcha/ipdb>`__ это одна из разновидностей
+pdb, которая добавляет подсветку синтаксиса, вызов ipython вместо встроенного
+интерпретатора и другие полезные возможности.
 
-* v (vars) - таблица локальных переменных
-* vt (varstree) - дерево локальных переменных
-* inspect - вывод rich.inspect для объекта
 
-Установка pdbr:
+Установка ipdb:
 
 ::
 
-    pip install pdbr
+    pip install ipdb
 
+Как запустить ipdb
 
-Дополнительные команды pdbr:
+::
 
-.. code:: python
+    python -m ipdb script.py
 
-    (Pdbr) vars
-                                     List of local variables
-                 ╷                                                          ╷
-      Variable   │ Value                                                    │ Type
-    ╶────────────┼──────────────────────────────────────────────────────────┼────────────────╴
-      vlans      │ ['1', '2', '3', 'test', '4', '5', 'switchport allowed    │ <class 'list'>
-                 │ vlans add']                                              │
-      vlans_list │ [1, 2, 3]                                                │ <class 'list'>
-      vl         │ test                                                     │ <class 'str'>
-      new_vl     │ 3                                                        │ <class 'int'>
-                 ╵                                                          ╵
-
-    (Pdbr) varstree
-    Variables
-    ├── <class 'int'>
-    │   └── new_vl: 3
-    ├── <class 'list'>
-    │   ├── vlans: ['1', '2', '3', 'test', '4', '5', 'switchport allowed vlans add']
-    │   └── vlans_list: [1, 2, 3]
-    └── <class 'str'>
-        └── vl: test
-
-    (Pdbr) inspect vlans
-    ╭──────────────────────────────────── <class 'list'> ────────────────────────────────────╮
-    │ Built-in mutable sequence.                                                             │
-    │                                                                                        │
-    │ ╭────────────────────────────────────────────────────────────────────────────────────╮ │
-    │ │ ['1', '2', '3', 'test', '4', '5', 'switchport allowed vlans add']                  │ │
-    │ ╰────────────────────────────────────────────────────────────────────────────────────╯ │
-    │                                                                                        │
-    │  append = def append(object, /): Append object to the end of the list.                 │
-    │   clear = def clear(): Remove all items from list.                                     │
-    │    copy = def copy(): Return a shallow copy of the list.                               │
-    │   count = def count(value, /): Return number of occurrences of value.                  │
-    │  extend = def extend(iterable, /): Extend list by appending elements from the          │
-    │           iterable.                                                                    │
-    │   index = def index(value, start=0, stop=2147483647, /): Return first index of value.  │
-    │  insert = def insert(index, object, /): Insert object before index.                    │
-    │     pop = def pop(index=-1, /): Remove and return item at index (default last).        │
-    │  remove = def remove(value, /): Remove first occurrence of value.                      │
-    │ reverse = def reverse(): Reverse *IN PLACE*.                                           │
-    │    sort = def sort(*, key=None, reverse=False): Sort the list in ascending order and   │
-    │           return None.                                                                 │
-    ╰────────────────────────────────────────────────────────────────────────────────────────╯
-
+В остальном, команды те же, что в и pdb, только по команде interact откроется
+ipython, а не встроенный интепретатор python.
