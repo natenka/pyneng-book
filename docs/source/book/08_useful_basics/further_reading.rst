@@ -32,6 +32,12 @@ pdb:
    2014 <https://www.youtube.com/watch?v=lnlZGhnULn4>`__
 -  `pdbr <https://github.com/cansarigol/pdbr>`__
 
+Отладчики на основе pdb:
+
+-  `Web-PDB <https://github.com/romanvm/python-web-pdb>`__
+-  `PuDB <https://github.com/inducer/pudb>`__
+-  `ipdb <https://github.com/gotcha/ipdb>`__
+-  `pdb++ <https://github.com/pdbpp/pdbpp>`__
 
 Лекции по pdb, rich, Thonny, Mu:
 
