@@ -30,7 +30,6 @@ pdb:
 -  `Python Debugging With Pdb <https://realpython.com/python-debugging-pdb/>`__
 -  `Nathan Yergler: In Depth PDB - PyCon
    2014 <https://www.youtube.com/watch?v=lnlZGhnULn4>`__
--  `pdbr <https://github.com/cansarigol/pdbr>`__
 
 Отладчики на основе pdb:
 
