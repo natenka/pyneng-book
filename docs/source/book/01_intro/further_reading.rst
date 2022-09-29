@@ -16,3 +16,9 @@
 -  `VIM and Python - a Match Made in
    Heaven <https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/>`__
 
+
+Thonny:
+
+-  `Сайт проекта Thonny <https://thonny.org/>`__
+-  `Документация Thonny <https://github.com/thonny/thonny/wiki>`__
+-  `Thonny debug <https://github.com/thonny/thonny/blob/master/thonny/plugins/help/debuggers.rst>`__
