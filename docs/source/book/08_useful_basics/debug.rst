@@ -176,6 +176,25 @@ locals
      'line': '\nline1\n\tline2',
      'pprint': <function pprint at 0xb7253808>}
 
+Пример кода с функцией:
+
+.. code:: python
+
+    from pprint import pprint
+
+    def num_sum(x, y):
+        result = x + y
+        pprint(locals())
+        return result
+
+Вывод locals при вызове функции:
+
+.. code:: python
+
+    In [4]: num_sum(10, 5)
+    {'result': 15, 'x': 10, 'y': 5}
+    Out[4]: 15
+
 
 rich.inspect
 ------------
