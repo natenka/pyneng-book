@@ -425,7 +425,7 @@ rich.traceback
 
     Тут описаны только команды pdb и стоит воспринимать эту секцию как
     справочник по командам, как именно выглядит работа с отладчиком, показано в
-    `видео <https://youtube.com/playlist?list=PLah0HUih_ZRn4dqRyC-KeBeiZ07i3zQ6A>`__.
+    `видео (pdb рассматривается в частях 11, 13, 14) <https://youtube.com/playlist?list=PLah0HUih_ZRn4dqRyC-KeBeiZ07i3zQ6A>`__.
 
 Как запустить pdb
 
