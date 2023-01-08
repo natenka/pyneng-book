@@ -40,9 +40,10 @@ IP-адрес.
 
     with open('sh_ip_int_br.txt') as f:
         for line in f:
-            line = line.split()
-            if line and line[1][0].isdigit():
-                interface, address, *other = line
+            line_list = line.split()
+            if line_list and line_list[1][0].isdigit():
+                interface = line_list[0]
+                address = line_list[1]
                 result[interface] = address
 
     print(result)
@@ -55,10 +56,6 @@ IP-адрес.
 вывода нужны только интерфейсы на которых настроен IP-адрес, выполняется
 проверка первого символа второго столбца: если первый символ число,
 значит на интерфейсе назначен адрес и эту строку надо обрабатывать.
-
-В строке ``interface, address, *other = line`` выполняется распаковка
-переменных. В переменную interface попадет имя интерфейса, в address
-попадет IP-адрес, а в other все остальные поля.
 
 Так как для каждой строки есть пара ключ и значение, они присваиваются в
 словарь: ``result[interface] = address``.
