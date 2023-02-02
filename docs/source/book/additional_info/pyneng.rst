@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -189,5 +192,3 @@ Warning
 В этом случае Right это правильный вывод, Left вывод задания:
 
 .. figure:: https://raw.githubusercontent.com/pyneng/pyneng.github.io/master/assets/images/ptest_output_2.png
-
-

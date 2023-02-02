@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. _pprint:
 
 Модуль pprint
@@ -201,4 +204,3 @@ pprint сортирует словари при выводе, что не все
 
     In [5]: pprint(r1, sort_dicts=False)
     {'ios': '16.4', 'hostname': 'R1', 'ip': '10.1.1.1', 'vendor': 'Cisco IOS'}
-

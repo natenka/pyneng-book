@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Типы аргументов функции
 -----------------------
 
@@ -143,4 +146,3 @@ check_passwd (файл func_check_passwd_optional_param.py):
     In [16]: check_passwd('nata', '12345nata', min_length=3, check_username=False)
     Пароль для пользователя nata прошел все проверки
     Out[16]: True
-

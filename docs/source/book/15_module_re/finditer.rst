@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция finditer
 -----------------
 
@@ -225,4 +228,3 @@ parse_sh_cdp_neighbors_detail_finditer.py):
              r'|Entry address.*\n +IP address: (?P<ip>\S+)'
              r'|Platform: (?P<platform>\S+ \S+),'
              r'|Cisco IOS Software, (?P<ios>.+), RELEASE')
-

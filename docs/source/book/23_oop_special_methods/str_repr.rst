@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Методы __str__, __repr__
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -96,4 +99,3 @@ IPv4 адреса:
 
     In [19]: repr(ip1)
     Out[19]: "IPAddress('10.1.1.1')"
-

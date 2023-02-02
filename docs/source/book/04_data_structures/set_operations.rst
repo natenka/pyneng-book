@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Операции с множествами
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -31,4 +34,3 @@
 
     In [8]: vlans1 & vlans2
     Out[8]: {100}
-

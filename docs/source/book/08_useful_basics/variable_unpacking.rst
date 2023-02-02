@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Распаковка переменных
 ---------------------
 
@@ -333,4 +336,3 @@ item_type нижним подчеркиванием:
     500 aa4b.c550.7000 Gi0/5
     200 a1bb.1c60.7000 Gi0/6
     300 aa0b.cc70.7000 Gi0/7
-

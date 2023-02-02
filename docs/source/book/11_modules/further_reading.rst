@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -49,4 +52,3 @@ pprint
    printer <https://docs.python.org/3/library/pprint.html>`__
 -  `PyMOTW. pprint — Pretty-Print Data
    Structures <https://pymotw.com/3/pprint/>`__
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -46,4 +49,3 @@
 
    pytest_basics
    pytest_pyneng
-

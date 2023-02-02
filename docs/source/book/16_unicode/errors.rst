@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Ошибки при конвертации
 ----------------------
 
@@ -142,4 +145,3 @@
 
     In [56]: de_hi_utf8.decode('ascii', 'replace')
     Out[56]: 'gr��ezi'
-

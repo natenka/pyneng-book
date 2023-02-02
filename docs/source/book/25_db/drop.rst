@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 DROP
 ~~~~
 
@@ -13,4 +16,3 @@ DROP
     Your call!
     Query OK, 0 rows affected
     Time: 0.009s
-

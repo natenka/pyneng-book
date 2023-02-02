@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Введение
 ========
 
@@ -8,5 +11,3 @@
    about
    faq
    acknowledgments
-
-

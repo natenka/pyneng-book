@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 ToDo
 ----
 
@@ -49,4 +52,3 @@ ToDo
 -  OOP basics
 -  iterator, generator
 -  recursive function (basics)
-

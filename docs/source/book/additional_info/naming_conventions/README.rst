@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Соглашение об именах
 --------------------
 
@@ -75,4 +78,3 @@
             self.name = name
             self.vendor = vendor
             self.model = model
-

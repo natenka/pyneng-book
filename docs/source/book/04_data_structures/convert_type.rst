@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Преобразование типов
 --------------------
 
@@ -113,4 +116,3 @@
 
     In [16]: str(10)
     Out[16]: '10'
-

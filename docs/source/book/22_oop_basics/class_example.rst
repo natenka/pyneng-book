@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Пример класса
 ~~~~~~~~~~~~~
 
@@ -46,6 +49,3 @@
          15
 
     ValueError: IP-адрес 10.1.1.100 не входит в сеть 10.1.1.0/29
-
-
-

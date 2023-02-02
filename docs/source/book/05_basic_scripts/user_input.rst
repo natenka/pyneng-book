@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Ввод информации пользователем
 -----------------------------
 
@@ -64,4 +67,3 @@
     switchport nonegotiate
     spanning-tree portfast
     spanning-tree bpduguard enable
-

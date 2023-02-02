@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 
 .. _x_comprehensions:
 
@@ -428,4 +431,3 @@ Set comprehensions (генераторы множеств)
 
     In [51]: unique_vlans
     Out[51]: {10, 30, 56}
-

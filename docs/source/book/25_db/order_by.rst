@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 ORDER BY
 ~~~~~~~~
 
@@ -83,4 +86,3 @@ SELECT.
     +----------------+----------+------------+-------------------+------------+-----------+
     7 rows in set
     Time: 0.034s
-

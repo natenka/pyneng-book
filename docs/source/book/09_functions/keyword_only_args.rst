@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Аргументы, которые можно передавать только как ключевые
 -------------------------------------------------------
 
@@ -40,4 +43,3 @@
     ----> 1 check_passwd('nata', '12345', 3)
 
     TypeError: check_passwd() takes 2 positional arguments but 3 were given
-

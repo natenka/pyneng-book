@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -79,4 +82,3 @@
     10.1.1.1     10.1.1.7
     10.1.1.2     10.1.1.8
                  10.1.1.9
-

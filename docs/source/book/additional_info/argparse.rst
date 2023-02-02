@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль argparse
 ---------------
 
@@ -646,4 +649,3 @@ argparse сам определяет, что указаны опции, так �
     test.txt, test2.txt
 
     Adding data to db dhcp_snooping.db
-

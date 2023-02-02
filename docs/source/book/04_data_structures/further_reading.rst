@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -34,4 +37,3 @@
    (Guide) <https://realpython.com/python-f-strings/>`__
 -  `Python String Formatting Best
    Practices <https://realpython.com/python-string-formatting/>`__
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Цикл for
 --------
 
@@ -78,4 +81,3 @@ ospf), так и по словарю (словарь vlans). И, аналоги�
      network 10.0.1.0 0.0.0.255 area 0
      network 10.0.2.0 0.0.0.255 area 2
      network 10.1.1.0 0.0.0.255 area 0
-

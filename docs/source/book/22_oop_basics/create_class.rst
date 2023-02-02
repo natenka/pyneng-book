@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Создание класса
 ---------------
 
@@ -61,4 +64,3 @@
 
     In [11]: sw2.model
     Out[11]: 'Cisco 3750'
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Виртуальные окружения
 ---------------------
 
@@ -226,4 +229,3 @@ rmvirtualenv:
     path.py-8.1.1-py2.7.egg-info           test_path.pyc
     path.pyc                               traitlets
     pexpect                                traitlets-4.0.0-py2.7.egg-info
-

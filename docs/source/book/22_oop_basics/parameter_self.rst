@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Параметр self
 ~~~~~~~~~~~~~
 
@@ -96,4 +99,3 @@ generate_interfaces должен сгенерировать список с ин
 
     In [12]: sw1.interfaces
     Out[12]: ['Fa1', 'Fa2', 'Fa3', 'Fa4', 'Fa5', 'Fa6', 'Fa7', 'Fa8', 'Fa9', 'Fa10']
-

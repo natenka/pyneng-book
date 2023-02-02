@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Изменения в книге
 -----------------
 
@@ -71,5 +74,3 @@
    книги для Python
    2.7 <https://natenka.gitbooks.io/pyneng/content/v/python2.7/>`__
    по-прежнему доступна.
-
-

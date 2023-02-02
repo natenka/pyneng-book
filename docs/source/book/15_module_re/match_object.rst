@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Объект Match
 ------------
 
@@ -328,4 +331,3 @@
 
     In [65]: match.span('vlan')
     Out[65]: (75, 77)
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 break, continue, pass
 ---------------------
 
@@ -182,4 +185,3 @@ password_correct. Когда был введен правильный парол
        ....:         
     3
     4
-

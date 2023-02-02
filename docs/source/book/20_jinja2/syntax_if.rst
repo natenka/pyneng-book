@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 if/elif/else
 ------------
 
@@ -211,4 +214,3 @@ if, чтобы добавлять какие-то части шаблона в �
      name Voice
     vlan 30
      name Management
-

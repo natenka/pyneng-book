@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Символы повторения
 ------------------
 
@@ -252,4 +255,3 @@ b:
     VLAN:  500
     VLAN:  1200
     VLAN:  1300
-

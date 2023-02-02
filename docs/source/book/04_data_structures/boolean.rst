@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Булевы значения
 ===============
 
@@ -39,4 +42,3 @@
 
     In [7]: bool(1)
     Out[7]: True
-

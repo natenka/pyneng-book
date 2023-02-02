@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 О книге
 -------
 
@@ -154,4 +157,3 @@ Python 3.x. Только в некоторых примерах требуетс
 `Slack <https://pyneng-slack.herokuapp.com>`__. Все вопросы, предложения
 и замечания по книге также пишите в
 `Slack <https://pyneng-slack.herokuapp.com>`__.
-

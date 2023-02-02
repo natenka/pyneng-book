@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -14,4 +17,3 @@
 
 -  `Iterables vs. Iterators vs.
    Generators <http://nvie.com/posts/iterators-vs-generators/>`__
-

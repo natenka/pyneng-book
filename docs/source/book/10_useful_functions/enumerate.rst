@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 enumerate
 ---------
 
@@ -115,4 +118,3 @@ enumerate
     action 0009 cli command " encapsulation dot1Q 300"
     action 0010 cli command " vrf forwarding Management"
     action 0011 cli command " ip address 10.16.19.35 255.255.255.248"
-

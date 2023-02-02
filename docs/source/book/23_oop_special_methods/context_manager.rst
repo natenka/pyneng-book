@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Менеджер контекста
 ~~~~~~~~~~~~~~~~~~
 
@@ -136,5 +139,3 @@ __enter__ и __exit__:
           4
 
     TypeError: unsupported operand type(s) for /: 'str' and 'int'
-
-

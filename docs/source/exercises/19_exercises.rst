@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -299,5 +302,3 @@
 
 
 Для выполнения задания можно создавать любые дополнительные функции.
-
-

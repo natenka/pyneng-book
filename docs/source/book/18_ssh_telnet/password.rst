@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Ввод пароля
 -----------
 
@@ -57,4 +60,3 @@
 
     USERNAME = os.environ.get('SSH_USER')
     PASSWORD = os.environ.get('SSH_PASSWORD')
-

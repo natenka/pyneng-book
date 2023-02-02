@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Выполнение команд SQL
 ----------------------
 
@@ -185,4 +188,3 @@
         ...:     );
         ...: ''')
     Out[15]: <sqlite3.Cursor at 0x10efd67a0>
-

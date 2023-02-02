@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные возможности
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -50,5 +53,3 @@ git log
 Более короткий вариант вывода можно вывести с флагом ``--stat``
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/git_log_stat.png
-
-

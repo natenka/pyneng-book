@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Примеры работы с файлами
 -------------------
 
@@ -320,4 +323,3 @@ working_with_dict_example_4.py):
 
     {'Ethernet0/0': {'ip': '192.168.100.2/24', 'mtu': '1500'},
      'Loopback0': {'ip': '2.2.2.2/32', 'mtu': '1514'}}
-

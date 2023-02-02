@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Summary
 =======
 
@@ -410,5 +413,3 @@ Summary
    3 <book/additional_info/py2_vs_py3.md>`__
 -  `Продолжение обучения <resources/README.md>`__
 -  `Отзывы <testimonials.md>`__
-
-

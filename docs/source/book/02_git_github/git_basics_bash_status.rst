@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Отображение статуса репозитория в приглашении
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -48,5 +51,3 @@
 Если же перейти в репозиторий Git:
 
 .. figure:: https://raw.githubusercontent.com/natenka/PyNEng/master/images/git/setup_prompt.png
-
-

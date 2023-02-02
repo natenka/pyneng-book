@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 UPDATE
 ~~~~~~
 
@@ -142,4 +145,3 @@ UPDATE
     +----------------+----------+------------+-------------------+------------+-----------+
     7 rows in set
     Time: 0.049s
-

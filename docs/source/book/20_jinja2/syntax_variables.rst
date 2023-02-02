@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Переменные
 ----------
 
@@ -72,4 +75,3 @@
      router-id 10.0.0.3
      auto-cost reference-bandwidth 10000
      network 10.0.1.0 0.0.0.255 area 0
-

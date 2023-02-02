@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль paramiko
 ---------------
 
@@ -239,4 +242,3 @@ show (файл 3_paramiko_more.py):
         commands = ["sh run"]
         result = send_show_command("192.168.100.1", "cisco", "cisco", "cisco", commands)
         pprint(result, width=120)
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 AND
 ~~~
 
@@ -77,4 +80,3 @@ NOT
     +----------------+----------+------------+-------------------+------------+-----------+
     6 rows in set
     Time: 0.037s
-

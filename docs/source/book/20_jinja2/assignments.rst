@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 set
 ---
 
@@ -81,4 +84,3 @@ set
 
     interface Fa0/3
      switchport trunk allowed vlan remove 10
-

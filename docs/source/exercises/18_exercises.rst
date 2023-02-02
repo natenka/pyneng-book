@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -365,5 +368,3 @@
 
     commands = ["logging 10.255.255.1", "logging buffered 20010", "no logging console"]
     command = "sh ip int br"
-
-

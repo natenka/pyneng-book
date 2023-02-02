@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Параметры и аргументы функций
 -----------------------------
 
@@ -124,4 +127,3 @@ True если пароль прошел проверки:
    func_args_var.rst      
    func_unpacking_args.rst
    func_unpacking_and_var_args_example
-

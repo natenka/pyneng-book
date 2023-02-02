@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Контроль символов whitespace
 ----------------------------
 
@@ -276,4 +279,3 @@ whitespace символы, в данном случае, в начале бло�
      neighbor {{ ibgp }} remote-as {{ bgp.local_as }}
      neighbor {{ ibgp }} update-source {{ bgp.loopback }}
      {%- endfor -%}
-

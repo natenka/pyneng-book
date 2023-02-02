@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 if/elif/else
 ============
 
@@ -331,4 +334,3 @@ True и False
     result = True if len(s) > 5 else False
 
 Этим лучше не злоупотреблять, но в простых выражениях такая запись может быть полезной.
-

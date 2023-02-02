@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль telnetlib
 ----------------
 
@@ -388,4 +391,3 @@ show (файл 2_telnetlib_more.py):
         for ip in devices:
             result = send_show_command(ip, "cisco", "cisco", "cisco", "sh run")
             pprint(result, width=120)
-

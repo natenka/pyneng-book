@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -201,4 +204,3 @@ Cгенерировать топологию, которая соответст�
         "sh_cdp_n_r2.txt",
         "sh_cdp_n_r3.txt",
     ]
-

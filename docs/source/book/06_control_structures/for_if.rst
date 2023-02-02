@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Совмещение for и if
 ~~~~~~~~~~~~~~~~~~~
 
@@ -65,4 +68,3 @@
      switchport access vlan 150
      spanning-tree portfast
      spanning-tree bpduguard enable
-

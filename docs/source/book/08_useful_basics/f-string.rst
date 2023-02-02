@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 
 .. _f_string:
 
@@ -268,4 +271,3 @@ format позволяет создать шаблон в одном месте �
 
     In [3]: show_me_ip('192.16.10.192', 28)
     Out[3]: 'IP: 192.16.10.192, mask: 28'
-

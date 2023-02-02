@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция zip
 -----------
 
@@ -121,4 +124,3 @@
       'location': '21 New Globe Walk',
       'model': '3850',
       'vendor': 'Cisco'}}
-

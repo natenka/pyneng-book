@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 while
 -----
 
@@ -92,4 +95,3 @@ while
 
     Введите пароль еще раз: 123345345345
     Пароль для пользователя nata установлен
-

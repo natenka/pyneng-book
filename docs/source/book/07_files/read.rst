@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Чтение файлов
 -------------
 
@@ -213,4 +216,3 @@
     !
     ip ssh version 2
     !
-

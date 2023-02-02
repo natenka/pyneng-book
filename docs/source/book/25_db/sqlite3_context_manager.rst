@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Connection как менеджер контекста
 ---------------------------------
 
@@ -317,4 +320,3 @@ write_rows_to_db, которая уже по очереди пишет данн�
      ('0055.AAAA.CCCC', 'sw5', 'Cisco 3750', 'London, Green Str'),
      ('0066.BBBB.CCCC', 'sw6', 'Cisco 3780', 'London, Green Str'),
      ('0088.AAAA.CCCC', 'sw8', 'Cisco 3750', 'London, Green Str')]
-

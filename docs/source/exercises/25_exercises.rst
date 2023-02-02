@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -601,4 +604,3 @@ parse_dhcp_snooping_functions.py и просто выведите аргумен
                                       [-k {mac,ip,vlan,interface,switch}]
                                       [-v VALUE] [-a]
     parse_dhcp_snooping.py get: error: argument -k: invalid choice: 'vln' (choose from 'mac', 'ip', 'vlan', 'interface', 'switch')
-
