@@ -37,7 +37,6 @@ Python. Задача книги – объяснить понятным язык
    book/Part_VII
    book/Part_VIII
    resources/README
-   testimonials
    download
 
 

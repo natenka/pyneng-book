@@ -14,7 +14,6 @@ I. Основы Python
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    01_intro/index.rst
    02_git_github/index.rst
