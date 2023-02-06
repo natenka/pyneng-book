@@ -41,7 +41,6 @@ II. Повторное использование кода
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    09_functions/index.rst
    10_useful_functions/index.rst

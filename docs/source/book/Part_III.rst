@@ -40,7 +40,6 @@ III. Регулярные выражения
 
 .. toctree::
    :maxdepth: 1
-   :hidden:
 
    14_regex/index.rst
    15_module_re/index.rst
