@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль netmiko
 --------------
 
@@ -347,4 +350,3 @@ show (файл 4_netmiko_more.py):
         with open("devices.yaml") as f:
             devices = yaml.safe_load(f)
         print(send_show_command(devices[0], "sh run"))
-

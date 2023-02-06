@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -17,4 +20,3 @@ Stack Overflow:
 
 -  `What is the python “with” statement designed
    for? <http://stackoverflow.com/questions/3012488/what-is-the-python-with-statement-designed-for>`__
-

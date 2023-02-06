@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Использование модуля sqlite3 без явного создания курсора
 --------------------------------------------------------
 
@@ -46,4 +49,3 @@
     ('0000.BBBB.CCCC', 'sw2', 'Cisco 3780', 'London, Green Str')
     ('0000.AAAA.DDDD', 'sw3', 'Cisco 2960', 'London, Green Str')
     ('0011.AAAA.CCCC', 'sw4', 'Cisco 3750', 'London, Green Str')
-

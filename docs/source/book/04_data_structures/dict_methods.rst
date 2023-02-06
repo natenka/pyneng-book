@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Полезные методы для работы со словарями
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -253,4 +256,3 @@ copy():
      'location': 'London Str',
      'vendor': 'Cisco',
      'ios': '15.4'}
-

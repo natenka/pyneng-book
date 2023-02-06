@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Python для сетевых инженеров
 ============================
 
@@ -47,4 +50,3 @@ Python. Задача книги – объяснить понятным язык
    Задания, примеры кода <https://github.com/natenka/pyneng-examples-exercises/>
    Задать вопрос <https://github.com/natenka/pyneng-book/discussions>
    Лекции по Python для сетевых инженеров <https://www.youtube.com/channel/UCbp_f4rb5OR5hSUJW3F2FRg>
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Область видимости
 ~~~~~~~~~~~~~~~~~
 
@@ -23,5 +26,3 @@
 
         def info(self):
             print('Hostname: {}\nModel: {}'.format(self.hostname, self.model))
-
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Метод map
 ~~~~~~~~~
 
@@ -229,4 +232,3 @@ netmiko_threads_map_basics.py):
 
 При использовании метода map, обработку исключений лучше делать внутри функции, 
 которая запускается в потоках, в данном случае это функция send_show.
-

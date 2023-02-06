@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль ipaddress
 ----------------
 
@@ -263,4 +266,3 @@ IPv4Interface или IPv6Interface соответственно:
 
     In [44]: check_if_ip_is_network(IP2)
     Out[44]: True
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 SQLite
 ------
 
@@ -102,4 +105,3 @@ litecli
     Mail: https://groups.google.com/forum/#!forum/litecli-users
     Github: https://github.com/dbcli/litecli
     example.db>
-

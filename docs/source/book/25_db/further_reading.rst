@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -13,4 +16,3 @@
 
 -  `A thorough guide to SQLite database operations in
    Python <http://sebastianraschka.com/Articles/2014_sqlite_in_python_tutorial.html>`__
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Особенности использования pytest для проверки заданий
 -----------------------------------------------------
 
@@ -269,4 +272,3 @@ pytest-clarity
 
     [pytest]
     addopts = -vv --no-hints
-

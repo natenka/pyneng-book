@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. warning::
 
     Начиная с раздела "4. Типы данных в Python" для проверки заданий
@@ -8,4 +11,3 @@
     Проверка заданий выполняется с помощью утилиты pyneng. Подробнее
     :ref:`о том как работать с утилитой pyneng <additional_info_pyneng>`
     :ref:`и как ее установить <additional_info_pyneng_prepare>`.
-

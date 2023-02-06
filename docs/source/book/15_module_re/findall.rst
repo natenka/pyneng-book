@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция findall
 ----------------
 
@@ -122,4 +125,3 @@ parse_log_findall.py):
 
     $ python parse_log_findall.py
     Петля между портами Gi0/19, Gi0/16, Gi0/24 в VLAN 10
-

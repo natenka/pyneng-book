@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Конструкция with
 ----------------
 
@@ -122,4 +125,3 @@
        ...:             if line.startswith('service'):
        ...:                 dest.write(line)
        ...:
-

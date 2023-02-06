@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Синтаксис шаблонов TextFSM
 --------------------------
 
@@ -219,4 +222,3 @@ Error Action
 ::
 
     ^regex -> Error [word|"string"]
-

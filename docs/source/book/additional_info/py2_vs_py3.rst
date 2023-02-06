@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Отличия Python 2.7 и Python 3.6
 -------------------------------
 
@@ -271,4 +274,3 @@ Jinja2
    examples <http://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html>`__
 -  `Supporting Python 3: An in-depth
    guide <http://python3porting.com/>`__
-

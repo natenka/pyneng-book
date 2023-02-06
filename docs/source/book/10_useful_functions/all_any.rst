@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция all
 -----------
 
@@ -77,4 +80,3 @@
         ignore = ['duplex', 'alias', 'Current configuration']
 
         return any([word in command for word in ignore])
-

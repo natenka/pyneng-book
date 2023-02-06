@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -140,4 +143,3 @@
      event cli pattern ".*" sync no skip no occurs 1
      action 1 syslog msg "User $_cli_username entered $_cli_msg on device $_cli_host "
     !
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Cursor как итератор
 -------------------
 
@@ -40,4 +43,3 @@ fetch.
     ('0000.1111.0002', 'sw6', 'Cisco 3750', 'London, Green Str')
     ('0000.1111.0003', 'sw7', 'Cisco 3750', 'London, Green Str')
     ('0000.1111.0004', 'sw8', 'Cisco 3750', 'London, Green Str')
-

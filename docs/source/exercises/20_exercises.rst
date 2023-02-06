@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -235,4 +238,3 @@ cisco_vpn_1.txt и cisco_vpn_2.txt.
         'tun_ip_1': '10.0.1.1 255.255.255.252',
         'tun_ip_2': '10.0.1.2 255.255.255.252'
     }
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Виртуальные окружения
 ---------------------
 
@@ -89,4 +92,3 @@
       File "<stdin>", line 1, in <module>
     ModuleNotFoundError: No module named 'simplejson'
     >>> 
-

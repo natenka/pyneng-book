@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Кортеж (Tuple)
 --------------
 
@@ -67,4 +70,3 @@
 
     In [3]: sorted(tuple_keys)
     Out[3]: ['hostname', 'ios', 'ip', 'location', 'model', 'vendor']
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -21,4 +24,3 @@
     IPython 7.18.1 -- An enhanced Interactive Python. Type '?' for help.
 
     In [1]:
-

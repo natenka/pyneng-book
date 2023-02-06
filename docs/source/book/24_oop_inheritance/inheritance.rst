@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Основы наследования
 ~~~~~~~~~~~~~~~~~~~
 
@@ -202,4 +205,3 @@ paging, так что можно попробовать выполнить дл�
     In [13]: r1.send_config_commands(['interface loopback 33',
         ...:                          'ip address 3.3.3.3 255.255.255.255'])
     Out[13]: 'conf t\r\nEnter configuration commands, one per line.  End with CNTL/Z.\r\nR1(config)#interface loopback 33\r\nR1(config-if)#ip address 3.3.3.3 255.255.255.255\r\nR1(config-if)#end\r\nR1#'
-

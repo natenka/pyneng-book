@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. _unpacking_args:
 
 Распаковка аргументов
@@ -202,4 +205,3 @@ Python сам 'распакует' список info и передаст в фу
 
 Python распаковывает словарь и передает его в функцию как ключевые аргументы.
 Запись ``check_passwd(**data)`` превращается в вызов вида ``check_passwd(username='cisco', password='cisco')``.
-

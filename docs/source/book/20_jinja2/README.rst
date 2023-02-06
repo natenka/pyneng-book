@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Начало работы с Jinja2
 ======================
 
@@ -94,4 +97,3 @@ basic_generator.py):
      router-id 10.255.11.1
      auto-cost reference-bandwidth 10000
      network 10.0.0.0 0.255.255.255 area 0
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль os
 =========
 
@@ -261,4 +264,3 @@ os.path.abspath
 
     In [41]: os.path.abspath(".")
     Out[41]: '/home/nata/repos/pyneng-tasks/exercises'
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Переменные класса
 ~~~~~~~~~~~~~~~~~
 
@@ -85,5 +88,3 @@
 
     In [42]: net2.all_allocated_ip
     Out[42]: ['10.1.1.1', '10.1.1.2', '10.1.1.3', '10.2.2.1', '10.2.2.2']
-
-

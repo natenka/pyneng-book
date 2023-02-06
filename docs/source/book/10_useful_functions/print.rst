@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. _print:
 
 Функция print
@@ -179,4 +182,3 @@ True (файл print_nums_oneline_fixed.py):
     for num in range(10):
         print(num, end=' ', flush=True)
         time.sleep(1)
-

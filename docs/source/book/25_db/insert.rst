@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 INSERT
 ~~~~~~
 
@@ -34,4 +37,3 @@ INSERT
     new_db.db> INSERT into switch (mac, model, location, hostname) values ('0020.A2AA.C2CC', 'Cisco 3850', 'London, Green Str', 'sw2');
     Query OK, 1 row affected
     Time: 0.009s
-

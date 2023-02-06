@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Группа без захвата
 ------------------
 
@@ -55,4 +58,3 @@
 
     In [5]: match.groups()
     Out[5]: ('f03a.b216.7ad7', '10', 'Gi0/5', 'Gi0/15')
-

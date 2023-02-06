@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция filter
 --------------
 
@@ -78,4 +81,3 @@ List comprehension вместо filter
 
     In [13]: [word for word in list_of_words if len(word) > 2]
     Out[13]: ['one', 'two', 'list', 'dict']
-

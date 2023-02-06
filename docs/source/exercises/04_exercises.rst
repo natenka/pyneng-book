@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -178,4 +181,3 @@
 .. code:: python
 
     ip = "192.168.3.1"
-

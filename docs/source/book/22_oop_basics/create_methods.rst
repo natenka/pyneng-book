@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Создание метода
 ~~~~~~~~~~~~~~~
 
@@ -122,4 +125,3 @@
 
     In [9]: a
     Out[9]: [1, 2, 3, 5]
-

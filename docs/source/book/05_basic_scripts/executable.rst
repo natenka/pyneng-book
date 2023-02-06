@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Исполняемый файл
 ~~~~~~~~~~~~~~~~
 
@@ -34,4 +37,3 @@ python перед вызовом файла, нужно:
 ::
 
     $ ./access_template_exec.py
-

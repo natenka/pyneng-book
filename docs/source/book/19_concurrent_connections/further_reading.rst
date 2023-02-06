@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -41,4 +44,3 @@ concurrent.futures
    parallel? <https://stackoverflow.com/a/23816818>`__
 -  `How many threads is too
    many? <https://stackoverflow.com/questions/481970/how-many-threads-is-too-many>`__
-

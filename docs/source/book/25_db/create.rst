@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 CREATE
 ~~~~~~
 
@@ -47,4 +50,3 @@ CREATE
     | CREATE TABLE switch (mac text not NULL primary key, hostname text, model text, location text) |
     +-----------------------------------------------------------------------------------------------+
     Time: 0.037s
-

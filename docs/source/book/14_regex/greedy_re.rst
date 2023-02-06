@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Жадность символов повторения
 ----------------------------
 
@@ -54,4 +57,3 @@
 
     In [10]: re.search(r'\d+\s+\S+?', line).group()
     Out[10]: '1500     a'
-

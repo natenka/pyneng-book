@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Числа
 =====
 
@@ -140,4 +143,3 @@
 
     In [32]: math.pi
     Out[32]: 3.141592653589793
-

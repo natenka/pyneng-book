@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 аргумент
 --------
 
@@ -151,4 +154,3 @@
 
     In [16]: result
     Out[16]: 15
-

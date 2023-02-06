@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Рекомендации по поводу расположения функций в коде
 --------------------------------------------------
 
@@ -26,4 +29,3 @@
 
     `О структуре больших проектов <https://docs.python-guide.org/writing/structure/>`__.
     И еще одна ссылка по этой же теме, с `примерами структуры проектов Flask/Django <https://realpython.com/python-application-layouts/>`__.
-

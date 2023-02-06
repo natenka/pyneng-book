@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 SELECT
 ~~~~~~
 
@@ -33,4 +36,3 @@ SELECT
     +----------+----------------+------------+
     2 rows in set
     Time: 0.033s
-

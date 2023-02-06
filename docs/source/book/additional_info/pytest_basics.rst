@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Основы pytest
 -------------
 
@@ -253,4 +256,3 @@ False (напишите return False в самом начале функции).
     test_check_ip_function.py .                              [100%]
 
     ================= 1 passed in 0.02 seconds ====================
-

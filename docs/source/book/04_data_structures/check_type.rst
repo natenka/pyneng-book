@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Проверка типов
 ~~~~~~~~~~~~~~
 
@@ -107,4 +110,3 @@
 
     In [17]: type((1,2,3)) == list
     Out[17]: False
-

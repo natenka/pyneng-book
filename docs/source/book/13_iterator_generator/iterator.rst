@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Итераторы
 ---------
 
@@ -148,4 +151,3 @@ StopIteration.
     !
     ip ssh version 2
     !
-

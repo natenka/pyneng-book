@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -284,4 +287,3 @@
         Конвертирует строку с датой в формате 11/10/2019 14:05 в объект datetime.
         """
         return datetime.datetime.strftime(datetime_obj, "%d/%m/%Y %H:%M")
-

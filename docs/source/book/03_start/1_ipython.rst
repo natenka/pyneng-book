@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Интерпретатор Python. IPython
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -263,4 +266,3 @@ dir()
      'i',
      'quit',
      'test']
-

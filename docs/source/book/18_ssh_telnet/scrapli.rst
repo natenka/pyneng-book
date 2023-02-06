@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Модуль scrapli
 --------------
 
@@ -601,4 +604,3 @@ telnet и обязательно указать параметр port равны
             r1, ["interfacelo11", "ip address 11.1.1.1 255.255.255.255"], strict=True
         )
         print(output_cfg)
-

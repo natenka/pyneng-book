@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Работа с файлами в формате JSON
 -------------------------------
 
@@ -353,4 +356,3 @@ json_read_loads.py):
 
     In [29]: json.dumps(d)
     Out[29]: '{"1": 100, "2": 200}'
-

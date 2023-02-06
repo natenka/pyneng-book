@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -28,4 +31,3 @@ Stack Overflow:
    loops? <https://stackoverflow.com/questions/9979970/why-does-python-use-else-after-for-and-while-loops>`__
 -  `Is it a good practice to use try-except-else in
    Python? <https://stackoverflow.com/questions/16138232/is-it-a-good-practice-to-use-try-except-else-in-python>`__
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Специальные команды ipython
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -124,4 +127,3 @@ IPython.
     %hist -g         : Command history of (almost) all sessions.
     %hist 1/2-8      : Command history containing lines 2-8 of session 1.
     %hist 1/ ~2/     : Command history of session 1 and 2 sessions before current.
-

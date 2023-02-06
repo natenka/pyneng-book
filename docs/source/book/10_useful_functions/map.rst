@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция map
 -----------
 
@@ -104,4 +107,3 @@ comprehension генерирует список.
 
     In [56]: [x * y for x, y in zip(nums, nums2)]
     Out[56]: [100, 400, 900, 1600, 2500]
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -19,5 +22,3 @@
 .. note::
 
     `Как создать репозиторий на основе шаблона <https://pyneng.readthedocs.io/ru/latest/book/02_git_github/git_github_changes.html>`__.
-
-

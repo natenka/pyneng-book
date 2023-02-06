@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция match
 -------------
 
@@ -85,4 +88,3 @@
 
     $ python parse_log_match.py
     Петля между портами Gi0/19, Gi0/24, Gi0/16 в VLAN 10
-

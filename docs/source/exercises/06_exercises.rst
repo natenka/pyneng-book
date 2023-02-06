@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. raw:: latex
 
    \newpage
@@ -137,4 +140,3 @@ trunk будут другие номера интерфейсов, код дол
                 print(f" {command} {vlan}")
             else:
                 print(f" {command}")
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Все задания и вспомогательные файлы можно скачать в
 `репозитории <https://github.com/natenka/pyneng-examples-exercises/>`__.
 
@@ -10,4 +13,3 @@
     адаптации к тестам, становится проще делать задания с тестами.
     Проверка заданий выполняется с помощью утилиты pyneng. Подробнее
     :ref:`о том как работать с утилитой pyneng <additional_info_pyneng>`.
-

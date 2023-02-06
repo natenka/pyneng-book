@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Продолжение обучения
 ====================
 
@@ -171,4 +174,3 @@ Python без привязки к сетевому оборудованию
 -  `Python Module of the Week <https://pymotw.com/3/index.html>`__
 -  `Tiny-Python-3.6-Notebook <https://github.com/mattharrison/Tiny-Python-3.6-Notebook/blob/master/python.rst>`__
    - Отличная шпаргалка по Python 3.6
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция search
 --------------
 
@@ -251,4 +254,3 @@ detail.
      'SW2': {'ios': 'C2960 Software (C2960-LANBASEK9-M), Version 12.2(55)SE9',
              'ip': '10.1.1.2',
              'platform': 'cisco WS-C2960-8TC-L'}}
-

@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Создание своих модулей
 ----------------------
 
@@ -115,4 +118,3 @@ check_ip_function.py.
 
     In [22]: return_correct_ip(ip_list)
     Out[22]: ['10.1.1.1', '8.8.8.8']
-

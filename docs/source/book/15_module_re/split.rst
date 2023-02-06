@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Функция re.split
 ----------------
 
@@ -73,4 +76,3 @@
 
     In [6]: re.split(r'(?:via|[ ,\[\]])+', ospf_route)
     Out[6]: ['O', '10.0.24.0/24', '110/41', '10.0.13.3', '3d18h', 'FastEthernet0/0']
-

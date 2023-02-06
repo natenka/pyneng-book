@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 .. _range:
 
 Функция range
@@ -161,4 +164,3 @@ Range поддерживает срезы:
 
     In [27]: nums.index(3)
     Out[27]: 2
-

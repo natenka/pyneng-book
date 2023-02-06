@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Дополнительные материалы
 ------------------------
 
@@ -17,5 +20,3 @@
 -  `regexlearn.com <https://regexlearn.com/>`__
 -  `Визуализация регулярного выражения <https://regexper.com/>`__
 -  `Regex Cross­word <https://regexcrossword.com/>`__
-
-

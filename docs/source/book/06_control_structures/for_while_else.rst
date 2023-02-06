@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 for/else, while/else
 --------------------
 
@@ -110,4 +113,3 @@ while):
     0
     1
     2
-

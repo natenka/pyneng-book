@@ -1,3 +1,6 @@
+.. meta::
+   :http-equiv=Content-Type: text/html; charset=utf-8
+
 Юникод в Python 3
 -----------------
 
@@ -130,4 +133,3 @@
         bytes3 = b'привет'
                 ^
     SyntaxError: bytes can only contain ASCII literal characters.
-
