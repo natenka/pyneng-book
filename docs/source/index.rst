@@ -25,7 +25,6 @@ Python. Задача книги – объяснить понятным язык
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
 
    intro_index
    book_links
@@ -45,7 +44,6 @@ Python. Задача книги – объяснить понятным язык
 .. toctree::
    :caption: Ресурсы
    :maxdepth: 1
-   :hidden:
 
    Задания, примеры кода <https://github.com/natenka/pyneng-examples-exercises/>
    Задать вопрос <https://github.com/natenka/pyneng-book/discussions>
