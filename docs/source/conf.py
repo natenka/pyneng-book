@@ -48,25 +48,6 @@ language = "ru"
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-# -- Options for epub output -------------------------------------------------
-
-epub_theme = 'epub'
-epub_basename = 'Python для сетевых инженеров'
-epub_author = 'Наташа Самойленко'
-epub_cover = ('_static/cover.png', '')
-# epub_publisher = 'https://natenka.io/'
-epub_scheme = 'url'
-# epub_identifier = 'https://natenka.io/'
-# epub_pre_files = [('index.html', 'Python для сетевых инженеров')]
-#epub_post_files = [('install.html', 'Installing Sphinx'),('develop.html', 'Sphinx development')]
-# epub_exclude_files = ['_static/README.md']
-epub_fix_images = False
-epub_max_image_width = 0
-epub_show_urls = 'inline'
-epub_use_index = False
-# epub_guide = (('toc', 'index.html', 'Table of Contents'),)
-
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -131,3 +112,23 @@ latex_elements = {
     'printindex': r'\footnotesize\raggedright\printindex',
     'figure_align': 'H',
 }
+
+# -- Options for epub output -------------------------------------------------
+
+epub_theme = 'epub'
+epub_basename = 'Python для сетевых инженеров'
+epub_author = 'Наташа Самойленко'
+epub_cover = ('_static/cover.png', '')
+# epub_publisher = 'https://natenka.io/'
+epub_scheme = 'url'
+# epub_identifier = 'https://natenka.io/'
+# epub_pre_files = [('index.html', 'Python для сетевых инженеров')]
+#epub_post_files = [('install.html', 'Installing Sphinx'),('develop.html', 'Sphinx development')]
+# epub_exclude_files = ['_static/README.md']
+epub_fix_images = False
+epub_max_image_width = 0
+epub_show_urls = 'inline'
+epub_use_index = False
+# epub_guide = (('toc', 'index.html', 'Table of Contents'),)
+
+
