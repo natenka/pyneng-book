@@ -57,14 +57,14 @@ epub_cover = ('_static/cover.png', '')
 # epub_publisher = 'https://natenka.io/'
 epub_scheme = 'url'
 # epub_identifier = 'https://natenka.io/'
-epub_pre_files = [('index.html', 'Python для сетевых инженеров')]
+# epub_pre_files = [('index.html', 'Python для сетевых инженеров')]
 #epub_post_files = [('install.html', 'Installing Sphinx'),('develop.html', 'Sphinx development')]
 # epub_exclude_files = ['_static/README.md']
 epub_fix_images = False
 epub_max_image_width = 0
 epub_show_urls = 'inline'
 epub_use_index = False
-epub_guide = (('toc', 'index.html', 'Table of Contents'),)
+# epub_guide = (('toc', 'index.html', 'Table of Contents'),)
 
 
 # -- Options for HTML output -------------------------------------------------
