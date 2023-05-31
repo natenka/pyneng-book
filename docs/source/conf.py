@@ -57,15 +57,14 @@ html_theme = "furo"
 # html_sidebars = {
 #    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
 # }
-announcement = """Перевод книги <a href="https://pyneng.io/">Ukranian</a>/<a href="https://pyneng.readthedocs.io/en/latest/">English</a>
-"""
+# announcement = """Перевод книги <a href="https://pyneng.io/">Ukranian</a>/<a href="https://pyneng.readthedocs.io/en/latest/">English</a> """
 
 html_title = "Python для сетевых инженеров"
 html_theme_options = {
     "prev_next_buttons_location": "both",
     "navigation_with_keys": True,
     "top_of_page_button": None,
-    "announcement": announcement,
+    # "announcement": announcement,
     "light_css_variables": {
         "color-brand-primary": "#336790",  # "blue"
         "color-brand-content": "#336790",

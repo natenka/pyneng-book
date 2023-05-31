@@ -45,5 +45,12 @@ Python. Задача книги – объяснить понятным язык
    :maxdepth: 1
 
    Задания, примеры кода <https://github.com/natenka/pyneng-examples-exercises/>
-   Задать вопрос <https://github.com/natenka/pyneng-book/discussions>
    Лекции по Python для сетевых инженеров <https://www.youtube.com/channel/UCbp_f4rb5OR5hSUJW3F2FRg>
+
+
+.. toctree::
+   :caption: Перевод книги
+   :maxdepth: 1
+
+   Українською <https://pyneng.io/book>
+   English <https://pyneng.readthedocs.io/en/latest/>
