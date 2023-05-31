@@ -48,8 +48,8 @@ Python. Задача книги – объяснить понятным язык
 
 
 .. toctree::
-   :caption: Перевод книги
+   :caption: Languages
    :maxdepth: 1
 
-   Українська <https://pyneng.io/book>
+   Ukrainian <https://pyneng.io/book>
    English <https://pyneng.readthedocs.io/en/latest/>
