@@ -52,5 +52,5 @@ Python. Задача книги – объяснить понятным язык
    :caption: Перевод книги
    :maxdepth: 1
 
-   Українською <https://pyneng.io/book>
+   Українська <https://pyneng.io/book>
    English <https://pyneng.readthedocs.io/en/latest/>
