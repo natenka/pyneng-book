@@ -27,7 +27,6 @@ Python. Задача книги – объяснить понятным язык
    :maxdepth: 2
 
    intro_index
-   book_links
    book/Part_I
    book/Part_II
    book/Part_III
