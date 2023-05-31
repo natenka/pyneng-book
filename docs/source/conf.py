@@ -57,17 +57,7 @@ html_theme = "furo"
 # html_sidebars = {
 #    "**": ["about.html", "searchbox.html", "localtoc.html", "navigation.html"]
 # }
-announcement = """
-  <div class="dropdown-menu" aria-labelledby="lang-icon-button">
-      <a class="dropdown-item lang-text"
-         href="https://pyneng.io/">
-          Français
-      </a>
-      <a class="dropdown-item lang-text"
-         href="https://pyneng.readthedocs.io/en/latest/">
-          Deutsch
-      </a>
-  </div>
+announcement = """Перевод книги <a href="https://pyneng.io/">Ukranian</a>/<a href="https://pyneng.readthedocs.io/en/latest/">English</a>
 """
 
 html_title = "Python для сетевых инженеров"
