@@ -140,10 +140,6 @@ Python без привязки к сетевому оборудованию
    обучения после книги. В нём вы и повторите пройденный материал по
    основам Python, но под другим углом и узнаете много нового. В курсе
    много практических заданий и он достаточно интенсивный.
--  `Python от Computer Science
-   Center <https://www.youtube.com/playlist?list=PLlb7e2G7aSpTTNp7HBYzCBByaE1h54ruW>`__
-   - отличные видеолекции по Python. Тут есть и немного основ и более
-   продвинутые темы
 -  `Курсы от Talk Python <https://training.talkpython.fm/courses/all>`__
 
 Сайты с задачами

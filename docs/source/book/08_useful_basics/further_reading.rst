@@ -41,8 +41,3 @@ pdb:
 -  `ipdb <https://github.com/gotcha/ipdb>`__
 -  `pdb++ <https://github.com/pdbpp/pdbpp>`__
 
-Лекции по pdb, rich, Thonny, Mu:
-
--  `Запись лекции "Основы pdb" <https://youtu.be/Wc4ViOjyHg8>`__
--  `Запись лекции Модуль Rich - создание красивых приложений в CLI <https://youtube.com/playlist?list=PLah0HUih_ZRkzS7TouDvcgK79WiYZSgpk>`__
--  `Лекции по редакторам Mu/Thonny и их отладчикам <https://youtube.com/playlist?list=PLah0HUih_ZRkiQXDuElo_JW9OfmbEXRpj>`__
