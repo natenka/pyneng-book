@@ -408,7 +408,5 @@ Summary
    -  `Дополнительные
       материалы <book/additional_info/threading_multiprocessing/further_reading.md>`__
 
--  `Отличия Python 2.7 и Python
-   3 <book/additional_info/py2_vs_py3.md>`__
 -  `Продолжение обучения <resources/README.md>`__
 -  `Отзывы <testimonials.md>`__
