@@ -11,7 +11,6 @@ Summary
 -  `Как учиться по этой книге <howto.md>`__
 -  `Пример плана обучения <schedule.md>`__
 -  `FAQ <faq.md>`__
--  `Благодарности <acknowledgments.md>`__
 
 -  `I. Основы Python <book/Part_I.md>`__
 -  `1. Подготовка к работе <book/01_intro/README.md>`__
